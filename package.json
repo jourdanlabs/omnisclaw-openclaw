@@ -1,7 +1,7 @@
 {
-  "name": "openclaw",
-  "version": "2026.5.6",
-  "description": "Multi-channel AI gateway with extensible messaging integrations",
+  "name": "omnisclaw",
+  "version": "2026.5.6-omnisclaw.0",
+  "description": "OpenClaw fork with invisible OMNISCLAW BIFROST verification",
   "keywords": [],
   "homepage": "https://github.com/openclaw/openclaw#readme",
   "bugs": {
@@ -14,6 +14,7 @@
     "url": "git+https://github.com/openclaw/openclaw.git"
   },
   "bin": {
+    "omnisclaw": "openclaw.mjs",
     "openclaw": "openclaw.mjs"
   },
   "directories": {

@@ -1,5 +1,6 @@
 import { normalizeChatType } from "../channels/chat-type.js";
 import type { OpenClawConfig } from "../config/types.openclaw.js";
+import { createOmnisclawBifrostBeforeDeliver } from "../omnisclaw/bifrost-delivery-filter.js";
 import {
   deriveInboundMessageHookContext,
   toPluginMessageContext,
@@ -201,8 +202,11 @@ export async function dispatchInboundMessageWithBufferedDispatcher(params: {
   replyResolver?: GetReplyFromConfig;
 }): Promise<DispatchInboundResult> {
   const silentReplyContext = resolveDispatcherSilentReplyContext(params.ctx, params.cfg);
-  const beforeDeliver =
-    params.dispatcherOptions.beforeDeliver ?? buildMessageSendingBeforeDeliver(params.ctx);
+  const beforeDeliver = createOmnisclawBifrostBeforeDeliver({
+    cfg: params.cfg,
+    ctx: params.ctx,
+    previous: params.dispatcherOptions.beforeDeliver ?? buildMessageSendingBeforeDeliver(params.ctx),
+  });
   const { dispatcher, replyOptions, markDispatchIdle, markRunComplete } =
     createReplyDispatcherWithTyping({
       ...params.dispatcherOptions,
@@ -236,8 +240,11 @@ export async function dispatchInboundMessageWithDispatcher(params: {
   const silentReplyContext = resolveDispatcherSilentReplyContext(params.ctx, params.cfg);
   const dispatcher = createReplyDispatcher({
     ...params.dispatcherOptions,
-    beforeDeliver:
-      params.dispatcherOptions.beforeDeliver ?? buildMessageSendingBeforeDeliver(params.ctx),
+    beforeDeliver: createOmnisclawBifrostBeforeDeliver({
+      cfg: params.cfg,
+      ctx: params.ctx,
+      previous: params.dispatcherOptions.beforeDeliver ?? buildMessageSendingBeforeDeliver(params.ctx),
+    }),
     silentReplyContext: params.dispatcherOptions.silentReplyContext ?? silentReplyContext,
   });
   return await dispatchInboundMessage({
