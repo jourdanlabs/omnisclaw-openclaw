@@ -3,15 +3,15 @@
   "version": "2026.5.6-omnisclaw.0",
   "description": "OpenClaw fork with invisible OMNISCLAW BIFROST verification",
   "keywords": [],
-  "homepage": "https://github.com/openclaw/openclaw#readme",
+  "homepage": "https://github.com/jourdanlabs/omnisclaw-openclaw#readme",
   "bugs": {
-    "url": "https://github.com/openclaw/openclaw/issues"
+    "url": "https://github.com/jourdanlabs/omnisclaw-openclaw/issues"
   },
   "license": "MIT",
   "author": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openclaw/openclaw.git"
+    "url": "git+https://github.com/jourdanlabs/omnisclaw-openclaw.git"
   },
   "bin": {
     "omnisclaw": "openclaw.mjs",
