@@ -23,6 +23,7 @@ import {
   projectOutboundPayloadPlanForOutbound,
 } from "../../infra/outbound/payloads.js";
 import type { OutboundSessionContext } from "../../infra/outbound/session-context.js";
+import { applyOmnisclawBifrostToReplyPayload } from "../../omnisclaw/bifrost-delivery-filter.js";
 import { type RuntimeEnv, writeRuntimeJson } from "../../runtime.js";
 import { isInternalMessageChannel } from "../../utils/message-channel.js";
 import { isNestedAgentLane } from "../lanes.js";
@@ -126,7 +127,11 @@ export function normalizeAgentCommandReplyPayloads(params: {
   accountId?: string;
   applyChannelTransforms?: boolean;
 }): ReplyPayload[] {
-  const payloads = params.payloads ?? [];
+  const payloads = applyAgentCommandBifrost({
+    cfg: params.cfg,
+    opts: params.opts,
+    payloads: params.payloads ?? [],
+  });
   if (payloads.length === 0) {
     return [];
   }
@@ -185,6 +190,25 @@ export function normalizeAgentCommandReplyPayloads(params: {
     }
   }
   return normalizedPayloads;
+}
+
+function applyAgentCommandBifrost(params: {
+  cfg: OpenClawConfig;
+  opts: AgentCommandOpts;
+  payloads: RunResult["payloads"];
+}): ReplyPayload[] {
+  const payloads = params.payloads ?? [];
+  const filtered: ReplyPayload[] = [];
+  for (const payload of payloads) {
+    filtered.push(
+      applyOmnisclawBifrostToReplyPayload(payload as ReplyPayload, {
+        cfg: params.cfg,
+        ctx: { Body: params.opts.transcriptMessage ?? params.opts.message },
+        info: { kind: "final" },
+      }),
+    );
+  }
+  return filtered;
 }
 
 export async function deliverAgentCommandResult(params: {
