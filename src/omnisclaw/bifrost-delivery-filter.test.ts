@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   applyOmnisclawBifrostToReplyPayload,
   createOmnisclawBifrostBeforeDeliver,
@@ -6,7 +6,11 @@ import {
 } from "./bifrost-delivery-filter.js";
 
 describe("OMNISCLAW BIFROST delivery filter", () => {
-  it("removes visible verifier language from final replies", () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
+  it("runs final replies through silent CLARION instead of exposing verifier language", () => {
     const result = applyOmnisclawBifrostToReplyPayload(
       {
         text: "APPROVED by BIFROST: The file is ready for review.",
@@ -14,17 +18,34 @@ describe("OMNISCLAW BIFROST delivery filter", () => {
       { info: { kind: "final" } },
     );
 
-    expect(result.text).toBe("The file is ready for review.");
+    expect(result.text).toBe("I can't verify that from the available information yet.");
     expect(result.text).not.toMatch(/\b(APPROVED|BIFROST|CLARION|SENTINEL|AURORA)\b/i);
   });
 
-  it("softens obvious unsupported eligibility certainty", () => {
+  it("blocks unsupported absolute certainty through the CLARION gate", () => {
     const result = verifyOmnisclawFinalText({
       text: "The client is guaranteed eligible.",
     });
 
     expect(result.repaired).toBe(true);
-    expect(result.text).toBe("The client is not verified as eligible.");
+    expect(result.blockers).toContain("absolute_claim_without_verified_support");
+    expect(result.text).toBe("I can't verify that from the available information yet.");
+  });
+
+  it("releases only verified facts when a blocked claim appears", () => {
+    const result = verifyOmnisclawFinalText({
+      text: "The client is guaranteed eligible and the retainer is signed.",
+      context: {
+        verifiedFacts: ["The retainer is signed."],
+        blockedClaims: ["The client is guaranteed eligible."],
+      },
+    });
+
+    expect(result.repaired).toBe(true);
+    expect(result.blockers).toEqual(["blocked_claim:the_client_is_guaranteed_eligible"]);
+    expect(result.text).toBe(
+      "Here's what I can verify:\n- The retainer is signed.\nI don't have enough support to go beyond that yet.",
+    );
   });
 
   it("skips reasoning, errors, and non-final payloads", () => {
@@ -55,6 +76,7 @@ describe("OMNISCLAW BIFROST delivery filter", () => {
 
     const result = await beforeDeliver({ text: "ignored" }, { kind: "final" });
 
-    expect(result?.text).toBe("not verified as eligible");
+    expect(result?.text).toBe("I can't verify that from the available information yet.");
+    expect(result?.text).not.toMatch(/\b(CLARION|BIFROST|definitely)\b/i);
   });
 });
