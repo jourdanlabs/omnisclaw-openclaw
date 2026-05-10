@@ -80,6 +80,20 @@ export function verifyOmnisclawFinalText(input: {
   blockers: string[];
   auditHash: string;
 } {
+  if (
+    !shouldRunClarionReview({
+      userMessage: input.userMessage,
+      text: input.text,
+      context: input.context,
+    })
+  ) {
+    return {
+      text: input.text,
+      repaired: false,
+      blockers: [],
+      auditHash: "",
+    };
+  }
   const verification = verifyFluidAgentResponse({
     userMessage: input.userMessage ?? "",
     draftResponse: input.text,
@@ -93,6 +107,90 @@ export function verifyOmnisclawFinalText(input: {
     blockers: verification.blockers,
     auditHash: verification.audit.audit_hash,
   };
+}
+
+function shouldRunClarionReview(input: {
+  userMessage?: string;
+  text: string;
+  context?: BifrostFluidContext;
+}): boolean {
+  const text = input.text.trim();
+  if (!text) {
+    return false;
+  }
+  if (hasRuntimeEvidence(input.context)) {
+    return true;
+  }
+  if (matchesAny(text, ALWAYS_REVIEW_PATTERNS)) {
+    return true;
+  }
+  if (looksLikeCasualConversation(input.userMessage, text)) {
+    return false;
+  }
+  return matchesAny(text, CLAIM_REVIEW_PATTERNS);
+}
+
+const ALWAYS_REVIEW_PATTERNS = [
+  /\b(?:APPROVED|REJECTED|ABSTAIN(?:ED)?)\b/iu,
+  /\b(?:BIFROST|CLARION|SENTINEL|AURORA)\b/iu,
+  /\baudit[_ -]?hash\b/iu,
+  /\bproof[_ -]?packet\b/iu,
+  /\bgate decision\b/iu,
+  /\bconfidence threshold\b/iu,
+  /\b(?:guaranteed|definitely|certainly|always|never|impossible|100%)\b/iu,
+];
+
+const CLAIM_REVIEW_PATTERNS = [
+  /\b(?:client|eligible|eligibility|retainer|contract|court|filing|lawsuit|statute|regulation|compliance|liability|damages|settlement|attorney|counsel)\b/iu,
+  /\b(?:medical|diagnosis|treatment|dosage|symptom|prescription)\b/iu,
+  /\b(?:tax|financial|investment|invoice|payment|balance|revenue|profit|loss|refund)\b/iu,
+  /\b(?:verified|confirmed|proven|evidence|source|citation|according to|research shows)\b/iu,
+  /\b(?:today|yesterday|tomorrow|latest|current|now|recent|deadline|expires?|due)\b/iu,
+  /\b\d{1,4}(?:[.,]\d{3})*(?:\.\d+)?\s*(?:%|percent|dollars?|usd|hours?|days?|weeks?|months?|years?)\b/iu,
+  /\b(?:https?:\/\/|www\.)\S+/iu,
+  /\b[A-Z][a-z]+ \d{1,2}, \d{4}\b/u,
+];
+
+const CASUAL_USER_PATTERNS = [
+  /^(?:yo+|hey+|hi+|hello+|sup|what'?s up|wyd|lol|lmao|haha|thanks?|thank you|cool|nice|dope|ok(?:ay)?|yep|yeah|nah|gm|gn)[\s.!?]*$/iu,
+];
+
+const CASUAL_REPLY_PATTERNS = [
+  /^(?:yo+|hey+|hi+|hello+|sup)[\s,!?.]*(?:i'?m here|what'?s up|what can i do|ready|how can i help)?[\s.!?]*$/iu,
+  /^(?:got it|sounds good|absolutely|for sure|yep|yeah|ok(?:ay)?|nice|dope|cool|thanks?|thank you)[\s.!?]*(?:i'?m here|what'?s next|send it|let'?s do it)?[\s.!?]*$/iu,
+  /^i'?m here[\s.!?]*(?:what'?s up|what do you need|what are we doing)?[\s.!?]*$/iu,
+];
+
+function looksLikeCasualConversation(userMessage: string | undefined, text: string): boolean {
+  const normalizedText = text.trim();
+  if (normalizedText.length > 240) {
+    return false;
+  }
+  if (matchesAny(normalizedText, CLAIM_REVIEW_PATTERNS)) {
+    return false;
+  }
+  if (matchesAny(normalizedText, CASUAL_REPLY_PATTERNS)) {
+    return true;
+  }
+  const normalizedUserMessage = userMessage?.trim() ?? "";
+  return Boolean(
+    normalizedUserMessage &&
+    matchesAny(normalizedUserMessage, CASUAL_USER_PATTERNS) &&
+    normalizedText.split(/\s+/u).length <= 24,
+  );
+}
+
+function hasRuntimeEvidence(context: BifrostFluidContext | undefined): boolean {
+  return Boolean(
+    context?.verifiedFacts?.length ||
+    context?.blockedClaims?.length ||
+    context?.staleFacts?.length ||
+    context?.sourceNotes?.length,
+  );
+}
+
+function matchesAny(text: string, patterns: readonly RegExp[]): boolean {
+  return patterns.some((pattern) => pattern.test(text));
 }
 
 function isOmnisclawBifrostEnabled(): boolean {
