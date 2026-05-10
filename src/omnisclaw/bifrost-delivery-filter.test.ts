@@ -32,6 +32,28 @@ describe("OMNISCLAW BIFROST delivery filter", () => {
     expect(result.text).toBe("I can't verify that from the available information yet.");
   });
 
+  it("lets casual low-claim replies stay conversational", () => {
+    const result = applyOmnisclawBifrostToReplyPayload(
+      {
+        text: "Yo! I'm here. What's up?",
+      },
+      { ctx: { Body: "yo" }, info: { kind: "final" } },
+    );
+
+    expect(result.text).toBe("Yo! I'm here. What's up?");
+  });
+
+  it("still reviews risky claims inside otherwise casual turns", () => {
+    const result = applyOmnisclawBifrostToReplyPayload(
+      {
+        text: "Yo! The client is guaranteed eligible.",
+      },
+      { ctx: { Body: "yo" }, info: { kind: "final" } },
+    );
+
+    expect(result.text).toBe("I can't verify that from the available information yet.");
+  });
+
   it("releases only verified facts when a blocked claim appears", () => {
     const result = verifyOmnisclawFinalText({
       text: "The client is guaranteed eligible and the retainer is signed.",

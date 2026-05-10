@@ -131,6 +131,7 @@ export function normalizeAgentCommandReplyPayloads(params: {
     cfg: params.cfg,
     opts: params.opts,
     payloads: params.payloads ?? [],
+    result: params.result,
   });
   if (payloads.length === 0) {
     return [];
@@ -196,8 +197,13 @@ function applyAgentCommandBifrost(params: {
   cfg: OpenClawConfig;
   opts: AgentCommandOpts;
   payloads: RunResult["payloads"];
+  result: RunResult;
 }): ReplyPayload[] {
-  const payloads = params.payloads ?? [];
+  const incomingPayloads = params.payloads ?? [];
+  const payloads =
+    incomingPayloads.length > 0
+      ? incomingPayloads
+      : synthesizeConversationalNoReplyPayload(params.opts, params.result);
   const filtered: ReplyPayload[] = [];
   for (const payload of payloads) {
     filtered.push(
@@ -209,6 +215,29 @@ function applyAgentCommandBifrost(params: {
     );
   }
   return filtered;
+}
+
+function synthesizeConversationalNoReplyPayload(
+  opts: AgentCommandOpts,
+  result: RunResult,
+): ReplyPayload[] {
+  const meta = result.meta as RunResult["meta"] & {
+    finalAssistantRawText?: string;
+    finalAssistantVisibleText?: string;
+  };
+  const finalText = (meta.finalAssistantRawText ?? meta.finalAssistantVisibleText ?? "").trim();
+  if (finalText !== "NO_REPLY") {
+    return [];
+  }
+  if (!isConversationalGreeting(opts.transcriptMessage ?? opts.message)) {
+    return [];
+  }
+  return [{ text: "Yo. I'm here." }];
+}
+
+function isConversationalGreeting(message: string | undefined): boolean {
+  const normalized = message?.trim() ?? "";
+  return /^(?:yo+|hey+|hi+|hello+|sup|what'?s up|gm|gn)[\s.!?]*$/iu.test(normalized);
 }
 
 export async function deliverAgentCommandResult(params: {

@@ -170,6 +170,17 @@ describe("resolveOpenClawPackageRoot", () => {
       },
     },
     {
+      name: "recognizes the omnisclaw fork package root",
+      setup: () => {
+        const pkgRoot = fx("omnisclaw");
+        setPackageRoot(pkgRoot, "omnisclaw");
+        return {
+          opts: { cwd: path.join(pkgRoot, "dist", "extensions", "telegram") },
+          expected: pkgRoot,
+        };
+      },
+    },
+    {
       name: "falls through from a non-openclaw moduleUrl candidate to cwd",
       setup: () => {
         const wrongPkgRoot = fx("moduleurl-fallthrough", "wrong");

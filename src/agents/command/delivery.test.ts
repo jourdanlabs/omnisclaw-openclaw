@@ -140,6 +140,48 @@ describe("normalizeAgentCommandReplyPayloads", () => {
     ]);
   });
 
+  it("turns direct conversational NO_REPLY greetings into a visible reply", () => {
+    const normalized = normalizeAgentCommandReplyPayloads({
+      cfg: {} as OpenClawConfig,
+      opts: {
+        message: "yo",
+      } as AgentCommandOpts,
+      outboundSession: undefined,
+      payloads: [],
+      result: createResult({
+        meta: {
+          durationMs: 1,
+          finalAssistantRawText: "NO_REPLY",
+        },
+      }),
+    });
+
+    expect(normalized).toMatchObject([
+      {
+        text: "Yo. I'm here.",
+      },
+    ]);
+  });
+
+  it("keeps non-greeting NO_REPLY direct agent outputs silent", () => {
+    const normalized = normalizeAgentCommandReplyPayloads({
+      cfg: {} as OpenClawConfig,
+      opts: {
+        message: "stand by unless there is a real update",
+      } as AgentCommandOpts,
+      outboundSession: undefined,
+      payloads: [],
+      result: createResult({
+        meta: {
+          durationMs: 1,
+          finalAssistantRawText: "NO_REPLY",
+        },
+      }),
+    });
+
+    expect(normalized).toEqual([]);
+  });
+
   it("renders response prefix templates with the selected runtime model", () => {
     const normalized = normalizeAgentCommandReplyPayloads({
       cfg: {
