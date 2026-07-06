@@ -277,6 +277,8 @@ function naturalRepair(input: {
   blockers: string[];
   mode: BifrostFluidMode;
 }): string {
+  // Refusal is a stage, not a dead end: every repair names the gap AND asks
+  // for the context that would close it (REFUSE -> RESOLVE).
   const verified = facts(input.context);
   if (verified.length > 0) {
     return normalizeResponse(
@@ -284,7 +286,7 @@ function naturalRepair(input: {
         "Here's what I can verify:",
         ...verified.map((fact) => `- ${fact}`),
         input.context.blockedClaims?.length
-          ? "I don't have enough support to go beyond that yet."
+          ? "I don't have enough support to go beyond that yet — hand me a source for the rest and I'll keep going."
           : "",
       ]
         .filter(Boolean)
@@ -292,12 +294,12 @@ function naturalRepair(input: {
     );
   }
   if (input.blockers.includes("empty_response")) {
-    return "I don't have enough information to answer that yet.";
+    return "I don't have enough information to answer that yet — point me at a source and I'll pull it.";
   }
   if (input.mode === "careful") {
-    return "I can't verify that strongly enough from what I have. The safest answer is to treat it as unconfirmed for now.";
+    return "I can't verify that strongly enough from what I have — treat it as unconfirmed. Send a source and I'll re-check it properly.";
   }
-  return "I can't verify that from the available information yet.";
+  return "I can't verify that from what I have yet. Give me a source — a link, the text itself, or a clearer shot — and I'll take a real pass.";
 }
 
 function recoveryRequirements(blockers: string[], context: BifrostFluidContext): string[] {

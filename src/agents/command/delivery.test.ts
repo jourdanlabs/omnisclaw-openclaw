@@ -135,7 +135,7 @@ describe("normalizeAgentCommandReplyPayloads", () => {
 
     expect(normalized).toMatchObject([
       {
-        text: "I can't verify that from the available information yet.",
+        text: "I can't verify that from what I have yet. Give me a source — a link, the text itself, or a clearer shot — and I'll take a real pass.",
       },
     ]);
   });

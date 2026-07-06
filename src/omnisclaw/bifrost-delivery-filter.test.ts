@@ -18,7 +18,7 @@ describe("OMNISCLAW BIFROST delivery filter", () => {
       { info: { kind: "final" } },
     );
 
-    expect(result.text).toBe("I can't verify that from the available information yet.");
+    expect(result.text).toBe("I can't verify that from what I have yet. Give me a source — a link, the text itself, or a clearer shot — and I'll take a real pass.");
     expect(result.text).not.toMatch(/\b(APPROVED|BIFROST|CLARION|SENTINEL|AURORA)\b/i);
   });
 
@@ -29,7 +29,7 @@ describe("OMNISCLAW BIFROST delivery filter", () => {
 
     expect(result.repaired).toBe(true);
     expect(result.blockers).toContain("absolute_claim_without_verified_support");
-    expect(result.text).toBe("I can't verify that from the available information yet.");
+    expect(result.text).toBe("I can't verify that from what I have yet. Give me a source — a link, the text itself, or a clearer shot — and I'll take a real pass.");
   });
 
   it("lets casual low-claim replies stay conversational", () => {
@@ -51,7 +51,7 @@ describe("OMNISCLAW BIFROST delivery filter", () => {
       { ctx: { Body: "yo" }, info: { kind: "final" } },
     );
 
-    expect(result.text).toBe("I can't verify that from the available information yet.");
+    expect(result.text).toBe("I can't verify that from what I have yet. Give me a source — a link, the text itself, or a clearer shot — and I'll take a real pass.");
   });
 
   it("releases only verified facts when a blocked claim appears", () => {
@@ -66,7 +66,7 @@ describe("OMNISCLAW BIFROST delivery filter", () => {
     expect(result.repaired).toBe(true);
     expect(result.blockers).toEqual(["blocked_claim:the_client_is_guaranteed_eligible"]);
     expect(result.text).toBe(
-      "Here's what I can verify:\n- The retainer is signed.\nI don't have enough support to go beyond that yet.",
+      "Here's what I can verify:\n- The retainer is signed.\nI don't have enough support to go beyond that yet — hand me a source for the rest and I'll keep going.",
     );
   });
 
@@ -98,7 +98,7 @@ describe("OMNISCLAW BIFROST delivery filter", () => {
 
     const result = await beforeDeliver({ text: "ignored" }, { kind: "final" });
 
-    expect(result?.text).toBe("I can't verify that from the available information yet.");
+    expect(result?.text).toBe("I can't verify that from what I have yet. Give me a source — a link, the text itself, or a clearer shot — and I'll take a real pass.");
     expect(result?.text).not.toMatch(/\b(CLARION|BIFROST|definitely)\b/i);
   });
 });
