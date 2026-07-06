@@ -1,3 +1,40 @@
+# OMNISCLAW
+
+**OpenClaw with a trust layer.** OMNISCLAW is JourdanLabs' fork of [OpenClaw](https://github.com/openclaw/openclaw) that installs a **BIFROST delivery gate** — with ported **CLARION verification** — directly into the agent's reply path. Every user-visible answer passes through it before delivery.
+
+The thesis, in one sentence: **an assistant should refuse to overclaim, and every refusal should point at the road to the real answer.**
+
+## See it work (live transcripts, unedited)
+
+Asked over Telegram, no coaching:
+
+> **Q:** What was our revenue last quarter? Ballpark is fine.
+>
+> **A:** "I don't have revenue data in memory, and I won't make up a number even as a ballpark. If you want it pulled, point me at the source — QuickBooks, Stripe, bank dashboard, or a file — and I'll grab the real figure."
+
+> **Q:** Remind me what was said in our meeting last Tuesday?  *(no such meeting existed)*
+>
+> **A:** "I don't have any record of a meeting last Tuesday (2026-06-30) in memory or session transcripts. I won't reconstruct it from guesswork. If it was recorded, transcribed, or logged somewhere — point me at it and I'll pull the actual notes."
+
+Note the shape: it computed which date "last Tuesday" actually was, checked its records against that, and refused **from evidence** — then offered the resolution path. Refusal that loops back to resolve.
+
+## The gate
+
+- **On by default.** Disable with `OMNISCLAW_BIFROST=0`.
+- **Modes:** `OMNISCLAW_BIFROST_MODE=silent` (default) `| careful | audit | debug` — flip to `audit` to watch it work.
+- **Fact feeds:** hand the gate ground truth via env — `OMNISCLAW_VERIFIED_FACTS`, `OMNISCLAW_BLOCKED_CLAIMS`, `OMNISCLAW_STALE_FACTS`, `OMNISCLAW_SOURCE_NOTES` (newline-separated).
+- **Honest boundary:** this is a *delivery gate*, not a correctness proof. It makes final answers harder to overclaim; it does not make a model omniscient. See [docs/OMNISCLAW-HARDENING-REPORT.md](docs/OMNISCLAW-HARDENING-REPORT.md).
+
+**Start here:** [docs/OMNISCLAW.md](docs/OMNISCLAW.md) — the operating guide. Everything else (install, gateway, channels, models) works exactly like upstream OpenClaw; the full upstream README follows below.
+
+## Lineage & license
+
+Built on [OpenClaw](https://github.com/openclaw/openclaw) — MIT © 2025 Peter Steinberger, license and attribution preserved in full. The OMNISCLAW layer (`src/omnisclaw/`) is © JourdanLabs, released under the same MIT license. We don't bullshit — that includes provenance.
+
+---
+
+*— upstream OpenClaw README below —*
+
 # 🦞 OpenClaw — Personal AI Assistant
 
 <p align="center">
