@@ -8,6 +8,7 @@ import {
   type BifrostFluidMode,
   verifyFluidAgentResponse,
 } from "./clarion/bifrost/fluid.js";
+import { applyCosmicLiteSeal } from "./cosmic-lite.js";
 
 type BeforeDeliverInfo = {
   kind: ReplyDispatchKind;
@@ -23,10 +24,18 @@ export function createOmnisclawBifrostBeforeDeliver(params: {
     if (!previous) {
       return null;
     }
-    return applyOmnisclawBifrostToReplyPayload(previous, {
+    const fluidFiltered = applyOmnisclawBifrostToReplyPayload(previous, {
       cfg: params.cfg,
       ctx: params.ctx,
       info,
+    });
+    // Second seal: the deterministic COSMIC-lite verdict (advisory by default,
+    // OMNISCLAW_COSMIC=enforce to hold back REJECTED finals). Only final replies.
+    if (info?.kind !== "final") {
+      return fluidFiltered;
+    }
+    return applyCosmicLiteSeal(fluidFiltered, {
+      userMessage: userMessageFromContext(params.ctx),
     });
   };
 }
