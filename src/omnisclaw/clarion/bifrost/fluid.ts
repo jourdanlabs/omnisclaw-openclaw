@@ -70,13 +70,17 @@ const GATE_LANGUAGE = [
   /\bconfidence threshold\b/i,
 ];
 
+// Negation-aware: "always"/"never"/"definitely" are overclaims, but "not
+// always", "almost never", "isn't definitely" are HEDGES — the opposite of
+// what this list exists to catch. A hedged absolute must not trip the gate.
+const NEGATED = String.raw`(?<!\bnot\s)(?<!n't\s)(?<!\balmost\s)(?<!\bhardly\s)(?<!\brarely\s)(?<!\bnot\s\w{1,12}\s)`;
 const ABSOLUTE_LANGUAGE = [
   /\bguarantee(?:d|s)?\b/i,
   /\b100%\b/i,
-  /\balways\b/i,
-  /\bnever\b/i,
-  /\bdefinitely\b/i,
-  /\bcertainly\b/i,
+  new RegExp(NEGATED + String.raw`\balways\b`, "i"),
+  new RegExp(NEGATED + String.raw`\bnever\b`, "i"),
+  new RegExp(NEGATED + String.raw`\bdefinitely\b`, "i"),
+  new RegExp(NEGATED + String.raw`\bcertainly\b`, "i"),
 ];
 
 export function verifyFluidAgentResponse(
