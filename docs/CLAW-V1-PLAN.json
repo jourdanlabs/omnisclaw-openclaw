@@ -1,0 +1,132 @@
+{
+  "schema": "OmnisSurfaceVerifyReceiptV1",
+  "surface": "CLAW",
+  "repo": "/Users/sokpyeon/projects/omnisclaw-openclaw",
+  "ok": true,
+  "ts": "2026-08-27T05:15:24.868Z",
+  "plan": "CLAW V1 — Telegram with delivery gate",
+  "status": "complete",
+  "items": [
+    {
+      "id": "p0-build",
+      "label": "pnpm build exit 0",
+      "ok": true,
+      "note": null
+    },
+    {
+      "id": "p0-stack-install",
+      "label": "pnpm omnisclaw:install exit 0",
+      "ok": true,
+      "note": "BIFROST running; gateway running"
+    },
+    {
+      "id": "p0-probe",
+      "label": "pnpm omnisclaw:probe exit 0",
+      "ok": true,
+      "note": null
+    },
+    {
+      "id": "p1-bifrost-default",
+      "label": "BIFROST cosmic-lite at 127.0.0.1:8787",
+      "ok": true,
+      "note": "http://127.0.0.1:8787/verify"
+    },
+    {
+      "id": "p2-delivery-filter",
+      "label": "bifrost-delivery-filter.test.ts green",
+      "ok": true,
+      "note": null
+    },
+    {
+      "id": "p2-provider-gate",
+      "label": "provider-gate.test.ts green",
+      "ok": true,
+      "note": null
+    },
+    {
+      "id": "p2-dual-receipts",
+      "label": "Dual TERMINUS receipts on prove path",
+      "ok": true,
+      "note": "fixture chain 0be8c9e47086…"
+    },
+    {
+      "id": "p3-live-keyed-turn",
+      "label": "One live keyed provider turn",
+      "ok": true,
+      "note": "minimax HTTP 200 (persisted artifact)"
+    },
+    {
+      "id": "p4-caduceus-explicit-disabled",
+      "label": "caduceus.chat DISABLED in manifest",
+      "ok": true,
+      "note": "CLAW has not joined CADUCEUS — by design for V1"
+    },
+    {
+      "id": "p4-verify-plan",
+      "label": "omnis-claw-verify-plan.mjs → CLAW-V1-PLAN.json",
+      "ok": true,
+      "note": "gateway loopback :18789 up"
+    }
+  ],
+  "stack": {
+    "bifrost": {
+      "port": 8787,
+      "running": true,
+      "reachable": true,
+      "repo": "/Users/sokpyeon/projects/bifrost"
+    },
+    "gateway": {
+      "port": 18789,
+      "running": true,
+      "reachable": true
+    }
+  },
+  "caduceus": {
+    "joined": false,
+    "route": "caduceus.chat",
+    "status": "DISABLED"
+  },
+  "live_turn": "DONE",
+  "probeStdout": "> omnisclaw@2026.5.6-omnisclaw.0 omnisclaw:probe /Users/sokpyeon/projects/omnisclaw-openclaw\n> node scripts/omnisclaw-stack.mjs probe\n\n[omnisclaw] probe clean_fact: APPROVED confidence=1 findings=none\n[omnisclaw] probe unsafe_code: REJECTED confidence=0.59 findings=EDGE_CASE_FAILURE\n[omnisclaw] probe contradiction: REJECTED confidence=0.59 findings=CONTRADICTION_SNAP\n[omnisclaw] probe overconfidence: LOW_CONFIDENCE confidence=0.77 findings=OVERCONFIDENCE",
+  "prove": {
+    "ok": true,
+    "card": "OMNISCLAW-PROVIDER-GATE-V1",
+    "status": "LIVE_PROVEN",
+    "shipped": false,
+    "deployed": false,
+    "caduceus_joined": false,
+    "live_provider_claimed": true,
+    "live_turn": "DONE",
+    "prove": "dual-receipt-provider-gate",
+    "transport_join": {
+      "ok": true,
+      "seam": "buildGuardedModelFetch",
+      "gate": "decideProviderTransportEgress",
+      "unknown_target_refused": true,
+      "checks_provider_key": false,
+      "header_receipts": true,
+      "body_digested": false
+    },
+    "missing_key_refusal": {
+      "ok": false,
+      "owed": true,
+      "reason": "provider_key_missing"
+    },
+    "fixture": {
+      "ok": true,
+      "provider_calls": 1,
+      "started": "0be8c9e47086c8edd18782473071c420515c15a8555fceabf060c4528a42bbcd",
+      "terminal": "f81ab0308d14e73dd00e6af0c59319026f158cf9b25fa01054c702c5c1d28f1b"
+    },
+    "live": {
+      "ok": true,
+      "provider": "minimax",
+      "env_var": "MINIMAX_API_KEY",
+      "provider_http_status": 200,
+      "response_digest": "48a9a57e8b9baffa1ab4618abcef8a732a9add95692545dc66099a524b6e9242",
+      "artifact": "/Users/sokpyeon/projects/omnisclaw-openclaw/src/omnisclaw/terminus/provider-gate-live-artifact.json",
+      "persisted": true,
+      "persisted_at": "2026-08-27T02:57:00.024Z"
+    }
+  }
+}

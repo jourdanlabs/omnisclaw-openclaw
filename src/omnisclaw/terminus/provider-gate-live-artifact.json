@@ -1,0 +1,10 @@
+{
+  "schema": "OmnisclawProviderGateLiveArtifactV1",
+  "at": "2026-08-27T02:57:00.024Z",
+  "provider": "minimax",
+  "env_var": "MINIMAX_API_KEY",
+  "provider_http_status": 200,
+  "response_digest": "48a9a57e8b9baffa1ab4618abcef8a732a9add95692545dc66099a524b6e9242",
+  "started_receipt_sha256": "1e69b0240f26ec30905b79d03f64fa55e585eed35589c646cd30ba85bae0986b",
+  "terminal_receipt_sha256": "8cc258bdeba74cfacd767dd272293139d7316633302a4f456974d844b193b75c"
+}
