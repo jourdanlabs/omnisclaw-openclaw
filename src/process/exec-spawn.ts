@@ -3,6 +3,7 @@ import process from "node:process";
 import { execa, type Options as ExecaOptions, type ResultPromise } from "execa";
 import { markOpenClawExecEnv } from "../infra/openclaw-exec-env.js";
 import { mergeProcessEnv } from "../infra/process-env.js";
+import { assertTerminusAllow } from "../omnisclaw/terminus/action-gate.mjs";
 import { resolveSafeChildProcessInvocation } from "./windows-command.js";
 
 export const COMMAND_PROCESS_TREE_KILL_GRACE_MS = 300;
@@ -34,6 +35,7 @@ export function spawnCommandWithInvocation<
   invocation: ReturnType<typeof resolveSafeChildProcessInvocation>;
 } {
   const { baseEnv, env, windowsVerbatimArguments, ...execaOptions } = options;
+  assertTerminusAllow((argv ?? []).join(" "));
   const commandEnv = resolveCommandEnv({ argv, baseEnv, env });
   const invocation = resolveSafeChildProcessInvocation({
     argv,

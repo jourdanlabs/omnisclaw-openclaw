@@ -1,7 +1,8 @@
 import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { spawnCommand } from "../../process/exec-spawn.ts";
 import { assertTerminusAllow } from "./action-gate.mjs";
 
 const dirs: string[] = [];
@@ -70,6 +71,21 @@ describe("TERMINUS on the 2.0 exec path (runtime)", () => {
       env,
     );
     expect(JSON.stringify(refused.receipt ?? {})).not.toContain("rm -rf");
+  });
+
+  it("fail-closed: spawnCommand refuses catastrophic argv when CLI is missing", () => {
+    vi.stubEnv("TERMINUS_ACTION_GATE", "1");
+    vi.stubEnv("TERMINUS_AUTHORIZE", "/no/such/terminus-authorize.mjs");
+    expect(() => spawnCommand(["rm", "-rf", "/"])).toThrow(/TERMINUS REFUSED/);
+    vi.unstubAllEnvs();
+  });
+
+  it("fail-closed: missing CLI with no flag still REFUSES", () => {
+    expect(() =>
+      assertTerminusAllow("rm -rf /", "s", {
+        TERMINUS_AUTHORIZE: "/no/such/terminus-authorize.mjs",
+      }),
+    ).toThrow(/TERMINUS REFUSED \(terminus_unavailable\)/);
   });
 
   it("can-fail: assertTerminusAllow skipped means a catastrophic string is not blocked here", () => {

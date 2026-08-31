@@ -20,6 +20,14 @@ describe("OMNISCLAW TERMINUS action gate", () => {
     ).toBe(true);
   });
 
+  it("is on by default outside vitest even if the CLI path is missing", () => {
+    expect(
+      actionGateEnabled({
+        TERMINUS_AUTHORIZE: "/no/such/terminus-authorize.mjs",
+      }),
+    ).toBe(true);
+  });
+
   it("refuses when CLI is missing", () => {
     const out = authorizeActionCli(
       { agent_id: "claw", kind: "shell", payload: "echo ok", session_id: "t" },
@@ -56,6 +64,11 @@ describe("OMNISCLAW TERMINUS action gate", () => {
     expect(bashFn.indexOf("assertTerminusAllow")).toBeGreaterThan(-1);
     expect(bashFn.indexOf("assertTerminusAllow")).toBeLessThan(bashFn.indexOf("const startedAt"));
     expect(bashFn).toMatch(/assertTerminusAllow\(opts\.execCommand/);
+
+    const spawnSrc = readFileSync(join(root, "process/exec-spawn.ts"), "utf8");
+    const spawnFn = spawnSrc.slice(spawnSrc.indexOf("export function spawnCommandWithInvocation"));
+    expect(spawnFn.indexOf("assertTerminusAllow")).toBeGreaterThan(-1);
+    expect(spawnFn.indexOf("assertTerminusAllow")).toBeLessThan(spawnFn.indexOf("execa("));
   });
 
   it("live CLI: ALLOW echo and REFUSE rm -rf /", () => {

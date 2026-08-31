@@ -19,8 +19,11 @@ export function actionGateEnabled(env = process.env) {
     .toLowerCase();
   if (flag === "0" || flag === "off" || flag === "false") return false;
   if (flag === "1" || flag === "on" || flag === "true") return true;
+  // Vitest carve-out: OpenClaw CI has no CADUCEUS. Production default is ON.
+  // Missing CLI is fail-closed in assertTerminusAllow / authorizeActionCli,
+  // not a reason to skip the wrap.
   if (env.VITEST && !env.TERMINUS_AUTHORIZE && !env.CADUCEUS_ROOT) return false;
-  return existsSync(defaultCliPath(env));
+  return true;
 }
 
 export function authorizeActionCli(action, env = process.env) {
