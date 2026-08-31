@@ -147,7 +147,39 @@ Test Files  1 passed (1)
 Tests  4 passed (4)
 ```
 
-**Not run:** `pnpm test` / `test:all` / e2e / docker / `test:unit` beyond `test:unit:fast`. Named skip of the full suite, not a silent skip of a failing test.
+Provider-gate artifact persist (key-less, on-HEAD JSON only):
+
+```
+Test Files  1 passed (1)
+Tests  2 passed (2)
+```
+
+`pnpm test` (full local suite, `TERMINUS_ACTION_GATE=0`, no `TERMINUS_AUTHORIZE`) — **RED**. Wrapper verbatim:
+
+```
+[test] failed 597 Vitest shards in 9800.67s; Vitest summaries above are per-shard, not aggregate totals.
+[test] failed shard digest (29):
+```
+
+Exit 1. Elapsed 9801462 ms. **0** `TERMINUS HOLD` / `TERMINUS REFUSED` lines. Wrapper does not print an aggregate pass/fail test count.
+
+29 shards failed. FAIL lines by file (105 logged `FAIL` rows):
+
+| n           | File                                                                   | Notes                                                                                  |
+| ----------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| 25          | `test/scripts/release-telegram-candidate-archive.test.ts`              | local `zstd` exit `null`                                                               |
+| 25          | `test/scripts/ci-git-owner.test.ts`                                    | git/push fixture                                                                       |
+| 12          | `src/cli/update-cli.test.ts`                                           | profile/env handoff                                                                    |
+| 7           | `ui/src/components/mcp-app-view.test.ts`                               | bridge mount timeout                                                                   |
+| 6+3+3+1+1   | `extensions/codex/**`                                                  | Codex app-server / node-exec                                                           |
+| 4           | `src/plugins/discovery-checkout.test.ts`                               |                                                                                        |
+| 3           | `extensions/telegram/src/doctor.test.ts`                               | **possible JL** — drafts default `"off"`                                               |
+| 2           | `src/commands/doctor/shared/missing-configured-plugin-install.test.ts` | **JL version:** spec became `@openclaw/codex@2026.8.1-omnisclaw.0`                     |
+| 2+1+1+1+1+1 | other `test/scripts/*`                                                 | CI/release tooling; one `packages/ai version must match openclaw 2026.8.1-omnisclaw.0` |
+| 1+1         | message-tool sandbox / source-reply                                    |                                                                                        |
+| 1+1+1       | whatsapp / slack / help-exit / auto-reply delivery-order               |                                                                                        |
+
+**Not run:** `test:all` / e2e / docker / live.
 
 ### 3. `omnisclaw` smoke
 
