@@ -6,6 +6,7 @@ import {
   decodeWindowsOutputBuffer,
   resolveWindowsConsoleEncoding,
 } from "../infra/windows-encoding.js";
+import { assertTerminusAllow } from "../omnisclaw/terminus/action-gate.mjs";
 import { releaseChildProcessOutputAfterExit } from "./child-process.js";
 import {
   appendCapturedOutput,
@@ -91,6 +92,7 @@ async function runCommandWithOutputEncoding(
   optionsOrTimeout: number | CommandOptions,
   forceUtf8: boolean,
 ): Promise<SpawnResult> {
+  assertTerminusAllow((argv ?? []).join(" "));
   const options: CommandOptions =
     typeof optionsOrTimeout === "number" ? { timeoutMs: optionsOrTimeout } : optionsOrTimeout;
   const {

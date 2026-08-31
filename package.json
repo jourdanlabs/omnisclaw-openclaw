@@ -1,25 +1,26 @@
 {
-  "name": "openclaw",
-  "version": "2026.8.1",
+  "name": "omnisclaw",
+  "version": "2026.8.1-omnisclaw.0",
   "openclaw": {
     "schemaVersions": {
       "state": 15,
       "agent": 19
     }
   },
-  "description": "Multi-channel AI gateway with extensible messaging integrations",
+  "description": "OpenClaw 2.0 fork with OMNIS CLAW BIFROST + TERMINUS action gate",
   "keywords": [],
-  "homepage": "https://github.com/openclaw/openclaw#readme",
+  "homepage": "https://github.com/jourdanlabs/omnisclaw-openclaw#readme",
   "bugs": {
-    "url": "https://github.com/openclaw/openclaw/issues"
+    "url": "https://github.com/jourdanlabs/omnisclaw-openclaw/issues"
   },
   "license": "MIT",
   "author": "OpenClaw Foundation (https://openclaw.org)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openclaw/openclaw.git"
+    "url": "git+https://github.com/jourdanlabs/omnisclaw-openclaw.git"
   },
   "bin": {
+    "omnisclaw": "openclaw.mjs",
     "openclaw": "openclaw.mjs"
   },
   "directories": {
@@ -2047,7 +2048,10 @@
     "android:i18n:check": "node --import ./scripts/tsx.mjs scripts/android-app-i18n.ts check",
     "apple:i18n:check": "node --import ./scripts/tsx.mjs scripts/apple-app-i18n.ts check",
     "ui:install": "node scripts/ui.js install",
-    "verify": "node --import ./scripts/tsx.mjs scripts/verify.mts"
+    "verify": "node --import ./scripts/tsx.mjs scripts/verify.mts",
+    "omnisclaw:install": "node scripts/omnisclaw-stack.mjs install --with-gateway",
+    "omnisclaw:probe": "node scripts/omnisclaw-stack.mjs probe",
+    "omnisclaw:status": "node scripts/omnisclaw-stack.mjs status"
   },
   "dependencies": {
     "@agentclientprotocol/sdk": "1.4.0",

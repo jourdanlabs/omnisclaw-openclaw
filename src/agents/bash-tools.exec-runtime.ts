@@ -22,6 +22,7 @@ import { withSystemEventOwner } from "../infra/system-event-ownership.js";
 import { enqueueSystemEventWithReceipt } from "../infra/system-events.js";
 import { logWarn } from "../logger.js";
 import { redactToolPayloadText } from "../logging/redact.js";
+import { assertTerminusAllow } from "../omnisclaw/terminus/action-gate.mjs";
 import type { ManagedRun } from "../process/supervisor/index.js";
 import { getProcessSupervisor } from "../process/supervisor/index.js";
 import type { RunExit, SpawnInput, TerminationReason } from "../process/supervisor/types.js";
@@ -702,6 +703,13 @@ export async function runExecProcess({
   /** Revalidates authorization after async preparation, immediately before each spawn attempt. */
   beforeSpawn?: () => Promise<AgentToolResult<ExecToolDetails> | undefined>;
 }): Promise<ExecProcessHandle> {
+  // Gate the display command and, when 2.0 substitutes a sanitized exec
+  // string, gate that too. Authorizing only the label would let execCommand
+  // bypass TERMINUS.
+  assertTerminusAllow(opts.command, opts.sessionKey ?? "");
+  if (opts.execCommand && opts.execCommand !== opts.command) {
+    assertTerminusAllow(opts.execCommand, opts.sessionKey ?? "");
+  }
   const startedAt = Date.now();
   const sessionId = createSessionSlug(isProcessSessionIdTaken);
   const execCommand = opts.execCommand ?? opts.command;

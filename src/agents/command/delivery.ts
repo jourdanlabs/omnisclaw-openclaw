@@ -52,6 +52,7 @@ import {
 } from "../../infra/outbound/payloads.js";
 import type { OutboundSessionContext } from "../../infra/outbound/session-context.js";
 import { hasReplyPayloadContent } from "../../interactive/payload.js";
+import { applyOmnisclawBifrostToReplyPayload } from "../../omnisclaw/bifrost-delivery-filter.js";
 import { type RuntimeEnv, writeRuntimeJson } from "../../runtime.js";
 import { isInternalMessageChannel } from "../../utils/message-channel.js";
 import type { MessagingToolSend } from "../embedded-agent-messaging.types.js";
@@ -491,7 +492,12 @@ function normalizeAgentCommandReplyPayloads(params: {
   applyChannelTransforms?: boolean;
   includeRunModelContext?: boolean;
 }): NormalizeReplyOutcome<ReplyPayload[]> {
-  const payloads = params.payloads ?? [];
+  const payloads = applyAgentCommandBifrost({
+    cfg: params.cfg,
+    opts: params.opts,
+    payloads: params.payloads ?? [],
+    result: params.result,
+  });
   if (payloads.length === 0) {
     return { kind: "suppress", reason: "empty" };
   }
@@ -563,6 +569,53 @@ function normalizeAgentCommandReplyPayloads(params: {
   return normalizedPayloads.length > 0
     ? { kind: "deliver", payload: normalizedPayloads }
     : { kind: "suppress", reason: suppressionReason ?? "empty" };
+}
+
+function applyAgentCommandBifrost(params: {
+  cfg: OpenClawConfig;
+  opts: AgentCommandOpts;
+  payloads: RunResult["payloads"];
+  result: RunResult;
+}): ReplyPayload[] {
+  const incomingPayloads = params.payloads ?? [];
+  const payloads =
+    incomingPayloads.length > 0
+      ? incomingPayloads
+      : synthesizeConversationalNoReplyPayload(params.opts, params.result);
+  const filtered: ReplyPayload[] = [];
+  for (const payload of payloads) {
+    filtered.push(
+      applyOmnisclawBifrostToReplyPayload(payload as ReplyPayload, {
+        cfg: params.cfg,
+        ctx: { Body: params.opts.transcriptMessage ?? params.opts.message },
+        info: { kind: "final" },
+      }),
+    );
+  }
+  return filtered;
+}
+
+function synthesizeConversationalNoReplyPayload(
+  opts: AgentCommandOpts,
+  result: RunResult,
+): ReplyPayload[] {
+  const meta = result.meta as RunResult["meta"] & {
+    finalAssistantRawText?: string;
+    finalAssistantVisibleText?: string;
+  };
+  const finalText = (meta.finalAssistantRawText ?? meta.finalAssistantVisibleText ?? "").trim();
+  if (finalText !== "NO_REPLY") {
+    return [];
+  }
+  if (!isConversationalGreeting(opts.transcriptMessage ?? opts.message)) {
+    return [];
+  }
+  return [{ text: "Yo. I'm here." }];
+}
+
+function isConversationalGreeting(message: string | undefined): boolean {
+  const normalized = message?.trim() ?? "";
+  return /^(?:yo+|hey+|hi+|hello+|sup|what'?s up|gm|gn)[\s.!?]*$/iu.test(normalized);
 }
 
 /** Delivers an agent command result or records why delivery was skipped. */

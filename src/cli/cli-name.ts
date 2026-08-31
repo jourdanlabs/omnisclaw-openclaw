@@ -3,8 +3,8 @@ import path from "node:path";
 
 const DEFAULT_CLI_NAME = "openclaw";
 
-const KNOWN_CLI_NAMES = new Set([DEFAULT_CLI_NAME]);
-const CLI_PREFIX_RE = /^(?:((?:pnpm|npm|bunx|npx)\s+))?(openclaw)\b/;
+const KNOWN_CLI_NAMES = new Set([DEFAULT_CLI_NAME, "omnisclaw"]);
+const CLI_PREFIX_RE = /^(?:((?:pnpm|npm|bunx|npx)\s+))?(openclaw|omnisclaw)\b/;
 
 /** Resolve the displayed CLI binary name from argv, falling back to `openclaw`. */
 export function resolveCliName(argv: string[] = process.argv): string {

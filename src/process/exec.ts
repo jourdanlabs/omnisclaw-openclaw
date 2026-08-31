@@ -6,6 +6,7 @@ import {
   resolveWindowsConsoleEncoding,
 } from "../infra/windows-encoding.js";
 import { logDebug, logError } from "../logger.js";
+import { assertTerminusAllow } from "../omnisclaw/terminus/action-gate.mjs";
 import { releaseChildProcessOutputAfterExit } from "./child-process.js";
 import { resolveMaxOutputBytes, type CommandOutputStream } from "./exec-output.js";
 import { runCommandWithTimeout } from "./exec-runner.js";
@@ -36,6 +37,7 @@ export async function runExec(
   args: string[],
   opts: number | RunExecOptions = 10_000,
 ): Promise<{ stdout: string; stderr: string }> {
+  assertTerminusAllow([command, ...(args ?? [])].join(" "));
   const timeout =
     typeof opts === "number"
       ? resolveTimerTimeoutMs(opts, 1)

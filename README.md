@@ -1,3 +1,19 @@
+# OMNISCLAW
+
+**OpenClaw 2.0 with a trust layer.** OMNIS CLAW is JourdanLabs' fork of [OpenClaw](https://github.com/openclaw/openclaw) that carries **BIFROST delivery** and a **TERMINUS action gate** (`runExec` / `runCommandWithTimeout` / `runExecProcess`) across the 2.0 rebase. Every user-visible answer still passes BIFROST before delivery. Shell exec is authorized before spawn.
+
+- **BIFROST** on by default. Disable with `OMNISCLAW_BIFROST=0`.
+- **TERMINUS action gate** on when the CADUCEUS CLI is present (`TERMINUS_AUTHORIZE` / `CADUCEUS_ROOT`). Verdicts ALLOW / REFUSE / HOLD. Raw command is never stored.
+- **Honest boundary:** this is a delivery + exec gate, not workstation egress control and not a correctness proof.
+
+**Start here:** [docs/OMNISCLAW.md](docs/OMNISCLAW.md). Upstream OpenClaw 2.0 README follows.
+
+Built on [OpenClaw](https://github.com/openclaw/openclaw) — MIT. The OMNIS CLAW layer (`src/omnisclaw/`) is © JourdanLabs, same MIT. Compatibility bin alias: `openclaw`.
+
+---
+
+_— upstream OpenClaw 2.0 README below —_
+
 # OpenClaw 🦞 — Your assistant, on your devices, in your chats
 
 <p align="center">

@@ -14,6 +14,7 @@ import {
   type ReplyPayloadSuppressedObserver,
 } from "../infra/outbound/deliver-hooks.js";
 import { logMessageReceived } from "../logging/diagnostic.js";
+import { createOmnisclawBifrostBeforeDeliver } from "../omnisclaw/bifrost-delivery-filter.js";
 import { createKeyedFifoLeaseRegistry, type KeyedFifoLease } from "../shared/keyed-fifo-lease.js";
 import type { SilentReplyConversationType } from "../shared/silent-reply-policy.js";
 import {
@@ -326,11 +327,22 @@ async function dispatchInboundMessageWithBufferedDispatcherCore(
     : globalBeforeDeliver;
   const beforeDeliver: ReplyDispatchBeforeDeliver | undefined =
     foregroundReplyLease || configuredBeforeDeliver
-      ? markReplyDispatchBeforeDeliverDeadlineOwned(async (payload, info) => {
-          await foregroundReplyLease?.wait();
-          return configuredBeforeDeliver ? await configuredBeforeDeliver(payload, info) : payload;
-        })
-      : undefined;
+      ? markReplyDispatchBeforeDeliverDeadlineOwned(
+          createOmnisclawBifrostBeforeDeliver({
+            cfg: params.cfg,
+            ctx: finalized,
+            previous: async (payload, info) => {
+              await foregroundReplyLease?.wait();
+              return configuredBeforeDeliver
+                ? await configuredBeforeDeliver(payload, info)
+                : payload;
+            },
+          }),
+        )
+      : createOmnisclawBifrostBeforeDeliver({
+          cfg: params.cfg,
+          ctx: finalized,
+        });
   const { dispatcher, replyOptions, markDispatchIdle, markRunComplete } =
     createReplyDispatcherWithTyping({
       ...params.dispatcherOptions,
@@ -438,7 +450,11 @@ async function dispatchInboundMessageWithPlainDispatcherCore(
     : globalBeforeDeliver;
   const dispatcher = createReplyDispatcher({
     ...params.dispatcherOptions,
-    beforeDeliver: composedBeforeDeliver,
+    beforeDeliver: createOmnisclawBifrostBeforeDeliver({
+      cfg: params.cfg,
+      ctx: params.ctx,
+      previous: composedBeforeDeliver,
+    }),
     silentReplyContext: params.dispatcherOptions.silentReplyContext ?? silentReplyContext,
   });
   markReplyPayloadSendingBeforeDeliverInstalled(dispatcher, replyPayloadBeforeDeliver);

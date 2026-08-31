@@ -3,7 +3,7 @@ import { createRequire } from "node:module";
 import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";
 import { resolveLoadedCommitHash } from "./infra/git-commit.js";
 
-const CORE_PACKAGE_NAME = "openclaw";
+const CORE_PACKAGE_NAMES = new Set(["openclaw", "omnisclaw"]);
 
 const PACKAGE_JSON_CANDIDATES = [
   "../package.json",
@@ -32,7 +32,7 @@ function readVersionFromJsonCandidates(
         if (!version) {
           continue;
         }
-        if (opts.requirePackageName && parsed.name !== CORE_PACKAGE_NAME) {
+        if (opts.requirePackageName && parsed.name && !CORE_PACKAGE_NAMES.has(parsed.name)) {
           continue;
         }
         return version;
