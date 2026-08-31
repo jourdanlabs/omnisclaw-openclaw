@@ -24,6 +24,7 @@ export {
   normalizeExecTarget,
 } from "../infra/exec-approvals.js";
 import { logWarn } from "../logger.js";
+import { assertTerminusAllow } from "../omnisclaw/terminus/action-gate.mjs";
 import type { ManagedRun } from "../process/supervisor/index.js";
 import { getProcessSupervisor } from "../process/supervisor/index.js";
 import type { RunExit, TerminationReason } from "../process/supervisor/types.js";
@@ -572,6 +573,7 @@ export async function runExecProcess(opts: {
   timeoutSec: number | null;
   onUpdate?: (partialResult: AgentToolResult<ExecToolDetails>) => void;
 }): Promise<ExecProcessHandle> {
+  assertTerminusAllow(opts.command, opts.sessionKey ?? "");
   const startedAt = Date.now();
   const sessionId = createSessionSlug();
   const execCommand = opts.execCommand ?? opts.command;

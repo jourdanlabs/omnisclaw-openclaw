@@ -11,6 +11,7 @@ import {
 } from "../infra/windows-encoding.js";
 import { getWindowsInstallRoots } from "../infra/windows-install-roots.js";
 import { logDebug, logError } from "../logger.js";
+import { assertTerminusAllow } from "../omnisclaw/terminus/action-gate.mjs";
 import { normalizeLowercaseStringOrEmpty } from "../shared/string-coerce.js";
 import { resolveCommandStdio } from "./spawn-utils.js";
 import { resolveWindowsCommandShim } from "./windows-command.js";
@@ -145,6 +146,7 @@ export async function runExec(
   args: string[],
   opts: number | { timeoutMs?: number; maxBuffer?: number; cwd?: string } = 10_000,
 ): Promise<{ stdout: string; stderr: string }> {
+  assertTerminusAllow([command, ...(args ?? [])].join(" "));
   const options =
     typeof opts === "number"
       ? { timeout: opts, encoding: "buffer" as const }
@@ -282,6 +284,7 @@ export async function runCommandWithTimeout(
   argv: string[],
   optionsOrTimeout: number | CommandOptions,
 ): Promise<SpawnResult> {
+  assertTerminusAllow((argv ?? []).join(" "));
   const options: CommandOptions =
     typeof optionsOrTimeout === "number" ? { timeoutMs: optionsOrTimeout } : optionsOrTimeout;
   const { timeoutMs, cwd, input, env, noOutputTimeoutMs } = options;
