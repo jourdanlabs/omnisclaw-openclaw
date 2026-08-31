@@ -12,6 +12,7 @@ export function tryHandleRootVersionFastPath(
     onError?: (error: unknown) => void | Promise<void>;
     resolveVersion?: () => Promise<{
       VERSION: string;
+      PRODUCT_DISPLAY_NAME?: string;
       resolveCommitHash: (params: { moduleUrl: string }) => string | null;
     }>;
   } = {},
@@ -28,7 +29,7 @@ export function tryHandleRootVersionFastPath(
     deps.onError ??
     (async (error: unknown) => {
       const detail = error instanceof Error ? (error.stack ?? error.message) : String(error);
-      const message = `[openclaw] Failed to resolve version: ${detail}\n`;
+      const message = `[omnisclaw] Failed to resolve version: ${detail}\n`;
       try {
         const [{ loadCliDotEnv }, { formatConsoleDiagnosticBlock }] = await Promise.all([
           import("./cli/dotenv.js"),
@@ -45,17 +46,18 @@ export function tryHandleRootVersionFastPath(
   const resolveVersion =
     deps.resolveVersion ??
     (async () => {
-      const [{ VERSION }, { resolveCommitHash }] = await Promise.all([
+      const [{ VERSION, PRODUCT_DISPLAY_NAME }, { resolveCommitHash }] = await Promise.all([
         import("./version.js"),
         import("./infra/git-commit.js"),
       ]);
-      return { VERSION, resolveCommitHash };
+      return { VERSION, PRODUCT_DISPLAY_NAME, resolveCommitHash };
     });
 
   resolveVersion()
-    .then(({ VERSION, resolveCommitHash }) => {
+    .then(({ VERSION, PRODUCT_DISPLAY_NAME = "OMNIS CLAW", resolveCommitHash }) => {
       const commit = resolveCommitHash({ moduleUrl: deps.moduleUrl ?? import.meta.url });
-      output(commit ? `OpenClaw ${VERSION} (${commit})` : `OpenClaw ${VERSION}`);
+      const name = PRODUCT_DISPLAY_NAME || "OMNIS CLAW";
+      output(commit ? `${name} ${VERSION} (${commit})` : `${name} ${VERSION}`);
       exit(0);
     })
     .catch(onError);

@@ -60,6 +60,10 @@ describe("package-changelog", () => {
       "2026.5.29",
       "Unreleased",
     ]);
+    expect(resolvePackageChangelogVersions("2026.8.1-omnisclaw.0")).toEqual([
+      "2026.8.1-omnisclaw.0",
+      "2026.8.1",
+    ]);
   });
 
   it("extracts only the package version stable release section", () => {

@@ -14,6 +14,8 @@ import {
   resolveRuntimeServiceVersion,
   resolveUsableRuntimeVersion,
   resolveVersionFromModuleUrl,
+  resolveProductDisplayName,
+  stripOmnisclawForkSuffix,
 } from "./version.js";
 
 const versionFixtureRoot = createSuiteTempRootTracker({ prefix: "openclaw-version-" });
@@ -188,7 +190,7 @@ describe("version resolution", () => {
       delete process.env.OPENCLAW_COMPATIBILITY_HOST_VERSION;
       process.env.OPENCLAW_VERSION = "2026.3.25";
       process.env.npm_package_version = "2026.3.25-package";
-      expect(resolveCompatibilityHostVersion()).toBe(VERSION);
+      expect(resolveCompatibilityHostVersion()).toBe(stripOmnisclawForkSuffix(VERSION));
     } finally {
       restoreEnvValue("OPENCLAW_COMPATIBILITY_HOST_VERSION", previousCompatibility);
       restoreEnvValue("OPENCLAW_VERSION", previous);
@@ -256,5 +258,21 @@ describe("version resolution", () => {
         npm_package_version: "1.0.0-package",
       }),
     ).toBe(VERSION);
+  });
+
+  it("strips the JL fork suffix for npm cohort pins", () => {
+    expect(stripOmnisclawForkSuffix("2026.8.1-omnisclaw.0")).toBe("2026.8.1");
+    expect(stripOmnisclawForkSuffix("2026.8.1")).toBe("2026.8.1");
+    expect(
+      resolveCompatibilityHostVersion({
+        OPENCLAW_COMPATIBILITY_HOST_VERSION: "2026.8.1-omnisclaw.0",
+      }),
+    ).toBe("2026.8.1");
+  });
+
+  it("display name is OMNIS CLAW for the fork package", () => {
+    expect(resolveProductDisplayName("omnisclaw")).toBe("OMNIS CLAW");
+    expect(resolveProductDisplayName("openclaw")).toBe("OpenClaw");
+    expect(resolveProductDisplayName(null)).toBe("OMNIS CLAW");
   });
 });

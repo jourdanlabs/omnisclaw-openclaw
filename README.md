@@ -8,7 +8,7 @@
 
 **Start here:** [docs/OMNISCLAW.md](docs/OMNISCLAW.md). Upstream OpenClaw 2.0 README follows.
 
-Built on [OpenClaw](https://github.com/openclaw/openclaw) — MIT. The OMNIS CLAW layer (`src/omnisclaw/`) is © JourdanLabs, same MIT. Compatibility bin alias: `openclaw`.
+OMNIS CLAW is built on OpenClaw by the OpenClaw Foundation and Peter Steinberger. The OMNIS CLAW layer (`src/omnisclaw/`) is © Jourdan Labs, Apache-2.0. Upstream MIT grant is preserved in NOTICE. Compatibility bin alias: `openclaw`.
 
 ---
 
@@ -27,7 +27,7 @@ _— upstream OpenClaw 2.0 README below —_
   <a href="https://github.com/openclaw/openclaw/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/openclaw/openclaw/ci.yml?branch=main&style=flat-square&label=ci" alt="CI status"></a>
   <a href="https://www.npmjs.com/package/openclaw"><img src="https://img.shields.io/npm/v/openclaw?style=flat-square&label=npm" alt="npm version"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/node/v/openclaw?style=flat-square" alt="Node.js version"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License: MIT"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square" alt="License: Apache-2.0"></a>
   <a href="https://discord.gg/clawd"><img src="https://img.shields.io/discord/1456350064065904867?label=discord&logo=discord&logoColor=white&color=5865F2&style=flat-square" alt="Discord"></a>
 </p>
 

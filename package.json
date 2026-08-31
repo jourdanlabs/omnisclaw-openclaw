@@ -7,14 +7,14 @@
       "agent": 19
     }
   },
-  "description": "OpenClaw 2.0 fork with OMNIS CLAW BIFROST + TERMINUS action gate",
-  "keywords": [],
+  "description": "OMNIS CLAW — OpenClaw 2.0 fork with BIFROST + TERMINUS action gate",
+  "keywords": ["omnisclaw", "omnis-claw"],
   "homepage": "https://github.com/jourdanlabs/omnisclaw-openclaw#readme",
   "bugs": {
     "url": "https://github.com/jourdanlabs/omnisclaw-openclaw/issues"
   },
-  "license": "MIT",
-  "author": "OpenClaw Foundation (https://openclaw.org)",
+  "license": "Apache-2.0",
+  "author": "Jourdan Labs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jourdanlabs/omnisclaw-openclaw.git"
@@ -34,7 +34,9 @@
     "openclaw.mjs",
     "pnpm-workspace.yaml",
     "README.md",
+    "NOTICE",
     "THIRD_PARTY_NOTICES.md",
+    "scripts/terminus-authorize.mjs",
     "dist/",
     "!dist/.buildstamp",
     "!dist/.runtime-postbuildstamp",

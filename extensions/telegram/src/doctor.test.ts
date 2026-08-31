@@ -624,6 +624,8 @@ describe("telegram doctor", () => {
       channels: {
         telegram: {
           replyToMode: "first",
+          // JL default streaming is "off"; this case is the 2.0 progress warning.
+          streaming: { mode: "progress" },
         },
       },
     } as unknown as OpenClawConfig;
@@ -640,6 +642,7 @@ describe("telegram doctor", () => {
       channels: {
         telegram: {
           replyToMode: "all",
+          streaming: { mode: "progress" },
           accounts: {},
         },
       },
@@ -656,6 +659,7 @@ describe("telegram doctor", () => {
       channels: {
         telegram: {
           replyToMode: "batched",
+          streaming: { mode: "progress" },
           accounts: {
             work: {},
             quiet: {

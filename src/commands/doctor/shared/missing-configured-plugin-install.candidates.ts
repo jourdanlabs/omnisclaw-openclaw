@@ -26,7 +26,7 @@ import {
 import type { PluginMetadataSnapshot } from "../../../plugins/plugin-metadata-snapshot.types.js";
 import { resolveProviderInstallCatalogEntries } from "../../../plugins/provider-install-catalog.js";
 import { resolveUserPath } from "../../../utils.js";
-import { VERSION } from "../../../version.js";
+import { stripOmnisclawForkSuffix, VERSION } from "../../../version.js";
 import {
   CONFIGURED_RUNTIME_PLUGIN_INSTALL_CANDIDATES,
   VERSION_BOUND_RUNTIME_PLUGIN_IDS,
@@ -506,7 +506,7 @@ function collectInstalledPluginIdsWithStaleVersionBoundRuntimePackages(params: {
   updateChannel: UpdateChannel;
 }): Set<string> {
   const pluginIds = new Set<string>();
-  const currentVersion = normalizeOptionalLowercaseString(VERSION);
+  const currentVersion = normalizeOptionalLowercaseString(stripOmnisclawForkSuffix(VERSION));
   if (!currentVersion) {
     return pluginIds;
   }

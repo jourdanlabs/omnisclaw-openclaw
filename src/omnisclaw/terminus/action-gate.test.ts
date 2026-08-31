@@ -1,6 +1,13 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { actionGateEnabled, authorizeActionCli, defaultCliPath } from "./action-gate.mjs";
+import {
+  actionGateEnabled,
+  authorizeActionCli,
+  defaultCliPath,
+  packagedAuthorizePath,
+} from "./action-gate.mjs";
 
 describe("OMNISCLAW TERMINUS action gate", () => {
   afterEach(() => {
@@ -71,8 +78,23 @@ describe("OMNISCLAW TERMINUS action gate", () => {
     expect(spawnFn.indexOf("assertTerminusAllow")).toBeLessThan(spawnFn.indexOf("execa("));
   });
 
+  it("ships scripts/terminus-authorize.mjs in the package files list", () => {
+    const root = join(dirname(fileURLToPath(import.meta.url)), "../../..");
+    const pin = join(root, "scripts", "terminus-authorize.mjs");
+    expect(existsSync(pin)).toBe(true);
+    expect(packagedAuthorizePath()).toBe(pin);
+    const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
+    expect(pkg.files).toContain("scripts/terminus-authorize.mjs");
+  });
+
   it("live CLI: ALLOW echo and REFUSE rm -rf /", () => {
-    const cli = defaultCliPath(process.env);
+    const cli = join(
+      process.env.HOME || "",
+      "projects",
+      "caduceus",
+      "scripts",
+      "terminus-authorize.mjs",
+    );
     if (!existsSync(cli)) return;
     const allow = authorizeActionCli(
       { agent_id: "claw", kind: "shell", payload: "echo ok", session_id: "t" },

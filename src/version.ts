@@ -4,6 +4,10 @@ import { normalizeOptionalString } from "@openclaw/normalization-core/string-coe
 import { resolveLoadedCommitHash } from "./infra/git-commit.js";
 
 const CORE_PACKAGE_NAMES = new Set(["openclaw", "omnisclaw"]);
+const PRODUCT_DISPLAY_NAMES: Record<string, string> = {
+  openclaw: "OpenClaw",
+  omnisclaw: "OMNIS CLAW",
+};
 
 const PACKAGE_JSON_CANDIDATES = [
   "../package.json",
@@ -167,23 +171,60 @@ export function resolveRuntimeServiceCommit(): string | null {
   return RUNTIME_SERVICE_COMMIT;
 }
 
+/** Strip the JL fork suffix so npm cohort pins talk to upstream 2026.8.1, not 2026.8.1-omnisclaw.0. */
+export function stripOmnisclawForkSuffix(version: string): string {
+  return version.replace(/-omnisclaw\.\d+$/i, "");
+}
+
 export function resolveCompatibilityHostVersion(
   env: RuntimeVersionEnv = process.env as RuntimeVersionEnv,
   fallback = RUNTIME_SERVICE_VERSION_FALLBACK,
 ): string {
   const explicitCompatibilityVersion = firstNonEmpty(env.OPENCLAW_COMPATIBILITY_HOST_VERSION);
   if (explicitCompatibilityVersion) {
-    return explicitCompatibilityVersion;
+    return stripOmnisclawForkSuffix(explicitCompatibilityVersion);
   }
-  return resolveVersionFromRuntimeSources({
-    env,
-    runtimeVersion: resolveUsableRuntimeVersion(VERSION),
-    fallback,
-    preference: env === (process.env as RuntimeVersionEnv) ? "runtime-first" : "env-first",
-  });
+  return stripOmnisclawForkSuffix(
+    resolveVersionFromRuntimeSources({
+      env,
+      runtimeVersion: resolveUsableRuntimeVersion(VERSION),
+      fallback,
+      preference: env === (process.env as RuntimeVersionEnv) ? "runtime-first" : "env-first",
+    }),
+  );
 }
 
-// Single source of truth for the current OpenClaw version.
+function readCorePackageNameFromModuleUrl(moduleUrl: string): string | null {
+  try {
+    const require = createRequire(moduleUrl);
+    for (const candidate of PACKAGE_JSON_CANDIDATES) {
+      try {
+        const parsed = require(candidate) as { name?: string };
+        if (parsed.name && CORE_PACKAGE_NAMES.has(parsed.name)) {
+          return parsed.name;
+        }
+      } catch {
+        // ignore missing or unreadable candidate
+      }
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+export function resolveProductDisplayName(packageName?: string | null): string {
+  const name = normalizeOptionalString(packageName ?? undefined);
+  if (name && PRODUCT_DISPLAY_NAMES[name]) {
+    return PRODUCT_DISPLAY_NAMES[name];
+  }
+  return "OMNIS CLAW";
+}
+
+export const CORE_PACKAGE_NAME = readCorePackageNameFromModuleUrl(import.meta.url);
+export const PRODUCT_DISPLAY_NAME = resolveProductDisplayName(CORE_PACKAGE_NAME);
+
+// Single source of truth for the current package version.
 // - Embedded/bundled builds: bundled-version env var.
 // - Dev/npm builds: package.json.
 export const VERSION = resolveBinaryVersion({

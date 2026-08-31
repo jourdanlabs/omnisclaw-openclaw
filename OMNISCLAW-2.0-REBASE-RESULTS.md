@@ -214,4 +214,72 @@ A full-tree rebrand of 2.0 is **not** this pass. Logged, not faked.
 
 ## What OMNIS CLAW 2.0 governs vs inherits
 
-Governs: final delivery (BIFROST/CLARION/COSMIC-lite), Telegram draft default, and pre-spawn TERMINUS on the three 2.0 exec chokepoints. Inherits unmodified: SQLite sessions, onboarding, Control UI, llama-server, 2.0 exec-approval, plugin API, pinning/auth onboarding, and the rest of the `2026.8.1` tree.
+Governs: final delivery (BIFROST/CLARION/COSMIC-lite), Telegram draft default, and pre-spawn TERMINUS on the 2.0 exec helpers **and** `supervisor.spawn()`. Inherits unmodified: SQLite sessions, onboarding, Control UI, llama-server, 2.0 exec-approval, plugin API, pinning/auth onboarding, and the rest of the `2026.8.1` tree.
+
+---
+
+## Pass 2 — 2026-08-31 (Tifa)
+
+Continues `PAN-TIFA-OMNISCLAW-2.0-SECOND-PASS-2026-08-31.md`. HEAD at start of this write-up: `81ccc56d80f`. No push.
+
+### §A — of-ours test failures
+
+| Item                                                             | Decision                                                                                                                                                                                                                                          | Result                                                                                                          |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| 3 × Telegram `doctor.test.ts` drafts default `off`               | **JL default stays `"off"`** (`preview-streaming.ts`, commit `b4422fbff6`). 2.0 doctor tests now set `streaming: { mode: "progress" }` so they still test the quote/progress warning. Implicit-off already had a skip test.                       | telegram doctor file green                                                                                      |
+| 2 × doctor plugin-install `@openclaw/codex@2026.8.1-omnisclaw.0` | Keep the fork suffix on **our** `VERSION`. Strip it for npm cohort pins (`stripOmnisclawForkSuffix` / `resolveCompatibilityHostVersion`) and for stale-version compare. `@openclaw/codex` is published as `2026.8.1`, not `2026.8.1-omnisclaw.0`. | plugin-install file green (including "does not downgrade 9999.1.1")                                             |
+| changelog / preflight suffix                                     | **Regex accepts `-omnisclaw.N`**. Fork mark stays. Changelog extract falls back to the upstream heading (`2026.8.1`). `parseReleaseVersion` treats the suffix as stable.                                                                          | `package-changelog.test.ts` 21 passed, including `2026.8.1-omnisclaw.0` → `["2026.8.1-omnisclaw.0","2026.8.1"]` |
+
+Targeted §A suite this pass: telegram doctor + plugin-install + version + changelog = **green**.
+
+### §B — branding
+
+User-facing landed: `--version` prints `OMNIS CLAW ${VERSION}`; default CLI name `omnisclaw`; `package.json` description/author/license; README attribution line kept.
+
+`rg -i -l openclaw` excluding `node_modules`/`dist`/`.git`: **~23064** files. **Not** exceptions-only. Catalog of stays is in `HANDOFF-BLOCKERS.md`. Control UI / inherited doctor / upstream README below the fold are **not** swept. This is the branding block.
+
+### §C — Apache
+
+`codex/claw-apache-release-prep-20260809` (`6b9e1b26df` / `0349e8d317`) is **still MIT** and has **no NOTICE**. The branch name does not match the tree. Pass 2 applied Apache-2.0 `LICENSE`, `NOTICE` (upstream MIT grant preserved), `package.json` `license: Apache-2.0`, SPDX on the JL pin files. Not a cherry-pick of missing work. 2.0 inherited files do not have Apache headers (they never did on that branch).
+
+### §D — fail-closed missing CLI
+
+Already on `81ccc56d80f` for `assertTerminusAllow`. This pass: in-package `scripts/terminus-authorize.mjs` (forwards to CADUCEUS or REFUSE `terminus_unavailable`; does **not** copy policy). `defaultCliPath` prefers the pin. `package.json` `files` includes it. Test asserts the pin is present.
+
+Can-fail: gate not off + missing CLI → `rm -rf /` throws `TERMINUS REFUSED (terminus_unavailable)` (`action-gate.runtime.test.ts`). Restore → live CADUCEUS path still used when pointed.
+
+### §E — provider-gate
+
+Accepted scope. Not an open block. See HANDOFF.
+
+### §F — supervisor chokepoint
+
+`assertTerminusAllow(spawnInputPayload(input))` at the top of `supervisor.spawn()` before `startRun`. Covers `child` / `pty` / `anchored-shell`. `runExecProcess` `:984` is downstream of `:709/711` — double-gate, intended.
+
+Can-fail (`supervisor.terminus.test.ts`):
+
+1. Missing CLI + gate on → child / pty / anchored-shell throw before adapter dispatch.
+2. Neutralize `assertTerminusAllow` (vi.doMock no-op) → real `node -e` child writes `supervisor-neutralized`.
+3. Gate off → real child writes `supervisor-canfail`.
+
+### Suites this pass (verbatim)
+
+```
+Test Files  6 passed (6)
+Tests  159 passed (159)
+```
+
+(action-gate ×2, supervisor.terminus, plugin-install, telegram doctor, version)
+
+```
+Test Files  2 passed (2)
+Tests  29 passed (29)
+```
+
+(package-changelog + cli help)
+
+`pnpm test` full 597-shard re-run: **not repeated**. Inherit confirmation on clean `v2026.8.1`: **not done**.
+
+### Smoke still owed
+
+`node openclaw.mjs --version` → `OMNIS CLAW 2026.8.1-omnisclaw.0 (fa0446a)` (launcher fast path in `openclaw.mjs`; commit pin is the JL-layer SHA the launcher resolves, not HEAD).

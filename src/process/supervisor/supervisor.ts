@@ -5,6 +5,7 @@ import { resolveTimerTimeoutMs } from "@openclaw/normalization-core/number-coerc
 import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";
 import { sliceUtf16Safe } from "@openclaw/normalization-core/utf16-slice";
 import { getShellConfig } from "../../agents/shell-utils.js";
+import { assertTerminusAllow } from "../../omnisclaw/terminus/action-gate.mjs";
 import { createLazyRuntimeModule } from "../../shared/lazy-runtime.js";
 import { createChildAdapter } from "./adapters/child.js";
 import { createPtyAdapter } from "./adapters/pty.js";
@@ -74,6 +75,16 @@ function appendCapturedOutput(
 
 function isTimeoutReason(reason: TerminationReason) {
   return reason === "overall-timeout" || reason === "no-output-timeout";
+}
+
+function spawnInputPayload(input: SpawnInput): string {
+  if (input.mode === "child") {
+    return (input.argv ?? []).join(" ");
+  }
+  if (input.mode === "pty") {
+    return input.ptyCommand;
+  }
+  return input.command;
 }
 
 function resolveElapsedTimeoutReason(params: {
@@ -543,6 +554,7 @@ export function createProcessSupervisor(): ProcessSupervisor & {
   };
 
   const spawn = (input: SpawnInput): Promise<ManagedRun> => {
+    assertTerminusAllow(spawnInputPayload(input), input.sessionId ?? "");
     if (shuttingDown) {
       return Promise.reject(new Error("process supervisor is shut down"));
     }

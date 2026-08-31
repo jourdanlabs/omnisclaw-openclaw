@@ -5,6 +5,8 @@ const BETA_VERSION_REGEX =
   /^(?<year>\d{4})\.(?<month>[1-9]\d?)\.(?<patch>[1-9]\d*)-beta\.(?<beta>[1-9]\d*)$/;
 const CORRECTION_VERSION_REGEX =
   /^(?<year>\d{4})\.(?<month>[1-9]\d?)\.(?<patch>[1-9]\d*)-(?<correction>[1-9]\d*)$/;
+const OMNISCLAW_VERSION_REGEX =
+  /^(?<year>\d{4})\.(?<month>[1-9]\d?)\.(?<patch>[1-9]\d*)-omnisclaw\.(?<fork>\d+)$/;
 const JUNE_2026_PATCH_FLOOR = 5;
 const EXTENDED_STABLE_PATCH_FLOOR = 33;
 
@@ -117,6 +119,11 @@ export function parseReleaseVersion(version) {
       ...parsedCorrection,
       correctionNumber,
     };
+  }
+
+  const omnisclawMatch = OMNISCLAW_VERSION_REGEX.exec(trimmed);
+  if (omnisclawMatch?.groups) {
+    return parseVersionParts(trimmed, omnisclawMatch.groups, "stable");
   }
 
   return null;

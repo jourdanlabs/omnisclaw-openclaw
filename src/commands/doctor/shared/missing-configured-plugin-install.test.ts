@@ -17,7 +17,7 @@ import type { PluginInstallArtifactConsentHandler } from "../../../plugins/insta
 import { resolveInstalledPluginIndexPolicyHash } from "../../../plugins/installed-plugin-index-policy.js";
 import type { BundledProviderPolicySurface } from "../../../plugins/provider-policy-surface.js";
 import { createColdPluginFixture } from "../../../plugins/test-helpers/cold-plugin-fixtures.js";
-import { VERSION } from "../../../version.js";
+import { stripOmnisclawForkSuffix, VERSION } from "../../../version.js";
 import { applyLegacyDoctorMigrations } from "./legacy-config-compat.js";
 import {
   brokenPluginSnapshot,
@@ -48,13 +48,13 @@ function expectedCodexInstallSpec(): string {
     spec: "@openclaw/codex",
     updateChannel: resolveRegistryUpdateChannel({ currentVersion: VERSION }),
     officialPackageName: "@openclaw/codex",
-    coreVersion: VERSION,
+    coreVersion: stripOmnisclawForkSuffix(VERSION),
     versionBoundToCore: true,
   }).installSpec;
 }
 
 function currentOpenClawReleaseBase(): string {
-  return VERSION.replace(/-(?:alpha|beta)\.[1-9]\d*$/u, "");
+  return stripOmnisclawForkSuffix(VERSION).replace(/-(?:alpha|beta)\.[1-9]\d*$/u, "");
 }
 
 function expectRecordFields(record: unknown, expected: Record<string, unknown>) {
@@ -1449,7 +1449,7 @@ describe("repairMissingConfiguredPluginInstalls", () => {
     });
 
     expectRecordFields(mockCallArg(mocks.installPluginFromNpmSpec), {
-      spec: `@openclaw/diagnostics-otel@${VERSION}`,
+      spec: `@openclaw/diagnostics-otel@${stripOmnisclawForkSuffix(VERSION)}`,
       expectedPluginId: "diagnostics-otel",
       trustedSourceLinkedOfficialInstall: true,
     });

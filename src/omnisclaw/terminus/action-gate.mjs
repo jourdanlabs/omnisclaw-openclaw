@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2026 Jourdan Labs
 // Canonical TERMINUS action gate — CLAW calls CADUCEUS, does not copy it.
 // Fail-closed when the CLI is in play. Vitest skips unless TERMINUS_AUTHORIZE
 // or CADUCEUS_ROOT is set (OpenClaw CI has no CADUCEUS process).
@@ -5,10 +7,26 @@
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+/** Walk up from this module to find the in-package pin (src/ or dist/). */
+export function packagedAuthorizePath(fromUrl = import.meta.url) {
+  let dir = dirname(fileURLToPath(fromUrl));
+  for (let i = 0; i < 8; i++) {
+    const candidate = join(dir, "scripts", "terminus-authorize.mjs");
+    if (existsSync(candidate)) return candidate;
+    const parent = dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  return null;
+}
 
 export function defaultCliPath(env = process.env) {
   if (env.TERMINUS_AUTHORIZE) return env.TERMINUS_AUTHORIZE;
+  const packaged = packagedAuthorizePath();
+  if (packaged) return packaged;
   const root = env.CADUCEUS_ROOT || join(homedir(), "projects", "caduceus");
   return join(root, "scripts", "terminus-authorize.mjs");
 }

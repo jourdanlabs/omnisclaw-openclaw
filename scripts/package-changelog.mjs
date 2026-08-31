@@ -14,9 +14,9 @@ const MAX_PACKAGED_CHANGELOG_BYTES = 500 * 1024;
 const MIN_RELEASE_SECTION_BODY_BYTES = 32;
 const UNRELEASED_HEADING = "Unreleased";
 const RELEASE_HEADING_PATTERN =
-  /^##\s+([0-9]{4}\.[1-9][0-9]*\.[1-9][0-9]*(?:(?:-(?:alpha|beta)\.[1-9][0-9]*)|(?:-[1-9][0-9]*))?)(?:\s+.*)?$/u;
+  /^##\s+([0-9]{4}\.[1-9][0-9]*\.[1-9][0-9]*(?:(?:-(?:alpha|beta)\.[1-9][0-9]*)|(?:-[1-9][0-9]*)|(?:-omnisclaw\.[0-9]+))?)(?:\s+.*)?$/u;
 const RELEASE_VERSION_PATTERN =
-  /^([0-9]{4}\.[1-9][0-9]*\.[1-9][0-9]*)(?:(?:-(?:alpha|beta)\.[1-9][0-9]*)|(?:-[1-9][0-9]*))?$/u;
+  /^([0-9]{4}\.[1-9][0-9]*\.[1-9][0-9]*)(?:(?:-(?:alpha|beta)\.[1-9][0-9]*)|(?:-[1-9][0-9]*)|(?:-omnisclaw\.[0-9]+))?$/u;
 const PRERELEASE_VERSION_PATTERN =
   /^([0-9]{4}\.[1-9][0-9]*\.[1-9][0-9]*)-(?:alpha|beta)\.[1-9][0-9]*$/u;
 
@@ -32,6 +32,12 @@ export function resolvePackageChangelogVersions(packageVersion, options = {}) {
   }
   if (PRERELEASE_VERSION_PATTERN.test(packageVersion)) {
     return [packageVersion, match[1], UNRELEASED_HEADING];
+  }
+  // JL fork mark: 2026.8.1-omnisclaw.0 ships the upstream 2026.8.1 notes.
+  if (/-omnisclaw\.\d+$/i.test(packageVersion)) {
+    return options.allowUnreleased
+      ? [packageVersion, match[1], UNRELEASED_HEADING]
+      : [packageVersion, match[1]];
   }
   return options.allowUnreleased ? [packageVersion, UNRELEASED_HEADING] : [packageVersion];
 }
