@@ -7,7 +7,7 @@ OMNISCLAW is the JourdanLabs fork of OpenClaw with a BIFROST delivery gate insta
 OMNISCLAW applies BIFROST to:
 
 - Final auto-reply payloads before delivery to connected channels.
-- Direct `openclaw agent` command payloads before they are shown or delivered.
+- Direct `omnisclaw agent` command payloads before they are shown or delivered.
 - Replies that contain gate language, absolute claims, legal/medical/financial/current claims, URLs, dates, numbers, or other high-risk assertions.
 
 OMNISCLAW intentionally does not apply BIFROST to:
@@ -41,7 +41,8 @@ That command builds BIFROST `cosmic-lite`, installs the local BIFROST service, a
 
 ```bash
 pnpm omnisclaw:status
-node openclaw.mjs gateway status
+omnisclaw gateway status
+# or: node openclaw.mjs gateway status
 ```
 
 Expected shape:

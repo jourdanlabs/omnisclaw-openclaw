@@ -2,6 +2,7 @@
 import { isGatewayTransportError } from "../gateway/transport-error.js";
 import { isTruthyEnvValue } from "../infra/env.js";
 import { formatErrorMessage, formatUncaughtError } from "../infra/errors.js";
+import { resolveCliName } from "./cli-name.js";
 import { formatCliCommand } from "./command-format.js";
 
 type FormatCliFailureOptions = {
@@ -141,10 +142,14 @@ export function formatCliOperatorError(
   return formatErrorMessage(value);
 }
 
+function cliLogPrefix(): string {
+  return `[${resolveCliName()}]`;
+}
+
 function pushPrefixed(out: string[], value: string): void {
   for (const line of value.split("\n")) {
     if (line.trim().length > 0) {
-      out.push(`[openclaw] ${line}`);
+      out.push(`${cliLogPrefix()} ${line}`);
     }
   }
 }
@@ -158,24 +163,25 @@ export function formatCliFailureLines(options: FormatCliFailureOptions): string[
   // Default output stays terse; causes and stack traces require explicit debug intent.
   const env = options.env ?? process.env;
   const showDebugDetails = shouldShowDebugDetails(options.argv, env);
+  const prefix = cliLogPrefix();
   const lines = [
-    `[openclaw] ${options.title}`,
-    `[openclaw] Reason: ${formatCliOperatorError(options.error, {
+    `${prefix} ${options.title}`,
+    `${prefix} Reason: ${formatCliOperatorError(options.error, {
       argv: options.argv,
       env,
     })}`,
   ];
 
   if (showDebugDetails) {
-    lines.push("[openclaw] Stack:");
+    lines.push(`${prefix} Stack:`);
     pushPrefixed(lines, formatUncaughtError(options.error));
   } else {
-    lines.push("[openclaw] Debug: set OPENCLAW_DEBUG=1 to include the stack trace.");
+    lines.push(`${prefix} Debug: set OPENCLAW_DEBUG=1 to include the stack trace.`);
   }
 
   if (options.includeDoctorHint !== false) {
-    lines.push(`[openclaw] Try: ${formatCliCommand("openclaw doctor", env)}`);
+    lines.push(`${prefix} Try: ${formatCliCommand("openclaw doctor", env)}`);
   }
-  lines.push(`[openclaw] Help: ${formatCliCommand("openclaw --help", env)}`);
+  lines.push(`${prefix} Help: ${formatCliCommand("openclaw --help", env)}`);
   return lines;
 }

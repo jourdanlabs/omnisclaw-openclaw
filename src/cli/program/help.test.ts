@@ -232,13 +232,13 @@ describe("configureProgramHelp", () => {
 
   it("prints version and exits immediately when version flags are present", () => {
     process.argv = ["node", "openclaw", "--version"];
-    expectVersionExit({ expectedVersion: "OpenClaw 9.9.9-test (abc1234)" });
+    expectVersionExit({ expectedVersion: "OMNIS CLAW 9.9.9-test (abc1234)" });
   });
 
   it("prints version and exits immediately without commit metadata", () => {
     process.argv = ["node", "openclaw", "--version"];
     resolveCommitHashMock.mockReturnValue(null);
-    expectVersionExit({ expectedVersion: "OpenClaw 9.9.9-test" });
+    expectVersionExit({ expectedVersion: "OMNIS CLAW 9.9.9-test" });
   });
 
   it("does not treat subcommand --version options as root version requests", () => {

@@ -26,14 +26,14 @@ describe("renderGatewayServiceStartHints", () => {
     {
       name: "the default profile",
       env: {},
-      installCommand: "openclaw gateway install",
-      startCommand: "openclaw gateway start",
+      installCommand: "omnisclaw gateway install",
+      startCommand: "omnisclaw gateway start",
     },
     {
       name: "a named profile",
       env: { OPENCLAW_PROFILE: "work" },
-      installCommand: "openclaw --profile work gateway install",
-      startCommand: "openclaw --profile work gateway start",
+      installCommand: "omnisclaw --profile work gateway install",
+      startCommand: "omnisclaw --profile work gateway start",
     },
   ])("recommends managed service commands for $name", ({ env, installCommand, startCommand }) => {
     expect(renderGatewayServiceStartHints(env).slice(0, 2)).toEqual([installCommand, startCommand]);

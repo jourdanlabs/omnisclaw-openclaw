@@ -82,7 +82,7 @@ export function blockText(result) {
   return `TERMINUS REFUSED (${reason}): this action did not run.`;
 }
 
-/** Chokepoint for every CLAW process exec. Throws unless ALLOW. */
+/** Model-directed exec paths are gated; other src/ spawn sites are named in the exemption manifest. Throws unless ALLOW. */
 export function assertTerminusAllow(payload, session_id = "", env = process.env) {
   if (!actionGateEnabled(env)) return;
   const gated = authorizeActionCli(

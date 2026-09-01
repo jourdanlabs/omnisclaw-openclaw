@@ -30,6 +30,7 @@ import {
   normalizeRootLogLevelArgv,
   normalizeRootNoColorArgv,
 } from "./argv.js";
+import { resolveCliName } from "./cli-name.js";
 import {
   isReservedNonPluginCommandRoot,
   shouldRegisterPrimaryCommandOnly,
@@ -196,7 +197,7 @@ async function tryRunGatewayRunFastPath(
     emitCliBanner(VERSION, { argv });
   }
   const program = new Command();
-  program.name("openclaw");
+  program.name(resolveCliName());
   program.enablePositionalOptions();
   program.option("--no-color", "Disable ANSI colors", false);
   program.exitOverride((err) => {

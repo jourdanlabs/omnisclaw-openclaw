@@ -9,7 +9,7 @@ import {
 } from "./failure-output.js";
 
 const PLUGIN_POLICY_MESSAGE =
-  'The `openclaw workboard` command is provided by the "workboard" plugin, but that bundled plugin is disabled by default. Run `openclaw plugins enable workboard` to enable that CLI surface.';
+  'The `omnisclaw workboard` command is provided by the "workboard" plugin, but that bundled plugin is disabled by default. Run `omnisclaw plugins enable workboard` to enable that CLI surface.';
 
 describe("formatCliJsonFailure", () => {
   it("uses the canonical typed envelope and redacts the message", () => {
@@ -44,11 +44,11 @@ describe("formatCliJsonFailure", () => {
   ])("keeps the full parse guidance unchanged in $label", ({ env }) => {
     const error = Object.assign(
       new ExpectedCliError({
-        message: 'OpenClaw sessions has no command "lst".',
+        message: 'OMNIS CLAW sessions has no command "lst".',
         humanOutput:
-          '\u001B[31mOpenClaw sessions has no command "lst".\u001B[39m\nDid you mean this?\n  openclaw sessions list\nTry: openclaw sessions --help\nDocs: \u001B]8;;https://docs.openclaw.ai/cli\u0007docs.openclaw.ai/cli\u001B]8;;\u0007\n',
+          '\u001B[31mOMNIS CLAW sessions has no command "lst".\u001B[39m\nDid you mean this?\n  omnisclaw sessions list\nTry: omnisclaw sessions --help\nDocs: \u001B]8;;https://docs.openclaw.ai/cli\u0007docs.openclaw.ai/cli\u001B]8;;\u0007\n',
         machineOutput:
-          'OpenClaw sessions has no command "lst".\nDid you mean this?\n  openclaw sessions list\nTry: openclaw sessions --help\nDocs: https://docs.openclaw.ai/cli\n',
+          'OMNIS CLAW sessions has no command "lst".\nDid you mean this?\n  omnisclaw sessions list\nTry: omnisclaw sessions --help\nDocs: https://docs.openclaw.ai/cli\n',
       }),
       { cause: new Error("internal parse cause") },
     );
@@ -59,7 +59,7 @@ describe("formatCliJsonFailure", () => {
       error: {
         type: "cli_error",
         message:
-          'OpenClaw sessions has no command "lst".\nDid you mean this?\n  openclaw sessions list\nTry: openclaw sessions --help\nDocs: https://docs.openclaw.ai/cli',
+          'OMNIS CLAW sessions has no command "lst".\nDid you mean this?\n  omnisclaw sessions list\nTry: omnisclaw sessions --help\nDocs: https://docs.openclaw.ai/cli',
       },
     });
     expect(payload.error.message).not.toContain("internal parse cause");
@@ -131,11 +131,11 @@ describe("formatCliFailureLines", () => {
     });
 
     expect(lines).toEqual([
-      "[openclaw] Could not start the CLI.",
-      "[openclaw] Reason: config file is invalid",
-      "[openclaw] Debug: set OPENCLAW_DEBUG=1 to include the stack trace.",
-      "[openclaw] Try: openclaw doctor",
-      "[openclaw] Help: openclaw --help",
+      "[omnisclaw] Could not start the CLI.",
+      "[omnisclaw] Reason: config file is invalid",
+      "[omnisclaw] Debug: set OPENCLAW_DEBUG=1 to include the stack trace.",
+      "[omnisclaw] Try: omnisclaw doctor",
+      "[omnisclaw] Help: omnisclaw --help",
     ]);
   });
 
@@ -163,7 +163,7 @@ describe("formatCliFailureLines", () => {
         new GatewayTransportError({
           kind: "closed",
           message:
-            "Gateway not reachable at ws://127.0.0.1:51078 (ECONNREFUSED).\nStart it with `openclaw gateway run` or check `openclaw gateway status`.",
+            "Gateway not reachable at ws://127.0.0.1:51078 (ECONNREFUSED).\nStart it with `omnisclaw gateway run` or check `omnisclaw gateway status`.",
           connectionDetails: {
             url: "ws://127.0.0.1:51078",
             urlSource: "local loopback",
@@ -185,11 +185,11 @@ describe("formatCliFailureLines", () => {
 
       expect(lines).toEqual(error.message.split("\n"));
       const output = lines.join("\n");
-      expect(output).not.toContain("[openclaw] The CLI command failed.");
-      expect(output).not.toContain("[openclaw] Reason:");
+      expect(output).not.toContain("[omnisclaw] The CLI command failed.");
+      expect(output).not.toContain("[omnisclaw] Reason:");
       expect(output).not.toContain("OPENCLAW_DEBUG");
       expect(output).not.toContain("Stack:");
-      expect(output).not.toContain("openclaw doctor");
+      expect(output).not.toContain("omnisclaw doctor");
     },
   );
 
@@ -201,10 +201,10 @@ describe("formatCliFailureLines", () => {
     });
 
     expect(lines.slice(0, 4)).toEqual([
-      "[openclaw] The CLI command failed.",
-      "[openclaw] Reason: boom",
-      "[openclaw] Stack:",
-      "[openclaw] Error: boom",
+      "[omnisclaw] The CLI command failed.",
+      "[omnisclaw] Reason: boom",
+      "[omnisclaw] Stack:",
+      "[omnisclaw] Error: boom",
     ]);
     expect(lines.join("\n")).toContain("Error: boom");
   });
@@ -217,9 +217,9 @@ describe("formatCliFailureLines", () => {
       env: {},
     });
 
-    expect(lines).toContain("[openclaw] Reason: boom | transport detail");
-    expect(lines).toContain("[openclaw] Stack:");
-    expect(lines).toContain("[openclaw] Error: boom");
+    expect(lines).toContain("[omnisclaw] Reason: boom | transport detail");
+    expect(lines).toContain("[omnisclaw] Stack:");
+    expect(lines).toContain("[omnisclaw] Error: boom");
   });
 
   it.each(["--debug", "--verbose"])(
@@ -232,8 +232,10 @@ describe("formatCliFailureLines", () => {
         env: {},
       });
 
-      expect(lines).not.toContain("[openclaw] Stack:");
-      expect(lines).toContain("[openclaw] Debug: set OPENCLAW_DEBUG=1 to include the stack trace.");
+      expect(lines).not.toContain("[omnisclaw] Stack:");
+      expect(lines).toContain(
+        "[omnisclaw] Debug: set OPENCLAW_DEBUG=1 to include the stack trace.",
+      );
     },
   );
 });

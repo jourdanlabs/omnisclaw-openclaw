@@ -8,6 +8,7 @@ import {
 } from "../../packages/terminal-core/src/decorative-emoji.js";
 import { isRich, theme } from "../../packages/terminal-core/src/theme.js";
 import { resolveCommitHash } from "../infra/git-commit.js";
+import { PRODUCT_DISPLAY_NAME } from "../version.js";
 import { hasRootVersionAlias } from "./argv.js";
 import { parseTaglineMode } from "./banner-config-lite.js";
 import { pickCliLobsterArt } from "./lobster-art.js";
@@ -57,7 +58,7 @@ export function formatCliBannerLine(version: string, options: BannerOptions = {}
     emojiOptions,
   );
   const rich = options.richTty ?? isRich();
-  const title = decorativePrefix("🦞", "OpenClaw", emojiOptions);
+  const title = decorativePrefix("🦞", PRODUCT_DISPLAY_NAME, emojiOptions);
   const prefix = decorativeEmoji("🦞", emojiOptions);
   const indent = prefix ? `${prefix} ` : "";
   const columns = options.columns ?? process.stdout.columns ?? 120;

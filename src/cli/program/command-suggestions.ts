@@ -1,4 +1,5 @@
 import { levenshteinDistance } from "../../shared/levenshtein-distance.js";
+import { resolveCliName } from "../cli-name.js";
 import { formatCliCommand } from "../command-format.js";
 import { getCoreCliCommandNamesCore } from "./core-command-descriptors.js";
 import { getSubCliEntriesCore } from "./subcli-descriptors.js";
@@ -59,7 +60,7 @@ function formatCliSuggestionLines(
   suggestions: readonly string[],
   commandPath: readonly string[],
 ): string {
-  const commandPrefix = ["openclaw", ...commandPath].join(" ");
+  const commandPrefix = [resolveCliName(), ...commandPath].join(" ");
   const commandLines = suggestions
     .map((command) => `  ${formatCliCommand(`${commandPrefix} ${command}`)}`)
     .join("\n");

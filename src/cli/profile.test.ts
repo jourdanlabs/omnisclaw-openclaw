@@ -576,75 +576,81 @@ describe("applyCliProfileEnv", () => {
 });
 
 describe("formatCliCommand", () => {
+  const displayed = (command: string) =>
+    command.replace(
+      /^(?:(pnpm|npm|bunx|npx)\s+)?openclaw\b/,
+      (_match, runner?: string) => `${runner ? `${runner} ` : ""}omnisclaw`,
+    );
+
   it.each([
     {
       name: "no profile is set",
       cmd: "openclaw doctor --fix",
       env: {},
-      expected: "openclaw doctor --fix",
+      expected: "omnisclaw doctor --fix",
     },
     {
       name: "profile is default",
       cmd: "openclaw doctor --fix",
       env: { OPENCLAW_PROFILE: "default" },
-      expected: "openclaw doctor --fix",
+      expected: "omnisclaw doctor --fix",
     },
     {
       name: "profile is Default (case-insensitive)",
       cmd: "openclaw doctor --fix",
       env: { OPENCLAW_PROFILE: "Default" },
-      expected: "openclaw doctor --fix",
+      expected: "omnisclaw doctor --fix",
     },
     {
       name: "profile is invalid",
       cmd: "openclaw doctor --fix",
       env: { OPENCLAW_PROFILE: "bad profile" },
-      expected: "openclaw doctor --fix",
+      expected: "omnisclaw doctor --fix",
     },
     {
       name: "--profile is already present",
       cmd: "openclaw --profile work doctor --fix",
       env: { OPENCLAW_PROFILE: "work" },
-      expected: "openclaw --profile work doctor --fix",
+      expected: "omnisclaw --profile work doctor --fix",
     },
     {
       name: "--dev is already present",
       cmd: "openclaw --dev doctor",
       env: { OPENCLAW_PROFILE: "dev" },
-      expected: "openclaw --dev doctor",
+      expected: "omnisclaw --dev doctor",
     },
-  ])("returns command unchanged when $name", ({ cmd, env, expected }) => {
+  ])("rewrites the displayed CLI name when $name", ({ cmd, env, expected }) => {
     expect(formatCliCommand(cmd, env)).toBe(expected);
   });
 
   it("inserts --profile flag when profile is set", () => {
     expect(formatCliCommand("openclaw doctor --fix", { OPENCLAW_PROFILE: "work" })).toBe(
-      "openclaw --profile work doctor --fix",
+      "omnisclaw --profile work doctor --fix",
     );
   });
 
   it("trims whitespace from profile", () => {
     expect(formatCliCommand("openclaw doctor --fix", { OPENCLAW_PROFILE: "  jbopenclaw  " })).toBe(
-      "openclaw --profile jbopenclaw doctor --fix",
+      "omnisclaw --profile jbopenclaw doctor --fix",
     );
   });
 
   it("handles command with no args after openclaw", () => {
     expect(formatCliCommand("openclaw", { OPENCLAW_PROFILE: "test" })).toBe(
-      "openclaw --profile test",
+      "omnisclaw --profile test",
     );
   });
 
   it("handles pnpm wrapper", () => {
     expect(formatCliCommand("pnpm openclaw doctor", { OPENCLAW_PROFILE: "work" })).toBe(
-      "pnpm openclaw --profile work doctor",
+      "pnpm omnisclaw --profile work doctor",
     );
   });
 
   it("inserts --container when a container hint is set", () => {
     expect(
       formatCliCommand("openclaw gateway status --deep", { OPENCLAW_CONTAINER_HINT: "demo" }),
-    ).toBe("openclaw --container demo gateway status --deep");
+    ).toBe("omnisclaw --container demo gateway status --deep");
   });
 
   it("ignores unsafe container hints", () => {
@@ -652,7 +658,7 @@ describe("formatCliCommand", () => {
       formatCliCommand("openclaw gateway status --deep", {
         OPENCLAW_CONTAINER_HINT: "demo; rm -rf /",
       }),
-    ).toBe("openclaw gateway status --deep");
+    ).toBe("omnisclaw gateway status --deep");
   });
 
   it("preserves both --container and --profile hints", () => {
@@ -661,7 +667,7 @@ describe("formatCliCommand", () => {
         OPENCLAW_CONTAINER_HINT: "demo",
         OPENCLAW_PROFILE: "work",
       }),
-    ).toBe("openclaw --container demo doctor");
+    ).toBe("omnisclaw --container demo doctor");
   });
 
   it.each([
@@ -682,7 +688,7 @@ describe("formatCliCommand", () => {
   ])("does not prepend --container to root update: %s", (command) => {
     expect(
       formatCliCommand(command, { OPENCLAW_CONTAINER_HINT: "demo", OPENCLAW_PROFILE: "work" }),
-    ).toBe(command);
+    ).toBe(displayed(command));
   });
 
   it.each([
@@ -702,6 +708,6 @@ describe("formatCliCommand", () => {
         OPENCLAW_CONTAINER_HINT: "demo",
         OPENCLAW_PROFILE: "work",
       }),
-    ).toBe(`${prefix} --container demo ${command}`);
+    ).toBe(`${displayed(prefix)} --container demo ${command}`);
   });
 });

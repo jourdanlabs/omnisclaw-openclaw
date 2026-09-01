@@ -6,7 +6,15 @@
 - **TERMINUS action gate** on when the CADUCEUS CLI is present (`TERMINUS_AUTHORIZE` / `CADUCEUS_ROOT`). Verdicts ALLOW / REFUSE / HOLD. Raw command is never stored.
 - **Honest boundary:** this is a delivery + exec gate, not workstation egress control and not a correctness proof.
 
-**Start here:** [docs/OMNISCLAW.md](docs/OMNISCLAW.md). Upstream OpenClaw 2.0 README follows.
+**Start here:** [docs/OMNISCLAW.md](docs/OMNISCLAW.md).
+
+```bash
+npm install -g @jourdanlabs/omnisclaw
+omnisclaw --version    # OMNIS CLAW 2026.8.1-omnisclaw.0 (<sha>)
+omnisclaw --help
+```
+
+Upstream OpenClaw 2.0 README follows. Compatibility bin alias: `openclaw`.
 
 OMNIS CLAW is built on OpenClaw by the OpenClaw Foundation and Peter Steinberger. The OMNIS CLAW layer (`src/omnisclaw/`) is © Jourdan Labs, Apache-2.0. Upstream MIT grant is preserved in NOTICE. Compatibility bin alias: `openclaw`.
 

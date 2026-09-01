@@ -41,7 +41,7 @@ describe("formatCliBannerLine", () => {
       mode: "off",
     });
 
-    expect(line).toBe("🦞 OpenClaw 2026.3.7 (abc1234)");
+    expect(line).toBe("🦞 OMNIS CLAW 2026.3.7 (abc1234)");
   });
 
   it("uses the default tagline when explicitly requested", () => {
@@ -54,7 +54,7 @@ describe("formatCliBannerLine", () => {
       mode: "default",
     });
 
-    expect(line).toBe("🦞 OpenClaw 2026.3.7 (abc1234) — All your chats, one OpenClaw.");
+    expect(line).toBe("🦞 OMNIS CLAW 2026.3.7 (abc1234) — All your chats, one OMNIS CLAW.");
   });
 
   it("drops decorative emoji for generic Linux terminals", () => {
@@ -67,7 +67,7 @@ describe("formatCliBannerLine", () => {
       mode: "off",
     });
 
-    expect(line).toBe("OpenClaw 2026.3.7 (abc1234)");
+    expect(line).toBe("OMNIS CLAW 2026.3.7 (abc1234)");
   });
 });
 
@@ -104,7 +104,7 @@ describe("emitCliBanner", () => {
       richTty: false,
     });
 
-    expect(writeSpy).toHaveBeenCalledWith("\n🦞 OpenClaw 2026.3.7 (abc1234)\n\n");
+    expect(writeSpy).toHaveBeenCalledWith("\n🦞 OMNIS CLAW 2026.3.7 (abc1234)\n\n");
     expect(hasEmittedCliBanner()).toBe(true);
   });
 
