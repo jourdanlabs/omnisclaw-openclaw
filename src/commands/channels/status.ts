@@ -1,4 +1,4 @@
-// Implements `openclaw channels status` with gateway status and config-only fallback.
+// Implements `omnisclaw channels status` with gateway status and config-only fallback.
 import { redactSensitiveUrlLikeString } from "@openclaw/net-policy/redact-sensitive-url";
 import { normalizeOptionalLowercaseString } from "@openclaw/normalization-core/string-coerce";
 import {

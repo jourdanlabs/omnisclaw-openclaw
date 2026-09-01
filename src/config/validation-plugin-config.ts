@@ -106,7 +106,7 @@ export function resolveExplicitPluginReferencePath(
 
 function formatRemovedPluginConfigWarning(pluginId: string): string {
   if (pluginId === "skill-workshop") {
-    return "plugin removed: skill-workshop (stale plugin config ignored; Skill Workshop is built into OpenClaw skills now. Use skills.workshop settings and openclaw skills workshop commands, then remove this plugins config entry)";
+    return "plugin removed: skill-workshop (stale plugin config ignored; Skill Workshop is built into OpenClaw skills now. Use skills.workshop settings and omnisclaw skills workshop commands, then remove this plugins config entry)";
   }
   return `plugin removed: ${pluginId} (stale config entry ignored; remove it from plugins config)`;
 }
@@ -128,9 +128,9 @@ function formatMissingOfficialExternalPluginWarning(
     return null;
   }
   if (pluginId === "memory-lancedb" && opts?.selectedMissingMemorySlot) {
-    return `plugin not installed: ${pluginId} — gateway will run without persistent memory until installed; install the official external plugin with: openclaw plugins install ${installSpec}`;
+    return `plugin not installed: ${pluginId} — gateway will run without persistent memory until installed; install the official external plugin with: omnisclaw plugins install ${installSpec}`;
   }
-  return `plugin not installed: ${pluginId} — install the official external plugin with: openclaw plugins install ${installSpec}`;
+  return `plugin not installed: ${pluginId} — install the official external plugin with: omnisclaw plugins install ${installSpec}`;
 }
 
 export function validateExplicitPluginConfig(params: {

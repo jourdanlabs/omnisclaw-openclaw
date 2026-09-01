@@ -212,7 +212,7 @@ function resolveSystemAgentCliToolAvailability(
 }
 
 /**
- * CLI harnesses run the openclaw tool in a stdio MCP subprocess, so the
+ * CLI harnesses run the omnisclaw tool in a stdio MCP subprocess, so the
  * in-process proposalRef/directiveRef cannot be shared with the host. Mirror
  * the tool's transitions from the harness tool events instead: a denial
  * registers the exact-operation hash, a mismatch voids it, an executed

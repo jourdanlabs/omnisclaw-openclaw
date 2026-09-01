@@ -58,21 +58,21 @@ function gatewayOperationalError(err: unknown): Error {
   const message = formatErrorMessage(err);
   const detail = (() => {
     if (isGatewayClientRequestError(err)) {
-      return `Gateway responded but voicecall failed: ${message}\nThe running Gateway owns the voice-call runtime; check \`openclaw gateway status\` or restart it.`;
+      return `Gateway responded but voicecall failed: ${message}\nThe running Gateway owns the voice-call runtime; check \`omnisclaw gateway status\` or restart it.`;
     }
     if (isGatewayCredentialFailure(err)) {
-      return `Gateway requires credentials: ${message}\nConfigure gateway.auth or pair this device with \`openclaw devices approve --latest\`.`;
+      return `Gateway requires credentials: ${message}\nConfigure gateway.auth or pair this device with \`omnisclaw devices approve --latest\`.`;
     }
     if (isGatewayTransportError(err)) {
       const url = err.connectionDetails.url;
       if (err.kind === "timeout") {
         const timeout =
           err.timeoutMs === undefined ? "the configured timeout" : `${err.timeoutMs}ms`;
-        return `Gateway at ${url} did not answer within ${timeout}: ${message}\nIt may be starting or wedged; check \`openclaw gateway status\`.`;
+        return `Gateway at ${url} did not answer within ${timeout}: ${message}\nIt may be starting or wedged; check \`omnisclaw gateway status\`.`;
       }
-      return `Gateway connection at ${url} failed: ${message}\nCheck gateway.auth and \`openclaw gateway status\`, then retry.`;
+      return `Gateway connection at ${url} failed: ${message}\nCheck gateway.auth and \`omnisclaw gateway status\`, then retry.`;
     }
-    return `Gateway voicecall request failed: ${message}\nCheck \`openclaw gateway status\`, then retry.`;
+    return `Gateway voicecall request failed: ${message}\nCheck \`omnisclaw gateway status\`, then retry.`;
   })();
   // Configured gateway URLs may embed userinfo/tokens, and close reasons are
   // remote-controlled text; redact once where the text becomes operator-visible.
@@ -225,7 +225,7 @@ async function ensureStandaloneRuntime(params: {
   } catch (err) {
     if (err instanceof Error && "code" in err && err.code === "EADDRINUSE") {
       throw new Error(
-        `Voice-call webhook port ${params.config.serve.port} is already in use. A running Gateway probably already serves it; operational commands route through that Gateway. Check \`openclaw gateway status\` and retry.`,
+        `Voice-call webhook port ${params.config.serve.port} is already in use. A running Gateway probably already serves it; operational commands route through that Gateway. Check \`omnisclaw gateway status\` and retry.`,
         { cause: err },
       );
     }

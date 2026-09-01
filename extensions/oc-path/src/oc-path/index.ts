@@ -1,5 +1,5 @@
 /**
- * Internal substrate surface consumed by `openclaw path`.
+ * Internal substrate surface consumed by `omnisclaw path`.
  *
  * Keep this barrel limited to CLI imports. Per-kind helpers stay in their
  * owning modules.

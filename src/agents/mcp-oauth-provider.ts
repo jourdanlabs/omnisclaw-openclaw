@@ -92,7 +92,7 @@ export function createMcpOAuthClientProvider(params: {
   const assertAuthorizationRedirectAllowed = () => {
     if (params.allowAuthorizationRedirect !== true) {
       throw new Error(
-        `MCP server "${params.identity.serverName}" requires OAuth authorization. Run openclaw mcp login ${params.identity.serverName}.`,
+        `MCP server "${params.identity.serverName}" requires OAuth authorization. Run omnisclaw mcp login ${params.identity.serverName}.`,
       );
     }
   };

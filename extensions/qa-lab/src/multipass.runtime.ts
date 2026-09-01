@@ -607,7 +607,7 @@ export async function runQaMultipass(params: {
       });
     }
     throw new Error(
-      `Multipass is not installed on this host. Install it with '${resolveMultipassInstallHint()}', then rerun 'pnpm openclaw qa suite --runner multipass'.`,
+      `Multipass is not installed on this host. Install it with '${resolveMultipassInstallHint()}', then rerun 'pnpm omnisclaw qa suite --runner multipass'.`,
       { cause: error },
     );
   }

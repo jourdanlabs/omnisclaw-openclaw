@@ -23,7 +23,7 @@ export {
 } from "./legacy-source-files.js";
 
 const AUTH_PROFILE_MIGRATION_REQUIRED_CODE = "AUTH_PROFILE_MIGRATION_REQUIRED" as const;
-const AUTH_PROFILE_MIGRATION_COMMAND = "openclaw doctor --fix" as const;
+const AUTH_PROFILE_MIGRATION_COMMAND = "omnisclaw doctor --fix" as const;
 const log = createSubsystemLogger("auth-profiles/persistence");
 
 function isCredentialSource(source: LegacyAuthProfileSource): boolean {

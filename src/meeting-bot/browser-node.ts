@@ -86,14 +86,14 @@ export async function resolveMeetingBrowserNodeInfo(params: {
     const [node] = matches;
     if (!node) {
       throw new Error(
-        `Configured ${params.adapter.displayName} node ${requested} was not found. Run \`openclaw nodes status\` and start or approve the Chrome node.`,
+        `Configured ${params.adapter.displayName} node ${requested} was not found. Run \`omnisclaw nodes status\` and start or approve the Chrome node.`,
       );
     }
     if (isMeetingBrowserNode(node, params.adapter)) {
       return node;
     }
     throw new Error(
-      `Configured ${params.adapter.displayName} node ${requested} is not usable (${formatNodeLabel(node)}): ${describeNodeUsabilityIssues(node, params.adapter).join("; ")}. Start or reinstall \`openclaw node run\` on that Chrome host, approve pairing, and allow ${params.adapter.nodeCommandName} plus browser.proxy.`,
+      `Configured ${params.adapter.displayName} node ${requested} is not usable (${formatNodeLabel(node)}): ${describeNodeUsabilityIssues(node, params.adapter).join("; ")}. Start or reinstall \`omnisclaw node run\` on that Chrome host, approve pairing, and allow ${params.adapter.nodeCommandName} plus browser.proxy.`,
     );
   }
 
@@ -102,7 +102,7 @@ export async function resolveMeetingBrowserNodeInfo(params: {
   const [node] = nodes;
   if (!node) {
     throw new Error(
-      `No connected ${params.adapter.displayName}-capable node with browser proxy. Run \`openclaw node run\` on the Chrome host with browser proxy enabled, approve pairing, and allow ${params.adapter.nodeCommandName} plus browser.proxy.`,
+      `No connected ${params.adapter.displayName}-capable node with browser proxy. Run \`omnisclaw node run\` on the Chrome host with browser proxy enabled, approve pairing, and allow ${params.adapter.nodeCommandName} plus browser.proxy.`,
     );
   }
   if (nodes.length === 1) {

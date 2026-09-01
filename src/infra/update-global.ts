@@ -1030,7 +1030,7 @@ function resolveBunGlobalInstallSpec(spec: string): string {
   const hasScheme = /^[a-z][a-z0-9+.-]*:/iu.test(trimmed) && !isWindowsAbsolutePath;
   const target = /\.(?:tgz|tar\.gz)$/iu.test(trimmed) && !hasScheme ? `file:${trimmed}` : trimmed;
   // Bun needs an alias to replace the existing global dependency. A bare
-  // tarball is added beside it and can form an openclaw dependency loop.
+  // tarball is added beside it and can form an omnisclaw dependency loop.
   return `${PRIMARY_PACKAGE_NAME}@${target}`;
 }
 

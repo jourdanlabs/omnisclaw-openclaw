@@ -85,7 +85,7 @@ export async function installBundledPluginSource(params: {
     : prepareConfigForDisabledBundledInstall(params.snapshot.config, params.bundledSource.pluginId);
   const configWarning = shouldEnable
     ? undefined
-    : `Installed bundled plugin "${params.bundledSource.pluginId}" without enabling it because it requires configuration first. Configure it, then run \`openclaw plugins enable ${params.bundledSource.pluginId}\`.`;
+    : `Installed bundled plugin "${params.bundledSource.pluginId}" without enabling it because it requires configuration first. Configure it, then run \`omnisclaw plugins enable ${params.bundledSource.pluginId}\`.`;
   const warnings = [params.warning, configWarning].filter((warning): warning is string =>
     Boolean(warning),
   );

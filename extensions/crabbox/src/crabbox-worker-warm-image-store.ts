@@ -66,7 +66,7 @@ export function isCrabboxWarmImageCapturePaused(
 }
 
 export function crabboxWarmImageRecoveryHint(selector: string): string {
-  return `Stop the owning Gateway and capture processes and resolve any untracked checkpoint in the Crabbox catalog before running: openclaw crabbox warm-images --recover ${selector} --acknowledge-provider-cleanup. Then restart the Gateway; the next eligible worker stop can capture again.`;
+  return `Stop the owning Gateway and capture processes and resolve any untracked checkpoint in the Crabbox catalog before running: omnisclaw crabbox warm-images --recover ${selector} --acknowledge-provider-cleanup. Then restart the Gateway; the next eligible worker stop can capture again.`;
 }
 
 export function listCrabboxWarmImages(env?: NodeJS.ProcessEnv) {
@@ -115,7 +115,7 @@ export function recoverCrabboxWarmImageCapture(
     .find(({ key, value }) => crabboxWarmImageCaptureStatus(key, value)?.selector === selector);
   if (!entry || !clearCrabboxWarmImageCapture(entry.key, selector)) {
     throw new Error(
-      "Capture selector is absent or changed; rerun openclaw crabbox warm-images --json. No state was changed.",
+      "Capture selector is absent or changed; rerun omnisclaw crabbox warm-images --json. No state was changed.",
     );
   }
 }

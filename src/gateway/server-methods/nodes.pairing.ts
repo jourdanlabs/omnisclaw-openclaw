@@ -394,7 +394,7 @@ export const nodePairingHandlers: GatewayRequestHandlers = {
       respond(true, rejected, undefined);
     });
   },
-  // Remove a node pairing (CLI: `openclaw nodes remove`). This revokes the
+  // Remove a node pairing (CLI: `omnisclaw nodes remove`). This revokes the
   // device's `node` role in devices/paired.json, which drops the approved node
   // surface with it, and disconnects the device's node-role sessions: a
   // mixed-role device keeps its row and only loses the `node` role, a

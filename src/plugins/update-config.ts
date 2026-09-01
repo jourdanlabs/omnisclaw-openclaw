@@ -416,7 +416,7 @@ export async function repairOpenClawPeerLinksForNpmInstalls(params: {
     logger: params.logger,
     onPackageReadError: (error, packageDir) => {
       params.logger.warn?.(
-        `Could not repair openclaw peer link at ${packageDir}: ${String(error)}`,
+        `Could not repair omnisclaw peer link at ${packageDir}: ${String(error)}`,
       );
     },
   });

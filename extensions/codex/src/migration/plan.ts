@@ -333,7 +333,7 @@ function buildPluginItems(
           plugin.message ??
           `Codex native plugin "${plugin.name}" was found but not activated automatically.`,
         recommendation:
-          "Review the plugin bundle first, then install trusted compatible plugins with openclaw plugins install <path> --force.",
+          "Review the plugin bundle first, then install trusted compatible plugins with omnisclaw plugins install <path> --force.",
       }),
     );
   }
@@ -616,7 +616,7 @@ export async function buildCodexMigrationPlan(
     nextSteps: memoryOnly
       ? []
       : [
-          "Run openclaw doctor after applying the migration.",
+          "Run omnisclaw doctor after applying the migration.",
           "Review skipped or auth-required Codex plugin/config/hook items before exposing them in OpenClaw sessions.",
         ],
     metadata: {

@@ -176,8 +176,8 @@ type MemoryWikiDashboardPendingState = Exclude<MemoryWikiDashboardState, { state
 const DASHBOARD_UNAVAILABLE_MESSAGES: Record<MemoryWikiDashboardPendingState["state"], string> = {
   rebuilding: "Memory Wiki dashboards are rebuilding. Retry shortly.",
   "compile-required":
-    'Memory Wiki dashboards need a compiled snapshot. Run "openclaw wiki compile", then reload.',
-  failed: 'Memory Wiki dashboard rebuild failed. Run "openclaw wiki compile", then reload.',
+    'Memory Wiki dashboards need a compiled snapshot. Run "omnisclaw wiki compile", then reload.',
+  failed: 'Memory Wiki dashboard rebuild failed. Run "omnisclaw wiki compile", then reload.',
 };
 
 export class MemoryWikiDashboardUnavailableError extends Error {

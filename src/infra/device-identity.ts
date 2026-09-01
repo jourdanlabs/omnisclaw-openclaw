@@ -69,7 +69,7 @@ function assertNoPendingLegacyIdentity(options: DeviceIdentityStoreOptions): voi
     pathMayExist(legacyPath)
   ) {
     throw new Error(
-      `Legacy device identity exists at ${legacyPath}. Run "openclaw doctor --fix" before starting the gateway or connecting this client.`,
+      `Legacy device identity exists at ${legacyPath}. Run "omnisclaw doctor --fix" before starting the gateway or connecting this client.`,
     );
   }
 }

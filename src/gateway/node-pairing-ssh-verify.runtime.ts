@@ -21,7 +21,7 @@ const MAX_PROBE_OUTPUT_BYTES = 64 * 1024;
 
 // `sh -lc` loads the remote login profile so `openclaw` resolves on PATH even
 // though sshd runs remote commands through a non-login shell.
-const REMOTE_IDENTITY_COMMAND = "sh -lc 'openclaw node identity --json'";
+const REMOTE_IDENTITY_COMMAND = "sh -lc 'omnisclaw node identity --json'";
 
 /** Read the node device identity back from the pairing host over SSH. */
 export async function runNodeIdentityProbe(

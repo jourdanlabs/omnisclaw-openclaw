@@ -30,7 +30,7 @@ export type SecretTargetRegistryEntry = {
   secretShape: SecretTargetShape;
   /** Runtime value shape accepted after SecretRef resolution. */
   expectedResolvedValue: SecretTargetExpected;
-  /** Enables `openclaw secrets apply` targeting for this entry. */
+  /** Enables `omnisclaw secrets apply` targeting for this entry. */
   includeInPlan: boolean;
   /** Enables interactive/non-interactive configure candidate generation. */
   includeInConfigure: boolean;

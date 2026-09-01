@@ -2,7 +2,7 @@
  * Opt-in CLI-backend dispatch for one-shot embedded runs.
  *
  * Embedded runs targeting a CLI runtime provider normally fall through to the
- * openclaw harness and call the provider API directly with that runtime's
+ * omnisclaw harness and call the provider API directly with that runtime's
  * credentials (`cli_runtime_passthrough_openclaw`). Anthropic routes direct
  * anthropic-messages calls on subscription OAuth tokens to metered "extra
  * usage" billing: without extra-usage balance the passthrough fails closed

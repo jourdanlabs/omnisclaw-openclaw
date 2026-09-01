@@ -19,13 +19,13 @@ export async function gatewayAuthTokenCommand(
   // explicitly own both sides of the terminal before the token reaches stdout.
   if (!(options.interactive ?? isTerminalInteractive())) {
     throw new Error(
-      "Refusing to print the Gateway token outside an interactive terminal. Run `openclaw gateway auth-token --show` directly in a terminal on the Gateway host.",
+      "Refusing to print the Gateway token outside an interactive terminal. Run `omnisclaw gateway auth-token --show` directly in a terminal on the Gateway host.",
     );
   }
 
   const snapshot = await readConfigFileSnapshot();
   if (!snapshot.valid) {
-    throw new Error("Gateway config is invalid. Run `openclaw doctor --fix`, then try again.");
+    throw new Error("Gateway config is invalid. Run `omnisclaw doctor --fix`, then try again.");
   }
 
   const cfg = snapshot.sourceConfig ?? snapshot.config;
@@ -61,7 +61,7 @@ export async function gatewayAuthTokenCommand(
   });
   if (resolvedAuth.mode !== "token" || !resolvedAuth.token) {
     throw new Error(
-      "No configured Gateway token is available. Run `openclaw doctor --generate-gateway-token`, restart the Gateway, then try again.",
+      "No configured Gateway token is available. Run `omnisclaw doctor --generate-gateway-token`, restart the Gateway, then try again.",
     );
   }
 

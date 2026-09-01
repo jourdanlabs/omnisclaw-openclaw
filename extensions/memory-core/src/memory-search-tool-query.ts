@@ -15,7 +15,7 @@ const MEMORY_SEARCH_POST_FILTER_MAX_CANDIDATES = 200;
 const PAUSED_MEMORY_INDEX_WARNING =
   "Tell the user: memory search is paused because the memory index was built with a different embedding provider/model/settings.";
 const PAUSED_MEMORY_INDEX_ACTION =
-  "Tell the user to run: openclaw memory status --index or openclaw memory index --force.";
+  "Tell the user to run: omnisclaw memory status --index or omnisclaw memory index --force.";
 
 export function buildPausedMemoryIndexUnavailableResult(reason: string) {
   return buildMemorySearchUnavailableResult(reason, {

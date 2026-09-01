@@ -406,7 +406,7 @@ export function createFleetService(options: FleetServiceOptions = {}) {
               // Unlike upgrade/restore, create has no previous container to bring back;
               // keep the sick cell (container + registry row) as diagnosable evidence.
               throw new Error(
-                `Fleet cell ${tenantId} was created but did not become healthy within 60s; inspect it with \`openclaw fleet status ${tenantId}\` or \`openclaw fleet logs ${tenantId}\`, or remove it with \`openclaw fleet rm ${tenantId} --force\`.`,
+                `Fleet cell ${tenantId} was created but did not become healthy within 60s; inspect it with \`omnisclaw fleet status ${tenantId}\` or \`omnisclaw fleet logs ${tenantId}\`, or remove it with \`omnisclaw fleet rm ${tenantId} --force\`.`,
                 { cause: error },
               );
             }

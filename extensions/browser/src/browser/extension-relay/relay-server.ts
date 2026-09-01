@@ -566,7 +566,7 @@ export async function startExtensionRelayServer(params: {
         if (!bridge.extensionConnected) {
           writeJson(res, 503, {
             error:
-              "OpenClaw Chrome extension is not connected. Install the extension and pair it with `openclaw browser extension pair`.",
+              "OpenClaw Chrome extension is not connected. Install the extension and pair it with `omnisclaw browser extension pair`.",
           });
           return;
         }

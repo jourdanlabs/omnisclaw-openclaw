@@ -1,5 +1,5 @@
 /**
- * openclaw built-in tool: ring-zero setup/repair actions for the OpenClaw
+ * omnisclaw built-in tool: ring-zero setup/repair actions for the OpenClaw
  * agent. Never exposed to normal agents — construction is bound to a host-owned
  * per-run scope, and every action funnels through OpenClaw's typed operation
  * union with approval assertions and the audit log.
@@ -184,7 +184,7 @@ const SystemAgentToolSchema = Type.Object({
   target: Type.Optional(
     stringEnum(["guided", "classic", "channels", "search", "gateway"], {
       description:
-        "Setup target for open_setup. channels/search/gateway open masked terminal flows; guided/classic require exiting OpenClaw and running openclaw onboard.",
+        "Setup target for open_setup. channels/search/gateway open masked terminal flows; guided/classic require exiting OpenClaw and running omnisclaw onboard.",
     }),
   ),
   query: Type.Optional(Type.String({ description: "Search query for plugin_search" })),
@@ -204,7 +204,7 @@ function createCaptureRuntime(): RuntimeEnv & { read: () => string } {
     log: (...args) => lines.push(args.join(" ")),
     error: (...args) => lines.push(args.join(" ")),
     exit: (code) => {
-      throw new Error(`openclaw operation exited with code ${String(code)}`);
+      throw new Error(`omnisclaw operation exited with code ${String(code)}`);
     },
     read: () => lines.join("\n").trim(),
   };
@@ -367,7 +367,7 @@ export function createSystemAgentTool(options: SystemAgentToolOptions): AnyAgent
       "System agent. Setup, config, channels, plugins, agents, repair.",
       "Read now: status, models, agents, channels, channel_info, config_get, config_schema, gateway_status, plugin_search, validate_config, doctor, audit.",
       "Handoff: connect_channel, configure_skills, configure_search, configure_gateway, import_memory; open_setup target=channels|search|gateway; open_agent.",
-      "Provider/auth/credentials: exit; run `openclaw onboard`. Never request credentials.",
+      "Provider/auth/credentials: exit; run `omnisclaw onboard`. Never request credentials.",
       "Write: setup, set_default_model (agentId optional; live-tested), config_set, config_set_ref, create_agent, gateway_*, plugin_install, plugin_uninstall. Exact user approval required; then approved=true. Host applies after turn; rechecks inference owner.",
       "plugin_install: ClawHub/bundled/official only. Arbitrary source: exit, trusted shell.",
       "Unknown config: config_schema first. Secrets: config_set_ref env. No plaintext. No raw auth/models/env/secrets/$include or default-route agent fields; use set_default_model / onboard.",
@@ -399,7 +399,7 @@ export function createSystemAgentTool(options: SystemAgentToolOptions): AnyAgent
                   : directive.kind === "memory-import"
                     ? `${SYSTEM_AGENT_DIRECTIVE_PREFIX} the host chat now starts guided copy-only memory import with the user. Tell the user the detected local-agent memory choices come next; do not describe steps yourself.`
                     : directive.kind === "model-setup"
-                      ? `${SYSTEM_AGENT_DIRECTIVE_PREFIX} the active inference route cannot be changed inside OpenClaw. Tell the user to exit OpenClaw and run \`openclaw onboard\`; do not ask for provider credentials here.`
+                      ? `${SYSTEM_AGENT_DIRECTIVE_PREFIX} the active inference route cannot be changed inside OpenClaw. Tell the user to exit OpenClaw and run \`omnisclaw onboard\`; do not ask for provider credentials here.`
                       : directive.kind === "open-tui"
                         ? `${SYSTEM_AGENT_DIRECTIVE_PREFIX} the host now hands the user over to their normal agent. Say goodbye briefly.`
                         : directive.target === "channels"
@@ -408,7 +408,7 @@ export function createSystemAgentTool(options: SystemAgentToolOptions): AnyAgent
                             ? `${SYSTEM_AGENT_DIRECTIVE_PREFIX} the host now opens masked terminal web search setup. Tell the user the terminal wizard comes next.`
                             : directive.target === "gateway"
                               ? `${SYSTEM_AGENT_DIRECTIVE_PREFIX} the host now opens masked terminal Gateway setup. Tell the user the terminal wizard comes next.`
-                              : `${SYSTEM_AGENT_DIRECTIVE_PREFIX} ${directive.target} setup cannot run inside OpenClaw because it may change the active inference route. Tell the user to exit OpenClaw and run \`openclaw onboard\`.`,
+                              : `${SYSTEM_AGENT_DIRECTIVE_PREFIX} ${directive.target} setup cannot run inside OpenClaw because it may change the active inference route. Tell the user to exit OpenClaw and run \`omnisclaw onboard\`.`,
           {},
         );
       }

@@ -42,7 +42,7 @@ export function assertAgentDatabaseMaintenanceAuthority(): void {
   const authority = maintenanceAuthority.getStore();
   if (!authority) {
     throw new Error(
-      "Agent identity migration requires stopped-writer maintenance; stop active agents and run openclaw doctor --fix.",
+      "Agent identity migration requires stopped-writer maintenance; stop active agents and run omnisclaw doctor --fix.",
     );
   }
   authority.assertOwned();
@@ -75,7 +75,7 @@ export function claimOpenClawAgentDatabaseLease(params: {
       );
       if (maintenance) {
         throw new Error(
-          "Agent database maintenance is in progress; retry after openclaw doctor --fix completes.",
+          "Agent database maintenance is in progress; retry after omnisclaw doctor --fix completes.",
         );
       }
       const deletion = executeSqliteQueryTakeFirstSync(
@@ -186,7 +186,7 @@ export function assertNoOpenClawAgentDatabaseLeases(
       }
     }, options);
     if (leaseStillExists && (!agentId || row.agent_id === agentId)) {
-      const remediation = agentId ? "." : "; stop that process and rerun openclaw doctor --fix.";
+      const remediation = agentId ? "." : "; stop that process and rerun omnisclaw doctor --fix.";
       throw new Error(
         `Agent ${row.agent_id} database is still open in another process${remediation}`,
       );

@@ -83,12 +83,12 @@ export function createLegacyPrivateNetworkDoctorContract(params: { channelKey: s
     legacyConfigRules: [
       {
         path: ["channels", params.channelKey],
-        message: `${pathPrefix}.allowPrivateNetwork is legacy; use ${pathPrefix}.network.dangerouslyAllowPrivateNetwork instead. Run "openclaw doctor --fix".`,
+        message: `${pathPrefix}.allowPrivateNetwork is legacy; use ${pathPrefix}.network.dangerouslyAllowPrivateNetwork instead. Run "omnisclaw doctor --fix".`,
         match: (value) => hasLegacyFlatAllowPrivateNetworkAlias(asNullableRecord(value) ?? {}),
       },
       {
         path: ["channels", params.channelKey, "accounts"],
-        message: `${pathPrefix}.accounts.<id>.allowPrivateNetwork is legacy; use ${pathPrefix}.accounts.<id>.network.dangerouslyAllowPrivateNetwork instead. Run "openclaw doctor --fix".`,
+        message: `${pathPrefix}.accounts.<id>.allowPrivateNetwork is legacy; use ${pathPrefix}.accounts.<id>.network.dangerouslyAllowPrivateNetwork instead. Run "omnisclaw doctor --fix".`,
         match: hasLegacyAllowPrivateNetworkInAccounts,
       },
     ],

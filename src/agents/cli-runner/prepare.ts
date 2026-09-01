@@ -965,7 +965,7 @@ export async function prepareCliRunContext(
   const bootstrapTruncationNotice = buildBootstrapPromptWarningNotice(bootstrapPromptWarning.lines);
   // Ring-zero OpenClaw runs replace the bundle MCP surface entirely: no
   // loopback server, no plugin/user servers. A selectable backend also removes
-  // its native tools, leaving only this openclaw stdio server.
+  // its native tools, leaving only this omnisclaw stdio server.
   const systemAgentMcpConfig = internalParams.systemAgentTool
     ? buildSystemAgentToolsMcpServerConfig(internalParams.systemAgentTool)
     : undefined;

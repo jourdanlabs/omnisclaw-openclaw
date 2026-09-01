@@ -1,4 +1,4 @@
-// Implements `openclaw agents list` text and JSON summaries.
+// Implements `omnisclaw agents list` text and JSON summaries.
 import { sanitizeTerminalText } from "../../packages/terminal-core/src/safe-text.js";
 import { formatCliCommand } from "../cli/command-format.js";
 import { listRouteBindings } from "../config/bindings.js";

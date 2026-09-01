@@ -81,7 +81,7 @@ function assertNodeHostLegacyStateMigrated(env: NodeJS.ProcessEnv = process.env)
     return;
   }
   throw new Error(
-    `retired node-host state remains at ${sourcePath}; stop the node host and run \`openclaw doctor --fix\``,
+    `retired node-host state remains at ${sourcePath}; stop the node host and run \`omnisclaw doctor --fix\``,
   );
 }
 

@@ -187,7 +187,7 @@ export async function rollbackManagedNpmPluginInstall(params: {
       });
     } catch (error) {
       params.logger.warn?.(
-        `Failed to repair managed npm openclaw peer after rollback: ${String(error)}`,
+        `Failed to repair managed npm omnisclaw peer after rollback: ${String(error)}`,
       );
     }
   }

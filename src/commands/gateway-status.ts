@@ -1,4 +1,4 @@
-/** CLI entrypoint for `openclaw gateway status`. */
+/** CLI entrypoint for `omnisclaw gateway status`. */
 import { isRich } from "../../packages/terminal-core/src/theme.js";
 import { parseGatewayPortOption } from "../cli/gateway-port-option.js";
 import { parseTimeoutMsWithFallback } from "../cli/parse-timeout.js";

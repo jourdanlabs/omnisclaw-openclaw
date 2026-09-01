@@ -154,7 +154,7 @@ const colorByPct = (label: string, pct: number | null, rich: boolean) => {
   return theme.muted(label);
 };
 
-// Matches `openclaw status` semantics: show the recorded total whenever one
+// Matches `omnisclaw status` semantics: show the recorded total whenever one
 // exists, and withhold only the percentage when freshness provenance is missing.
 const formatTokensCell = (
   total: number | undefined,

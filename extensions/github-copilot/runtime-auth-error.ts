@@ -12,7 +12,7 @@ function buildCopilotRuntimeAuthMessage(failure: CopilotRuntimeAuthFailure): str
     return message;
   }
   return (
-    `${message}. Run \`openclaw models auth login-github-copilot\` in a terminal to ` +
+    `${message}. Run \`omnisclaw models auth login-github-copilot\` in a terminal to ` +
     "authenticate again. If this still fails, verify that your GitHub account has Copilot " +
     "access and that your organization or enterprise policy permits it."
   );

@@ -657,7 +657,7 @@ export function scheduleProcessExitAfterTuiReturn(
     });
   const onTimeout = () => {
     try {
-      writeStderr("openclaw tui forcing process exit after return\n");
+      writeStderr("omnisclaw tui forcing process exit after return\n");
     } catch {
       // Best effort only; forced exit must not depend on stderr.
     }
@@ -1156,7 +1156,7 @@ async function runTuiUnlocked(opts: RunTuiOptions): Promise<TuiResult> {
   const updateHeader = () => {
     const sessionLabel = formatSessionKey(state.currentSessionKey);
     const agentLabel = formatAgentLabel(state.currentAgentId);
-    const title = opts.title ?? "openclaw tui";
+    const title = opts.title ?? "omnisclaw tui";
     const text = `${title} - ${client.connection.url} - agent ${agentLabel} - session ${sessionLabel}`;
     header.setText(theme.header(sanitizeRenderableLine(text)));
   };
@@ -1575,7 +1575,7 @@ async function runTuiUnlocked(opts: RunTuiOptions): Promise<TuiResult> {
   let disposeSubmitBurst = () => {};
   const forceExit = () => {
     try {
-      process.stderr.write("openclaw tui forcing exit\n");
+      process.stderr.write("omnisclaw tui forcing exit\n");
     } catch {
       // Best effort only; force exit must not depend on stderr.
     }
@@ -1610,7 +1610,7 @@ async function runTuiUnlocked(opts: RunTuiOptions): Promise<TuiResult> {
       onError: (err) => {
         if (!isTuiTerminalLossError(err)) {
           try {
-            process.stderr.write(`openclaw tui shutdown failed: ${formatTuiErrorMessage(err)}\n`);
+            process.stderr.write(`omnisclaw tui shutdown failed: ${formatTuiErrorMessage(err)}\n`);
           } catch {
             // Best effort only; exit must still complete.
           }

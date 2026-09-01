@@ -530,7 +530,7 @@ export function buildHeadlessExecApprovalDeniedMessage(params: {
     '- align both files to security="full" and ask="off" for trusted local automation',
     "- keep allowlist mode and add an explicit allowlist entry for this command",
     approvalSurfaceFix,
-    'Tip: run "openclaw doctor" and "openclaw approvals get --gateway" to inspect the effective policy.',
+    'Tip: run "omnisclaw doctor" and "omnisclaw approvals get --gateway" to inspect the effective policy.',
   ].join("\n");
 }
 

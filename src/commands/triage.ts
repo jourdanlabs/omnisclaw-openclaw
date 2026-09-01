@@ -92,7 +92,7 @@ export async function triageCommand(
   const suggestedCommands = [
     `claude "$(cat ${quotedPath})"`,
     `codex exec - < ${quotedPath}`,
-    "openclaw triage --run",
+    "omnisclaw triage --run",
   ];
   const findingCounts: Record<HealthFindingSeverity, number> = {
     error: 0,
@@ -205,7 +205,7 @@ export async function triageCommand(
   const inference = await verifySetupInference({ runtime, timeoutMs: 15_000 });
   if (!inference.ok) {
     const reason = redactSupportString(scrubDoctorErrorMessage(inference.error), redaction);
-    const message = `Embedded agent unavailable: ${reason}. Run \`openclaw onboard\` or use a suggested handoff command.`;
+    const message = `Embedded agent unavailable: ${reason}. Run \`omnisclaw onboard\` or use a suggested handoff command.`;
     if (options.run === true) {
       throw new Error(message);
     }

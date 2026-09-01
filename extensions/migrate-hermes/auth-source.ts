@@ -169,7 +169,7 @@ export async function buildReauthenticationItems(source: HermesSource): Promise<
         message: `Hermes ${sourceProvider} credentials cannot be reused safely by OpenClaw.`,
         recommendation:
           targetProvider === "qwen"
-            ? "Authenticate qwen with an API key after migration: openclaw onboard --auth-choice qwen-api-key."
+            ? "Authenticate qwen with an API key after migration: omnisclaw onboard --auth-choice qwen-api-key."
             : `Authenticate ${targetProvider} in OpenClaw after migration.`,
       }),
     ];

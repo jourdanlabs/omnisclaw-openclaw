@@ -266,7 +266,7 @@ async function restoreLaunchAgentInstall(params: {
       domain: params.domain,
       serviceTarget,
       plistPath: params.plistPath,
-      actionHint: "openclaw gateway start",
+      actionHint: "omnisclaw gateway start",
       retryPendingTeardown: true,
     });
   }
@@ -278,7 +278,7 @@ async function restoreLaunchAgentInstall(params: {
       domain: params.domain,
       serviceTarget: `${params.domain}/${legacy.label}`,
       plistPath: legacy.plistPath,
-      actionHint: "openclaw gateway start",
+      actionHint: "omnisclaw gateway start",
       retryPendingTeardown: true,
     });
   }
@@ -324,7 +324,7 @@ async function activateLaunchAgent(params: {
       domain,
       serviceTarget: `${domain}/${label}`,
       plistPath: params.plistPath,
-      actionHint: "openclaw gateway install --force",
+      actionHint: "omnisclaw gateway install --force",
       retryPendingTeardown: true,
     });
     for (const legacy of params.snapshot.legacy) {

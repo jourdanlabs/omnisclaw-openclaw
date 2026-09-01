@@ -61,7 +61,7 @@ export function renderTriagePrompt(params: {
     return severity || left.checkId.localeCompare(right.checkId);
   });
   const lines = [
-    "You are debugging THIS machine's OpenClaw installation. Identify the root cause, explain the safest repair, and verify the result. You may run `openclaw doctor`, `openclaw doctor --fix`, `openclaw status --all`, and `openclaw logs`. Product documentation: https://docs.openclaw.ai.",
+    "You are debugging THIS machine's OpenClaw installation. Identify the root cause, explain the safest repair, and verify the result. You may run `omnisclaw doctor`, `omnisclaw doctor --fix`, `omnisclaw status --all`, and `omnisclaw logs`. Product documentation: https://docs.openclaw.ai.",
     "",
     "## Environment",
     "",
@@ -108,7 +108,7 @@ export function renderTriagePrompt(params: {
   }
   const omitted = findings.length - rendered;
   if (omitted > 0) {
-    lines.push(`${omitted} more findings omitted; run \`openclaw doctor\` for the full list.`);
+    lines.push(`${omitted} more findings omitted; run \`omnisclaw doctor\` for the full list.`);
   }
 
   lines.push(...tail);

@@ -83,7 +83,7 @@ function listPreparedPluginModelCatalogs(agentDir: string) {
   const { catalogs, warnings } = loadPersistedPluginModelCatalogs(agentDir);
   if (warnings.length > 0) {
     throw new Error(
-      `Cannot safely prepare provider models until legacy catalog migration succeeds: ${warnings.join("; ")}. Run openclaw doctor --fix.`,
+      `Cannot safely prepare provider models until legacy catalog migration succeeds: ${warnings.join("; ")}. Run omnisclaw doctor --fix.`,
     );
   }
   return catalogs;

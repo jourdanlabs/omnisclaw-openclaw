@@ -149,7 +149,7 @@ export function resolveAcceptedSurfaceCurrent(
 }
 
 export function formatPluginCapabilityConsentRequired(pluginId: string): string {
-  return `Plugin "${pluginId}" requires capability consent; disable and re-enable it or run \`openclaw plugins enable ${pluginId} --accept-capabilities\`.`;
+  return `Plugin "${pluginId}" requires capability consent; disable and re-enable it or run \`omnisclaw plugins enable ${pluginId} --accept-capabilities\`.`;
 }
 
 function buildHookGrant(effective: boolean, configured: boolean | undefined): PluginHookGrant {

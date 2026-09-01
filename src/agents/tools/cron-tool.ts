@@ -194,7 +194,7 @@ SCHEDULE:
 
 TARGET+PAYLOAD:
 - "current" (agentTurn default) = this conversation: the run stays detached, reads bounded chat context, then commits its final visible assistant result to this conversation's durable history. Self-wakeup/"continue later"/loop = at|every + agentTurn + current.
-- "isolated" = fresh detached session (shows in \`openclaw tasks\`); standalone background work.
+- "isolated" = fresh detached session (shows in \`omnisclaw tasks\`); standalone background work.
 - "main" = heartbeat lane; payload {kind:"systemEvent",text} (systemEvent default target).
 - "session:<key>" = named session.
 - agentTurn {kind:"agentTurn",message,model?,thinking?,timeoutSeconds?}; timeoutSeconds 0=none.

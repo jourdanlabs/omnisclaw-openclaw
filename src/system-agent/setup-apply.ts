@@ -95,7 +95,7 @@ type SystemAgentSetupApplyHooks = {
 /** Prompter for quickstart-only flows: notes go to the log, prompts fail loud. */
 export function createQuickstartNotePrompter(runtime: RuntimeEnv): WizardPrompter {
   const unexpected = (kind: string) => {
-    throw new Error(`openclaw setup hit an interactive ${kind} prompt; quickstart must not ask`);
+    throw new Error(`omnisclaw setup hit an interactive ${kind} prompt; quickstart must not ask`);
   };
   return {
     intro: async () => {},

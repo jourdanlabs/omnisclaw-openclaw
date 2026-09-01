@@ -1,4 +1,4 @@
-// Builds overview table rows for `openclaw status` and `openclaw status --all`.
+// Builds overview table rows for `omnisclaw status` and `omnisclaw status --all`.
 // The row builders combine scan surfaces with health/session summaries while keeping rendering elsewhere.
 
 import { formatCliCommand } from "../cli/command-format.js";
@@ -61,7 +61,7 @@ function buildStatusDegradationRows(
   return rows;
 }
 
-/** Builds the default `openclaw status` overview rows from scan, health, memory, and session inputs. */
+/** Builds the default `omnisclaw status` overview rows from scan, health, memory, and session inputs. */
 export function buildStatusCommandOverviewRows(
   params: {
     env: NodeJS.ProcessEnv;

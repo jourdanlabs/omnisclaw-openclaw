@@ -1,4 +1,4 @@
-// Implements `openclaw uninstall`.
+// Implements `omnisclaw uninstall`.
 // Handles interactive scope selection, service removal, state/workspace cleanup, and macOS app cleanup.
 
 import path from "node:path";

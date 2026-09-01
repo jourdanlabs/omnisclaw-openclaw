@@ -109,7 +109,7 @@ export function warningForDivergence(
   claims: readonly SessionClaim[],
 ): string {
   const claimsText = claims.map((claim) => `${claim.store.path}#${claim.key}`).join(", ");
-  return `session: ${kind} for ${canonicalKey}; preserved claims ${claimsText}. Run openclaw doctor --fix to quarantine the losing claims.`;
+  return `session: ${kind} for ${canonicalKey}; preserved claims ${claimsText}. Run omnisclaw doctor --fix to quarantine the losing claims.`;
 }
 
 function writeMigratedSessionClaim(

@@ -47,7 +47,7 @@ import {
 } from "./storage-scan.js";
 import { discoverConfigSecretTargets } from "./target-registry.js";
 
-/** Stable finding codes emitted by `openclaw secrets audit`. */
+/** Stable finding codes emitted by `omnisclaw secrets audit`. */
 type SecretsAuditCode =
   | "PLAINTEXT_FOUND"
   | "REF_UNRESOLVED"
@@ -426,7 +426,7 @@ function collectLegacyAuthSourceFindings(params: {
         severity: source.kind === "auth-state" ? "info" : "warn",
         file: source.path,
         jsonPath: "<root>",
-        message: `Retired auth source ${source.kind} is present; run openclaw doctor --fix to migrate and archive it.`,
+        message: `Retired auth source ${source.kind} is present; run omnisclaw doctor --fix to migrate and archive it.`,
       });
     }
   }

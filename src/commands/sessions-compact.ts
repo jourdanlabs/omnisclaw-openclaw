@@ -1,7 +1,7 @@
 /**
  * Sessions compact command.
  *
- * Wraps the `sessions.compact` Gateway RPC behind `openclaw sessions compact <key>`
+ * Wraps the `sessions.compact` Gateway RPC behind `omnisclaw sessions compact <key>`
  * so wedged sessions have a documented, first-class recovery path. The command
  * propagates a non-zero exit whenever the gateway reports a failed compaction
  * (transport error or an `ok:false` payload) so automation never mistakes a
@@ -68,7 +68,7 @@ function describeCompaction(result: SessionsCompactResult, fallbackKey: string):
   return `Compacted session ${sessionKey}${detail}.`;
 }
 
-/** Run `openclaw sessions compact <key>` against the running gateway. */
+/** Run `omnisclaw sessions compact <key>` against the running gateway. */
 export async function sessionsCompactCommand(
   opts: SessionsCompactCliOptions,
   runtime: RuntimeEnv,

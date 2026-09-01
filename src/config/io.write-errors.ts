@@ -44,9 +44,9 @@ function formatConfigValidationFailure(pathLabel: string, issueMessage: string):
     `Configuration mismatch: ${policyPath} is "open", but ${allowPath} does not include "*".`,
     "",
     "Fix with:",
-    `  openclaw config set ${allowPath} '["*"]'`,
+    `  omnisclaw config set ${allowPath} '["*"]'`,
     "",
     "Or switch policy:",
-    `  openclaw config set ${policyPath} "pairing"`,
+    `  omnisclaw config set ${policyPath} "pairing"`,
   ].join("\n");
 }

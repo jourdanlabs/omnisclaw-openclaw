@@ -36,7 +36,7 @@ export function readExtensionRelayToken(env: NodeJS.ProcessEnv = process.env): s
 
 /**
  * Read the host-local relay token, creating it on first use. Called from relay
- * startup and `openclaw browser extension pair` — both run on the machine that
+ * startup and `omnisclaw browser extension pair` — both run on the machine that
  * hosts the browser, so they resolve the same per-host secret.
  *
  * The create is atomic (O_CREAT|O_EXCL): the gateway service and the pair CLI

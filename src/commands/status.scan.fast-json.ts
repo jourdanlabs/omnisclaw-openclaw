@@ -1,4 +1,4 @@
-// Fast `openclaw status --json` scan policy.
+// Fast `omnisclaw status --json` scan policy.
 // Skips channel tables and most network/update work unless `--all` asks for fuller evidence.
 
 import { GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA } from "../config/bundled-channel-config-metadata.generated.js";

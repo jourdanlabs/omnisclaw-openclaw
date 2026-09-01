@@ -1,4 +1,4 @@
-/** Builds the interactive `openclaw secrets configure` target list and apply plan. */
+/** Builds the interactive `omnisclaw secrets configure` target list and apply plan. */
 import { isDeepStrictEqual } from "node:util";
 import type { AuthProfileStore } from "../agents/auth-profiles/types.js";
 import type { OpenClawConfig } from "../config/types.openclaw.js";
@@ -15,7 +15,7 @@ import {
   discoverConfigSecretTargets,
 } from "./target-registry.js";
 
-/** Credential target shown by `openclaw secrets configure` before a SecretRef is selected. */
+/** Credential target shown by `omnisclaw secrets configure` before a SecretRef is selected. */
 export type ConfigureCandidate = {
   type: string;
   path: string;
@@ -242,7 +242,7 @@ export function buildSecretsConfigurePlan(params: {
     version: 1,
     protocolVersion: 1,
     generatedAt: params.generatedAt ?? new Date().toISOString(),
-    generatedBy: "openclaw secrets configure",
+    generatedBy: "omnisclaw secrets configure",
     targets: [...params.selectedTargets.values()].map((entry) =>
       Object.assign(
         {

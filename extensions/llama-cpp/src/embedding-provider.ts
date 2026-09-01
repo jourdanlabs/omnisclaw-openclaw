@@ -190,7 +190,7 @@ export const llamaCppEmbeddingProviderAdapter: EmbeddingProviderAdapter = {
   defaultModel: DEFAULT_LLAMA_CPP_EMBEDDING_MODEL,
   transport: "local",
   formatSetupError: (error) =>
-    `Managed local embeddings are unavailable. Run \`openclaw configure\`, choose llama.cpp, and retry. ${error instanceof Error ? error.message : String(error)}`,
+    `Managed local embeddings are unavailable. Run \`omnisclaw configure\`, choose llama.cpp, and retry. ${error instanceof Error ? error.message : String(error)}`,
   resolveIndexIdentity: (options) => {
     const local = readIdentityLocalOptions(options);
     return resolveModelIdentity(local, options.dimensions);

@@ -4,7 +4,7 @@
  * This handler demonstrates how to create a hook that logs emitted command events
  * to a centralized log file for audit/debugging purposes.
  *
- * Enable this bundled hook with `openclaw hooks enable command-logger` or config:
+ * Enable this bundled hook with `omnisclaw hooks enable command-logger` or config:
  *
  * ```json
  * {

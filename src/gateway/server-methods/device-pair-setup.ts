@@ -1,6 +1,6 @@
 // Device-pairing setup-code method produces the connect QR/setup code a mobile
 // or companion client scans to connect to this gateway. It reuses the same
-// pairing helpers as `openclaw qr` so non-terminal clients can display the
+// pairing helpers as `omnisclaw qr` so non-terminal clients can display the
 // connect QR that was previously only renderable in a terminal.
 import {
   ErrorCodes,
@@ -96,7 +96,7 @@ export const devicePairSetupHandlers: GatewayRequestHandlers = {
                   : PAIRING_SETUP_BOOTSTRAP_PROFILE,
             }
           : {}),
-        // Lets Tailscale serve/funnel URLs resolve, mirroring the `openclaw qr` CLI.
+        // Lets Tailscale serve/funnel URLs resolve, mirroring the `omnisclaw qr` CLI.
         runCommandWithTimeout: async (argv, runOpts) =>
           await runCommandWithTimeout(argv, { timeoutMs: runOpts.timeoutMs }),
       });

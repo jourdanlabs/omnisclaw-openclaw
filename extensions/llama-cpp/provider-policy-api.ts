@@ -19,7 +19,7 @@ export function inspectEmbeddingProviderSetup(params: {
     return null;
   }
   const fixHint =
-    `Run \`openclaw models --agent ${params.agentId} auth login --provider llama-cpp --method local\` ` +
+    `Run \`omnisclaw models --agent ${params.agentId} auth login --provider llama-cpp --method local\` ` +
     "in an interactive terminal, then rerun this check.";
   try {
     resolveManagedLlamaCppProviderConfig(params.config);

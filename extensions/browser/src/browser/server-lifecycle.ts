@@ -19,7 +19,7 @@ export async function stopKnownBrowserProfiles(params: {
   const settled = await Promise.allSettled(drains);
   const failed = settled.find((result) => result.status === "rejected");
   if (failed?.status === "rejected") {
-    params.onWarn(`openclaw browser stop failed: ${String(failed.reason)}`);
+    params.onWarn(`omnisclaw browser stop failed: ${String(failed.reason)}`);
     throw failed.reason;
   }
 }

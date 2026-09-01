@@ -1,5 +1,5 @@
 /**
- * Shared rejection path for `openclaw onboard` option validation.
+ * Shared rejection path for `omnisclaw onboard` option validation.
  *
  * Lives above the local/remote split because both the outer command and the
  * non-interactive handlers reject options, and every one of them must honor --json.

@@ -263,7 +263,7 @@ export function formatSystemAgentOverview(overview: SystemAgentOverview): string
     `AI: ${
       overview.defaultModel
         ? `conversation runs on ${overview.defaultModel}`
-        : "inference unavailable; run openclaw onboard before starting OpenClaw"
+        : "inference unavailable; run omnisclaw onboard before starting OpenClaw"
     }`,
     `Docs: ${overview.references.docsPath ?? overview.references.docsUrl}`,
     overview.references.sourcePath
@@ -280,13 +280,13 @@ export function formatSystemAgentOverview(overview: SystemAgentOverview): string
 
 function recommendSystemAgentNextStep(overview: SystemAgentOverview): string {
   if (!overview.config.exists) {
-    return 'run "openclaw onboard" to establish inference';
+    return 'run "omnisclaw onboard" to establish inference';
   }
   if (!overview.config.valid) {
     return 'run "validate config" or "doctor" to inspect the config';
   }
   if (!overview.defaultModel) {
-    return 'run "openclaw onboard" to establish inference';
+    return 'run "omnisclaw onboard" to establish inference';
   }
   if (!overview.gateway.reachable) {
     return 'run "gateway status" or "restart gateway"';
@@ -313,7 +313,7 @@ function formatStartupAction(overview: SystemAgentOverview): string | undefined 
     return "Config needs attention. Run `doctor` to inspect it.";
   }
   if (!overview.defaultModel) {
-    return "Inference is unavailable. Run `openclaw onboard` and complete a live model check.";
+    return "Inference is unavailable. Run `omnisclaw onboard` and complete a live model check.";
   }
   return undefined;
 }

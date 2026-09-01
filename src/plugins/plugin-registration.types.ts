@@ -181,13 +181,13 @@ export type OpenClawPluginCliRegistrationOptions =
   | OpenClawPluginLegacyCliRegistrationOptions;
 
 export type OpenClawPluginNodeCliFeatureOptions = {
-  /** Explicit node feature command names owned under `openclaw nodes`. */
+  /** Explicit node feature command names owned under `omnisclaw nodes`. */
   commands?: string[];
   /**
    * Parse-time command descriptors for lazy node feature CLI registration.
    *
-   * Descriptors are registered under `openclaw nodes`, so a descriptor named
-   * `"camera"` exposes `openclaw nodes camera`.
+   * Descriptors are registered under `omnisclaw nodes`, so a descriptor named
+   * `"camera"` exposes `omnisclaw nodes camera`.
    */
   descriptors?: OpenClawPluginCliCommandDescriptor[];
 };

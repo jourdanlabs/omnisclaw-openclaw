@@ -1,4 +1,4 @@
-// Session-registry sweep for `openclaw tasks maintenance`: prunes stale task
+// Session-registry sweep for `omnisclaw tasks maintenance`: prunes stale task
 // session rows while preserving transcripts owned by running cron jobs.
 import { getRuntimeConfig } from "../config/config.js";
 import {

@@ -1,4 +1,4 @@
-/** Implementation of `openclaw models status`. */
+/** Implementation of `omnisclaw models status`. */
 import path from "node:path";
 import {
   parseStrictFiniteNumber,

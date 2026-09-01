@@ -460,7 +460,7 @@ export async function getStatusSummary(
     ...(taskInspection.state === "migration-required"
       ? {
           warning:
-            "Task history is unavailable until Gateway startup or openclaw doctor --fix repairs the state database.",
+            "Task history is unavailable until Gateway startup or omnisclaw doctor --fix repairs the state database.",
         }
       : {}),
   };

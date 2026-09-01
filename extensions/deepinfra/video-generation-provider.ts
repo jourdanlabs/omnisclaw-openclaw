@@ -154,7 +154,7 @@ function resolveDeepInfraVideoBaseUrl(req: VideoGenerationRequest): string {
     | (Record<string, unknown> & { baseUrl?: unknown })
     | undefined;
   // Canonical `baseUrl` only; legacy `nativeBaseUrl`/`/v1/inference` values are
-  // migrated by `openclaw doctor --fix` (doctor-contract-api.ts), never remapped here.
+  // migrated by `omnisclaw doctor --fix` (doctor-contract-api.ts), never remapped here.
   const baseUrl = normalizeDeepInfraBaseUrl(providerConfig?.baseUrl, DEEPINFRA_BASE_URL);
   // The native /v1/inference video route is retired; appending the OpenAI
   // videos path to it would target a URL no host serves, so fail closed before
@@ -162,7 +162,7 @@ function resolveDeepInfraVideoBaseUrl(req: VideoGenerationRequest): string {
   // carry credentials).
   if (baseUrl.includes("/v1/inference")) {
     throw new Error(
-      'DeepInfra video generation requires an OpenAI-compatible endpoint, but models.providers.deepinfra.baseUrl targets the retired native /v1/inference surface. Run "openclaw doctor --fix" (api.deepinfra.com migrates automatically; custom hosts must set baseUrl to an OpenAI-compatible videos endpoint).',
+      'DeepInfra video generation requires an OpenAI-compatible endpoint, but models.providers.deepinfra.baseUrl targets the retired native /v1/inference surface. Run "omnisclaw doctor --fix" (api.deepinfra.com migrates automatically; custom hosts must set baseUrl to an OpenAI-compatible videos endpoint).',
     );
   }
   return baseUrl;

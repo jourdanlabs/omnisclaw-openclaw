@@ -100,7 +100,7 @@ export async function stopLaunchAgent({
   if (!persistDisable) {
     // Default: bootout only. Removes the job from the current launchd domain without
     // persisting a disable, so KeepAlive auto-recovery survives future crashes and
-    // `openclaw gateway start` re-enables cleanly without a manual `launchctl enable`.
+    // `omnisclaw gateway start` re-enables cleanly without a manual `launchctl enable`.
     const bootout = await execLaunchctl(["bootout", serviceTarget]);
     if (bootout.code !== 0 && !isLaunchctlNotLoaded(bootout)) {
       throw new Error(`launchctl bootout failed: ${formatLaunchctlResultDetail(bootout)}`);

@@ -68,7 +68,7 @@ function invalidStoredIdentityError(
   cause?: unknown,
 ): DeviceIdentityStorageError {
   return new DeviceIdentityStorageError(
-    `SQLite contains an invalid persisted device identity "${identityKey}". Run "openclaw doctor --fix" before starting the gateway or connecting this client.`,
+    `SQLite contains an invalid persisted device identity "${identityKey}". Run "omnisclaw doctor --fix" before starting the gateway or connecting this client.`,
     cause === undefined ? undefined : { cause },
   );
 }

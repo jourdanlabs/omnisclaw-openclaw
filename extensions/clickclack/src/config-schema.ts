@@ -69,7 +69,7 @@ const ClickClackConfigSchema = buildMultiAccountChannelSchema(
 );
 
 /**
- * Config schema exported to core so `openclaw doctor` and config validation
+ * Config schema exported to core so `omnisclaw doctor` and config validation
  * understand both default and named ClickClack accounts.
  */
 export const clickClackConfigSchema = buildChannelConfigSchema(ClickClackConfigSchema);

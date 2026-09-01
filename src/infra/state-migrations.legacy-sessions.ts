@@ -296,7 +296,7 @@ export async function migrateLegacySessions(
       }
     } else {
       warnings.push(
-        `Target sessions store unreadable; left untouched to avoid overwriting at ${detected.sessions.targetStorePath}. Run openclaw doctor --fix to archive it and retry the legacy merge.`,
+        `Target sessions store unreadable; left untouched to avoid overwriting at ${detected.sessions.targetStorePath}. Run omnisclaw doctor --fix to archive it and retry the legacy merge.`,
       );
     }
   }

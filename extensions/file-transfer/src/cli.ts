@@ -66,7 +66,7 @@ async function runApprovalMigration(options: MigrationOptions): Promise<void> {
       status: "needs-input",
       changed: false,
       items,
-      command: "openclaw file-transfer approvals migrate",
+      command: "omnisclaw file-transfer approvals migrate",
     };
     if (options.json) {
       process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
@@ -74,7 +74,7 @@ async function runApprovalMigration(options: MigrationOptions): Promise<void> {
       return;
     }
     throw new Error(
-      "File-transfer permissions need interactive review. Run `openclaw file-transfer approvals migrate` in a terminal.",
+      "File-transfer permissions need interactive review. Run `omnisclaw file-transfer approvals migrate` in a terminal.",
     );
   }
 

@@ -19,7 +19,7 @@ export default defineSelfHostedOpenAICompatibleProvider({
   overrides: {
     buildUnknownModelHint: () =>
       "vLLM requires authentication to be registered as a provider. " +
-      'Set VLLM_API_KEY (any value works) or run "openclaw configure". ' +
+      'Set VLLM_API_KEY (any value works) or run "omnisclaw configure". ' +
       "See: https://docs.openclaw.ai/providers/vllm",
     resolveThinkingProfile,
     wrapStreamFn: wrapVllmProviderStream,

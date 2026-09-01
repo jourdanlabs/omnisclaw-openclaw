@@ -93,7 +93,7 @@ export function resolveExplicitSessionStorePath(params: {
   }
   if (databaseFailure) {
     throw new Error(
-      `Session store target is not a session store: ${displayTarget}. ${formatErrorMessage(databaseFailure.error)}. Pass a legacy store selector or SQLite target reported by openclaw sessions or openclaw status.`,
+      `Session store target is not a session store: ${displayTarget}. ${formatErrorMessage(databaseFailure.error)}. Pass a legacy store selector or SQLite target reported by omnisclaw sessions or omnisclaw status.`,
     );
   }
   return storePath;

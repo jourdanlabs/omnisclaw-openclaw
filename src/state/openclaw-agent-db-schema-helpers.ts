@@ -136,12 +136,12 @@ export function assertOpenClawAgentCurrentRuntimeSchema(
   assertExistingAgentSchemaOwner(metadata, agentId, options.pathname);
   if (metadata.schemaVersion !== OPENCLAW_AGENT_SCHEMA_VERSION) {
     throw new Error(
-      `OpenClaw agent database ${options.pathname} metadata schema version ${metadata.schemaVersion ?? "invalid"} does not match ${OPENCLAW_AGENT_SCHEMA_VERSION}; run openclaw doctor --fix before using it.`,
+      `OpenClaw agent database ${options.pathname} metadata schema version ${metadata.schemaVersion ?? "invalid"} does not match ${OPENCLAW_AGENT_SCHEMA_VERSION}; run omnisclaw doctor --fix before using it.`,
     );
   }
   if (hasRetiredAgentStateLeaseSchema(database)) {
     throw new Error(
-      `OpenClaw agent database ${options.pathname} retains retired state_leases storage; run openclaw doctor --fix before using it.`,
+      `OpenClaw agent database ${options.pathname} retains retired state_leases storage; run omnisclaw doctor --fix before using it.`,
     );
   }
   assertOpenClawAgentSchemaContains(database, options.pathname, OPENCLAW_AGENT_SCHEMA_SQL);
@@ -265,7 +265,7 @@ export function assertCanonicalAgentPersistenceVersion(db: DatabaseSync, pathnam
   }
   if (userVersion < OPENCLAW_AGENT_SCHEMA_VERSION && !isNewUnownedDatabase) {
     throw new Error(
-      `OpenClaw agent database ${pathname} uses schema version ${userVersion}; stop active agents and run openclaw doctor --fix to migrate session identities before using it.`,
+      `OpenClaw agent database ${pathname} uses schema version ${userVersion}; stop active agents and run omnisclaw doctor --fix to migrate session identities before using it.`,
     );
   }
 }

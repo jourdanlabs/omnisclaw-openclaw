@@ -351,7 +351,7 @@ function collectSandboxContainerEnvIssues(
             path: issuePath,
             message:
               `${backendName} sandbox backend requires portable environment names and single-line, non-NUL values because the secure env-file transport is line-delimited. ` +
-              `${remediation} SSH/OpenShell backends may keep multiline values. Run openclaw doctor to report the invalid path; manual remediation is required.`,
+              `${remediation} SSH/OpenShell backends may keep multiline values. Run omnisclaw doctor to report the invalid path; manual remediation is required.`,
           },
           pathSegments,
         ),

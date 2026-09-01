@@ -46,7 +46,7 @@ export class OpenClawStateOwnershipMetadataError extends OpenClawStateOwnershipE
   ) {
     super(
       `OpenClaw shared state ownership metadata is invalid at ${databasePath}: ${message}. ` +
-        "Repair it with OPENCLAW_SUPERVISOR_MODE=external openclaw database ownership claim --manager <manager-id>.",
+        "Repair it with OPENCLAW_SUPERVISOR_MODE=external omnisclaw database ownership claim --manager <manager-id>.",
     );
     this.name = "OpenClawStateOwnershipMetadataError";
   }

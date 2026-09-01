@@ -362,7 +362,7 @@ export class ChatTurnRouter {
       : "";
     const loopInput = `${resolutionMarker}${uiContextMarker}${
       this.pending
-        ? `[pending-proposal] Awaiting the user's approval: ${formatPendingOperationForAssistant(this.pending)}. It is already host-seeded; if they want it (or a variant), drive it through the openclaw tool yourself.\n${text}`
+        ? `[pending-proposal] Awaiting the user's approval: ${formatPendingOperationForAssistant(this.pending)}. It is already host-seeded; if they want it (or a variant), drive it through the omnisclaw tool yourself.\n${text}`
         : text
     }`;
     let agentFailure: unknown;
@@ -488,13 +488,13 @@ export class ChatTurnRouter {
       this.clearPendingProposals();
       if (this.options.surface === "gateway") {
         return {
-          text: "Open Settings to change your model or connect a channel. To change providers from a shell, run `openclaw onboard` on the machine running OpenClaw.",
+          text: "Open Settings to change your model or connect a channel. To change providers from a shell, run `omnisclaw onboard` on the machine running OpenClaw.",
           action: "none",
         };
       }
       if (!["channels", "search", "gateway"].includes(recordedOperation.target)) {
         return {
-          text: "Setup can replace the inference route powering this session. Exit OpenClaw and run `openclaw onboard`; it saves only a route that passes a live test. Then start OpenClaw again.",
+          text: "Setup can replace the inference route powering this session. Exit OpenClaw and run `omnisclaw onboard`; it saves only a route that passes a live test. Then start OpenClaw again.",
           action: "none",
         };
       }
@@ -619,7 +619,7 @@ export class ChatTurnRouter {
     return {
       text: [
         "Changing provider credentials would replace the inference route powering this session.",
-        "Stop the OpenClaw host through whatever started it. Run `openclaw onboard` on the machine running OpenClaw: it stages credentials, live-tests the new route, and saves only a passing setup. Then restart the host and return to OpenClaw.",
+        "Stop the OpenClaw host through whatever started it. Run `omnisclaw onboard` on the machine running OpenClaw: it stages credentials, live-tests the new route, and saves only a passing setup. Then restart the host and return to OpenClaw.",
       ].join("\n"),
       action: "none",
     };
@@ -664,7 +664,7 @@ export class ChatTurnRouter {
     return operation?.kind === "model-setup"
       ? [
           "No usable inference route is configured, so OpenClaw cannot continue.",
-          "Run `openclaw onboard` on the machine running OpenClaw; it saves only a route that passes a live test.",
+          "Run `omnisclaw onboard` on the machine running OpenClaw; it saves only a route that passes a live test.",
         ].join("\n")
       : null;
   }

@@ -324,7 +324,7 @@ export async function runNonInteractiveLocalSetup(params: {
           daemonInstall.skippedReason === "systemd-user-unavailable"
             ? [
                 "Fix: rerun without `--install-daemon` for one-shot setup, or enable a working user-systemd session and retry.",
-                "If your auth profile uses env-backed refs, keep those env vars set in the shell that runs `openclaw gateway run` or `openclaw agent --local`.",
+                "If your auth profile uses env-backed refs, keep those env vars set in the shell that runs `omnisclaw gateway run` or `omnisclaw agent --local`.",
               ]
             : [`Run \`${formatCliCommand("openclaw gateway status --deep")}\` for more detail.`],
       });

@@ -187,7 +187,7 @@ export async function migrateLegacySubagentRegistry(params: {
     label: "legacy subagent registry",
     releaseLabel: "Subagent registry",
     errorLabel: "Failed reading legacy subagent registry",
-    retryGuidance: "Stop the Gateway, then run `openclaw doctor --fix` again.",
+    retryGuidance: "Stop the Gateway, then run `omnisclaw doctor --fix` again.",
     run: async (env) => {
       const stateRoot = await root(params.stateDir, {
         hardlinks: "reject",

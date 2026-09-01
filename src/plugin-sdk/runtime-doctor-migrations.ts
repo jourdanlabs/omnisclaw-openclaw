@@ -331,7 +331,7 @@ export function defineStrayPluginEntryConfigMigration(params: {
   return {
     legacyConfigRule: {
       path: ["plugins", "entries", pluginId, "config"],
-      message: `${entryConfigPath} is not read by the ${channelId} channel; run "openclaw doctor --fix" to move its keys to channels.${channelId}.`,
+      message: `${entryConfigPath} is not read by the ${channelId} channel; run "omnisclaw doctor --fix" to move its keys to channels.${channelId}.`,
       match: (value) => {
         const record = asObjectRecord(value);
         return Boolean(record && Object.keys(record).length > 0);

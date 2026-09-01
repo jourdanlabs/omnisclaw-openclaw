@@ -107,7 +107,7 @@ export function assertReefIdentityBinding(
   const existing = loadReefIdentityBinding(runtime);
   if (!existing) {
     throw new Error(
-      "Reef identity binding is missing; run openclaw doctor --fix or register this claw",
+      "Reef identity binding is missing; run omnisclaw doctor --fix or register this claw",
     );
   }
   if (existing.handle !== binding.handle || existing.relayUrl !== binding.relayUrl) {

@@ -181,7 +181,7 @@ export function formatProposalInspect(
     `Proposal: ${safeId}`,
     `Selected artifact: ${safePath} (${artifact.sizeBytes} bytes)`,
     "Content omitted: the complete artifact projection exceeds the selected-model inspect budget.",
-    `Next: inspect a smaller listed artifact with artifact_path, or run openclaw skills workshop inspect ${safeId} for complete operator output.`,
+    `Next: inspect a smaller listed artifact with artifact_path, or run omnisclaw skills workshop inspect ${safeId} for complete operator output.`,
     "",
   ];
   const manifest = formatArtifactManifest(artifacts, maxChars - summary.join("\n").length);

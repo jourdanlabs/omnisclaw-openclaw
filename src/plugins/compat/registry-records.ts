@@ -135,8 +135,8 @@ export const PLUGIN_COMPAT_RECORDS = [
       "openclaw/plugin-sdk/session-store-runtime updateSessionStore",
       "openclaw/plugin-sdk/session-store-runtime resolveSessionFilePath",
       "openclaw/plugin-sdk/session-store-runtime resolveSessionStoreEntry",
-      "openclaw package root loadSessionStore",
-      "openclaw package root saveSessionStore",
+      "omnisclaw package root loadSessionStore",
+      "omnisclaw package root saveSessionStore",
     ],
     diagnostics: ["plugin SDK deprecation"],
     tests: [

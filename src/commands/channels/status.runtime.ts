@@ -1,4 +1,4 @@
-// Runtime-only rendering and config fallback for `openclaw channels status`.
+// Runtime-only rendering and config fallback for `omnisclaw channels status`.
 import { normalizeOptionalLowercaseString } from "@openclaw/normalization-core/string-coerce";
 import { formatDocsLink } from "../../../packages/terminal-core/src/links.js";
 import { theme } from "../../../packages/terminal-core/src/theme.js";

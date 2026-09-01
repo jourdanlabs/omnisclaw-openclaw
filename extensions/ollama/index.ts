@@ -860,7 +860,7 @@ export default definePluginEntry({
         }),
       buildUnknownModelHint: () =>
         "Ollama Cloud requires an API key. " +
-        'Set OLLAMA_API_KEY or run "openclaw onboard --auth-choice ollama-cloud". ' +
+        'Set OLLAMA_API_KEY or run "omnisclaw onboard --auth-choice ollama-cloud". ' +
         "See: https://docs.openclaw.ai/providers/ollama",
     });
     api.registerProvider({
@@ -1095,7 +1095,7 @@ export default definePluginEntry({
       },
       buildUnknownModelHint: () =>
         "Ollama requires authentication to be registered as a provider. " +
-        'Set OLLAMA_API_KEY="ollama-local" (any value works) or run "openclaw configure". ' +
+        'Set OLLAMA_API_KEY="ollama-local" (any value works) or run "omnisclaw configure". ' +
         "See: https://docs.openclaw.ai/providers/ollama",
     });
   },

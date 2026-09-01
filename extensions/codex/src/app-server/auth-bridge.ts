@@ -179,7 +179,7 @@ function resolveUnimportedAgentCodexAuthMessage(params: {
     return undefined;
   }
   const targetAgentId = params.agentId?.trim() || "<agent-id>";
-  return `A Codex auth file exists at ${authPath}, but agent-scoped Codex runs use OpenClaw's auth store and do not read that file. Preview only that credential import with \`openclaw migrate plan codex --from <codex-home> --agent ${targetAgentId} --include-secrets --item auth:openai\`, then run \`openclaw migrate apply codex --from <codex-home> --agent ${targetAgentId} --include-secrets --item auth:openai --yes\`. If the plan finds no credentials, remove the stale auth file.`;
+  return `A Codex auth file exists at ${authPath}, but agent-scoped Codex runs use OpenClaw's auth store and do not read that file. Preview only that credential import with \`omnisclaw migrate plan codex --from <codex-home> --agent ${targetAgentId} --include-secrets --item auth:openai\`, then run \`omnisclaw migrate apply codex --from <codex-home> --agent ${targetAgentId} --include-secrets --item auth:openai --yes\`. If the plan finds no credentials, remove the stale auth file.`;
 }
 
 export function resolveCodexAppServerAuthProfileId(params: {
@@ -819,7 +819,7 @@ export async function applyCodexAppServerAuthProfile(params: {
       error instanceof CodexAppServerAuthProfileUnavailableError
     ) {
       throw createCodexAppServerAuthError(
-        "Codex subscription auth profile could not produce login credentials. Sign in with `openclaw models auth login --provider openai`, select that profile, then retry.",
+        "Codex subscription auth profile could not produce login credentials. Sign in with `omnisclaw models auth login --provider openai`, select that profile, then retry.",
         error,
       );
     }
@@ -827,7 +827,7 @@ export async function applyCodexAppServerAuthProfile(params: {
   }
   if (params.authRequirement === "subscription" && loginParams?.type !== "chatgptAuthTokens") {
     throw createCodexAppServerAuthError(
-      "Codex subscription auth profile could not produce login credentials. Sign in with `openclaw models auth login --provider openai`, select that profile, then retry.",
+      "Codex subscription auth profile could not produce login credentials. Sign in with `omnisclaw models auth login --provider openai`, select that profile, then retry.",
     );
   }
   if (!loginParams) {
@@ -910,7 +910,7 @@ async function resolveCodexAppServerAuthProfileLoginParams(params: {
   }
   if (profileId && profile && !isCodexAppServerAuthProfileCredential(profile)) {
     throw new CodexAppServerAuthProfileUnavailableError(
-      `Codex app-server auth profile "${profileId}" must use the canonical OpenAI auth provider; run "openclaw doctor --fix" to migrate legacy provider IDs.`,
+      `Codex app-server auth profile "${profileId}" must use the canonical OpenAI auth provider; run "omnisclaw doctor --fix" to migrate legacy provider IDs.`,
     );
   }
   return await resolveCodexAppServerAuthProfileLoginParamsInternal({
@@ -953,7 +953,7 @@ export async function refreshCodexAppServerAuthTokens(params: {
   });
   if (!loginParams || loginParams.type !== "chatgptAuthTokens") {
     throw new Error(
-      "Codex app-server ChatGPT token refresh requires an OAuth auth profile. Sign in with `openclaw models auth login --provider openai`, select that profile, then retry.",
+      "Codex app-server ChatGPT token refresh requires an OAuth auth profile. Sign in with `omnisclaw models auth login --provider openai`, select that profile, then retry.",
     );
   }
   if (previousAccountId && loginParams.chatgptAccountId !== previousAccountId) {
@@ -997,7 +997,7 @@ async function resolveCodexAppServerAuthProfileLoginParamsInternal(params: {
   }
   if (!isCodexAppServerAuthProfileCredential(credential)) {
     throw new Error(
-      `Codex app-server auth profile "${profileId}" must use the canonical OpenAI auth provider; run "openclaw doctor --fix" to migrate legacy provider IDs.`,
+      `Codex app-server auth profile "${profileId}" must use the canonical OpenAI auth provider; run "omnisclaw doctor --fix" to migrate legacy provider IDs.`,
     );
   }
   const loginParams = await resolveLoginParamsForCredential(profileId, credential, {

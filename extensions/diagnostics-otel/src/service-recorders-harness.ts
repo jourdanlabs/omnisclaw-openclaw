@@ -149,7 +149,7 @@ export function createHarnessRecorders(runtime: DiagnosticsRecorderRuntime) {
       code: SpanStatusCode.ERROR,
       message: redactedError ?? errorType,
     });
-    // Retain on the error path too: for the openclaw harness this span is the only
+    // Retain on the error path too: for the omnisclaw harness this span is the only
     // ancestor a late child can attach to, and aborted turns emit no run.completed.
     if (trackedSpan && trustedTrace?.spanId) {
       completeTrackedLifecycleSpan(trustedTrace, trackedSpan, evt.ts);

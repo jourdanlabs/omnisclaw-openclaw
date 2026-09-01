@@ -1049,7 +1049,7 @@ export async function syncManagedNpmRootPeerDependencies(params: {
   return changed;
 }
 
-/** Remove stale managed-root openclaw peer installs while preserving active host links. */
+/** Remove stale managed-root omnisclaw peer installs while preserving active host links. */
 export async function repairManagedNpmRootOpenClawPeer(params: {
   npmRoot: string;
   packageRoot?: string | null;

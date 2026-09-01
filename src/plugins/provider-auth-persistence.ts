@@ -98,7 +98,7 @@ function rollbackStoreWrites(
   if (errors.length > 0) {
     throw new AggregateError(
       errors,
-      "Could not confirm rollback of protected provider credentials; run openclaw doctor --fix before retrying.",
+      "Could not confirm rollback of protected provider credentials; run omnisclaw doctor --fix before retrying.",
     );
   }
 }

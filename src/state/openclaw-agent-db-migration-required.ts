@@ -9,14 +9,14 @@ export class OpenClawAgentDatabaseMediaMigrationRequiredError extends Error {
     readonly schemaVersion: number,
   ) {
     super(
-      `OpenClaw agent database ${pathname} uses schema version ${schemaVersion}; run openclaw doctor --fix to migrate persisted media before using it.`,
+      `OpenClaw agent database ${pathname} uses schema version ${schemaVersion}; run omnisclaw doctor --fix to migrate persisted media before using it.`,
     );
     this.name = "OpenClawAgentDatabaseMediaMigrationRequiredError";
   }
 }
 
 const AGENT_MEDIA_MIGRATION_REQUIRED_MESSAGE =
-  /^OpenClaw agent database (.+) uses schema version (\d+); run openclaw doctor --fix to migrate persisted media before using it\.$/u;
+  /^OpenClaw agent database (.+) uses schema version (\d+); run (?:omnisclaw|openclaw) doctor --fix to migrate persisted media before using it\.$/u;
 
 function parseAgentMediaMigrationRequiredMessage(
   message: unknown,

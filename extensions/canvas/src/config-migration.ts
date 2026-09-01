@@ -61,7 +61,7 @@ export function listLegacyCanvasDocumentIds(documentsDir: string): string[] {
       return [];
     }
     throw new Error(
-      `Cannot read Canvas documents at ${documentsDir}: ${String(error)}. Keep plugins.entries.canvas.config.host.root, fix access, then rerun "openclaw doctor --fix".`,
+      `Cannot read Canvas documents at ${documentsDir}: ${String(error)}. Keep plugins.entries.canvas.config.host.root, fix access, then rerun "omnisclaw doctor --fix".`,
       { cause: error },
     );
   }

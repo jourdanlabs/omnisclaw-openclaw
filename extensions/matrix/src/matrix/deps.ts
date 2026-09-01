@@ -39,7 +39,7 @@ export function isMatrixSdkAvailable(): boolean {
 function buildMatrixDepsMissingMessage(missing: string[]): string {
   return [
     `Matrix plugin dependencies are missing: ${missing.join(", ")}.`,
-    "Repair this plugin with `openclaw plugins update matrix` or run `openclaw doctor --fix`.",
+    "Repair this plugin with `omnisclaw plugins update matrix` or run `omnisclaw doctor --fix`.",
   ].join(" ");
 }
 

@@ -305,7 +305,7 @@ async function inspectRegistration(
       }
     } catch {
       issue =
-        "registered native host runtime or entry is unavailable or unsafe; run openclaw browser extension install";
+        "registered native host runtime or entry is unavailable or unsafe; run omnisclaw browser extension install";
     }
     return {
       product: root.product,

@@ -8,7 +8,7 @@ export class OAuthProviderConfiguredUnavailableError extends Error {
 
   constructor(providerId: string) {
     super(
-      `OAuth provider "${providerId}" is configured but unavailable. Install or enable its owning plugin, then retry; run openclaw doctor for diagnostics.`,
+      `OAuth provider "${providerId}" is configured but unavailable. Install or enable its owning plugin, then retry; run omnisclaw doctor for diagnostics.`,
     );
     this.name = "OAuthProviderConfiguredUnavailableError";
     this.providerId = providerId;

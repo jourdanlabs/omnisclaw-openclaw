@@ -9,7 +9,7 @@ import { runConfigureWizard } from "./configure.wizard.js";
 
 /**
  * Non-interactive config subcommands surfaced when the wizard cannot run.
- * Mirrors the real `openclaw config <sub>` surface so the message only ever
+ * Mirrors the real `omnisclaw config <sub>` surface so the message only ever
  * points users at commands that exist (see `src/cli/config-cli.ts`).
  */
 const CONFIGURE_NON_TTY_HINT = [
@@ -69,8 +69,8 @@ export async function configureCommandFromSectionsArg(
     return;
   }
 
-  // Fail closed once at the shared entry: both `openclaw configure` and the
-  // no-subcommand `openclaw config` route here, so a single guard keeps them
+  // Fail closed once at the shared entry: both `omnisclaw configure` and the
+  // no-subcommand `omnisclaw config` route here, so a single guard keeps them
   // consistent instead of partially entering the wizard on a non-TTY pipe.
   // `options.interactive` lets tests drive the fail-closed path directly
   // instead of mutating global `process` streams.

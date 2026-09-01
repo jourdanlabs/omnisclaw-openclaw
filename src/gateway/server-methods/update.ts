@@ -528,7 +528,7 @@ export const updateHandlers: GatewayRequestHandlers = {
           allowGatewayServiceRepair: false,
           allowGatewayActivation: false,
         });
-        // The CLI `openclaw update` resumes post-core plugin convergence after a
+        // The CLI `omnisclaw update` resumes post-core plugin convergence after a
         // git/source core update; the RPC path did not, leaving official managed
         // plugins stale on the new core. Run the finalizer here to match.
         const finalizeOutcome = await runPostCoreFinalizeAfterGatewayUpdate({

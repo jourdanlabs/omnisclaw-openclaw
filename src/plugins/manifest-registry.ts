@@ -1044,7 +1044,7 @@ export function loadPluginManifestRegistryCore(
           level: "warn",
           pluginId: effectivePluginId,
           source: packageManifestSource,
-          message: `plugin requires plugin API ${packagePluginApiRange}, but this host is ${currentHostVersion}; skipping load (check "openclaw --version", OPENCLAW_COMPATIBILITY_HOST_VERSION, or run "openclaw doctor")`,
+          message: `plugin requires plugin API ${packagePluginApiRange}, but this host is ${currentHostVersion}; skipping load (check "omnisclaw --version", OPENCLAW_COMPATIBILITY_HOST_VERSION, or run "omnisclaw doctor")`,
         });
         continue;
       }

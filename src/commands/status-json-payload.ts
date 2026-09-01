@@ -1,4 +1,4 @@
-// Builds the stable JSON payload for `openclaw status --json`.
+// Builds the stable JSON payload for `omnisclaw status --json`.
 // Optional deep fields are included only when their upstream probes actually ran.
 
 import type { BestEffortConfigSnapshot } from "../config/io.js";

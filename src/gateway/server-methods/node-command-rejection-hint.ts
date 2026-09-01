@@ -28,7 +28,7 @@ export function buildNodeCommandRejectionHint(
   }
   if (reason === "node did not declare commands") {
     if (node?.declaredCommands?.includes(command)) {
-      return "node command not allowed: the node's declared command surface is pending approval; run `openclaw nodes pending`, then `openclaw nodes approve <requestId>`";
+      return "node command not allowed: the node's declared command surface is pending approval; run `omnisclaw nodes pending`, then `omnisclaw nodes approve <requestId>`";
     }
     return `node command not allowed: the node did not declare any supported commands`;
   }

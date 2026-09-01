@@ -1,4 +1,4 @@
-// Builds the data model for the standard `openclaw status` text report.
+// Builds the data model for the standard `omnisclaw status` text report.
 // It converts scan/runtime state into table rows and section lines before rendering.
 
 import { timestampMsToIsoString } from "@openclaw/normalization-core/number-coercion";

@@ -36,8 +36,8 @@ const onePasswordSecretRefSetupCli: PluginSecretRefSetupCli = createPluginSecret
   defaultPlanPath: () =>
     path.join(resolvePreferredOpenClawTmpDir(), `openclaw-1password-secrets-${randomUUID()}.json`),
   beforeApplyCommands: [
-    "openclaw plugins enable onepassword",
-    "openclaw onepassword secretref status",
+    "omnisclaw plugins enable onepassword",
+    "omnisclaw onepassword secretref status",
   ],
 });
 

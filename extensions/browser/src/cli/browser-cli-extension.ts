@@ -1,5 +1,5 @@
 /**
- * `openclaw browser extension` CLI: register the Store and development extension
+ * `omnisclaw browser extension` CLI: register the Store and development extension
  * native bootstrap host, and retain advanced manual pairing.
  */
 import path from "node:path";
@@ -138,7 +138,7 @@ async function buildCdpEndpoint(options: {
   };
 }
 
-/** Register `openclaw browser extension` lifecycle and compatibility commands. */
+/** Register `omnisclaw browser extension` lifecycle and compatibility commands. */
 export function registerBrowserExtensionCommands(
   browser: Command,
   parentOpts: (cmd: Command) => BrowserParentOpts,

@@ -1,4 +1,4 @@
-// Appends the read-only diagnosis section for `openclaw status --all`.
+// Appends the read-only diagnosis section for `omnisclaw status --all`.
 // Every line that can include logs, config, or connection details is redacted before display.
 
 import { redactSensitiveUrlLikeString } from "@openclaw/net-policy/redact-sensitive-url";
@@ -366,7 +366,7 @@ export async function appendStatusAllDiagnosis(params: {
       emitUnavailableDiagnostics({
         label: "Telemetry exporters",
         detail: `Exporter diagnostics failed: ${params.exporterDiagnostics.error}`,
-        retry: "openclaw gateway stability --type telemetry.exporter",
+        retry: "omnisclaw gateway stability --type telemetry.exporter",
       });
     }
   }
@@ -414,7 +414,7 @@ export async function appendStatusAllDiagnosis(params: {
       emitUnavailableDiagnostics({
         label: "Inbound delivery telemetry",
         detail: "Delivery diagnostics returned an invalid response.",
-        retry: "openclaw gateway stability",
+        retry: "omnisclaw gateway stability",
       });
     }
   } else if (
@@ -425,7 +425,7 @@ export async function appendStatusAllDiagnosis(params: {
     emitUnavailableDiagnostics({
       label: "Inbound delivery telemetry",
       detail: `Delivery diagnostics failed: ${params.deliveryDiagnostics.error}`,
-      retry: "openclaw gateway stability",
+      retry: "omnisclaw gateway stability",
     });
   }
 

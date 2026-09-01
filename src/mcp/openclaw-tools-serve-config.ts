@@ -50,7 +50,7 @@ export function resolveOpenClawToolsMcpToolSelection(
   return selection;
 }
 
-/** Parse the OpenClaw surface for served openclaw tools; defaults to cli. */
+/** Parse the OpenClaw surface for served omnisclaw tools; defaults to cli. */
 export function resolveOpenClawToolsMcpSystemAgentSurface(
   env: NodeJS.ProcessEnv = process.env,
 ): SystemAgentToolOptions["surface"] {
@@ -65,7 +65,7 @@ export function resolveOpenClawToolsMcpSystemAgentSurface(
 }
 
 /**
- * Reconstruct per-turn approval state for the served openclaw tool. The
+ * Reconstruct per-turn approval state for the served omnisclaw tool. The
  * stdio server runs out of process, so the host passes the armed bit and the
  * pending proposal hash through env; the host mirrors transitions back from
  * tool events (see mirrorSystemAgentToolStateFromEvents in agent-turn.ts).
@@ -121,7 +121,7 @@ function resolveOpenClawToolsServeCommand(): { command: string; args: string[] }
 
 /**
  * OpenClaw CLI-harness runs get exactly one MCP server: this stdio entry
- * serving the ring-zero openclaw tool. The server keeps the "openclaw" name
+ * serving the ring-zero omnisclaw tool. The server keeps the "openclaw" name
  * so backend tool pre-approvals (e.g. Claude's --allowedTools mcp__openclaw__*)
  * apply without per-backend argument surgery.
  */

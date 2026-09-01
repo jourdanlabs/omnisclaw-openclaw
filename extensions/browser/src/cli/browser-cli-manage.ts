@@ -197,7 +197,7 @@ async function runBrowserDoctor(parent: BrowserParentOpts, profile?: string, dee
     ok: status.running,
     detail: status.running
       ? `running${status.cdpReady === false ? ", CDP not ready" : ""}`
-      : "not running; run `openclaw browser start`",
+      : "not running; run `omnisclaw browser start`",
   });
   const extensionVersionCheck = report.checks.find((check) => check.id === "extension-version");
   if (extensionVersionCheck) {
@@ -829,7 +829,7 @@ export function registerBrowserManageCommands(
             opts.driver !== "openclaw" &&
             opts.driver !== "existing-session"
           ) {
-            throw new Error("--driver must be openclaw or existing-session");
+            throw new Error("--driver must be omnisclaw or existing-session");
           }
           const result = await callBrowserRequest<BrowserCreateProfileResult>(parent, {
             method: "POST",

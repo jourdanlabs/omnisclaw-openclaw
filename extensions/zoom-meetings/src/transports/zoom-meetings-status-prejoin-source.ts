@@ -190,7 +190,7 @@ export function zoomMeetingStatusPreludeSource(params: MeetingStatusPreludeParam
     controlManualAction = manualActionFor("zoom-camera-required", inCall ? "Turn the Zoom camera off and verify the in-call camera control shows it is off." : "Turn the Zoom camera off and verify the camera control shows it is off, then retry joining.");
   }
   const isVirtualAudioDevice = (value) =>
-    /^(?:blackhole 2ch(?: \\(virtual\\))?|openclaw meeting audio)$/i.test(
+    /^(?:blackhole 2ch(?: \\(virtual\\))?|omnisclaw meeting audio)$/i.test(
       String(value || "").replace(/\\s+/g, " ").trim()
     );
   const isVirtualAudioDeviceNode = (node) => [

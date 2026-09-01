@@ -1,4 +1,4 @@
-// Update status helpers for `openclaw status`.
+// Update status helpers for `omnisclaw status`.
 // Wraps registry/git update checks and formats compact update rows/hints.
 
 import { formatCliCommand } from "../cli/command-format.js";

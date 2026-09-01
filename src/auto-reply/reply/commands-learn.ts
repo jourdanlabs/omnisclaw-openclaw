@@ -23,7 +23,7 @@ import { resolveRuntimePolicySessionKey } from "./runtime-policy-session-key.js"
 const LEARN_COMMAND_PREFIX = "/learn";
 const SKILL_WORKSHOP_TOOL_NAME = "skill_workshop";
 const SKILL_WORKSHOP_UNAVAILABLE_REPLY =
-  "Skill workshop is not available on this agent. Use a non-sandboxed agent where the skill_workshop tool is available, or use the openclaw skills workshop CLI.";
+  "Skill workshop is not available on this agent. Use a non-sandboxed agent where the skill_workshop tool is available, or use the omnisclaw skills workshop CLI.";
 
 function parseLearnRequest(raw: string): string | null {
   const trimmed = raw.trim();

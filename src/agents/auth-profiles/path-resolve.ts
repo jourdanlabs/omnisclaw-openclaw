@@ -32,12 +32,12 @@ const sharedAuthStoreOwnershipByDatabasePath = new Map<string, SharedAuthStoreOw
 
 class InvalidSharedAuthStoreOwnershipError extends Error {
   readonly code = "INVALID_SHARED_AUTH_STORE_OWNERSHIP" as const;
-  readonly action = "openclaw doctor --fix" as const;
+  readonly action = "omnisclaw doctor --fix" as const;
   readonly stateKey = SHARED_AUTH_STORE_STATE_KEY;
 
   constructor(value: unknown) {
     super(
-      `Config machine state ${SHARED_AUTH_STORE_STATE_KEY} has an invalid shared auth store location (${JSON.stringify(value)}); run openclaw doctor --fix.`,
+      `Config machine state ${SHARED_AUTH_STORE_STATE_KEY} has an invalid shared auth store location (${JSON.stringify(value)}); run omnisclaw doctor --fix.`,
     );
     this.name = "InvalidSharedAuthStoreOwnershipError";
   }

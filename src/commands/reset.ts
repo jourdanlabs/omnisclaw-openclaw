@@ -24,7 +24,7 @@ import {
 
 type ResetScope = "config" | "config+creds+sessions" | "full";
 
-/** CLI options accepted by `openclaw reset`. */
+/** CLI options accepted by `omnisclaw reset`. */
 type ResetOptions = {
   scope?: ResetScope;
   yes?: boolean;

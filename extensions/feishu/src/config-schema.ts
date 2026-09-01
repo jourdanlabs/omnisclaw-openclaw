@@ -66,7 +66,7 @@ const FeishuWebhookPathSchema = z
   .string()
   .refine((value) => normalizeFeishuWebhookPath(value) === value, {
     message:
-      'webhookPath must be a canonical HTTP request path; run "openclaw doctor --fix" to repair it',
+      'webhookPath must be a canonical HTTP request path; run "omnisclaw doctor --fix" to repair it',
   });
 const TtsOverrideSchema = z
   .object({
@@ -129,7 +129,7 @@ const BlockStreamingCoalesceSchema = z
 // ("partial" = streaming cards, default; "off" = single final message);
 // `chunkMode`/`block` are the shared delivery controls. Legacy boolean
 // `streaming` and flat chunkMode/blockStreaming/blockStreamingCoalesce keys
-// migrate via `openclaw doctor --fix`.
+// migrate via `omnisclaw doctor --fix`.
 const FeishuStreamingSchema = z
   .object({
     mode: z.enum(["off", "partial"]).optional(),

@@ -613,7 +613,7 @@ function addLegacyNpmDeclarationDiagnostic(params: {
     level: "warn",
     pluginId: declaration.pluginId,
     source: declaration.source,
-    message: `legacy npm plugin declaration ignored for "${declaration.pluginId}"; run "openclaw doctor --fix" to install ${declaration.npmSpec} into the managed plugin root`,
+    message: `legacy npm plugin declaration ignored for "${declaration.pluginId}"; run "omnisclaw doctor --fix" to install ${declaration.npmSpec} into the managed plugin root`,
   });
   return true;
 }
@@ -650,7 +650,7 @@ function shouldSkipIncompatiblePackagePluginApi(params: {
   params.diagnostics.push({
     level: "warn",
     source: path.join(params.packageDir, "package.json"),
-    message: `plugin requires plugin API ${packagePluginApiRange}, but this host is ${compatibilityHostVersion}; skipping discovery (check "openclaw --version", OPENCLAW_COMPATIBILITY_HOST_VERSION, or run "openclaw doctor")`,
+    message: `plugin requires plugin API ${packagePluginApiRange}, but this host is ${compatibilityHostVersion}; skipping discovery (check "omnisclaw --version", OPENCLAW_COMPATIBILITY_HOST_VERSION, or run "omnisclaw doctor")`,
     pluginId: params.pluginId,
   });
   return true;

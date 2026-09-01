@@ -69,7 +69,7 @@ export function createOpenClawDatabaseVerificationError(
   // Doctor's clearing hooks run after a full integrity assertion, so a still-
   // corrupt file cannot be cleared directly: the file must be healthy first.
   const error = new Error(
-    `OpenClaw ${kind} database ${pathname} is quarantined after integrity verification failed: ${storedError ?? "unknown integrity error"}. Restore the database from a backup or repair it, then run openclaw doctor --fix to clear the quarantine. See ${OPENCLAW_DATABASE_SCHEMA_DOCS_URL}.`,
+    `OpenClaw ${kind} database ${pathname} is quarantined after integrity verification failed: ${storedError ?? "unknown integrity error"}. Restore the database from a backup or repair it, then run omnisclaw doctor --fix to clear the quarantine. See ${OPENCLAW_DATABASE_SCHEMA_DOCS_URL}.`,
   );
   error.name = "SqliteIntegrityError";
   return error;
@@ -124,7 +124,7 @@ export function assertOpenClawStateDatabaseForMaintenance(
   }
   if (userVersion !== OPENCLAW_STATE_SCHEMA_VERSION) {
     throw new Error(
-      `OpenClaw state database ${options.pathname} uses schema version ${userVersion}; run openclaw doctor --fix before compacting it.`,
+      `OpenClaw state database ${options.pathname} uses schema version ${userVersion}; run omnisclaw doctor --fix before compacting it.`,
     );
   }
 
@@ -136,7 +136,7 @@ export function assertOpenClawStateDatabaseForMaintenance(
     const schemaVersion =
       typeof metadata?.schema_version === "number" ? metadata.schema_version : "invalid";
     throw new Error(
-      `OpenClaw state database ${options.pathname} metadata schema version ${schemaVersion} does not match ${OPENCLAW_STATE_SCHEMA_VERSION}; run openclaw doctor --fix before compacting it.`,
+      `OpenClaw state database ${options.pathname} metadata schema version ${schemaVersion} does not match ${OPENCLAW_STATE_SCHEMA_VERSION}; run omnisclaw doctor --fix before compacting it.`,
     );
   }
   assertSqliteSchemaContains(

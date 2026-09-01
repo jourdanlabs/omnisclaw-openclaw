@@ -143,7 +143,7 @@ const MatrixConfigSchema = z.object({
         .passthrough()
         .refine(hasCanonicalMatrixAccountStreaming, {
           message:
-            'flat or scalar streaming values are no longer supported; use streaming.* and run "openclaw doctor --fix"',
+            'flat or scalar streaming values are no longer supported; use streaming.* and run "omnisclaw doctor --fix"',
         }),
     )
     .optional(),

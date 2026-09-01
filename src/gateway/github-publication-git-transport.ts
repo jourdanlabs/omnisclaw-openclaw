@@ -40,7 +40,7 @@ export async function requirePublicationCommand(
   return result.stdout.toString("utf8").trim();
 }
 
-// A recursive tree listing scales with repository size (openclaw itself is
+// A recursive tree listing scales with repository size (omnisclaw itself is
 // ~3.3MB), far past the default per-command cap above. Without this explicit
 // bound the attribute scan dies as an output-limit "verification" failure on
 // any real repository.

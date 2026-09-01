@@ -168,7 +168,7 @@ function unknownDecisionReceipt(
     remediation: [
       {
         code: "inspect_state_integrity",
-        text: "Run openclaw doctor and inspect the shared state database before trusting this decision.",
+        text: "Run omnisclaw doctor and inspect the shared state database before trusting this decision.",
       },
     ],
   };

@@ -37,7 +37,7 @@ const MAX_INSTALL_POLICY_NOTICE_CHARS = 4_000;
 const INSTALL_POLICY_REVIEW_GUIDANCE = [
   "This invocation cannot approve install policy warnings.",
   "To continue:",
-  "  • Run the matching direct `openclaw plugins ...` or `openclaw skills ...` command interactively.",
+  "  • Run the matching direct `omnisclaw plugins ...` or `omnisclaw skills ...` command interactively.",
   `  • For reviewed direct CLI automation, add ${INSTALL_POLICY_ACKNOWLEDGEMENT_FLAG}.`,
   "  • If no equivalent direct command exists, change security.installPolicy to allow this reviewed request, then retry.",
   "  • --force does not approve install policy warnings.",

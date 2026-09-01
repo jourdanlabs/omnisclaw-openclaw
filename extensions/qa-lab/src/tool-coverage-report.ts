@@ -278,7 +278,7 @@ function coverageFailureForRow(row: QaToolCoverageRow): string | undefined {
     return `${row.tool} drift=failure-mode${row.details ? ` (${row.details})` : ""}`;
   }
   if (row.runtimeToolName && row.openclawSuccessfulToolCalls === 0) {
-    return `${row.tool} missing successful openclaw tool call/result ${row.runtimeToolName}`;
+    return `${row.tool} missing successful omnisclaw tool call/result ${row.runtimeToolName}`;
   }
   if (row.runtimeToolName && row.codexSuccessfulToolCalls === 0) {
     return `${row.tool} missing successful codex tool call/result ${row.runtimeToolName}`;

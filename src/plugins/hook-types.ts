@@ -198,7 +198,7 @@ type PluginHookChannelPairingRequestedEvent = {
   accountId?: string;
   /** Channel-scoped sender ID awaiting operator approval. */
   senderId: string;
-  /** Short-lived code accepted by `openclaw pairing approve`. */
+  /** Short-lived code accepted by `omnisclaw pairing approve`. */
   code: string;
   /** Sender-supplied channel metadata for operator notification/audit. Treat as untrusted. */
   metadata?: Record<string, string | undefined>;

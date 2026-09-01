@@ -90,7 +90,7 @@ function buildLaunchdRestartScript(
   // current gateway process can exit cleanly after scheduling the handoff.
   const waitForCallerPid = `wait_pid="$4"
 ${renderPosixRestartLogSetup(restartLogEnv)}
-printf '[%s] openclaw restart attempt source=handoff mode=${mode} target=%s pid=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$service_target" "$wait_pid" >&2
+printf '[%s] omnisclaw restart attempt source=handoff mode=${mode} target=%s pid=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$service_target" "$wait_pid" >&2
 if [ -n "$wait_pid" ] && [ "$wait_pid" -gt 1 ] 2>/dev/null; then
   while kill -0 "$wait_pid" >/dev/null 2>&1; do
     sleep 0.1
@@ -100,7 +100,7 @@ fi
 
   const systemOwnershipGuard = `${renderSystemLaunchDaemonOwnershipShellProbe(label)}
 if [ -n "$openclaw_system_launchd_conflict" ]; then
-  printf '[%s] openclaw restart blocked source=handoff mode=${mode} reason=%s interactive=0\n' "$(date -u +%FT%TZ)" "$openclaw_system_launchd_detail" >&2
+  printf '[%s] omnisclaw restart blocked source=handoff mode=${mode} reason=%s interactive=0\n' "$(date -u +%FT%TZ)" "$openclaw_system_launchd_detail" >&2
   exit 78
 fi
 `;
@@ -117,9 +117,9 @@ else
   status=$?
 fi
 if [ "$status" -eq 0 ]; then
-  printf '[%s] openclaw service park done source=handoff interactive=0\\n' "$(date -u +%FT%TZ)" >&2
+  printf '[%s] omnisclaw service park done source=handoff interactive=0\\n' "$(date -u +%FT%TZ)" >&2
 else
-  printf '[%s] openclaw service park failed source=handoff status=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$status" >&2
+  printf '[%s] omnisclaw service park failed source=handoff status=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$status" >&2
 fi
 exit "$status"
 `;
@@ -146,9 +146,9 @@ else
   fi
 fi
 if [ "$status" -eq 0 ]; then
-  printf '[%s] openclaw restart done source=handoff mode=${mode} interactive=0\\n' "$(date -u +%FT%TZ)" >&2
+  printf '[%s] omnisclaw restart done source=handoff mode=${mode} interactive=0\\n' "$(date -u +%FT%TZ)" >&2
 else
-  printf '[%s] openclaw restart failed source=handoff mode=${mode} status=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$status" >&2
+  printf '[%s] omnisclaw restart failed source=handoff mode=${mode} status=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$status" >&2
 fi
 exit "$status"
 `;
@@ -211,9 +211,9 @@ launchctl bootout "$service_target" >/dev/null 2>&1 || true
 ${bootoutWaitLoop}
 ${bootstrapRetryLoop}
 if [ "$status" -eq 0 ]; then
-  printf '[%s] openclaw restart done source=handoff mode=${mode} interactive=0\\n' "$(date -u +%FT%TZ)" >&2
+  printf '[%s] omnisclaw restart done source=handoff mode=${mode} interactive=0\\n' "$(date -u +%FT%TZ)" >&2
 else
-  printf '[%s] openclaw restart failed source=handoff mode=${mode} status=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$status" >&2
+  printf '[%s] omnisclaw restart failed source=handoff mode=${mode} status=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$status" >&2
 fi
 exit "$status"
 `;
@@ -241,9 +241,9 @@ else
   fi
 fi
 if [ "$status" -eq 0 ]; then
-  printf '[%s] openclaw restart done source=handoff mode=${mode} interactive=0\\n' "$(date -u +%FT%TZ)" >&2
+  printf '[%s] omnisclaw restart done source=handoff mode=${mode} interactive=0\\n' "$(date -u +%FT%TZ)" >&2
 else
-  printf '[%s] openclaw restart failed source=handoff mode=${mode} status=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$status" >&2
+  printf '[%s] omnisclaw restart failed source=handoff mode=${mode} status=%s interactive=0\\n' "$(date -u +%FT%TZ)" "$status" >&2
 fi
 exit "$status"
 `;

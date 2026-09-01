@@ -304,7 +304,7 @@ export async function migrateLegacyCommitments(params: {
     label: "retired commitments JSON",
     releaseLabel: "Commitments",
     errorLabel: "Failed retiring commitments JSON",
-    retryGuidance: "Stop the Gateway, then run `openclaw doctor --fix` again.",
+    retryGuidance: "Stop the Gateway, then run `omnisclaw doctor --fix` again.",
     run: async (env) => {
       const stateRoot = await root(params.stateDir, {
         hardlinks: "reject",

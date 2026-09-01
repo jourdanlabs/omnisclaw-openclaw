@@ -602,7 +602,7 @@ function buildOpenAICodexAuthDoctorHint(ctx: { profileId?: string }) {
   if (ctx.profileId !== CODEX_CLI_PROFILE_ID) {
     return undefined;
   }
-  return "Deprecated profile. Run `openclaw models auth login --provider openai` or `openclaw configure`.";
+  return "Deprecated profile. Run `omnisclaw models auth login --provider openai` or `omnisclaw configure`.";
 }
 
 export function buildOpenAIChatGPTAuthMethodRuns(): Readonly<

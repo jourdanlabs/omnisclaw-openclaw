@@ -286,7 +286,7 @@ export async function setupSkills(
         continue;
       }
       // Onboarding installs the primary recipe only; alternative recipes remain
-      // visible through `openclaw skills list --verbose`.
+      // visible through `omnisclaw skills list --verbose`.
       await options.beforePersistentEffect?.();
       const spin = prompter.progress(t("wizard.skills.installing", { name: target.name }));
       const result = await installSkill({

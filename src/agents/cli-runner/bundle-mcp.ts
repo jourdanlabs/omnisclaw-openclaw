@@ -332,7 +332,7 @@ export async function prepareCliBundleMcpConfig(params: {
   /**
    * Serve exactly these servers, skipping user/plugin/additional merges.
    * Ring-zero OpenClaw runs use this so the CLI harness sees only the
-   * openclaw MCP server instead of the normal openclaw tool surface.
+   * omnisclaw MCP server instead of the normal omnisclaw tool surface.
    */
   exclusiveConfig?: BundleMcpConfig;
   env?: Record<string, string>;

@@ -122,7 +122,7 @@ export function listOpenClawRegisteredAgentDatabases(
   const entries = withExistingOpenClawStateDatabaseReadOnly(({ db: database }) => {
     if (detectOpenClawStateDatabaseSchemaMigrationsFromDatabase(database, pathname).length > 0) {
       throw new Error(
-        `OpenClaw state database ${pathname} has a legacy agent database registry schema; run openclaw doctor --fix to migrate it.`,
+        `OpenClaw state database ${pathname} has a legacy agent database registry schema; run omnisclaw doctor --fix to migrate it.`,
       );
     }
     const registryTable = database

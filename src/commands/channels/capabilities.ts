@@ -1,4 +1,4 @@
-// Implements `openclaw channels capabilities` account capability/probe reporting.
+// Implements `omnisclaw channels capabilities` account capability/probe reporting.
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalString,
@@ -369,7 +369,7 @@ export async function channelsCapabilitiesCommand(
       runtime.log(
         theme.muted(
           `No configured channel capabilities found. Run ${formatCliCommand(
-            "openclaw channels list --all",
+            "omnisclaw channels list --all",
           )} to see available channels.`,
         ),
       );

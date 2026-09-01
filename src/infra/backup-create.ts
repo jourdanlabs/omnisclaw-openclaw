@@ -150,7 +150,7 @@ function formatBackupOutputFailure(
   }
 
   const outputParent = path.dirname(outputPath);
-  const retry = "run `openclaw backup create --output <archive>` again.";
+  const retry = "run `omnisclaw backup create --output <archive>` again.";
   let detail: string;
   switch (filesystemError.code) {
     case "ENOENT":

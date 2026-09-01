@@ -107,7 +107,7 @@ export function buildLiveCronProbeMessage(params: {
   if (params.attempt === 0) {
     return (
       "Use the OpenClaw MCP automations tool from server `openclaw`. " +
-      "If it is not already visible, search/load MCP tools for `openclaw automations` or `automations`, " +
+      "If it is not already visible, search/load MCP tools for `omnisclaw automations` or `automations`, " +
       "then call the matching OpenClaw MCP tool; Claude-style names may appear as `mcp__openclaw__automations`. " +
       "Do not use Claude native `CronCreate`, `CronList`, or `CronDelete`; those are not OpenClaw proof. " +
       `Call it with JSON arguments ${params.argsJson}. ` +
@@ -119,7 +119,7 @@ export function buildLiveCronProbeMessage(params: {
   if (claudeLike) {
     return (
       "Retry the OpenClaw MCP automations tool from server `openclaw` now. " +
-      "If it is not already visible, search/load MCP tools for `openclaw automations` or `automations`, " +
+      "If it is not already visible, search/load MCP tools for `omnisclaw automations` or `automations`, " +
       "then call the matching OpenClaw MCP tool; Claude-style names may appear as `mcp__openclaw__automations`. " +
       "Do not use Claude native `CronCreate`, `CronList`, or `CronDelete`; those are not OpenClaw proof. " +
       `Use these exact JSON arguments: ${params.argsJson}. ` +

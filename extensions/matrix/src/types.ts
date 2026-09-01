@@ -223,7 +223,7 @@ export type MatrixConfig = {
    *   lines in progress mode. `streaming.preview.toolProgress: false` keeps
    *   legacy answer preview edits but hides interim tool/progress lines.
    * Legacy scalar/boolean spellings and the flat `blockStreaming`/`chunkMode`
-   * keys migrate via `openclaw doctor --fix`.
+   * keys migrate via `omnisclaw doctor --fix`.
    * Default: `mode: "off"`.
    */
   streaming?: MatrixStreamingConfig;

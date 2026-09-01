@@ -19,14 +19,14 @@ export function resolveAcpInstallCommandHint(cfg: OpenClawConfig): string {
   if (backendId === "acpx") {
     const workspaceLocalPath = path.join(workspaceDir, "extensions", "acpx");
     if (existsSync(workspaceLocalPath)) {
-      return `openclaw plugins install ${workspaceLocalPath}`;
+      return `omnisclaw plugins install ${workspaceLocalPath}`;
     }
     const bundledInstallHint = resolveBundledPluginInstallCommandHint({
       pluginId: backendId,
       workspaceDir,
     });
     if (bundledInstallHint) {
-      const localPath = bundledInstallHint.replace(/^openclaw plugins install /u, "");
+      const localPath = bundledInstallHint.replace(/^omnisclaw plugins install /u, "");
       const resolvedLocalPath = path.resolve(localPath);
       const relativeToWorkspace = path.relative(workspaceDir, resolvedLocalPath);
       // Only surface local path hints that belong to the current workspace.
@@ -37,7 +37,7 @@ export function resolveAcpInstallCommandHint(cfg: OpenClawConfig): string {
         return bundledInstallHint;
       }
     }
-    return "openclaw plugins install acpx";
+    return "omnisclaw plugins install acpx";
   }
   return `Install and enable the plugin that provides ACP backend "${backendId}".`;
 }

@@ -13,7 +13,7 @@ export function validateSystemAgentPluginInstallSpec(spec: string): string | nul
     return "OpenClaw plugin install accepts npm or ClawHub package specs only.";
   }
   if (!isOpenClawTrustedPluginInstallSpec(trimmed)) {
-    return "OpenClaw installs only ClawHub, bundled, or official-catalog plugins. Use `openclaw plugins install <spec>` in a trusted shell to review an arbitrary executable source.";
+    return "OpenClaw installs only ClawHub, bundled, or official-catalog plugins. Use `omnisclaw plugins install <spec>` in a trusted shell to review an arbitrary executable source.";
   }
   return null;
 }

@@ -139,7 +139,7 @@ export async function runMatrixQaE2eeCliSelfVerificationScenario(
         );
         const cliSas = parseMatrixQaCliSasText(
           sasOutput.text,
-          "interactive openclaw matrix verify self",
+          "interactive omnisclaw matrix verify self",
         );
         const ownerSas = await waitForMatrixQaVerificationSummary({
           client: owner,
@@ -235,7 +235,7 @@ export async function runMatrixQaE2eeCliSelfVerificationScenario(
             secondaryDeviceId: cliDevice.deviceId,
           },
           details: [
-            "Matrix CLI self-verification established full Matrix identity trust through interactive openclaw matrix verify self",
+            "Matrix CLI self-verification established full Matrix identity trust through interactive omnisclaw matrix verify self",
             "cli secret config cleaned after run: yes",
             `cli backup restore stdout: ${restoreArtifacts.stdoutPath}`,
             `cli backup restore stderr: ${restoreArtifacts.stderrPath}`,

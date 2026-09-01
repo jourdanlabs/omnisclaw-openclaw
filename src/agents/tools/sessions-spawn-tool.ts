@@ -443,7 +443,7 @@ export function createSessionsSpawnTool(
       if (deliveryPressure.blocked) {
         return jsonResult({
           status: "forbidden",
-          error: `sessions_spawn is paused because ${deliveryPressure.suspended} completed tasks have blocked delivery. Run openclaw tasks list, then retry or dismiss blocked deliveries.`,
+          error: `sessions_spawn is paused because ${deliveryPressure.suspended} completed tasks have blocked delivery. Run omnisclaw tasks list, then retry or dismiss blocked deliveries.`,
           ...roleContext,
         });
       }

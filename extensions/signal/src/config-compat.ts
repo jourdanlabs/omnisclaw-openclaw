@@ -27,15 +27,15 @@ const LEGACY_TRANSPORT_FIELDS = [
 ] as const;
 
 const PENDING_LEGACY_TRANSPORT_WARNING =
-  "- channels.signal: legacy auto transport is ambiguous while its endpoint is unavailable; bring the endpoint online and rerun openclaw doctor --fix, or replace the retired fields with an explicit account-owned transport in openclaw.json.";
+  "- channels.signal: legacy auto transport is ambiguous while its endpoint is unavailable; bring the endpoint online and rerun omnisclaw doctor --fix, or replace the retired fields with an explicit account-owned transport in openclaw.json.";
 const PENDING_LEGACY_INVALID_URL_WARNING =
-  "- channels.signal: legacy httpUrl is invalid; keep the current config, correct httpUrl, then run openclaw doctor --fix.";
+  "- channels.signal: legacy httpUrl is invalid; keep the current config, correct httpUrl, then run omnisclaw doctor --fix.";
 const PENDING_LEGACY_INVALID_HOST_WARNING =
-  "- channels.signal: legacy httpHost is invalid; keep the current config, correct httpHost, then run openclaw doctor --fix.";
+  "- channels.signal: legacy httpHost is invalid; keep the current config, correct httpHost, then run omnisclaw doctor --fix.";
 const PENDING_LEGACY_INVALID_PORT_WARNING =
-  "- channels.signal: legacy httpPort must be an integer between 1 and 65535; correct httpPort, then run openclaw doctor --fix.";
+  "- channels.signal: legacy httpPort must be an integer between 1 and 65535; correct httpPort, then run omnisclaw doctor --fix.";
 const PENDING_LEGACY_CONTAINER_ACCOUNT_WARNING =
-  "- channels.signal: legacy container transport requires an account number; add channels.signal.account (or the relevant channels.signal.accounts.*.account) and rerun openclaw doctor --fix.";
+  "- channels.signal: legacy container transport requires an account number; add channels.signal.account (or the relevant channels.signal.accounts.*.account) and rerun omnisclaw doctor --fix.";
 
 type DetectTransport = (params: {
   url: string;

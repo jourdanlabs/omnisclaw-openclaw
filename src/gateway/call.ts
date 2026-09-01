@@ -20,6 +20,7 @@ import {
   MIN_CLIENT_PROTOCOL_VERSION,
   PROTOCOL_VERSION,
 } from "../../packages/gateway-protocol/src/version.js";
+import { formatCliCommand } from "../cli/command-format.js";
 import {
   readGatewayDispatchConfig,
   readGatewayDispatchConfigWithShellEnvFallback,
@@ -724,7 +725,7 @@ function formatGatewayCloseError(
       "\n- Gateway not yet ready to accept connections (retry after a moment)" +
       "\n- TLS mismatch (connecting with ws:// to a wss:// gateway, or vice versa)" +
       "\n- Gateway process stopped or became unreachable (confirm it is still running)" +
-      "\nRun `openclaw doctor` for diagnostics.";
+      "\nRun `omnisclaw doctor` for diagnostics.";
   }
   return message;
 }
@@ -748,7 +749,7 @@ function createGatewayUnreachableTransportError(params: {
     connectionDetails: params.connectionDetails,
     message: [
       `Gateway not reachable at ${projectGatewayUrlForDiagnostics(params.connectionDetails.url)}${code ? ` (${code})` : ""}.`,
-      "Start it with `openclaw gateway run` or check `openclaw gateway status`.",
+      `Start it with \`${formatCliCommand("openclaw gateway run")}\` or check \`${formatCliCommand("openclaw gateway status")}\`.`,
       params.connectionDetails.message,
     ].join("\n"),
   });
@@ -1197,7 +1198,7 @@ async function callGatewayWithScopes<T = Record<string, unknown>>(
       throw new GatewayStoredDeviceAuthUnavailableError(
         [
           "No stored device auth for this gateway origin.",
-          `Run \`openclaw tui --url ${deviceAuthScope}\` to send a pairing request, approve it in that gateway's Control UI (Settings -> Devices) or run \`openclaw devices approve --latest\` on the gateway host, then retry.`,
+          `Run \`omnisclaw tui --url ${deviceAuthScope}\` to send a pairing request, approve it in that gateway's Control UI (Settings -> Devices) or run \`omnisclaw devices approve --latest\` on the gateway host, then retry.`,
         ].join("\n"),
       );
     }

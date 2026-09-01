@@ -23,12 +23,12 @@ function buildSkillsLimitNote(params: {
       params.format.kind === "compact"
         ? ` (compact format, ${params.format.descriptionMaxChars > 0 ? "descriptions shortened" : "descriptions omitted"})`
         : "";
-    return `⚠️ Skills truncated: included ${params.included} of ${params.total}${compactDetails}. Run \`openclaw skills check\` to audit.`;
+    return `⚠️ Skills truncated: included ${params.included} of ${params.total}${compactDetails}. Run \`omnisclaw skills check\` to audit.`;
   }
   if (params.format.kind === "compact") {
     const compactDetails =
       params.format.descriptionMaxChars > 0 ? "descriptions shortened" : "descriptions omitted";
-    return `⚠️ Skills catalog using compact format (${compactDetails}). Run \`openclaw skills check\` to audit.`;
+    return `⚠️ Skills catalog using compact format (${compactDetails}). Run \`omnisclaw skills check\` to audit.`;
   }
   return "";
 }

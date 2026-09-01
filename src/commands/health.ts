@@ -230,7 +230,7 @@ export function formatConfigReloadHealthLine(summary: HealthSummary): string | n
   return "Config hot reload: disabled (watcher retries exhausted; restart the gateway to restore it)";
 }
 
-/** Runs the `openclaw health` command against the gateway and renders JSON or text. */
+/** Runs the `omnisclaw health` command against the gateway and renders JSON or text. */
 export async function healthCommand(
   opts: {
     json?: boolean;

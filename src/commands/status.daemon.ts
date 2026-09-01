@@ -28,7 +28,10 @@ async function buildDaemonStatusSummary(
   const fallbackLabel = serviceLabel === "gateway" ? "Daemon" : "Node";
   const summary = await readServiceStatusSummary(service, fallbackLabel, timeoutMs);
   const runtime = summary.runtime?.inspectionFailure
-    ? { ...summary.runtime, detail: `${summary.runtime.detail}; retry with openclaw status --deep` }
+    ? {
+        ...summary.runtime,
+        detail: `${summary.runtime.detail}; retry with omnisclaw status --deep`,
+      }
     : summary.runtime;
   const loaded =
     summary.loadState.status === "unknown" ? null : summary.loadState.status === "loaded";

@@ -48,12 +48,12 @@ export type SecretsPlanTarget = {
   authProfileProvider?: string;
 };
 
-/** Serialized plan produced by `openclaw secrets configure` or supplied manually. */
+/** Serialized plan produced by `omnisclaw secrets configure` or supplied manually. */
 export type SecretsApplyPlan = {
   version: 1;
   protocolVersion: 1;
   generatedAt: string;
-  generatedBy: "openclaw secrets configure" | "manual";
+  generatedBy: "omnisclaw secrets configure" | "manual";
   providerUpserts?: Record<string, SecretProviderConfig>;
   providerDeletes?: string[];
   targets: SecretsPlanTarget[];

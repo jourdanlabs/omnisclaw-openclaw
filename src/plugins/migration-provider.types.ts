@@ -121,7 +121,7 @@ export type MigrationProviderContext = {
   signal?: AbortSignal;
 };
 
-/** Migration source implemented by a plugin and orchestrated by `openclaw migrate`. */
+/** Migration source implemented by a plugin and orchestrated by `omnisclaw migrate`. */
 export type MigrationProviderPlugin = {
   id: string;
   label: string;

@@ -1304,7 +1304,7 @@ export async function agentCliCommand(
         // finish this turn. Recommending a blind retry or --local here could
         // double-execute the message, so point at verification first.
         runtime.error?.(
-          `Gateway agent call ${failureHint}; the Gateway may still be running this turn. Check \`openclaw gateway status\` and the session transcript before retrying or rerunning with --local, so the turn does not execute twice.`,
+          `Gateway agent call ${failureHint}; the Gateway may still be running this turn. Check \`omnisclaw gateway status\` and the session transcript before retrying or rerunning with --local, so the turn does not execute twice.`,
         );
       }
       throw err;

@@ -434,7 +434,7 @@ export async function migrateLegacyNodeHostConfig(params: {
     label: "legacy node-host state",
     releaseLabel: "Node-host",
     errorLabel: "Failed reading legacy node-host state",
-    retryGuidance: "Stop the Gateway and node host, then run `openclaw doctor --fix` again.",
+    retryGuidance: "Stop the Gateway and node host, then run `omnisclaw doctor --fix` again.",
     run: async (env) => {
       const stateRoot = await root(params.stateDir, {
         hardlinks: "reject",

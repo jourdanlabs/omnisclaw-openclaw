@@ -50,7 +50,7 @@ function ownershipError(pluginId: string, detail: string): InstalledPluginPackag
     ok: false,
     error:
       `Plugin "${pluginId}" ${detail}. ` +
-      "Refresh the plugin registry, then reinstall the package or run openclaw doctor before retrying.",
+      "Refresh the plugin registry, then reinstall the package or run omnisclaw doctor before retrying.",
   };
 }
 

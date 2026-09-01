@@ -133,7 +133,7 @@ function appendNodeModulesBinCandidates(
   if (parts[binIndex - 1] !== "node_modules") {
     return;
   }
-  // openclaw from node_modules/.bin points at the package root sibling.
+  // omnisclaw from node_modules/.bin points at the package root sibling.
   const binName = path.basename(inputPath);
   const nodeModulesDir = parts.slice(0, binIndex).join(path.sep);
   const packageRoot = path.join(nodeModulesDir, binName);

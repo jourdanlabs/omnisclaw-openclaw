@@ -226,6 +226,6 @@ export function formatDuelingScopesWarning(
   return (
     `detected BOTH a user-scope (${user.unitPath}) and a system-scope (${system.unitPath}) ` +
     `gateway unit bound to port ${port}; they will SIGTERM each other in a restart loop. ` +
-    `Run \`openclaw doctor --fix\` to resolve which unit should own this gateway.`
+    `Run \`omnisclaw doctor --fix\` to resolve which unit should own this gateway.`
   );
 }

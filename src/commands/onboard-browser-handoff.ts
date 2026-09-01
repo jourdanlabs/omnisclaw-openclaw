@@ -322,7 +322,7 @@ export async function runBrowserHatchHandoff(
         ? "\n\nIf prompted, enter your Gateway token or password from its configured secret source."
         : "";
     const pairingHint = directRemoteDisplay
-      ? "\n\nIf device approval is required, run `openclaw devices list`, then `openclaw devices approve <requestId>`."
+      ? "\n\nIf device approval is required, run `omnisclaw devices list`, then `omnisclaw devices approve <requestId>`."
       : "";
     await params.prompter.note(
       `${t("wizard.guided.browserHandoffCopy", { url: visibleUrl })}${sshHint}${authHint}${pairingHint}`,

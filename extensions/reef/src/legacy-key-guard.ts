@@ -27,7 +27,7 @@ export async function assertLegacyReefKeysMigrated(
   }
   throw Object.assign(
     new Error(
-      "Legacy Reef identity keys must be imported before registration. Run `openclaw doctor --fix`, then retry.",
+      "Legacy Reef identity keys must be imported before registration. Run `omnisclaw doctor --fix`, then retry.",
     ),
     { code: REEF_LEGACY_KEYS_PENDING_CODE },
   );

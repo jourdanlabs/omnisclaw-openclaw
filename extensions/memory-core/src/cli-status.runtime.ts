@@ -71,7 +71,7 @@ function formatMemoryIndexIdentityWarning(
   }
   return {
     reason,
-    fix: `Run: openclaw memory status --index --agent ${agentId}`,
+    fix: `Run: omnisclaw memory status --index --agent ${agentId}`,
   };
 }
 function formatDreamingSummary(cfg: OpenClawConfig): string {
@@ -507,7 +507,7 @@ export async function runMemoryStatus(
       }
       if (!opts.fix) {
         if (audit.issues.some((issue) => issue.fixable)) {
-          lines.push(`  ${muted(`Fix: openclaw memory status --fix --agent ${agentId}`)}`);
+          lines.push(`  ${muted(`Fix: omnisclaw memory status --fix --agent ${agentId}`)}`);
         }
       }
     }
@@ -519,7 +519,7 @@ export async function runMemoryStatus(
         lines.push(`  ${issue.severity === "error" ? warn(issue.message) : muted(issue.message)}`);
       }
       if (!opts.fix && dreamingAudit.issues.some((issue) => issue.fixable)) {
-        lines.push(`  ${muted(`Fix: openclaw memory status --fix --agent ${agentId}`)}`);
+        lines.push(`  ${muted(`Fix: omnisclaw memory status --fix --agent ${agentId}`)}`);
       }
     }
     defaultRuntime.log(lines.join("\n"));

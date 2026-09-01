@@ -713,7 +713,7 @@ function buildDocsSection(params: {
     sourcePath
       ? "If docs are silent/stale, say so and inspect local source."
       : "If docs are silent/stale, say so and inspect GitHub source.",
-    "Diagnosis: run `openclaw status` when possible; ask only if blocked.",
+    "Diagnosis: run `omnisclaw status` when possible; ask only if blocked.",
     "",
   ];
   return lines.filter((line): line is string => line !== undefined);

@@ -118,7 +118,7 @@ class ReefSqliteAuditStore implements AuditStore {
     });
     if (migration.lookup(REEF_AUDIT_MIGRATION_KEY)) {
       throw new Error(
-        "Reef audit migration is incomplete; repair audit.jsonl and rerun openclaw doctor --fix",
+        "Reef audit migration is incomplete; repair audit.jsonl and rerun omnisclaw doctor --fix",
       );
     }
     this.#store = runtime.state.openSyncKeyedStore<ReefAuditStateRecord>({

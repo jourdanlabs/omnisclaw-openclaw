@@ -81,7 +81,7 @@ export const AgentsSchema = z
         code: z.ZodIssueCode.custom,
         path: ["ownership"],
         message:
-          'multi-agent rosters require agents.ownership="explicit" or one legacy default=true marker; add agents.ownership="explicit" or run openclaw doctor',
+          'multi-agent rosters require agents.ownership="explicit" or one legacy default=true marker; add agents.ownership="explicit" or run omnisclaw doctor',
       });
     }
   })

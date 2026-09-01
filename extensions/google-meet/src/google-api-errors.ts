@@ -1,7 +1,7 @@
 // Google Meet plugin module implements google api errors behavior.
 import { readResponseTextLimited } from "openclaw/plugin-sdk/provider-http";
 
-const REAUTH_HINT = "Re-run `openclaw googlemeet auth login` and store the refreshed oauth block.";
+const REAUTH_HINT = "Re-run `omnisclaw googlemeet auth login` and store the refreshed oauth block.";
 const GOOGLE_API_ERROR_BODY_LIMIT_BYTES = 8 * 1024;
 
 function scopeText(scopes: readonly string[]): string {

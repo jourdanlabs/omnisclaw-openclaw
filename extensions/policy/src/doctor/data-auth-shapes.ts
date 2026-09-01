@@ -192,7 +192,7 @@ export function dataHandlingFinding(
     severity: "error",
     message: params.message,
     source: "policy",
-    path: "openclaw config",
+    path: "omnisclaw config",
     ocPath: entry.source,
     target: entry.source,
     requirement: params.requirement,

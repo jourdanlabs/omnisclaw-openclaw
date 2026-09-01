@@ -9,7 +9,7 @@ import { resolveOpenClawPackageRootSync } from "../infra/openclaw-root.js";
 import { hasNodeErrorCode, isPathInside } from "../infra/path-guards.js";
 
 export const GATEWAY_STALE_INSTALL_CLOSE_REASON =
-  "gateway install changed; run: openclaw gateway restart";
+  "gateway install changed; run: omnisclaw gateway restart";
 
 // The install root is process-stable; capture it before an upgrade can replace
 // package metadata, then consult it only after a dynamic import has failed.

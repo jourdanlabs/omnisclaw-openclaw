@@ -16,7 +16,7 @@ import { matchesHostnameAllowlist, normalizeHostname } from "../sdk-security-run
 const NETWORK_NAVIGATION_PROTOCOLS = new Set(["http:", "https:"]);
 const SAFE_NON_NETWORK_URLS = new Set(["about:blank"]);
 const BROWSER_NAVIGATION_CREDENTIALS_BLOCKED_MESSAGE =
-  "Navigation blocked: URL-embedded credentials are not supported for page navigation. Set HTTP Basic auth with `openclaw browser set credentials <username> <password>` or use an authenticated browser profile.";
+  "Navigation blocked: URL-embedded credentials are not supported for page navigation. Set HTTP Basic auth with `omnisclaw browser set credentials <username> <password>` or use an authenticated browser profile.";
 
 function isAllowedNonNetworkNavigationUrl(parsed: URL): boolean {
   // Keep non-network navigation explicit; about:blank is the only allowed bootstrap URL.

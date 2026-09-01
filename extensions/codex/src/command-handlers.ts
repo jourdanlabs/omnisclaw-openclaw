@@ -117,7 +117,7 @@ export async function handleCodexSubcommand(
       return {
         text:
           "Codex sub-plugin management is not wired up (codexPluginsManagementIo dep is undefined). " +
-          "Edit ~/.openclaw/openclaw.json or use `openclaw config patch` until the runtime exposes the IO.",
+          "Edit ~/.openclaw/openclaw.json or use `omnisclaw config patch` until the runtime exposes the IO.",
       };
     }
     let appServerScope: ReturnType<typeof resolveCommandAppServerScope> | undefined;

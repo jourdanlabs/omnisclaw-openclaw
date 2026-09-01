@@ -1,4 +1,4 @@
-// Implements `openclaw channels list` across runtime accounts, local config, and catalog-only entries.
+// Implements `omnisclaw channels list` across runtime accounts, local config, and catalog-only entries.
 import { formatDocsLink } from "../../../packages/terminal-core/src/links.js";
 import { theme } from "../../../packages/terminal-core/src/theme.js";
 import type { ChannelPluginCatalogEntry } from "../../channels/plugins/catalog.js";
@@ -374,7 +374,7 @@ export async function channelsListCommand(
   runtime.log("");
   runtime.log(
     theme.muted(
-      "Model provider usage moved out of `channels list` — see `openclaw status` or `openclaw models list`.",
+      "Model provider usage moved out of `channels list` — see `omnisclaw status` or `omnisclaw models list`.",
     ),
   );
   runtime.log(`Docs: ${formatDocsLink("/gateway/configuration", "gateway/configuration")}`);

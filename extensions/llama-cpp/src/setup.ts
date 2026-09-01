@@ -386,7 +386,7 @@ export async function runLlamaCppSetup(ctx: ProviderAuthContext): Promise<Provid
     progress.stop("llama.cpp setup failed");
     const detail = error instanceof Error ? error.message : String(error);
     throw new Error(
-      `Managed llama.cpp setup failed. Run openclaw doctor, fix the reported runtime or model issue, then retry. ${detail}`,
+      `Managed llama.cpp setup failed. Run omnisclaw doctor, fix the reported runtime or model issue, then retry. ${detail}`,
       { cause: error },
     );
   }

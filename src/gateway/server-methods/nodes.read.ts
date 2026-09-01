@@ -404,7 +404,7 @@ export const nodeReadHandlers: GatewayRequestHandlers = {
       respondRunnerInventoryRetry(
         respond,
         pendingSurface
-          ? `node capability surface is awaiting operator approval; run \`openclaw nodes approve ${pendingSurface.requestId}\` (see \`openclaw nodes pending\`), then this node retries automatically`
+          ? `node capability surface is awaiting operator approval; run \`omnisclaw nodes approve ${pendingSurface.requestId}\` (see \`omnisclaw nodes pending\`), then this node retries automatically`
           : "node runner inventory publication is not current; retry after pairing completes",
       );
       return;

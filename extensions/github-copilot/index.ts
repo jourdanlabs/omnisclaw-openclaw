@@ -611,7 +611,7 @@ export default definePluginEntry({
         ...(starter.notes ?? []),
         ...(persistInline
           ? [
-              "Plaintext secret input mode was selected, so the GitHub Copilot token will remain inline in the auth profile and openclaw secrets audit --check will report it.",
+              "Plaintext secret input mode was selected, so the GitHub Copilot token will remain inline in the auth profile and omnisclaw secrets audit --check will report it.",
             ]
           : []),
       ];

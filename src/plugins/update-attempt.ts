@@ -38,7 +38,7 @@ export function formatNewerExactPinnedNpmDefaultLineMessage(params: {
   return (
     `${params.pluginId} is pinned to ${params.effectiveSpec} (installed ${params.currentVersion}); ` +
     `registry ${params.newer.registryLine} resolves to ${params.newer.version}. ` +
-    `Pass \`openclaw plugins update ${params.newer.packageName}@${params.newer.registryLine}\` to follow that registry line.`
+    `Pass \`omnisclaw plugins update ${params.newer.packageName}@${params.newer.registryLine}\` to follow that registry line.`
   );
 }
 

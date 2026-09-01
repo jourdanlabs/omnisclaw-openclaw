@@ -198,7 +198,7 @@ export function createMSTeamsReplyDispatcher(params: {
 
   // Resolve block-streaming preference from the canonical nested config
   // (`streaming.mode = "block"` or `streaming.block.enabled = true`); legacy
-  // flat `blockStreaming` is migrated by `openclaw doctor --fix`.
+  // flat `blockStreaming` is migrated by `omnisclaw doctor --fix`.
   const teamsStreamMode = resolveChannelPreviewStreamMode(msteamsCfg, "partial");
   const blockStreamingResolved =
     teamsStreamMode === "block" ? true : resolveChannelStreamingBlockEnabled(msteamsCfg);

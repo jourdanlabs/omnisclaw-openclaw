@@ -836,9 +836,9 @@ console.log(match[1] + " " + match[2]);
   },
 }
 MANTIS_SLACK_PATCH
-    pnpm openclaw config patch --file "$out/slack.socket.patch.json5" --dry-run
-    pnpm openclaw config patch --file "$out/slack.socket.patch.json5"
-    nohup pnpm openclaw gateway run --dev --allow-unconfigured --port 38973 --cli-backend-logs </dev/null >"$out/openclaw-gateway.log" 2>&1 &
+    pnpm omnisclaw config patch --file "$out/slack.socket.patch.json5" --dry-run
+    pnpm omnisclaw config patch --file "$out/slack.socket.patch.json5"
+    nohup pnpm omnisclaw gateway run --dev --allow-unconfigured --port 38973 --cli-backend-logs </dev/null >"$out/openclaw-gateway.log" 2>&1 &
     gateway_pid="$!"
     echo "$gateway_pid" >"$out/openclaw-gateway.pid"
     sleep 12
@@ -859,7 +859,7 @@ MANTIS_SLACK_PATCH
         cp -a "$slack_qa_output_dir"/. "$out/slack-qa"/
       fi
     }
-    qa_args=(openclaw qa slack --repo-root . --output-dir "$slack_qa_output_dir" --provider-mode "$provider_mode" --model "$primary_model" --alt-model "$alternate_model" --credential-source "$credential_source" --credential-role "$credential_role")
+    qa_args=(omnisclaw qa slack --repo-root . --output-dir "$slack_qa_output_dir" --provider-mode "$provider_mode" --model "$primary_model" --alt-model "$alternate_model" --credential-source "$credential_source" --credential-role "$credential_role")
     if [ "$fast_mode" = "1" ]; then
       qa_args+=(--fast)
     fi

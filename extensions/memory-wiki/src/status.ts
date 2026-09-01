@@ -285,7 +285,7 @@ export function buildMemoryWikiDoctorReport(status: MemoryWikiStatus): MemoryWik
     code: warning.code,
     message:
       warning.code === "vault-missing"
-        ? "Run `openclaw wiki init` to create the vault layout."
+        ? "Run `omnisclaw wiki init` to create the vault layout."
         : warning.code === "obsidian-cli-missing"
           ? "Install the official Obsidian CLI or disable `obsidian.useOfficialCli`."
           : warning.code === "bridge-disabled"

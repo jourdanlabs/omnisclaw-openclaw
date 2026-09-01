@@ -120,7 +120,7 @@ function splitModelRef(ref: string | undefined): { provider?: string; model?: st
 }
 
 class SystemAgentTuiBackend implements TuiBackend {
-  readonly connection = { url: "openclaw local" };
+  readonly connection = { url: "omnisclaw local" };
 
   onEvent?: (evt: TuiEvent) => void;
   onConnected?: () => void;
@@ -236,7 +236,7 @@ class SystemAgentTuiBackend implements TuiBackend {
   async patchSession(opts: SessionsPatchParams): Promise<SessionsPatchResult> {
     if (opts.model !== undefined) {
       throw new Error(
-        "OpenClaw cannot change the model inside its active verified session. Exit and run `openclaw onboard`, then start OpenClaw again.",
+        "OpenClaw cannot change the model inside its active verified session. Exit and run `omnisclaw onboard`, then start OpenClaw again.",
       );
     }
     return {
@@ -397,7 +397,7 @@ async function runSetupHandoff(
     handoff.target !== "gateway"
   ) {
     runtime.error(
-      "Setup cannot replace the inference route powering OpenClaw. Exit and run `openclaw onboard`, then start OpenClaw again.",
+      "Setup cannot replace the inference route powering OpenClaw. Exit and run `omnisclaw onboard`, then start OpenClaw again.",
     );
     return;
   }
@@ -427,7 +427,7 @@ async function runSetupHandoff(
   if (handoff.target === "gateway") {
     if (opts.runGatewaySetupHandoff) {
       await opts.runGatewaySetupHandoff(runtime, beforePersistentEffect);
-      runtime.log("Done — gateway settings saved. Run `openclaw gateway restart` to apply them.");
+      runtime.log("Done — gateway settings saved. Run `omnisclaw gateway restart` to apply them.");
       return;
     }
     const { createClackPrompter, hostedSetup } = await loadHostedSetupForTui();
@@ -436,7 +436,7 @@ async function runSetupHandoff(
       async () => await beforePersistentEffect(),
       runtime,
     );
-    runtime.log("Done — gateway settings saved. Run `openclaw gateway restart` to apply them.");
+    runtime.log("Done — gateway settings saved. Run `omnisclaw gateway restart` to apply them.");
     return;
   }
   if (handoff.target === "search") {
@@ -506,7 +506,7 @@ export async function runSystemAgentTui(
         historyLimit: SYSTEM_AGENT_HISTORY_LIMIT,
         backend,
         config: {},
-        title: "openclaw setup",
+        title: "omnisclaw setup",
         ...(initialMessage ? { message: initialMessage } : {}),
       });
     } finally {
@@ -519,7 +519,7 @@ export async function runSystemAgentTui(
     }
     if (handoff.kind === "model-setup") {
       runtime.error(
-        "OpenClaw cannot replace its active inference route. Run `openclaw onboard` outside this session, then start OpenClaw again.",
+        "OpenClaw cannot replace its active inference route. Run `omnisclaw onboard` outside this session, then start OpenClaw again.",
       );
       return;
     }

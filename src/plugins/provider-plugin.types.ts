@@ -553,7 +553,7 @@ export type ProviderPlugin = {
    */
   loginOAuth?: (callbacks: OAuthLoginCallbacks) => Promise<SessionOAuthCredentials>;
   /**
-   * Legacy auth-profile ids that generic auth must ignore and `openclaw doctor` should remove.
+   * Legacy auth-profile ids that generic auth must ignore and `omnisclaw doctor` should remove.
    *
    * Use this when a provider plugin replaces an older core-managed profile id
    * and wants cleanup/migration messaging to live with the provider instead of
@@ -562,7 +562,7 @@ export type ProviderPlugin = {
    */
   deprecatedProfileIds?: string[];
   /**
-   * Legacy OAuth profile-id migrations that `openclaw doctor` should offer.
+   * Legacy OAuth profile-id migrations that `omnisclaw doctor` should offer.
    *
    * Use this when a provider moved from a legacy default OAuth profile id to a
    * newer identity-based id and wants doctor to own the config rewrite without

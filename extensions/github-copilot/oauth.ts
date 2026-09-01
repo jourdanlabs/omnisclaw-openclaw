@@ -146,5 +146,5 @@ export function buildGithubCopilotAuthDoctorHint(
   if (!unsupported) {
     return undefined;
   }
-  return "This GitHub Copilot OAuth profile has an unsupported enterprise domain and can no longer refresh. Remove the legacy profile before re-authenticating with a supported host (github.com or a *.ghe.com tenant): openclaw models auth login --provider github-copilot --force.";
+  return "This GitHub Copilot OAuth profile has an unsupported enterprise domain and can no longer refresh. Remove the legacy profile before re-authenticating with a supported host (github.com or a *.ghe.com tenant): omnisclaw models auth login --provider github-copilot --force.";
 }

@@ -1,5 +1,5 @@
 /**
- * `openclaw path` — shell access to the OcPath substrate verbs.
+ * `omnisclaw path` — shell access to the OcPath substrate verbs.
  *
  * Subcommands: `resolve` / `set` / `find` / `validate` / `emit`.
  * TTY-aware output: human when interactive, JSON when piped; `--json`
@@ -653,7 +653,7 @@ export function registerPathCli(program: Command): void {
     await pathEmitCommand(fileArg, opts, defaultRuntime);
   });
 
-  // Bare `openclaw path` prints help and exits 0 (matches the core
+  // Bare `omnisclaw path` prints help and exits 0 (matches the core
   // applyParentDefaultHelpAction contract — see openclaw#73077).
   path.action(() => {
     path.outputHelp();

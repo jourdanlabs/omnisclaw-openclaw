@@ -297,7 +297,7 @@ export class GatewayChatClient implements TuiBackend {
     ) {
       error.message = [
         error.message,
-        "Pairing request sent. Approve it in that gateway's Control UI (Settings -> Devices), or run `openclaw devices approve --latest` on the gateway host, then retry.",
+        "Pairing request sent. Approve it in that gateway's Control UI (Settings -> Devices), or run `omnisclaw devices approve --latest` on the gateway host, then retry.",
       ].join("\n");
     }
     this.pendingConnectError = error;

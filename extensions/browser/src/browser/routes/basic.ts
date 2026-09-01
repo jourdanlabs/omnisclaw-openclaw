@@ -283,7 +283,7 @@ async function runBrowserLiveProbe(profileCtx: ProfileContext, signal: AbortSign
       label: "Live snapshot",
       status: "fail" as const,
       summary: String(err),
-      fixHint: "Run openclaw browser start, then retry with openclaw browser doctor --deep.",
+      fixHint: "Run omnisclaw browser start, then retry with omnisclaw browser doctor --deep.",
     };
   }
 }
@@ -316,7 +316,7 @@ function parseHeadlessStartOverride(params: {
     jsonError(
       params.res,
       400,
-      `Headless start override is only supported for locally launched openclaw profiles. Profile "${params.profileCtx.profile.name}" is attach-only, remote, or existing-session.`,
+      `Headless start override is only supported for locally launched omnisclaw profiles. Profile "${params.profileCtx.profile.name}" is attach-only, remote, or existing-session.`,
     );
     return { ok: false };
   }

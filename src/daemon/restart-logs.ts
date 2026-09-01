@@ -89,7 +89,7 @@ export function appendGatewayLifecycleAuditLog(
     ];
     fs.appendFileSync(
       logPath,
-      `[${new Date().toISOString()}] openclaw gateway lifecycle ${fields.join(" ")}\n`,
+      `[${new Date().toISOString()}] omnisclaw gateway lifecycle ${fields.join(" ")}\n`,
       "utf8",
     );
   } catch {
@@ -125,7 +125,7 @@ export function renderCmdRestartLogSetup(env: GatewayServiceEnv): {
     quotedLogPath,
     lines: [
       `if not exist ${quotedLogDir} mkdir ${quotedLogDir} >nul 2>&1`,
-      `>> ${quotedLogPath} 2>&1 echo [%DATE% %TIME%] openclaw restart log initialized`,
+      `>> ${quotedLogPath} 2>&1 echo [%DATE% %TIME%] omnisclaw restart log initialized`,
     ],
   };
 }

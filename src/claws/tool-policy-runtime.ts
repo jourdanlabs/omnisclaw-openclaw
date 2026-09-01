@@ -119,9 +119,9 @@ class ClawToolProfileConsentError extends Error {
       options.unboundedFullProfile
         ? `Claw-managed agent ${JSON.stringify(agentId)} uses the legacy unbounded full tool profile. ` +
             "Add an explicit tools.allow list to its package OpenClaw profile, then " +
-            `run \`openclaw claws update ${agentId}\` and approve the refreshed tool authority.`
+            `run \`omnisclaw claws update ${agentId}\` and approve the refreshed tool authority.`
         : `Claw-managed agent ${JSON.stringify(agentId)} uses a legacy dynamic tool policy. ` +
-            `Run \`openclaw claws update ${agentId}\` and approve the refreshed tool authority before running it.`,
+            `Run \`omnisclaw claws update ${agentId}\` and approve the refreshed tool authority before running it.`,
     );
     this.name = "ClawToolProfileConsentError";
   }

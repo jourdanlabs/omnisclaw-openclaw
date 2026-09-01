@@ -108,7 +108,7 @@ export async function runSystemAgentWithInference(
   }
 
   if (oneShot) {
-    const guidance = "Run `openclaw onboard` to connect and live-test AI first.";
+    const guidance = "Run `omnisclaw onboard` to connect and live-test AI first.";
     if (opts.json) {
       writeRuntimeJson(runtime, {
         ok: false,

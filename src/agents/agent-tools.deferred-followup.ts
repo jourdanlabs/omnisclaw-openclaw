@@ -11,7 +11,7 @@ function replaceDescription(tool: AnyAgentTool, description: string): AnyAgentTo
 }
 
 const TOOL_FOLLOWUPS = [
-  ["gateway", "openclaw", " unavailable; ask human.", ": use openclaw tool."],
+  ["gateway", "openclaw", " unavailable; ask human.", ": use omnisclaw tool."],
   [
     "sessions_search",
     "sessions_history",

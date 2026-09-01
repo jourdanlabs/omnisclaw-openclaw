@@ -79,7 +79,7 @@ async function withMcpOAuthLease<T>(
 
 function mcpOAuthAdditionalAuthorizationError(serverName: string): Error {
   return new Error(
-    `MCP server "${serverName}" requires additional OAuth authorization. Run openclaw mcp login ${serverName}.`,
+    `MCP server "${serverName}" requires additional OAuth authorization. Run omnisclaw mcp login ${serverName}.`,
   );
 }
 
@@ -199,7 +199,7 @@ export async function resolveMcpOAuthAccessToken(
           return undefined;
         }
         throw new Error(
-          `MCP server "${params.identity.serverName}" requires OAuth authorization. Run openclaw mcp login ${params.identity.serverName}.`,
+          `MCP server "${params.identity.serverName}" requires OAuth authorization. Run omnisclaw mcp login ${params.identity.serverName}.`,
         );
       }
 
@@ -216,7 +216,7 @@ export async function resolveMcpOAuthAccessToken(
       }
       if (!tokens.refresh_token) {
         throw new Error(
-          `MCP server "${params.identity.serverName}" has expired OAuth credentials. Run openclaw mcp login ${params.identity.serverName}.`,
+          `MCP server "${params.identity.serverName}" has expired OAuth credentials. Run omnisclaw mcp login ${params.identity.serverName}.`,
         );
       }
 
@@ -244,7 +244,7 @@ export async function resolveMcpOAuthAccessToken(
       const refreshedTokens = await provider.tokens();
       if (result !== "AUTHORIZED" || !refreshedTokens?.access_token) {
         throw new Error(
-          `MCP server "${params.identity.serverName}" could not refresh OAuth credentials. Run openclaw mcp login ${params.identity.serverName}.`,
+          `MCP server "${params.identity.serverName}" could not refresh OAuth credentials. Run omnisclaw mcp login ${params.identity.serverName}.`,
         );
       }
       return refreshedTokens.access_token;

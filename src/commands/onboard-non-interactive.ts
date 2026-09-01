@@ -64,14 +64,14 @@ async function runNonInteractiveMigrationImport(params: {
     async readConfigFile() {
       const snapshot = await readConfigFileSnapshot();
       if (!snapshot.valid) {
-        throw new Error("Migration target config became invalid. Run `openclaw doctor`.");
+        throw new Error("Migration target config became invalid. Run `omnisclaw doctor`.");
       }
       return snapshot.exists ? (snapshot.sourceConfig ?? snapshot.config) : {};
     },
     async commitConfigFile(config, expectedConfig) {
       const latest = await readConfigFileSnapshot();
       if (!latest.valid) {
-        throw new Error("Migration target config became invalid. Run `openclaw doctor`.");
+        throw new Error("Migration target config became invalid. Run `omnisclaw doctor`.");
       }
       const latestConfig = latest.exists ? (latest.sourceConfig ?? latest.config) : {};
       if (!isDeepStrictEqual(latestConfig, expectedConfig)) {

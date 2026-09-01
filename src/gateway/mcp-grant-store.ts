@@ -79,7 +79,7 @@ export type McpLoopbackRequestContext = {
 interface McpAttachGrant {
   /** Opaque bearer presented as `Authorization: Bearer <token>`. */
   readonly token: string;
-  /** The openclaw session this grant is bound to; tool scope is resolved for this key. */
+  /** The omnisclaw session this grant is bound to; tool scope is resolved for this key. */
   readonly sessionKey: string;
   /** Explicit agent owner for canonical global sessions, whose key cannot encode one. */
   readonly agentId?: string;

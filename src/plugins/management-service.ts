@@ -1240,7 +1240,7 @@ function assertValidConfigSnapshot(
   const { snapshot, writeOptions } = prepared;
   if (!snapshot.valid) {
     throw new ManagedPluginLifecycleError(
-      "Config invalid; run `openclaw doctor --fix` before managing plugins.",
+      "Config invalid; run `omnisclaw doctor --fix` before managing plugins.",
     );
   }
   const mutationWriteOptions = selectInstallMutationWriteOptions(writeOptions);
@@ -1412,7 +1412,7 @@ async function persistManagedSourceInstall(params: {
 
 /**
  * Official plugin installs target the release stream the gateway is running,
- * the same target `openclaw doctor --fix` and `openclaw plugins update`
+ * the same target `omnisclaw doctor --fix` and `omnisclaw plugins update`
  * already resolve. Resolving here keeps every managed install path — CLI,
  * chat command, and any future caller — on one answer instead of letting the
  * registry default land a plugin the gateway then reports as drifted.

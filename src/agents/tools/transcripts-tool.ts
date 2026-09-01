@@ -439,7 +439,7 @@ async function statusTranscripts(ctx: TranscriptsRuntimeContext) {
         : []),
       ...(selectorLines.length ? ["Selectors:", ...selectorLines] : []),
       ...(omitted
-        ? [`${omitted} more; ask a local operator to run openclaw transcripts list.`]
+        ? [`${omitted} more; ask a local operator to run omnisclaw transcripts list.`]
         : []),
     ].join("\n"),
     { providers: uniqueProviders, active, pendingFinalization },
@@ -625,7 +625,7 @@ export function createTranscriptsAutoStartService(ctx: TranscriptsRuntimeContext
           // never the tool content or summary. Skipped captures have no warnings.
           if (typeof details.summaryExportError === "string") {
             warnings.push(
-              `summary saved; export failed intendedSummaryPath=${formatAutoStopDiagnostic(details.intendedSummaryPath)}: ${formatAutoStopDiagnostic(details.summaryExportError)}. Correct the export destination, then run openclaw transcripts path <session> or openclaw transcripts show <session>.`,
+              `summary saved; export failed intendedSummaryPath=${formatAutoStopDiagnostic(details.intendedSummaryPath)}: ${formatAutoStopDiagnostic(details.summaryExportError)}. Correct the export destination, then run omnisclaw transcripts path <session> or omnisclaw transcripts show <session>.`,
             );
           }
           if (typeof details.providerStopError === "string") {

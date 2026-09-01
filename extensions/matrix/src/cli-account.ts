@@ -315,7 +315,7 @@ export function registerMatrixAccountCommands(root: Command): void {
                 }
               }
             }
-            const bindHint = `openclaw agents bind --agent <id> --bind matrix:${result.accountId}`;
+            const bindHint = `omnisclaw agents bind --agent <id> --bind matrix:${result.accountId}`;
             console.log(`Bind this account to an agent: ${bindHint}`);
           },
           errorPrefix: "Account setup failed",

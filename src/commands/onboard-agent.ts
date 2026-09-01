@@ -153,7 +153,7 @@ export async function ensureOnboardingAgent(params: {
   const sessionMigrationWarnings =
     sessionMigration.armed && !sessionMigration.complete
       ? [
-          `Legacy main-agent session history migration is incomplete${sessionMigration.warnings.length > 0 ? `: ${sessionMigration.warnings.join("; ")}` : ""}. Run \`openclaw doctor --fix\`; OpenClaw will also retry at next startup.`,
+          `Legacy main-agent session history migration is incomplete${sessionMigration.warnings.length > 0 ? `: ${sessionMigration.warnings.join("; ")}` : ""}. Run \`omnisclaw doctor --fix\`; OpenClaw will also retry at next startup.`,
         ]
       : [];
   return {

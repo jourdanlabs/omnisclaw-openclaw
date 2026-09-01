@@ -1,4 +1,4 @@
-// Provider/account summary helpers for `openclaw agents list`.
+// Provider/account summary helpers for `omnisclaw agents list`.
 import { normalizeOptionalLowercaseString } from "@openclaw/normalization-core/string-coerce";
 import { hasConfiguredUnavailableCredentialStatus } from "../channels/account-snapshot-fields.js";
 import { isChannelVisibleInConfiguredLists } from "../channels/plugins/exposure.js";

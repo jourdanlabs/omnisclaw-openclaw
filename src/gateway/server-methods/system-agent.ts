@@ -74,7 +74,7 @@ import { assertValidParams } from "./validation.js";
 
 /**
  * `openclaw.chat` lets clients (macOS app onboarding, future UIs) run the
- * same conversational setup as `openclaw setup`. Structured setup owns
+ * same conversational setup as `omnisclaw setup`. Structured setup owns
  * the pre-inference phase; a new chat session starts only after a live model
  * turn succeeds.
  *
@@ -363,7 +363,7 @@ export const systemAgentHandlers: GatewayRequestHandlers = {
               const snapshot = await setupShared.readSetupConfigFileSnapshot();
               if (!snapshot.valid) {
                 throw new Error(
-                  "Config is invalid. Run `openclaw doctor` before preparing a model.",
+                  "Config is invalid. Run `omnisclaw doctor` before preparing a model.",
                 );
               }
               // Match the classic wizard: mutate the authored shape, not runtimeConfig,
@@ -395,7 +395,7 @@ export const systemAgentHandlers: GatewayRequestHandlers = {
               });
               if (!applied || applied.retrySelection) {
                 throw new Error(
-                  `Provider setup resolution failed for "${params.authChoice}". Run \`openclaw doctor --fix\`, restart the Gateway, and try again.`,
+                  `Provider setup resolution failed for "${params.authChoice}". Run \`omnisclaw doctor --fix\`, restart the Gateway, and try again.`,
                 );
               }
               signal.throwIfAborted();

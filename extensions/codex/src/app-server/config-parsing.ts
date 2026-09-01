@@ -196,7 +196,7 @@ export function readCodexPluginConfig(value: unknown): CodexPluginConfig {
   const appServer = asNullableRecord(asNullableRecord(value)?.appServer);
   if (appServer?.approvalPolicy === "untrusted") {
     throw new Error(
-      'plugins.entries.codex.config.appServer.approvalPolicy="untrusted" is retired; run "openclaw doctor --fix" to migrate it to "on-request".',
+      'plugins.entries.codex.config.appServer.approvalPolicy="untrusted" is retired; run "omnisclaw doctor --fix" to migrate it to "on-request".',
     );
   }
   const parsed = codexPluginConfigSchema.safeParse(value);

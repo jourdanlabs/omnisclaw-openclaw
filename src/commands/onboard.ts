@@ -1,5 +1,5 @@
 /**
- * Top-level `openclaw onboard` command entrypoint.
+ * Top-level `omnisclaw onboard` command entrypoint.
  *
  * It validates global setup flags, performs optional reset handling, and then
  * routes to interactive or non-interactive onboarding.

@@ -4,7 +4,7 @@ import { formatErrorMessage } from "../infra/errors.js";
 type SystemAgentInferenceStage = "agent-turn" | "planner" | "conversation";
 
 const INFERENCE_UNAVAILABLE_MESSAGE =
-  "OpenClaw could not reach working inference. Run `openclaw onboard` on the machine running OpenClaw to reconnect — it live-tests the route before saving it. Then try again.";
+  "OpenClaw could not reach working inference. Run `omnisclaw onboard` on the machine running OpenClaw to reconnect — it live-tests the route before saving it. Then try again.";
 const INFERENCE_FAILURE_SUMMARY_MAX_CHARS = 300;
 
 function inferenceUnavailableMessage(failures: readonly unknown[]): string {

@@ -266,10 +266,10 @@ export const RUNTIME_FIELD_HELP: Record<string, string> = {
   "gateway.nodes.pairing.autoApproveCidrs":
     "Opt-in CIDR/IP allowlist for auto-approving first-time node-role device pairing with no requested scopes. Disabled when unset. Operator, browser, Control UI, and any role, scope, metadata, or public-key upgrade pairing still require manual approval.",
   "gateway.nodes.pairing.sshVerify":
-    "SSH-verified auto-approval for first-time node-role device pairing (default: enabled). The gateway SSHes back to the pairing host (BatchMode, strict host keys) and approves only when the remote `openclaw node identity` output matches the pending device key. Set false to disable SSH verification (independent of autoApproveCidrs, which stays active); for manual-only pairing also unset autoApproveCidrs. Pass an object to override user/identity/timeoutMs/cidrs.",
+    "SSH-verified auto-approval for first-time node-role device pairing (default: enabled). The gateway SSHes back to the pairing host (BatchMode, strict host keys) and approves only when the remote `omnisclaw node identity` output matches the pending device key. Set false to disable SSH verification (independent of autoApproveCidrs, which stays active); for manual-only pairing also unset autoApproveCidrs. Pass an object to override user/identity/timeoutMs/cidrs.",
   ...NODE_CAPABILITY_FIELD_HELP,
   "gateway.nodes.commands.allow":
-    "Extra node.invoke commands to allow beyond the gateway defaults (array of command strings). Enabling dangerous commands here is a security-sensitive override and is flagged by `openclaw security audit`.",
+    "Extra node.invoke commands to allow beyond the gateway defaults (array of command strings). Enabling dangerous commands here is a security-sensitive override and is flagged by `omnisclaw security audit`.",
   "gateway.nodes.commands.deny":
     "Node command names to block even if present in node claims or default allowlist (exact command-name matching only, e.g. `system.run`; does not inspect shell text inside that command).",
   nodeHost:
@@ -367,7 +367,7 @@ export const RUNTIME_FIELD_HELP: Record<string, string> = {
   "diagnostics.otel.logsEndpoint":
     "Signal-specific OTLP/HTTP logs endpoint. When set, this overrides diagnostics.otel.endpoint and OTEL_EXPORTER_OTLP_ENDPOINT for log export only.",
   "diagnostics.otel.protocol":
-    'OTel transport protocol for telemetry export. Only "http/protobuf" is accepted; run "openclaw doctor --fix" to repair a persisted legacy "grpc" value or get source-specific manual-edit guidance.',
+    'OTel transport protocol for telemetry export. Only "http/protobuf" is accepted; run "omnisclaw doctor --fix" to repair a persisted legacy "grpc" value or get source-specific manual-edit guidance.',
   "diagnostics.otel.headers":
     "Additional HTTP request headers sent with OpenTelemetry export requests, often used for tenant auth or routing. Keep secrets in env-backed values and avoid unnecessary header sprawl.",
   "diagnostics.otel.serviceName":

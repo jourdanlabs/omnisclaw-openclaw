@@ -36,7 +36,7 @@ export function resolvePackageExtensionEntries(
     return {
       status: "invalid",
       entries: [],
-      error: "package.json openclaw must be an object",
+      error: "package.json omnisclaw must be an object",
     };
   }
   const raw = rawOpenClaw.extensions;

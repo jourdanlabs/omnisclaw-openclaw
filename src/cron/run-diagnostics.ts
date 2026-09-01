@@ -28,7 +28,7 @@ const EXEC_DIAGNOSTIC_TAIL_CHARS = 2_000;
 const WEB_SEARCH_TOOL_NAME = "web_search";
 
 const MISSING_WEB_SEARCH_PROVIDER_DIAGNOSTIC_MESSAGE =
-  "web_search tool requested in toolsAllow but no web search provider is selected. Configure one with: openclaw configure --section web, or set tools.web.search.provider.";
+  "web_search tool requested in toolsAllow but no web search provider is selected. Configure one with: omnisclaw configure --section web, or set tools.web.search.provider.";
 
 export function toolsAllowRequestsWebSearch(toolsAllow?: string[]): boolean {
   const explicitAllow = (toolsAllow ?? []).filter(

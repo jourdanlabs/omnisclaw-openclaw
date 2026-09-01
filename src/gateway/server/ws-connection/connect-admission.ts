@@ -44,7 +44,7 @@ export function isStartupNodeConnect(connectParams: ConnectParams): boolean {
   return connectParams.role === "node" && connectParams.client.mode === GATEWAY_CLIENT_MODES.NODE;
 }
 
-/** Exact first-connect shape emitted by `openclaw connect` for a setup-code node. */
+/** Exact first-connect shape emitted by `omnisclaw connect` for a setup-code node. */
 export function isStartupNodeBootstrapConnect(connectParams: ConnectParams): boolean {
   const auth = connectParams.auth;
   const device = connectParams.device;

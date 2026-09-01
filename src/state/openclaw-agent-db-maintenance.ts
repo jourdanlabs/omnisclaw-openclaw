@@ -56,12 +56,12 @@ export function assertOpenClawAgentDatabaseForMaintenance(
   }
   if (userVersion !== OPENCLAW_AGENT_SCHEMA_VERSION) {
     throw new Error(
-      `OpenClaw agent database ${options.pathname} uses schema version ${userVersion}; run openclaw doctor --fix before compacting it.`,
+      `OpenClaw agent database ${options.pathname} uses schema version ${userVersion}; run omnisclaw doctor --fix before compacting it.`,
     );
   }
   if (metadata.schemaVersion !== OPENCLAW_AGENT_SCHEMA_VERSION) {
     throw new Error(
-      `OpenClaw agent database ${options.pathname} metadata schema version ${metadata.schemaVersion ?? "invalid"} does not match ${OPENCLAW_AGENT_SCHEMA_VERSION}; run openclaw doctor --fix before compacting it.`,
+      `OpenClaw agent database ${options.pathname} metadata schema version ${metadata.schemaVersion ?? "invalid"} does not match ${OPENCLAW_AGENT_SCHEMA_VERSION}; run omnisclaw doctor --fix before compacting it.`,
     );
   }
   assertOpenClawAgentSchemaContains(database, options.pathname, OPENCLAW_AGENT_SCHEMA_SQL);

@@ -338,7 +338,7 @@ function buildAggregate(rows: readonly TokenEfficiencyRow[]): TokenEfficiencyRep
 function liveEvidenceFailures(row: TokenEfficiencyRow): string[] {
   const failures: string[] = [];
   if (row.openclaw.totalTokens <= 0) {
-    failures.push(`${row.scenarioId} openclaw live usage totalTokens=${row.openclaw.totalTokens}`);
+    failures.push(`${row.scenarioId} omnisclaw live usage totalTokens=${row.openclaw.totalTokens}`);
   }
   if (row.codex.totalTokens <= 0) {
     failures.push(`${row.scenarioId} codex live usage totalTokens=${row.codex.totalTokens}`);

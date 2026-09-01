@@ -98,7 +98,7 @@ async function resolveLaunchAgentEnvironmentWrapperOverwriteWarnings(params: {
     return [];
   }
   return [
-    `Existing generated LaunchAgent env wrapper at ${params.wrapperPath} contains custom behavior and will be overwritten; move custom behavior to openclaw gateway install --wrapper <path> or OPENCLAW_WRAPPER.`,
+    `Existing generated LaunchAgent env wrapper at ${params.wrapperPath} contains custom behavior and will be overwritten; move custom behavior to omnisclaw gateway install --wrapper <path> or OPENCLAW_WRAPPER.`,
   ];
 }
 

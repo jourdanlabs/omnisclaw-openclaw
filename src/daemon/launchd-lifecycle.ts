@@ -169,7 +169,7 @@ async function ensureLaunchAgentLoadedAfterFailure(params: {
       domain: params.domain,
       serviceTarget: params.serviceTarget,
       plistPath: params.plistPath,
-      actionHint: "openclaw gateway start",
+      actionHint: "omnisclaw gateway start",
       onMutation: params.onMutation,
     });
     return { loaded: true };
@@ -191,7 +191,7 @@ function formatLaunchAgentLeftUnloadedError(params: {
     params.failure,
     `LaunchAgent ${params.serviceTarget} is not loaded and could not be restored: ${params.restoreDetail}`,
     "The gateway is down and launchd has no job left to respawn it.",
-    `Fix: run \`openclaw gateway start\`, or \`launchctl bootstrap ${params.domain} ${params.plistPath}\`.`,
+    `Fix: run \`omnisclaw gateway start\`, or \`launchctl bootstrap ${params.domain} ${params.plistPath}\`.`,
   ].join("\n");
 }
 
@@ -221,7 +221,7 @@ export async function startLaunchAgent({
       domain,
       serviceTarget,
       plistPath,
-      actionHint: "openclaw gateway start",
+      actionHint: "omnisclaw gateway start",
       onMutation: reportMutation,
       skipEnable: enabled,
     });
@@ -311,7 +311,7 @@ export async function restartLaunchAgent({
     return { outcome: "scheduled" };
   }
 
-  // `openclaw gateway restart` is an explicit operator request to bring the
+  // `omnisclaw gateway restart` is an explicit operator request to bring the
   // LaunchAgent back, so clear any persisted disabled state before restart.
   const enable = await execLaunchctl(["enable", serviceTarget]);
   if (enable.code === 0) {
@@ -331,7 +331,7 @@ export async function restartLaunchAgent({
         domain,
         serviceTarget,
         plistPath,
-        actionHint: "openclaw gateway restart",
+        actionHint: "omnisclaw gateway restart",
         onMutation: reportMutation,
         retryPendingTeardown: true,
       });
@@ -397,7 +397,7 @@ export async function restartLaunchAgent({
     domain,
     serviceTarget,
     plistPath,
-    actionHint: "openclaw gateway restart",
+    actionHint: "omnisclaw gateway restart",
     onMutation: reportMutation,
   });
   if (preserveDefinition) {

@@ -1,4 +1,4 @@
-/** Implementation of `openclaw models list`. */
+/** Implementation of `omnisclaw models list`. */
 import { normalizeProviderId } from "@openclaw/model-catalog-core/provider-id";
 import { normalizeLowercaseStringOrEmpty } from "@openclaw/normalization-core/string-coerce";
 import { sanitizeTerminalText } from "../../../packages/terminal-core/src/safe-text.js";

@@ -1,6 +1,6 @@
 /**
  * JSONL AST types — JSON-Lines: one JSON value per line, separated by
- * `\n`. The shape used by openclaw session-event logs, audit trails,
+ * `\n`. The shape used by omnisclaw session-event logs, audit trails,
  * and LKG checkpoints (which is why JSONL is part of the universal
  * OcPath addressing scheme).
  *

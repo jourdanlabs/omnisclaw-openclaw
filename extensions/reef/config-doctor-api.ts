@@ -21,7 +21,7 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
   {
     path: ["channels", "reef"],
     message:
-      'channels.reef dmPolicy/allowFrom are legacy; run "openclaw doctor --fix" to remove them. Peer trust is SQLite-backed.',
+      'channels.reef dmPolicy/allowFrom are legacy; run "omnisclaw doctor --fix" to remove them. Peer trust is SQLite-backed.',
     match: hasRetiredReefPolicyConfig,
   },
   reefStrayEntryConfigMigration.legacyConfigRule,

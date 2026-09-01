@@ -134,7 +134,7 @@ export function teamsMeetingStatusPreludeSource(params: MeetingStatusPreludePara
     controlManualAction = manualActionFor("teams-camera-required", "Turn the Teams camera off and verify the camera control shows it is off, then retry joining.");
   }
   const isVirtualAudioDevice = (value) =>
-    /^(?:blackhole 2ch(?: \\(virtual\\))?|openclaw meeting audio)$/i.test(
+    /^(?:blackhole 2ch(?: \\(virtual\\))?|omnisclaw meeting audio)$/i.test(
       String(value || "").replace(/\\s+/g, " ").trim()
     );
   const isVirtualAudioDeviceNode = (node) => [

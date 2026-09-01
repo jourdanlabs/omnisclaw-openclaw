@@ -312,7 +312,7 @@ export function mcpManualItems(params: {
     add(
       "oauth-login",
       `Hermes MCP server "${name}" requires OAuth login in OpenClaw.`,
-      `Run "openclaw mcp login ${name}" after migration.`,
+      `Run "omnisclaw mcp login ${name}" after migration.`,
     );
   }
   if (
@@ -325,7 +325,7 @@ export function mcpManualItems(params: {
     add(
       "oauth-client",
       `Hermes MCP server "${name}" uses pre-registered OAuth client settings that were not copied into OpenClaw config.`,
-      `Run "openclaw mcp login ${name}" and configure supported OAuth metadata manually.`,
+      `Run "omnisclaw mcp login ${name}" and configure supported OAuth metadata manually.`,
     );
   }
 

@@ -346,7 +346,7 @@ export async function migrateLegacyExecApprovals(params: {
     label: "legacy exec approvals",
     releaseLabel: "Exec approvals",
     errorLabel: "Failed reading legacy exec approvals",
-    retryGuidance: "Stop the Gateway, then run `openclaw doctor --fix` again.",
+    retryGuidance: "Stop the Gateway, then run `omnisclaw doctor --fix` again.",
     run: async (env) => {
       const stateRoot = await root(params.stateDir, {
         hardlinks: "reject",

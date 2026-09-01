@@ -1,4 +1,4 @@
-/** Auth availability index for `openclaw models list` rows. */
+/** Auth availability index for `omnisclaw models list` rows. */
 import type { PreparedAgentCredentialModes } from "../../agents/agent-auth-credential-modes.js";
 import type { AuthProfileStore } from "../../agents/auth-profiles/types.js";
 import {

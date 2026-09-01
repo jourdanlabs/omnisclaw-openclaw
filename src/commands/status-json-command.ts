@@ -1,4 +1,4 @@
-// Shared command runner for `openclaw status --json`.
+// Shared command runner for `omnisclaw status --json`.
 // It keeps scan execution separate from JSON payload assembly so CLI variants can reuse the same output path.
 
 import { type RuntimeEnv, writeRuntimeJson } from "../runtime.js";

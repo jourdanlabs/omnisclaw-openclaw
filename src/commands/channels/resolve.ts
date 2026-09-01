@@ -1,4 +1,4 @@
-// Implements `openclaw channels resolve` for provider-specific user/group target resolution.
+// Implements `omnisclaw channels resolve` for provider-specific user/group target resolution.
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalLowercaseString,

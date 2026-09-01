@@ -588,7 +588,7 @@ type SessionEntryCore = SessionRestartRecoveryState &
     /** Preferred Control UI face when a caller opens this session without explicit face intent. */
     boardFace?: SessionBoardFace;
     displayName?: string;
-    /** Canonical delivery state. Legacy delivery fields are migrated by `openclaw doctor --fix`. */
+    /** Canonical delivery state. Legacy delivery fields are migrated by `omnisclaw doctor --fix`. */
     delivery?: SessionDeliveryState;
     groupId?: string;
     subject?: string;

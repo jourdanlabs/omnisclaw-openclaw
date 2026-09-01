@@ -207,7 +207,9 @@ export function resolveSoleAgentId(cfg: OpenClawConfig, context?: AgentSelection
   }
   const agentIds = listAgentIds(cfg);
   if (agentIds.length === 0) {
-    throw new Error("No agents configured. Run `openclaw onboard` or `openclaw agents add` first.");
+    throw new Error(
+      "No agents configured. Run `omnisclaw onboard` or `omnisclaw agents add` first.",
+    );
   }
   throw new AgentSelectionRequiredError(agentIds, context);
 }

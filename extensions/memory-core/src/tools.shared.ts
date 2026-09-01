@@ -18,7 +18,7 @@ const SESSION_CANONICAL_KEY_MIGRATION_REQUIRED = "SESSION_CANONICAL_KEY_MIGRATIO
 const SESSION_CANONICAL_KEY_MIGRATION_WARNING =
   "Memory search is unavailable because the session catalog requires canonical-key migration.";
 const SESSION_CANONICAL_KEY_MIGRATION_ACTION =
-  "Stop the Gateway and run openclaw doctor --fix, then restart the Gateway and retry memory_search.";
+  "Stop the Gateway and run omnisclaw doctor --fix, then restart the Gateway and retry memory_search.";
 
 type MemorySearchManagerResult = Awaited<
   ReturnType<(typeof import("./memory/index.js"))["getMemorySearchManager"]>
@@ -109,7 +109,7 @@ export function buildMemorySearchUnavailableResult(
   // error can read exactly like this tool's timeout.
   const isSearchDeadline = overrides?.deadline === true;
   const deadlineAction = overrides?.agentId
-    ? `Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: openclaw memory status --deep --agent ${overrides.agentId}, and rebuild with openclaw memory index --force --agent ${overrides.agentId} only if it reports the index dirty or incomplete`
+    ? `Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: omnisclaw memory status --deep --agent ${overrides.agentId}, and rebuild with omnisclaw memory index --force --agent ${overrides.agentId} only if it reports the index dirty or incomplete`
     : "Retry memory_search after a short wait. If memory-corpus timeouts persist, inspect this agent's memory index before rebuilding it.";
   const warning =
     overrides?.warning ??

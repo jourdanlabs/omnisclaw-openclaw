@@ -74,7 +74,7 @@ function formatTaskLookupMiss(lookup: string): string {
   return formatLookupMiss({
     noun: "Task",
     value: sanitizeTerminalText(lookup),
-    listCommand: "openclaw tasks list",
+    listCommand: "omnisclaw tasks list",
     valueLabel: "task id",
   });
 }
@@ -654,6 +654,8 @@ export async function tasksMaintenanceCommand(
     );
   }
   if (!opts.apply) {
-    runtime.log("Dry run only. Re-run with `openclaw tasks maintenance --apply` to write changes.");
+    runtime.log(
+      "Dry run only. Re-run with `omnisclaw tasks maintenance --apply` to write changes.",
+    );
   }
 }

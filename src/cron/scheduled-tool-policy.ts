@@ -163,8 +163,8 @@ export function resolveCronToolsAllowExecTargetRecoveryError(params: {
   }
   const subject = params.jobId ? `Automation ${params.jobId}` : "This automation";
   const recoveryCommand = params.jobId
-    ? `openclaw automations edit ${params.jobId} --tools <tool,...>`
-    : "openclaw automations list --all";
+    ? `omnisclaw automations edit ${params.jobId} --tools <tool,...>`
+    : "omnisclaw automations list --all";
   return (
     `${subject} cannot run because its captured exec restriction is missing or invalid. ` +
     "No trigger, script, or agent action was executed. Recreate it from a fresh authenticated creator turn, " +

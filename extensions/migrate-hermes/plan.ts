@@ -168,7 +168,7 @@ export async function buildHermesPlan(ctx: MigrationProviderContext): Promise<Mi
         source: source.configPath ?? source.root,
         message: "Hermes Qwen Portal OAuth and Qwen CLI credentials cannot be reused by OpenClaw.",
         recommendation:
-          "Authenticate qwen with an API key after migration: openclaw onboard --auth-choice qwen-api-key.",
+          "Authenticate qwen with an API key after migration: omnisclaw onboard --auth-choice qwen-api-key.",
       }),
     );
   }
@@ -222,7 +222,7 @@ export async function buildHermesPlan(ctx: MigrationProviderContext): Promise<Mi
     summary: summarizeMigrationItems(items),
     items,
     warnings,
-    nextSteps: ["Run openclaw doctor after applying the migration."],
+    nextSteps: ["Run omnisclaw doctor after applying the migration."],
     metadata: { agentDir: targets.agentDir },
   };
 }

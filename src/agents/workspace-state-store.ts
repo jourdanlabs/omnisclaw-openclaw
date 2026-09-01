@@ -242,7 +242,7 @@ function readSnapshotFromDatabase(params: {
     throw new Error("workspace state key collision");
   }
   if (setupRow?.version != null && setupRow.version !== WORKSPACE_SETUP_STATE_VERSION) {
-    throw new Error("workspace setup state version requires openclaw doctor --fix");
+    throw new Error("workspace setup state version requires omnisclaw doctor --fix");
   }
   if (setupRow?.version != null) {
     assertCanonicalTimestamp(setupRow.bootstrap_seeded_at, "bootstrap seeded");

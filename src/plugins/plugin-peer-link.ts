@@ -228,7 +228,7 @@ export async function auditOpenClawPeerDependencyLink(params: {
     return {
       packageName,
       packageDir: params.packageDir,
-      reason: "could not locate openclaw package root",
+      reason: "could not locate omnisclaw package root",
     };
   }
   return await auditOpenClawPeerDependency({
@@ -259,7 +259,7 @@ async function ensureRealNodeModulesDir(params: {
     const existing = await fs.lstat(nodeModulesDir);
     if (!existing.isDirectory() || existing.isSymbolicLink()) {
       params.logger.warn?.(
-        `Skipping openclaw peerDependency link because ${nodeModulesDir} is not a real directory.`,
+        `Skipping omnisclaw peerDependency link because ${nodeModulesDir} is not a real directory.`,
       );
       return null;
     }
@@ -274,7 +274,7 @@ async function ensureRealNodeModulesDir(params: {
   const created = await fs.lstat(nodeModulesDir);
   if (!created.isDirectory() || created.isSymbolicLink()) {
     params.logger.warn?.(
-      `Skipping openclaw peerDependency link because ${nodeModulesDir} is not a real directory.`,
+      `Skipping omnisclaw peerDependency link because ${nodeModulesDir} is not a real directory.`,
     );
     return null;
   }
@@ -323,7 +323,7 @@ async function linkOpenClawPeerDependency(params: {
           }
         }
         params.logger.warn?.(
-          `Skipping openclaw peerDependency link because ${linkPath} already exists and is not a symlink.`,
+          `Skipping omnisclaw peerDependency link because ${linkPath} already exists and is not a symlink.`,
         );
         return "skipped";
       }
@@ -344,7 +344,7 @@ async function readPackageName(packageDir: string): Promise<string | undefined> 
 }
 
 /**
- * Symlink the host openclaw package for plugins that declare it as a dependency.
+ * Symlink the host omnisclaw package for plugins that declare it as a dependency.
  * Plugin package managers still own third-party dependencies; this only wires
  * the host SDK package into the plugin-local Node graph.
  */
@@ -369,7 +369,7 @@ export async function linkOpenClawPeerDependencies(params: {
     });
   if (!hostRoot) {
     params.logger.warn?.(
-      "Could not locate openclaw package root to symlink peerDependencies; plugin may fail to resolve openclaw at runtime.",
+      "Could not locate omnisclaw package root to symlink peerDependencies; plugin may fail to resolve omnisclaw at runtime.",
     );
     return { repaired: 0, skipped: peers.length };
   }

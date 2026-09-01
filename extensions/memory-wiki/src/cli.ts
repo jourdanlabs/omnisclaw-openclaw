@@ -1003,7 +1003,7 @@ export function registerWikiCli(program: Command, registration: MemoryWikiCliReg
         agentId = resolveDefaultAgentId(currentAppConfig ?? {});
       } catch {
         throw new Error(
-          "No default memory-wiki agent is configured. Pass --agent <id>, or add an agent with `openclaw agents add`.",
+          "No default memory-wiki agent is configured. Pass --agent <id>, or add an agent with `omnisclaw agents add`.",
         );
       }
     }

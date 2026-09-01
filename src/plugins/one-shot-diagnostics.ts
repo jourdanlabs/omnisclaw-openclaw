@@ -78,7 +78,7 @@ async function runBoundedExitStep(
  * Start the diagnostics OTel exporter for a one-shot embedded agent run.
  *
  * Gateway processes start diagnostics exporters via startPluginServices at
- * startup; one-shot `openclaw agent --local` runs execute the agent in the CLI
+ * startup; one-shot `omnisclaw agent --local` runs execute the agent in the CLI
  * process where no plugin service ever starts, so diagnostic events had no OTel
  * subscriber and spans were dropped.
  * Returns null when OTel export is not configured or the plugin is not

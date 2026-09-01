@@ -953,7 +953,7 @@ function collectAgentRosterFindings(cfg: OpenClawConfig): SecurityAuditFinding[]
       detail: explicitOwnership
         ? `Expected no agents.entries default=true entries with agents.ownership=explicit, found ${defaultCount}.`
         : `Expected a resolvable default agent (sole entry, one default=true marker, or agents.ownership=explicit); found ${defaultCount} default markers across ${agents.length} configured agents.`,
-      remediation: "Run `openclaw doctor --fix` to repair the authored agent roster.",
+      remediation: "Run `omnisclaw doctor --fix` to repair the authored agent roster.",
     },
   ];
 }

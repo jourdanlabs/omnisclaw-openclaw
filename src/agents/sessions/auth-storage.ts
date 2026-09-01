@@ -94,7 +94,7 @@ class AuthStorageLegacyPathMigrationRequiredError extends Error {
 
   constructor() {
     super(
-      "Deprecated AuthStorage path contains unmigrated credentials; run openclaw doctor --fix for standard agent auth.json or migrate plugin storage to AuthStorage.forAgent(agentDir).",
+      "Deprecated AuthStorage path contains unmigrated credentials; run omnisclaw doctor --fix for standard agent auth.json or migrate plugin storage to AuthStorage.forAgent(agentDir).",
     );
     this.name = "AuthStorageLegacyPathMigrationRequiredError";
   }

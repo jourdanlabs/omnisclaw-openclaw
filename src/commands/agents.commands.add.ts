@@ -1,4 +1,4 @@
-// Implements `openclaw agents add`, including config mutation, workspace setup, auth copy, and route binding setup.
+// Implements `omnisclaw agents add`, including config mutation, workspace setup, auth copy, and route binding setup.
 import path from "node:path";
 import {
   normalizeLowercaseStringOrEmpty,

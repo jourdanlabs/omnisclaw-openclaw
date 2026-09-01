@@ -124,7 +124,7 @@ export async function backupEnableCommand(
     const origin = await executeGitCommand(repositoryPath, ["remote", "get-url", "origin"]);
     if (origin.code !== 0) {
       throw new Error(
-        `--push requires an origin remote. Run: openclaw backup git init --repository ${shortenHomePath(repositoryPath)} --remote <url>`,
+        `--push requires an origin remote. Run: omnisclaw backup git init --repository ${shortenHomePath(repositoryPath)} --remote <url>`,
       );
     }
     if (!redactSecrets) {

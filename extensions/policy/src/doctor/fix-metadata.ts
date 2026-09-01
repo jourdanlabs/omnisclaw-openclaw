@@ -30,7 +30,7 @@ const POLICY_FIX_METADATA = [
   m(
     CHECK_IDS.policyUnmigratedToolsFile,
     "manual",
-    "Run openclaw doctor --fix to migrate governed tool declarations into AGENTS.md.",
+    "Run omnisclaw doctor --fix to migrate governed tool declarations into AGENTS.md.",
     { policyPath: ["tools", "requireMetadata"] },
   ),
   m(

@@ -33,7 +33,7 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
     path: ["channels", "irc"],
     match: (value) => Object.hasOwn(asObjectRecord(value) ?? {}, "mentionPatterns"),
     message:
-      'channels.irc.mentionPatterns was accepted but never read; configure mention patterns with messages.groupChat.mentionPatterns. Run "openclaw doctor --fix".',
+      'channels.irc.mentionPatterns was accepted but never read; configure mention patterns with messages.groupChat.mentionPatterns. Run "omnisclaw doctor --fix".',
   },
   {
     path: ["channels", "irc", "accounts"],
@@ -42,7 +42,7 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
         Object.hasOwn(asObjectRecord(account) ?? {}, "mentionPatterns"),
       ),
     message:
-      'channels.irc.accounts.<id>.mentionPatterns was accepted but never read; configure mention patterns with messages.groupChat.mentionPatterns. Run "openclaw doctor --fix".',
+      'channels.irc.accounts.<id>.mentionPatterns was accepted but never read; configure mention patterns with messages.groupChat.mentionPatterns. Run "omnisclaw doctor --fix".',
   },
 ];
 

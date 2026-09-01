@@ -86,7 +86,7 @@ export async function agentsSetIdentityCommand(
   const wantsIdentityFile = Boolean(opts.fromIdentity || identityFileRaw || !hasExplicitIdentity);
   const normalizedAgent = opts.agent === undefined ? null : normalizeAgentIdStrict(opts.agent);
   if (normalizedAgent && !normalizedAgent.ok) {
-    failAgentIdentity(`Agent "${opts.agent}" not found. Create it with \`openclaw agents add\`.`);
+    failAgentIdentity(`Agent "${opts.agent}" not found. Create it with \`omnisclaw agents add\`.`);
   }
   let agentId = normalizedAgent?.value;
 
@@ -124,7 +124,7 @@ export async function agentsSetIdentityCommand(
   const resolvedAgentIds = listAgentIds(cfg).map((id) => normalizeAgentId(id));
   if (!resolvedAgentIds.includes(resolvedAgentId)) {
     failAgentIdentity(
-      `Agent "${resolvedAgentId}" not found. Create it with \`openclaw agents add\`.`,
+      `Agent "${resolvedAgentId}" not found. Create it with \`omnisclaw agents add\`.`,
     );
   }
   const list = listAgentEntries(cfg);

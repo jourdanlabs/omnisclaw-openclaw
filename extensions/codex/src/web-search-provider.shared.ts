@@ -25,7 +25,7 @@ export function createCodexWebSearchProviderBase(): Omit<WebSearchProviderPlugin
       await ctx.prompter.note(
         [
           "Codex Hosted Search uses the bundled Codex app-server and your Codex/OpenAI sign-in.",
-          "If needed, sign in with: openclaw models auth login --provider openai",
+          "If needed, sign in with: omnisclaw models auth login --provider openai",
           "Verify the app-server account with /codex status.",
         ].join("\n"),
         "Codex Hosted Search",

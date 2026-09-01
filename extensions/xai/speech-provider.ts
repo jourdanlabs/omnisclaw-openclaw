@@ -114,6 +114,6 @@ async function resolveXaiAudioApiKey(
     return apiKey;
   }
   throw new Error(
-    "xAI credentials missing for TTS. Sign in with `openclaw onboard --auth-choice xai-oauth`, or run `openclaw onboard --auth-choice xai-api-key`, or set XAI_API_KEY.",
+    "xAI credentials missing for TTS. Sign in with `omnisclaw onboard --auth-choice xai-oauth`, or run `omnisclaw onboard --auth-choice xai-api-key`, or set XAI_API_KEY.",
   );
 }

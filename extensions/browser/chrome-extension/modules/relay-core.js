@@ -13,7 +13,7 @@ const ACCESS_MODE_KEY = "accessMode";
 const PAIRING_STATUS_KEY = "pairingStatus";
 const UNSUPPORTED_PROXY_PREFIX_STATUS = "proxy-prefix-unsupported";
 const UNSUPPORTED_PROXY_PREFIX_HINT =
-  "Stored proxy-prefixed browser relay pairing is no longer supported. Re-run `openclaw browser extension pair` with a Gateway URL that has no path prefix.";
+  "Stored proxy-prefixed browser relay pairing is no longer supported. Re-run `omnisclaw browser extension pair` with a Gateway URL that has no path prefix.";
 
 const CHROME_GROUP_COLORS = {
   grey: [128, 128, 128],
@@ -154,7 +154,7 @@ function validatePairingFields(relayUrl, token, gatewayUrl) {
 }
 
 /**
- * Parse a pairing string printed by `openclaw browser extension pair`.
+ * Parse a pairing string printed by `omnisclaw browser extension pair`.
  * Native local and direct-remote pairings use the Gateway route; local manual,
  * browser-node, and legacy local pairings use the host relay route.
  * The additive gateway hint is not a credential; old extensions safely pass

@@ -1,4 +1,4 @@
-/** Formatting helpers for `openclaw health` failures and channel summaries. */
+/** Formatting helpers for `omnisclaw health` failures and channel summaries. */
 import { asNullableRecord } from "@openclaw/normalization-core/record-coerce";
 import { sanitizeTerminalText } from "../../packages/terminal-core/src/safe-text.js";
 import { colorize, isRich, theme } from "../../packages/terminal-core/src/theme.js";

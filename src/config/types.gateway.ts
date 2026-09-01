@@ -484,7 +484,7 @@ export type GatewayNodePairingConfig = {
   /**
    * SSH-verified auto-approval for first-time node-role pairing (default: enabled).
    * The gateway connects back to the pairing host over SSH (BatchMode, strict
-   * host keys) and approves only when the remote `openclaw node identity`
+   * host keys) and approves only when the remote `omnisclaw node identity`
    * output matches the pending request's device key. Set false to disable SSH
    * verification; this is independent of autoApproveCidrs, so unset that too for
    * manual-only node pairing. The object form tunes the probe:

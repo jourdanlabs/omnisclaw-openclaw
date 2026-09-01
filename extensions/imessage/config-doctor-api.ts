@@ -44,7 +44,7 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
     path: ["channels", "imessage"],
     message:
       "disabled channels.imessage.catchup config is retired; iMessage now recovers via always-on inbound dedupe and a stale-backlog age fence. " +
-      'Run "openclaw doctor --fix" to remove disabled catchup blocks.',
+      'Run "omnisclaw doctor --fix" to remove disabled catchup blocks.',
     match: (value) => imessageEntryHasRetiredCatchup(value),
   },
   ...streamingAliasMigration.legacyConfigRules,

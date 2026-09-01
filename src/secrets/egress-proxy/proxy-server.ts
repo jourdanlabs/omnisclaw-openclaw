@@ -312,7 +312,7 @@ export async function startSecretEgressProxyServer(params: {
     return false;
   };
   const hostNotAllowedBody = (host: string): string =>
-    `Host "${host}" is not in the secret egress proxy traffic allowlist. Add it to secrets.egressProxy.allowedHosts or bind a store secret to it with: openclaw secrets store set <NAME> --allow-host ${host}, then restart the Gateway.\n`;
+    `Host "${host}" is not in the secret egress proxy traffic allowlist. Add it to secrets.egressProxy.allowedHosts or bind a store secret to it with: omnisclaw secrets store set <NAME> --allow-host ${host}, then restart the Gateway.\n`;
   const authorize = (
     headers: IncomingHttpHeaders,
   ): RegisteredRun | Exclude<SecretEgressRefusalReason, "destination-not-allowed"> => {

@@ -222,7 +222,7 @@ export function createCrabboxWarmImageManager(dependencies: {
       // Only provider failures are absorbed; SQLite failures must remain visible.
       if (matches(openStore().lookup(key))) {
         warnOnce(
-          `checkpoint retirement (${operation.checkpointId} deletion obligation retained; retry on next warm-image-enabled worker teardown; inspect with openclaw crabbox warm-images)`,
+          `checkpoint retirement (${operation.checkpointId} deletion obligation retained; retry on next warm-image-enabled worker teardown; inspect with omnisclaw crabbox warm-images)`,
           error,
         );
       }
@@ -326,7 +326,7 @@ export function createCrabboxWarmImageManager(dependencies: {
     if (!available) {
       warnOnce(
         "capture admission",
-        "All warm-image slots are retained; capture deferred. Inspect openclaw crabbox warm-images for pending captures or provider cleanup.",
+        "All warm-image slots are retained; capture deferred. Inspect omnisclaw crabbox warm-images for pending captures or provider cleanup.",
       );
     }
     return available;

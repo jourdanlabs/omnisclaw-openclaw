@@ -37,7 +37,7 @@ export async function runConversationalOnboarding(
 ) {
   if (!hasInteractiveOnboardingTty()) {
     runtime.error(
-      "Onboarding needs an interactive TTY. Use `openclaw onboard --non-interactive --accept-risk ...` for automation.",
+      "Onboarding needs an interactive TTY. Use `omnisclaw onboard --non-interactive --accept-risk ...` for automation.",
     );
     runtime.exit(1);
     return;

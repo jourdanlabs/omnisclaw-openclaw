@@ -244,7 +244,7 @@ export type OpenClawPluginApi = {
     opts?: OpenClawPluginCliRegistrationOptions,
   ) => void;
   /**
-   * Register a plugin-owned node feature command group under `openclaw nodes`.
+   * Register a plugin-owned node feature command group under `omnisclaw nodes`.
    *
    * This is equivalent to `registerCli(registrar, { parentPath: ["nodes"], ... })`
    * and is intended for paired-node capabilities such as camera, screen, or Canvas.
@@ -266,7 +266,7 @@ export type OpenClawPluginApi = {
   registerTextTransforms: (transforms: PluginTextTransformRegistration) => void;
   /** Register a lightweight config migration that can run before plugin runtime loads. */
   registerConfigMigration: (migrate: PluginConfigMigration) => void;
-  /** Register an importer for `openclaw migrate` (migration capability). */
+  /** Register an importer for `omnisclaw migrate` (migration capability). */
   registerMigrationProvider: (provider: MigrationProviderPlugin) => void;
   /** Register a lightweight config probe that can auto-enable this plugin generically. */
   registerAutoEnableProbe: (probe: PluginSetupAutoEnableProbe) => void;

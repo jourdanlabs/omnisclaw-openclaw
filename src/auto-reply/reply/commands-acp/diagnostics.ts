@@ -129,7 +129,7 @@ export async function handleAcpDoctorAction(
       lines.push(`next: add "${backendId}" to plugins.allow or unset plugins.allow.`);
     }
     lines.push(`next: ${installHint}`);
-    lines.push(`next: openclaw config set plugins.entries.${backendId}.enabled true`);
+    lines.push(`next: omnisclaw config set plugins.entries.${backendId}.enabled true`);
     if (normalizeLowercaseStringOrEmpty(backendId) === "acpx") {
       lines.push("next: verify acpx is installed (`acpx --help`).");
     }
@@ -151,7 +151,7 @@ export function handleAcpInstallAction(
     "-----",
     `configuredBackend: ${backendId}`,
     `run: ${installHint}`,
-    `then: openclaw config set plugins.entries.${backendId}.enabled true`,
+    `then: omnisclaw config set plugins.entries.${backendId}.enabled true`,
     "then: /acp doctor",
   ];
   return commandReply(lines.join("\n"));

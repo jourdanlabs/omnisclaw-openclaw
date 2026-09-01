@@ -30,7 +30,7 @@ import {
 } from "./status-dependencies-core.js";
 import type { PluginLogger } from "./types.js";
 
-/** Control-plane plugin status shape used by `openclaw plugins status` style surfaces. */
+/** Control-plane plugin status shape used by `omnisclaw plugins status` style surfaces. */
 export type PluginRegistryStatusReport = PluginRegistry & {
   workspaceDir?: string;
   workspaceScope: "selected" | "omitted";

@@ -347,7 +347,7 @@ export const POLICY_RULE_METADATA = [
   },
   {
     // Redaction is unconditional in src/logging/redact.ts, so no doctor check can fail for
-    // this rule. The key stays a policy contract: `openclaw policy compare` still enforces
+    // this rule. The key stays a policy contract: `omnisclaw policy compare` still enforces
     // baseline strictness, and policy state records the invariant below as satisfied.
     policyPath: ["dataHandling", "sensitiveLogging", "requireRedaction"],
     strictness: "requires-true",

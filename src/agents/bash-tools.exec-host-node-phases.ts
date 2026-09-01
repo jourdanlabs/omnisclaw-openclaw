@@ -694,7 +694,7 @@ export async function analyzeNodeApprovalRequirement(params: {
     obsoleteGeneratedApprovalCount > 0
   ) {
     params.request.warnings.push(
-      `${obsoleteGeneratedApprovalCount} older generated exec ${obsoleteGeneratedApprovalCount === 1 ? "approval is" : "approvals are"} inactive on this node because they are not tied to a working directory. Run "openclaw doctor --fix" on the node, then rerun the workflow and choose "Always allow here".`,
+      `${obsoleteGeneratedApprovalCount} older generated exec ${obsoleteGeneratedApprovalCount === 1 ? "approval is" : "approvals are"} inactive on this node because they are not tied to a working directory. Run "omnisclaw doctor --fix" on the node, then rerun the workflow and choose "Always allow here".`,
     );
   }
   return {

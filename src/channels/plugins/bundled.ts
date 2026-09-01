@@ -285,7 +285,7 @@ function findMissingModuleCodeInChain(error: unknown): string | undefined {
 function describeBundledChannelLoadError(error: unknown, channelId: string): string {
   const detail = formatErrorMessage(error);
   if (findMissingModuleCodeInChain(error) !== undefined) {
-    return `${detail} (run \`openclaw doctor --fix\` to install missing bundled runtime dependencies for channel ${channelId})`;
+    return `${detail} (run \`omnisclaw doctor --fix\` to install missing bundled runtime dependencies for channel ${channelId})`;
   }
   return detail;
 }

@@ -974,7 +974,7 @@ class OpenShellSandboxBackendImpl {
   }
 
   private buildLegacyRuntimeUnavailableError(detail: string): Error {
-    const recreateCommand = `openclaw sandbox recreate --session ${shellEscape(this.params.createParams.scopeKey)}`;
+    const recreateCommand = `omnisclaw sandbox recreate --session ${shellEscape(this.params.createParams.scopeKey)}`;
     return new Error(
       [
         `Registered legacy OpenShell sandbox "${this.params.execContext.sandboxName}" is not usable.`,

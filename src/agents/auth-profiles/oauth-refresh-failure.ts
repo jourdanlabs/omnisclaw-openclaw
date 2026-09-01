@@ -243,16 +243,16 @@ export function buildOAuthRefreshFailureLoginCommand(
     const claudeLoginCommand = formatCliCommand("claude auth login");
     const openclawLoginCommand = formatCliCommand(
       sanitizedProfileId
-        ? `openclaw models auth login --provider anthropic --method cli --profile-id ${quoteShellArg(sanitizedProfileId)}`
-        : "openclaw models auth login --provider anthropic --method cli",
+        ? `omnisclaw models auth login --provider anthropic --method cli --profile-id ${quoteShellArg(sanitizedProfileId)}`
+        : "omnisclaw models auth login --provider anthropic --method cli",
     );
     return `${claudeLoginCommand} && ${openclawLoginCommand}`;
   }
   return sanitizedProvider
     ? formatCliCommand(
         sanitizedProfileId
-          ? `openclaw models auth login --provider ${sanitizedProvider} --profile-id ${quoteShellArg(sanitizedProfileId)}`
-          : `openclaw models auth login --provider ${sanitizedProvider}`,
+          ? `omnisclaw models auth login --provider ${sanitizedProvider} --profile-id ${quoteShellArg(sanitizedProfileId)}`
+          : `omnisclaw models auth login --provider ${sanitizedProvider}`,
       )
     : formatCliCommand("openclaw models auth login");
 }

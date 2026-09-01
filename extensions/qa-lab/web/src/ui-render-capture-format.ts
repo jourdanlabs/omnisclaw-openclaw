@@ -314,7 +314,7 @@ export function renderCaptureStartupInstructions(status: CaptureStartupStatus | 
   const gatewayStart = `OPENCLAW_DEBUG_PROXY_ENABLED=1 \\
 OPENCLAW_DEBUG_PROXY_REQUIRE=1 \\
 OPENCLAW_DEBUG_PROXY_URL=http://127.0.0.1:7799 \\
-pnpm openclaw gateway --port 18789 --bind loopback`;
+pnpm omnisclaw gateway --port 18789 --bind loopback`;
   const qaStart = "pnpm qa:lab:ui --port 43124 --control-ui-url http://127.0.0.1:18789/";
   const caInstall = "pnpm proxy:install-ca";
   const caTrust =

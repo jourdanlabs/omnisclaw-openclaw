@@ -32,7 +32,7 @@ export type PluginHealthSummary = Omit<ProtocolPlugin, "unavailable"> & {
   >;
 };
 
-/** Full gateway health payload consumed by `openclaw health`. */
+/** Full gateway health payload consumed by `omnisclaw health`. */
 export type HealthSummary = ProtocolHealth & {
   ok: true;
   ts: number;

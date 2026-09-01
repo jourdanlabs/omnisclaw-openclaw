@@ -103,7 +103,7 @@ function assertReefIdentityMigrationComplete(runtime: PluginRuntime): void {
   });
   if (durableMigration.lookup(REEF_DURABLE_MIGRATION_KEY)) {
     throw new Error(
-      "Reef durable state migration is incomplete; repair the legacy state files and rerun openclaw doctor --fix",
+      "Reef durable state migration is incomplete; repair the legacy state files and rerun omnisclaw doctor --fix",
     );
   }
   const migration = runtime.state.openSyncKeyedStore<ReefIdentityMigrationRecord>({
@@ -113,7 +113,7 @@ function assertReefIdentityMigrationComplete(runtime: PluginRuntime): void {
   });
   if (migration.lookup(REEF_KEYS_MIGRATION_KEY)) {
     throw new Error(
-      "Reef identity migration is incomplete; repair the legacy identity files and rerun openclaw doctor --fix",
+      "Reef identity migration is incomplete; repair the legacy identity files and rerun omnisclaw doctor --fix",
     );
   }
 }

@@ -3,7 +3,7 @@ import { isPidDefinitelyDead } from "../../shared/pid-alive.js";
 import { commandError, runGit, listGitWorktrees } from "./git.js";
 import type { ManagedWorktreeRecord } from "./types.js";
 
-const OPENCLAW_LOCK_PATTERN = /^openclaw pid=(\d+)$/;
+const OPENCLAW_LOCK_PATTERN = /^omnisclaw pid=(\d+)$/;
 
 type LockState =
   | { kind: "none" }
@@ -37,7 +37,7 @@ async function runLock(record: ManagedWorktreeRecord) {
     "worktree",
     "lock",
     "--reason",
-    `openclaw pid=${process.pid}`,
+    `omnisclaw pid=${process.pid}`,
     record.path,
   ]);
 }

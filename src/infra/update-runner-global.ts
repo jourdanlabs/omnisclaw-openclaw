@@ -129,7 +129,7 @@ export async function runGlobalUpdate(params: {
       });
       return await runStep({
         runCommand,
-        name: "openclaw doctor",
+        name: "omnisclaw doctor",
         argv: [
           doctorNodePath,
           doctorEntry,

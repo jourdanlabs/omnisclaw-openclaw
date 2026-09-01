@@ -404,7 +404,7 @@ export async function recoverInterruptedSubagentRow(
       ? formatSubagentRecoveryWedgedReason(sessionEntry)
       : attempts >= MAX_RECOVERY_ATTEMPTS
         ? `subagent orphan recovery blocked after ${attempts} rapid accepted resume attempts; ` +
-          `run "openclaw tasks maintenance --apply" or "openclaw doctor --fix" to reconcile it`
+          `run "omnisclaw tasks maintenance --apply" or "omnisclaw doctor --fix" to reconcile it`
         : undefined;
     if (blockedReason) {
       if (!alreadyWedged) {
@@ -486,7 +486,7 @@ export async function recoverInterruptedSubagentRow(
     const configChanged = recoveryMessages.some(
       (message) =>
         message.role === "assistant" &&
-        /openclaw\.json|openclaw gateway restart|config\.patch/i.test(message.text ?? ""),
+        /openclaw\.json|omnisclaw gateway restart|config\.patch/i.test(message.text ?? ""),
     );
     const sessionId = sessionEntry.sessionId;
     const updatedAt = sessionEntry.updatedAt;

@@ -134,7 +134,7 @@ async function resolveStatusLastHeartbeat(params: {
 }
 
 // Default bound for service-manager probes when status runs without an explicit
-// --timeout, so a wedged systemd/launchd socket cannot hang `openclaw status`.
+// --timeout, so a wedged systemd/launchd socket cannot hang `omnisclaw status`.
 const DEFAULT_SERVICE_PROBE_TIMEOUT_MS = 5000;
 
 /** Resolves launchd/systemd summaries for the gateway and node services together. */

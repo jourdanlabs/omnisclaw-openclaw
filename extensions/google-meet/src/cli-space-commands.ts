@@ -70,7 +70,7 @@ function writeGoogleMeetCreateOutput(
   }
   const joinedSessionId = payload.joined ? payload.join?.session?.id : undefined;
   writeStdoutLine(
-    joinedSessionId ? "joined: %s" : "joined: no (run `openclaw googlemeet join %s`)",
+    joinedSessionId ? "joined: %s" : "joined: no (run `omnisclaw googlemeet join %s`)",
     joinedSessionId ?? payload.meetingUri,
   );
 }

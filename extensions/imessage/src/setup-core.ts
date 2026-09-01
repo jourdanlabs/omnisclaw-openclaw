@@ -181,7 +181,7 @@ export const imessageCompletionNote = {
     `Install imsg on the Messages Mac: ${IMESSAGE_INSTALL_COMMAND}`,
     `Update imsg after imsg fixes or missing-capability errors: ${IMESSAGE_UPDATE_COMMAND}`,
     "Private API mode is strongly encouraged for replies, tapbacks, effects, polls, attachments, and group actions.",
-    "After Private API setup, run `imsg launch`, then `openclaw channels status --probe`.",
+    "After Private API setup, run `imsg launch`, then `omnisclaw channels status --probe`.",
     "Ensure OpenClaw has Full Disk Access to Messages DB.",
     "Grant Automation permission for Messages when prompted.",
     "List chats with: imsg chats --limit 20",
