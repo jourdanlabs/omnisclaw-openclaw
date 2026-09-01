@@ -257,7 +257,7 @@ describe("nodes camera_snap", () => {
 
     expectNoImages(result);
     const mediaUrl = expectFirstMediaUrl(result);
-    expect(mediaUrl).toMatch(/openclaw-camera-snap-front-.*\.jpg$/);
+    expect(mediaUrl).toMatch(/omnisclaw-camera-snap-front-.*\.jpg$/);
     expect(result.content).toStrictEqual([
       { type: "text", text: `Camera photo saved to ${mediaUrl}.` },
     ]);
@@ -573,7 +573,7 @@ describe("nodes photos_latest", () => {
     expect(details[0]?.height).toBe(1);
     expect(details[0]?.createdAt).toBe("2026-03-04T00:00:00Z");
     const mediaUrl = expectFirstMediaUrl(result);
-    expect(mediaUrl).toMatch(/openclaw-camera-snap-.*\.jpg$/);
+    expect(mediaUrl).toMatch(/omnisclaw-camera-snap-.*\.jpg$/);
     expect(result.content).toStrictEqual([
       { type: "text", text: `Library photo saved to ${mediaUrl}.` },
     ]);
@@ -585,7 +585,7 @@ describe("nodes photos_latest", () => {
     const result = await executePhotosLatest({ modelHasVision: true });
 
     expectSingleImage(result, { mimeType: "image/jpeg" });
-    expect(expectFirstMediaUrl(result)).toMatch(/openclaw-camera-snap-.*\.jpg$/);
+    expect(expectFirstMediaUrl(result)).toMatch(/omnisclaw-camera-snap-.*\.jpg$/);
   });
 });
 

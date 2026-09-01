@@ -1,6 +1,7 @@
 // Bundled health checks define built-in doctor checks for runtime readiness.
 import { asOptionalObjectRecord as readRecord } from "@openclaw/normalization-core/record-coerce";
 import { collectConfiguredAgentHarnessRuntimes } from "../agents/harness-runtimes.js";
+import { formatCliCommand } from "../cli/command-format.js";
 import type { OpenClawConfig } from "../config/types.openclaw.js";
 import { MissingPublicSurfaceError } from "../plugin-sdk/facade-loader.js";
 import { normalizePluginId, normalizePluginsConfig } from "../plugins/config-state.js";
@@ -139,7 +140,7 @@ export function registerBundledHealthChecks(params: {
     // A bundled-first lookup can inspect a different version or bypass the selected owner's trust.
     if (!owner || (owner.origin !== "bundled" && owner.trustedOfficialInstall !== true)) {
       throw new MissingPublicSurfaceError(
-        "Unable to resolve Codex doctor health API: install the official Codex plugin with openclaw plugins install @openclaw/codex",
+        `Unable to resolve Codex doctor health API: install the official Codex plugin with ${formatCliCommand("openclaw plugins install @openclaw/codex")}`,
       );
     }
     // Retained stable plugins can predate health APIs while an upgrade awaits capability consent.

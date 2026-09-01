@@ -36,7 +36,7 @@ function createPrompter(confirmValue = false) {
 
 function createDeps(shell: "zsh" | "bash" | "fish" | "powershell" = "zsh") {
   const deps: NonNullable<Parameters<typeof setupWizardShellCompletion>[0]["deps"]> = {
-    resolveCliName: () => "openclaw",
+    resolveCliName: () => "omnisclaw",
     checkShellCompletionStatus: vi.fn(async (_binName: string) => ({
       shell,
       profileInstalled: false,
@@ -66,10 +66,10 @@ describe("setupWizardShellCompletion", () => {
     await setupWizardShellCompletion({ flow: "quickstart", prompter, deps });
 
     expect(prompter.confirm).not.toHaveBeenCalled();
-    expect(deps.ensureCompletionCacheExists).toHaveBeenCalledWith("openclaw", {
+    expect(deps.ensureCompletionCacheExists).toHaveBeenCalledWith("omnisclaw", {
       generationMode: "full",
     });
-    expect(deps.installCompletion).toHaveBeenCalledWith("zsh", true, "openclaw");
+    expect(deps.installCompletion).toHaveBeenCalledWith("zsh", true, "omnisclaw");
     expect(prompter.note).toHaveBeenCalled();
   });
 
@@ -166,7 +166,7 @@ describe("setupWizardShellCompletion", () => {
 
       await setupWizardShellCompletion({ flow: "quickstart", prompter, deps });
 
-      expect(deps.ensureCompletionCacheExists).toHaveBeenCalledWith("openclaw", {
+      expect(deps.ensureCompletionCacheExists).toHaveBeenCalledWith("omnisclaw", {
         generationMode: "full",
       });
       expect(prompter.note).toHaveBeenCalledWith(
@@ -186,7 +186,7 @@ describe("setupWizardShellCompletion", () => {
 
       expect(prompter.confirm).toHaveBeenCalledWith(
         expect.objectContaining({
-          message: "为 openclaw 启用 zsh shell completion？",
+          message: "为 omnisclaw 启用 zsh shell completion？",
         }),
       );
       expect(prompter.note).toHaveBeenCalledWith(
@@ -219,7 +219,7 @@ describe("setupWizardShellCompletion", () => {
         [testCase.variable]: profileRoot,
       },
       async () => {
-        const cachePath = resolveCompletionCachePath(testCase.shell, "openclaw");
+        const cachePath = resolveCompletionCachePath(testCase.shell, "omnisclaw");
         await fs.mkdir(path.dirname(cachePath), { recursive: true });
         await fs.writeFile(cachePath, "OPENCLAW_COMPLETION_LOADED=ready\n", "utf8");
         const prompter = createPrompter();
@@ -267,7 +267,7 @@ describe("setupWizardShellCompletion", () => {
 
       await setupWizardShellCompletion({ flow: "quickstart", prompter, deps });
 
-      expect(deps.installCompletion).toHaveBeenCalledWith("powershell", true, "openclaw");
+      expect(deps.installCompletion).toHaveBeenCalledWith("powershell", true, "omnisclaw");
       expect(prompter.note).toHaveBeenCalledWith(
         "Shell completion installed. Restart your shell or run: . '/Users/ada/.config/powershell/Microsoft.PowerShell_profile.ps1'",
         "Shell completion",

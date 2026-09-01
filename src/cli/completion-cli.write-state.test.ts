@@ -99,7 +99,7 @@ async function withIsolatedCompletionState(
 
 async function writeCompletionCacheForShell(shell: CompletionShell): Promise<string> {
   const { getCompletionScript, registerCompletionCli } = await import("./completion-cli.js");
-  const program = new Command().name("openclaw");
+  const program = new Command().name("omnisclaw");
   registerCompletionCli(program);
   await program.parseAsync(["completion", "--shell", shell, "--write-state"], {
     from: "user",
@@ -153,7 +153,7 @@ describe("completion-cli write-state", () => {
     "publishes %s completion atomically without changing existing file or directory modes",
     async (shell) => {
       await withIsolatedCompletionState(async () => {
-        const cachePath = resolveCompletionCachePath(shell, "openclaw");
+        const cachePath = resolveCompletionCachePath(shell, "omnisclaw");
         const cacheDir = path.dirname(cachePath);
         await fs.mkdir(cacheDir, { recursive: true });
         await fs.writeFile(cachePath, "# previous completion\n", "utf8");
@@ -187,7 +187,7 @@ describe("completion-cli write-state", () => {
         "./output-file.runtime.js",
       );
       await withIsolatedCompletionState(async () => {
-        const cachePath = resolveCompletionCachePath(shell, "openclaw");
+        const cachePath = resolveCompletionCachePath(shell, "omnisclaw");
         const cacheDir = path.dirname(cachePath);
         await fs.mkdir(cacheDir, { recursive: true });
         await fs.writeFile(cachePath, "# previous completion\n", "utf8");
@@ -224,7 +224,7 @@ describe("completion-cli write-state", () => {
     "replaces a completion cache symlink without overwriting its target",
     async () => {
       await withIsolatedCompletionState(async () => {
-        const cachePath = resolveCompletionCachePath("zsh", "openclaw");
+        const cachePath = resolveCompletionCachePath("zsh", "omnisclaw");
         const cacheDir = path.dirname(cachePath);
         const protectedPath = path.join(path.dirname(cacheDir), "protected-script");
         await fs.mkdir(cacheDir, { recursive: true });
@@ -248,7 +248,7 @@ describe("completion-cli write-state", () => {
         "./output-file.runtime.js",
       );
       await withIsolatedCompletionState(async () => {
-        const cachePath = resolveCompletionCachePath("zsh", "openclaw");
+        const cachePath = resolveCompletionCachePath("zsh", "omnisclaw");
         const cacheDir = path.dirname(cachePath);
         const protectedPath = path.join(path.dirname(cacheDir), "protected-script");
         await fs.mkdir(cacheDir, { recursive: true });
@@ -277,7 +277,7 @@ describe("completion-cli write-state", () => {
     "rejects a symlinked completion cache directory without writing into its target",
     async () => {
       await withIsolatedCompletionState(async () => {
-        const cachePath = resolveCompletionCachePath("zsh", "openclaw");
+        const cachePath = resolveCompletionCachePath("zsh", "omnisclaw");
         const cacheDir = path.dirname(cachePath);
         const protectedDir = path.join(path.dirname(cacheDir), "protected-directory");
         await fs.mkdir(protectedDir, { recursive: true });
@@ -299,14 +299,14 @@ describe("completion-cli write-state", () => {
       const { registerCompletionCli } = await import("./completion-cli.js");
 
       await withIsolatedCompletionState(async () => {
-        const cachePath = resolveCompletionCachePath(shell, "openclaw");
+        const cachePath = resolveCompletionCachePath(shell, "omnisclaw");
         const profilePath = resolveCompletionProfilePath(shell);
         const log = vi.spyOn(console, "log").mockImplementation(() => {});
         vi.spyOn(console, "warn").mockImplementation(() => {});
         await fs.mkdir(path.dirname(cachePath), { recursive: true });
         await fs.writeFile(cachePath, "# cached completion\n", "utf8");
 
-        const program = new Command().name("openclaw");
+        const program = new Command().name("omnisclaw");
         registerCompletionCli(program);
         const args = ["completion", "--shell", shell, "--install", "--yes"];
         await program.parseAsync(args, { from: "user" });
@@ -334,9 +334,9 @@ describe("completion-cli write-state", () => {
       const { registerCompletionCli } = await import("./completion-cli.js");
 
       await withIsolatedCompletionState(async () => {
-        const cachePath = resolveCompletionCachePath(shell, "openclaw");
+        const cachePath = resolveCompletionCachePath(shell, "omnisclaw");
         const profilePath = resolveCompletionProfilePath(shell);
-        const program = new Command().name("openclaw");
+        const program = new Command().name("omnisclaw");
         registerCompletionCli(program);
 
         await expect(
@@ -358,11 +358,11 @@ describe("completion-cli write-state", () => {
 
     await withIsolatedCompletionState(
       async () => {
-        const cachePath = resolveCompletionCachePath("fish", "openclaw");
+        const cachePath = resolveCompletionCachePath("fish", "omnisclaw");
         await fs.mkdir(path.dirname(cachePath), { recursive: true });
         await fs.writeFile(cachePath, "# fish completion\n", "utf8");
 
-        const program = new Command().name("openclaw");
+        const program = new Command().name("omnisclaw");
         registerCompletionCli(program);
         await program.parseAsync(["completion", "--install", "--yes"], { from: "user" });
 
@@ -381,15 +381,15 @@ describe("completion-cli write-state", () => {
     await withIsolatedCompletionState(async () => {
       const log = vi.spyOn(console, "log").mockImplementation(() => {});
       vi.spyOn(console, "warn").mockImplementation(() => {});
-      const program = new Command().name("openclaw");
+      const program = new Command().name("omnisclaw");
       registerCompletionCli(program);
       await program.parseAsync(
         ["completion", "--shell", "zsh", "--write-state", "--install", "--yes"],
         { from: "user" },
       );
 
-      const cachePath = resolveCompletionCachePath("zsh", "openclaw");
-      await expect(fs.readFile(cachePath, "utf8")).resolves.toContain("#compdef openclaw");
+      const cachePath = resolveCompletionCachePath("zsh", "omnisclaw");
+      await expect(fs.readFile(cachePath, "utf8")).resolves.toContain("#compdef omnisclaw");
       await expect(fs.readFile(resolveCompletionProfilePath("zsh"), "utf8")).resolves.toContain(
         cachePath,
       );
@@ -416,17 +416,17 @@ describe("completion-cli write-state", () => {
     try {
       await withEnvAsync({ HOME: homeDir, OPENCLAW_STATE_DIR: stateDir }, async () => {
         const program = new Command();
-        program.name("openclaw");
+        program.name("omnisclaw");
         registerCompletionCli(program);
 
         await program.parseAsync(["completion", "--write-state"], { from: "user" });
 
         const cacheDir = path.join(stateDir, "completions");
         expect((await fs.readdir(cacheDir)).toSorted()).toEqual([
-          "openclaw.bash",
-          "openclaw.fish",
-          "openclaw.ps1",
-          "openclaw.zsh",
+          "omnisclaw.bash",
+          "omnisclaw.fish",
+          "omnisclaw.ps1",
+          "omnisclaw.zsh",
         ]);
         expect(registerSubCliByNameMock.mock.calls).toEqual([
           [program, "qa", process.argv, { purpose: "completion" }],
@@ -456,7 +456,7 @@ describe("completion-cli write-state", () => {
       logging.setLoggerOverride({ level: "silent", consoleLevel: "info", consoleStyle: "json" });
       await withEnvAsync({ HOME: homeDir, OPENCLAW_STATE_DIR: stateDir }, async () => {
         const program = new Command();
-        program.name("openclaw");
+        program.name("omnisclaw");
         registerCompletionCli(program);
 
         await program.parseAsync(["completion", "--write-state"], { from: "user" });
@@ -491,7 +491,7 @@ describe("completion-cli write-state", () => {
         },
         async () => {
           const program = new Command();
-          program.name("openclaw");
+          program.name("omnisclaw");
           registerCompletionCli(program);
 
           await program.parseAsync(["completion", "--write-state"], { from: "user" });
@@ -501,10 +501,10 @@ describe("completion-cli write-state", () => {
           ]);
           expect(registerPluginCliCommandsFromValidatedConfigMock).not.toHaveBeenCalled();
           expect((await fs.readdir(path.join(stateDir, "completions"))).toSorted()).toEqual([
-            "openclaw.bash",
-            "openclaw.fish",
-            "openclaw.ps1",
-            "openclaw.zsh",
+            "omnisclaw.bash",
+            "omnisclaw.fish",
+            "omnisclaw.ps1",
+            "omnisclaw.zsh",
           ]);
         },
       );

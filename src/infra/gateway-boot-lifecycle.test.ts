@@ -390,7 +390,7 @@ describe("formatGatewayCrashLoopManualChannelStartHint", () => {
   });
 
   it.each([
-    { name: "default", profile: "", container: "", command: "openclaw" },
+    { name: "default", profile: "", container: "", command: "omnisclaw" },
     { name: "named profile", profile: "work", container: "", command: "omnisclaw --profile work" },
     { name: "container", profile: "", container: "demo", command: "omnisclaw --container demo" },
     {

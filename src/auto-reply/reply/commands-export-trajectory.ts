@@ -2,6 +2,7 @@
 import { resolveSessionAgentId } from "../../agents/agent-scope.js";
 import { createExecTool } from "../../agents/bash-tools.js";
 import type { ExecToolDetails } from "../../agents/bash-tools.js";
+import { formatCliCommand } from "../../cli/command-format.js";
 import { formatErrorMessage } from "../../infra/errors.js";
 import type { ExecApprovalRequest } from "../../infra/exec-approvals.js";
 import type { ReplyPayload } from "../types.js";
@@ -293,7 +294,7 @@ function buildTrajectoryExportExecRequest(
   const args = ["sessions", "export-trajectory", "--request-json-base64", encodedRequest, "--json"];
   return {
     ...buildCurrentOpenClawCliExecRequest(args),
-    displayCommand: ["openclaw", ...args].join(" "),
+    displayCommand: formatCliCommand(["openclaw", ...args].join(" ")),
     encodedRequest,
     request,
   };

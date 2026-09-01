@@ -112,7 +112,7 @@ describe("classifyGatewayConnectFailure", () => {
       },
       kind: "pairing-required",
       message: "scope upgrade pending approval (requestId: req-123)",
-      remediation: "openclaw devices approve --latest",
+      remediation: "omnisclaw devices approve --latest",
     },
     {
       name: "structured device identity requirement",
@@ -126,7 +126,7 @@ describe("classifyGatewayConnectFailure", () => {
       input: { details: { code: "AUTH_SCOPE_MISMATCH" }, message: "scope rejected" },
       kind: "scope-mismatch",
       message: "scope rejected",
-      remediation: "openclaw devices list",
+      remediation: "omnisclaw devices list",
     },
     {
       name: "structured authentication rate limit",
@@ -150,7 +150,7 @@ describe("classifyGatewayConnectFailure", () => {
       },
       kind: "auth-rejected",
       message: "device token mismatch",
-      remediation: "openclaw devices rotate --device <deviceId> --role operator",
+      remediation: "omnisclaw devices rotate --device <deviceId> --role operator",
     },
     {
       name: "other structured auth rejection",
@@ -164,7 +164,7 @@ describe("classifyGatewayConnectFailure", () => {
       input: { reason: "gateway closed (1008): pairing required" },
       kind: "pairing-required",
       message: "gateway closed (1008): pairing required",
-      remediation: "openclaw devices approve --latest",
+      remediation: "omnisclaw devices approve --latest",
     },
     {
       name: "legacy pairing reason behind a generic message",
@@ -174,7 +174,7 @@ describe("classifyGatewayConnectFailure", () => {
       },
       kind: "pairing-required",
       message: "connect failed",
-      remediation: "openclaw devices approve --latest",
+      remediation: "omnisclaw devices approve --latest",
     },
     {
       name: "legacy device identity reason behind a generic message",
@@ -191,14 +191,14 @@ describe("classifyGatewayConnectFailure", () => {
       input: { message: "connect failed", reason: "scope mismatch" },
       kind: "scope-mismatch",
       message: "connect failed",
-      remediation: "openclaw devices list",
+      remediation: "omnisclaw devices list",
     },
     {
       name: "legacy device token reason behind a generic message",
       input: { message: "connect failed", reason: "device token mismatch" },
       kind: "auth-rejected",
       message: "connect failed",
-      remediation: "openclaw devices rotate --device <deviceId> --role operator",
+      remediation: "omnisclaw devices rotate --device <deviceId> --role operator",
     },
     {
       name: "legacy shared token reason behind a generic message",

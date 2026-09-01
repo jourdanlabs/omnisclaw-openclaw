@@ -35,6 +35,7 @@ export const PREFLIGHT_CHECKS: CheckCommand[] = [
   { name: "duplicate scan target coverage", args: ["dup:check:coverage"] },
   { name: "npm package-lock guard", args: ["deps:npm-lock:check"] },
   { name: "package patch guard", args: ["deps:patches:check"] },
+  { name: "David-facing CLI copy guard", args: ["check:cli-copy"] },
 ];
 
 /**

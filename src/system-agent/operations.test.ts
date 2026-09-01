@@ -812,7 +812,7 @@ describe("system agent operations", () => {
       }),
       // Denylisted roots cite their documented escalation; route paths point
       // at the verified set_default_model/onboard flows.
-    ).rejects.toThrow(/openclaw onboard|trusted shell/);
+    ).rejects.toThrow(/(?:omnisclaw|openclaw) onboard|trusted shell/);
 
     expect(runConfigSet).not.toHaveBeenCalled();
     expect(lines.join("\n")).not.toContain("[openclaw] running:");

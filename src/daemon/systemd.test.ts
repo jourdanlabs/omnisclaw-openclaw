@@ -3109,7 +3109,7 @@ describe("systemd service install and uninstall", () => {
       const unit = await fs.readFile(unitPath, "utf8");
       expect(unitPath).toMatch(/openclaw-node\.service$/);
       expect(unit).toContain("Description=OpenClaw Node Host");
-      expect(unit).toContain("omnisclaw node run");
+      expect(unit).toContain("openclaw node run");
       expect(unit).not.toContain("OPENCLAW_SERVICE_VERSION");
       expect(execFileMock).toHaveBeenCalledTimes(4);
     });

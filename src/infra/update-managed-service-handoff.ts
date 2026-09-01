@@ -7,6 +7,7 @@ import os from "node:os";
 import path from "node:path";
 import type { DatabaseSync } from "node:sqlite";
 import { isRecord } from "@openclaw/normalization-core/record-coerce";
+import { resolveCliName } from "../cli/cli-name.js";
 import { resolveGatewayWindowsTaskName } from "../daemon/constants.js";
 import { resolveLaunchAgentLabel } from "../daemon/launchd-label.js";
 import { resolveLaunchAgentPlistPath } from "../daemon/launchd-service-files.js";
@@ -1154,7 +1155,7 @@ function resolveUpdateCliArgv(params: {
   if (execPath && !/^(?:node|bun)(?:\.exe)?$/iu.test(path.basename(execPath))) {
     return [execPath, ...updateArgs];
   }
-  return ["openclaw", ...updateArgs];
+  return [resolveCliName(), ...updateArgs];
 }
 
 export function formatManagedServiceUpdateCommand(params?: {

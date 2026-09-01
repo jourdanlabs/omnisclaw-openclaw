@@ -72,7 +72,8 @@ export async function prepareGatewayAgentCliShim(
   const invocation = options.invocation ?? resolveCurrentOpenClawCliInvocation([]);
   const profile = normalizeProfileName(env.OPENCLAW_PROFILE);
   const binDir = path.join(options.stateDir ?? resolveStateDir(env), AGENT_CLI_BIN_DIR);
-  const executablePath = path.join(binDir, platform === "win32" ? "openclaw.cmd" : "openclaw");
+  const names =
+    platform === "win32" ? ["omnisclaw.cmd", "openclaw.cmd"] : ["omnisclaw", "openclaw"];
   const content =
     platform === "win32"
       ? renderWindowsShim(invocation, profile)
@@ -80,12 +81,14 @@ export async function prepareGatewayAgentCliShim(
 
   await fs.mkdir(binDir, { recursive: true, mode: 0o700 });
   await fs.chmod(binDir, 0o700).catch(() => undefined);
-  await writeTextAtomic(executablePath, content, {
-    mode: 0o700,
-    dirMode: 0o700,
-    durable: false,
-    tempPrefix: "openclaw-agent-cli",
-  });
+  for (const name of names) {
+    await writeTextAtomic(path.join(binDir, name), content, {
+      mode: 0o700,
+      dirMode: 0o700,
+      durable: false,
+      tempPrefix: "openclaw-agent-cli",
+    });
+  }
   gatewayAgentCliState.binDir = binDir;
 }
 

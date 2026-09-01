@@ -2,6 +2,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import * as tar from "tar";
+import { formatCliCommand } from "../cli/command-format.js";
 import { readConfigFileSnapshot, resolveStateDir } from "../config/config.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import { type RuntimeEnv, writeRuntimeJson } from "../runtime.js";
@@ -20,9 +21,9 @@ const BACKUP_RESTORE_WARNINGS = [
   "Restoring an archive is time travel: every restored state surface rolls back to the archive timestamp.",
   "Messaging-channel credentials with ratchet state, especially WhatsApp, may desynchronize after rollback and require relinking.",
   "Approvals and delivery/dedupe state also roll back; review pending approvals before resuming the Gateway.",
-  "Plugin node_modules are not archived; after activation, run `omnisclaw plugins update <id>` or reinstall with `omnisclaw plugins install <spec> --force`.",
-  "Generated plugin-skills links are not archived; after activation, run `omnisclaw skills list` or start an agent session to rebuild them.",
-] as const;
+  `Plugin node_modules are not archived; after activation, run \`${formatCliCommand("openclaw plugins update <id>")}\` or reinstall with \`${formatCliCommand("openclaw plugins install <spec> --force")}\`.`,
+  `Generated plugin-skills links are not archived; after activation, run \`${formatCliCommand("openclaw skills list")}\` or start an agent session to rebuild them.`,
+];
 
 type BackupRestoreOptions = {
   archive: string;

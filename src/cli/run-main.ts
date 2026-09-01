@@ -1635,7 +1635,7 @@ async function runCliWithPreparedOutputMode(
         }
         if (isBenignUncaughtExceptionError(error)) {
           console.warn(
-            "[openclaw] Non-fatal uncaught exception (continuing):",
+            `[${resolveCliName()}] Non-fatal uncaught exception (continuing):`,
             formatUncaughtError(error),
           );
           return;
@@ -1644,14 +1644,14 @@ async function runCliWithPreparedOutputMode(
           defaultRuntime.writeJson(formatCliJsonFailure(error));
         }
         for (const line of formatCliFailureLines({
-          title: "OpenClaw hit an unexpected runtime error.",
+          title: "OMNIS CLAW hit an unexpected runtime error.",
           error,
           argv: normalizedArgv,
         })) {
           console.error(line);
         }
         for (const message of runFatalErrorHooks({ reason: "uncaught_exception", error })) {
-          console.error("[openclaw]", message);
+          console.error(`[${resolveCliName()}]`, message);
         }
         restoreRuntimeTerminalState("uncaught exception", { resumeStdinIfPaused: false });
         process.exit(1);

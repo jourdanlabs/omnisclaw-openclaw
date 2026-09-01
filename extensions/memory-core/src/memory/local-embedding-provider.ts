@@ -1,6 +1,6 @@
 export const LOCAL_MEMORY_EMBEDDING_PROVIDER_ID = "local";
 export const LLAMA_CPP_PROVIDER_INSTALL_COMMAND =
-  "openclaw plugins install @openclaw/llama-cpp-provider";
+  "omnisclaw plugins install @openclaw/llama-cpp-provider";
 
 export const MISSING_LOCAL_MEMORY_EMBEDDING_PROVIDER_MESSAGE = [
   "Unknown memory embedding provider: local.",

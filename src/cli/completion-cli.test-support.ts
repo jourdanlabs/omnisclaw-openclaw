@@ -10,7 +10,7 @@ import { quoteCliArg } from "./quote-cli-arg.js";
 
 export function createAliasedCompletionProgram(): Command {
   const program = new Command();
-  program.name("openclaw");
+  program.name("omnisclaw");
   program.option("--profile <name>", "Profile");
   const infer = program.command("infer").alias("capability").description("Run inference");
   infer.command("embed").description("Embed text").option("--model <id>", "Model id");
@@ -34,7 +34,7 @@ export function runGeneratedBashCompletion(program: Command, words: readonly str
       `${script}
 COMP_WORDS=(${words.map(quoteCliArg).join(" ")})
 COMP_CWORD=${words.length - 1}
-_openclaw_completion
+_omnisclaw_completion
 printf '%s\\n' "\${COMPREPLY[@]}"
 `,
     ],

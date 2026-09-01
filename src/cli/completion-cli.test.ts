@@ -23,7 +23,7 @@ afterAll(async () => {
 
 function createCompletionProgram(): Command {
   const program = new Command();
-  program.name("openclaw");
+  program.name("omnisclaw");
   program.description("CLI root");
   program.option("-v, --verbose", "Verbose output");
   program.option(
@@ -55,7 +55,7 @@ function createDocumentedCompletionProgram(): Command {
 }
 
 function createOptionalChoiceCompletionProgram(): Command {
-  const program = new Command().name("openclaw");
+  const program = new Command().name("omnisclaw");
   program.addOption(new Option("--mode [mode]", "Mode").choices(["auto", "manual", "-legacy"]));
   program.option("--json", "JSON output");
   return program;
@@ -65,9 +65,9 @@ describe("completion-cli", () => {
   it("generates zsh functions for nested subcommands", () => {
     const script = getCompletionScript("zsh", createCompletionProgram());
 
-    expect(script).toContain("_openclaw_gateway()");
-    expect(script).toContain("(status) _openclaw_gateway_status ;;");
-    expect(script).toContain("(restart) _openclaw_gateway_restart ;;");
+    expect(script).toContain("_omnisclaw_gateway()");
+    expect(script).toContain("(status) _omnisclaw_gateway_status ;;");
+    expect(script).toContain("(restart) _omnisclaw_gateway_restart ;;");
     expect(script).toContain("--force[Force the action]");
     expect(script).toContain("\\`models status --json\\`");
     expect(script).toContain("\\$OPENCLAW_STATE_DIR");
@@ -75,7 +75,7 @@ describe("completion-cli", () => {
 
   it("escapes zsh option descriptions for double-quoted arguments specs", () => {
     const program = new Command()
-      .name("openclaw")
+      .name("omnisclaw")
       .option("--literal", "Use $OPENCLAW_STATE_DIR with `model/list` and John's profile");
 
     const script = getCompletionScript("zsh", program);
@@ -98,7 +98,7 @@ describe("completion-cli", () => {
   it.skipIf(process.platform === "win32")(
     "keeps zsh completion choices literal and preserves candidate boundaries",
     () => {
-      const program = new Command().name("openclaw");
+      const program = new Command().name("omnisclaw");
       program.addOption(
         new Option("--value <value>", "Value").choices([
           "two words",
@@ -115,7 +115,7 @@ describe("completion-cli", () => {
           "-fc",
           `${getCompletionScript("zsh", program)}
 _arguments() { printf '%s\\n' "$@"; }
-_openclaw_root_completion
+_omnisclaw_root_completion
 `,
         ],
         { encoding: "utf8" },
@@ -162,13 +162,13 @@ _openclaw_root_completion
           "-fc",
           `
             source ${JSON.stringify(scriptPath)}
-            [[ -z "\${_comps[openclaw]-}" ]] || exit 10
-            [[ "\${precmd_functions[(r)_openclaw_register_completion]}" = "_openclaw_register_completion" ]] || exit 11
+            [[ -z "\${_comps[omnisclaw]-}" ]] || exit 10
+            [[ "\${precmd_functions[(r)_omnisclaw_register_completion]}" = "_omnisclaw_register_completion" ]] || exit 11
             autoload -Uz compinit
             compinit -C
-            _openclaw_register_completion
-            [[ -z "\${precmd_functions[(r)_openclaw_register_completion]}" ]] || exit 12
-            [[ "\${_comps[openclaw]-}" = "_openclaw_root_completion" ]]
+            _omnisclaw_register_completion
+            [[ -z "\${precmd_functions[(r)_omnisclaw_register_completion]}" ]] || exit 12
+            [[ "\${_comps[omnisclaw]-}" = "_omnisclaw_root_completion" ]]
           `,
         ],
         {
@@ -199,10 +199,10 @@ _openclaw_root_completion
   });
 
   it("generates valid PowerShell root arrays when commands or options are empty", () => {
-    const commandsOnly = new Command().name("openclaw");
+    const commandsOnly = new Command().name("omnisclaw");
     commandsOnly.command("status");
-    const optionsOnly = new Command().name("openclaw").option("--json", "JSON output");
-    const empty = new Command().name("openclaw");
+    const optionsOnly = new Command().name("omnisclaw").option("--json", "JSON output");
+    const empty = new Command().name("omnisclaw");
 
     expect(getCompletionScript("powershell", commandsOnly)).toContain("$completions = @('status')");
     expect(getCompletionScript("powershell", optionsOnly)).toContain("$completions = @('--json')");
@@ -226,14 +226,14 @@ _openclaw_root_completion
   });
 
   it("escapes apostrophes in PowerShell completion choices", () => {
-    const program = new Command().name("openclaw");
+    const program = new Command().name("omnisclaw");
     program.addOption(new Option("--profile <name>", "Profile").choices(["Jane's", "work"]));
 
     expect(getCompletionScript("powershell", program)).toContain("@('Jane''s','work')");
   });
 
   it("matches PowerShell value prefixes literally and case-insensitively", () => {
-    const program = new Command().name("openclaw");
+    const program = new Command().name("omnisclaw");
     program.addOption(new Option("--value <value>", "Value").choices(["alpha", "a*literal"]));
 
     expect(getCompletionScript("powershell", program)).toContain(
@@ -299,7 +299,7 @@ _openclaw_root_completion
       expected: ["--value='a*literal'"],
     },
   ])("matches real PowerShell choices with $name", async ({ commandLine, expected }) => {
-    const program = new Command().name("openclaw");
+    const program = new Command().name("omnisclaw");
     program.addOption(
       new Option("--value <value>", "Value").choices(["alpha", "a*literal", "a[bracket]"]),
     );
@@ -327,7 +327,7 @@ _openclaw_root_completion
       prefix: "literal",
     },
   ])("inserts PowerShell $name as one safe argument", async ({ value, prefix }) => {
-    const program = new Command().name("openclaw");
+    const program = new Command().name("omnisclaw");
     program.addOption(new Option("--value <value>", "Value").choices([value]));
     const safeValue = /^[A-Za-z0-9_./:+-]+$/.test(value)
       ? value
@@ -400,18 +400,18 @@ _openclaw_root_completion
     const script = getCompletionScript("fish", createCompletionProgram());
 
     expect(script).toContain(
-      'complete -c omnisclaw -n "__openclaw_command_path_matches --" -a "gateway" -d \'Gateway commands\'',
+      'complete -c omnisclaw -n "__omnisclaw_command_path_matches --" -a "gateway" -d \'Gateway commands\'',
     );
     expect(script).toContain(
-      'complete -c omnisclaw -n "__openclaw_command_path_matches gateway -- -t --token" -a "status" -d \'Show gateway status\'',
+      'complete -c omnisclaw -n "__omnisclaw_command_path_matches gateway -- -t --token" -a "status" -d \'Show gateway status\'',
     );
     expect(script).toContain(
-      "complete -c omnisclaw -n \"__openclaw_command_path_matches gateway -- -t --token\" -l force -d 'Force the action'",
+      "complete -c omnisclaw -n \"__omnisclaw_command_path_matches gateway -- -t --token\" -l force -d 'Force the action'",
     );
     expect(script).toContain(
-      "complete -c omnisclaw -n \"__openclaw_command_path_matches gateway status -- -t --token\" -l json -d 'JSON output'",
+      "complete -c omnisclaw -n \"__omnisclaw_command_path_matches gateway status -- -t --token\" -l json -d 'JSON output'",
     );
-    expect(script).toContain("__openclaw_command_path_matches gateway -- -t --token");
+    expect(script).toContain("__omnisclaw_command_path_matches gateway -- -t --token");
     expect(script).toContain("if contains -- $flag $value_options");
   });
 
@@ -502,7 +502,7 @@ _openclaw_root_completion
     ["an attached long optional value", "omnisclaw --color=a", "--color=always"],
   ])("completes real Fish Commander choices after %s", (_name, commandLine, expected) => {
     const program = new Command()
-      .name("openclaw")
+      .name("omnisclaw")
       .addOption(new Option("-c, --color [when]").choices(["always", "never"]));
 
     expect(runGeneratedFishCompletion(program, commandLine)).toContain(expected);
@@ -539,14 +539,14 @@ _openclaw_root_completion
       prefix: "literal",
     },
   ])("preserves Fish choice $name as one inert candidate", ({ value, prefix }) => {
-    const program = new Command().name("openclaw");
+    const program = new Command().name("omnisclaw");
     program.addOption(new Option("--value <value>", "Value").choices([value]));
 
     expect(runGeneratedFishCompletion(program, `omnisclaw --value ${prefix}`)).toEqual([value]);
   });
 
   it("does not require optional Fish option choices", () => {
-    const program = new Command().name("openclaw");
+    const program = new Command().name("omnisclaw");
     program.addOption(new Option("--mode [mode]", "Mode").choices(["auto", "manual"]));
 
     const optionLine = getCompletionScript("fish", program)
@@ -561,24 +561,24 @@ _openclaw_root_completion
   it("scopes fish value-taking option skips to the active command path", () => {
     const script = getCompletionScript("fish", createCompletionProgram());
 
-    expect(script).toContain("__openclaw_command_path_matches agent -- --verbose");
-    expect(script).toContain("__openclaw_command_path_matches sessions cleanup --");
-    expect(script).not.toContain("__openclaw_command_path_matches sessions cleanup -- --verbose");
+    expect(script).toContain("__omnisclaw_command_path_matches agent -- --verbose");
+    expect(script).toContain("__omnisclaw_command_path_matches sessions cleanup --");
+    expect(script).not.toContain("__omnisclaw_command_path_matches sessions cleanup -- --verbose");
     expect(script).toContain(
-      "complete -c omnisclaw -n \"__openclaw_command_path_matches sessions cleanup --\" -l dry-run -d 'Preview cleanup'",
+      "complete -c omnisclaw -n \"__omnisclaw_command_path_matches sessions cleanup --\" -l dry-run -d 'Preview cleanup'",
     );
   });
 
   it("uses Commander's parsed flags instead of value placeholder syntax", () => {
     const program = new Command()
-      .name("openclaw")
+      .name("omnisclaw")
       .option("--trigger-script <path|->", "Condition script file, or - for stdin")
       .option("--ws, --workspace <name>", "Workspace");
 
     const fishScript = getCompletionScript("fish", program);
 
     expect(fishScript).toContain(
-      "complete -c omnisclaw -n \"__openclaw_command_path_matches -- --trigger-script --ws --workspace\" -l trigger-script -r -d 'Condition script file, or - for stdin'",
+      "complete -c omnisclaw -n \"__omnisclaw_command_path_matches -- --trigger-script --ws --workspace\" -l trigger-script -r -d 'Condition script file, or - for stdin'",
     );
     expect(fishScript).not.toContain(" -s > ");
     expect(fishScript).toContain(" -l ws -l workspace -r -d 'Workspace'");
@@ -737,7 +737,7 @@ _openclaw_root_completion
       prefix: "`",
     },
   ])("keeps Bash choice $name literal without executing it", ({ value, prefix }) => {
-    const program = new Command().name("openclaw");
+    const program = new Command().name("omnisclaw");
     program.addOption(new Option("--value <value>", "Value").choices([value]));
 
     expect(runGeneratedBashCompletion(program, ["openclaw", "--value", prefix])).toEqual([value]);
@@ -848,7 +848,7 @@ _openclaw_root_completion
     "keeps optional choice values from consuming the following option in real Bash",
     () => {
       const program = new Command()
-        .name("openclaw")
+        .name("omnisclaw")
         .addOption(new Option("-c, --color [when]").choices(["always", "never"]))
         .option("-v, --verbose", "Verbose output");
 
@@ -874,7 +874,7 @@ _openclaw_root_completion
 
   it("omits empty PowerShell command-path switches for root-only programs", () => {
     const program = new Command()
-      .name("openclaw")
+      .name("omnisclaw")
       .addOption(new Option("--theme <theme>").choices(["light", "dark"]));
 
     expect(getCompletionScript("powershell", program)).not.toContain("switch ($candidatePath)");
@@ -882,7 +882,7 @@ _openclaw_root_completion
 
   it("quotes PowerShell choice completion text while preserving its display value", () => {
     const program = new Command()
-      .name("openclaw")
+      .name("omnisclaw")
       .addOption(new Option("--theme <theme>").choices(["light blue", "Bob's green", "path`name"]));
 
     const script = getCompletionScript("powershell", program);
@@ -922,7 +922,7 @@ _openclaw_root_completion
     ["a backtick", "omnisclaw --theme p", "'path`name'"],
   ])("quotes %s in real PowerShell completion text", async (_name, commandLine, expected) => {
     const program = new Command()
-      .name("openclaw")
+      .name("omnisclaw")
       .addOption(new Option("--theme <theme>").choices(["light blue", "Bob's green", "path`name"]));
 
     expect(await powerShellCompletion.complete(program, commandLine)).toEqual([expected]);
@@ -932,7 +932,7 @@ _openclaw_root_completion
     "keeps optional choice values from consuming the following PowerShell option",
     async () => {
       const program = new Command()
-        .name("openclaw")
+        .name("omnisclaw")
         .addOption(new Option("-c, --color [when]").choices(["always", "never"]))
         .option("-v, --verbose", "Verbose output");
 
@@ -949,7 +949,7 @@ _openclaw_root_completion
     "preserves spaces and apostrophes inside individual Commander choices",
     () => {
       const program = new Command()
-        .name("openclaw")
+        .name("omnisclaw")
         .addOption(
           new Option("--theme <theme>", "Color theme").choices([
             "light blue",
@@ -974,7 +974,7 @@ _openclaw_root_completion
       return;
     }
 
-    const script = getCompletionScript("bash", new Command().name("openclaw"));
+    const script = getCompletionScript("bash", new Command().name("omnisclaw"));
     const result = spawnSync("bash", ["--noprofile", "--norc", "-n"], {
       encoding: "utf8",
       input: script,

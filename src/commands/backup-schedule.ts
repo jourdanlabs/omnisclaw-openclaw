@@ -1,4 +1,5 @@
 import { resolveConfiguredAgentId } from "../agents/agent-scope-config.js";
+import { resolveCliName } from "../cli/cli-name.js";
 import { formatCliCommand } from "../cli/command-format.js";
 import {
   callGatewayFromCli,
@@ -63,7 +64,7 @@ function buildScheduledArgv(
       )
     : undefined;
   return [
-    "openclaw",
+    resolveCliName(),
     "backup",
     "git",
     "create",

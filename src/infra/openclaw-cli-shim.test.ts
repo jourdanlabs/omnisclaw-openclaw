@@ -67,11 +67,11 @@ describe.skipIf(process.platform === "win32")("Gateway agent CLI shim", () => {
           { env },
         );
         expect(control.status, "checkout source CLI --version").toBe(0);
-        expect(control.stdout).toMatch(/^OpenClaw \d+\./);
+        expect(control.stdout).toMatch(/^OMNIS CLAW /);
 
         await prepareGatewayAgentCliShim({ invocation, env, stateDir });
         const result = runSourceCliProbe(
-          path.join(stateDir, "tmp", "agent-cli", "openclaw"),
+          path.join(stateDir, "tmp", "agent-cli", "omnisclaw"),
           ["--version"],
           callerCwd,
           { env },

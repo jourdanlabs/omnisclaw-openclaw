@@ -269,7 +269,8 @@ export function extractLiveExecOutput(result: unknown): string | undefined {
 
 function isOpenClawExecutable(token: string | undefined): boolean {
   const executable = normalizeOptionalLowercaseString(token);
-  return executable?.split(/[\\/]/).at(-1) === "openclaw";
+  const name = executable?.split(/[\\/]/).at(-1);
+  return name === "openclaw" || name === "omnisclaw";
 }
 
 function isOpenClawPackageSpec(token: string | undefined): boolean {

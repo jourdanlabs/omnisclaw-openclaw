@@ -210,7 +210,7 @@ export function resolveMemorySearchStaleness(
   return {
     stale: true,
     warning: `Memory index is stale: ${reason}. Search results may be incomplete.`,
-    action: `Run: openclaw memory status --index${agentId?.trim() ? ` --agent ${agentId.trim()}` : ""}`,
+    action: `Run: omnisclaw memory status --index${agentId?.trim() ? ` --agent ${agentId.trim()}` : ""}`,
   };
 }
 

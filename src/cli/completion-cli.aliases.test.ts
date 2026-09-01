@@ -37,9 +37,9 @@ describe("completion-cli command aliases", () => {
     const script = getCompletionScript("zsh", createAliasedCompletionProgram());
 
     expect(script).toContain("'capability[Run inference]'");
-    expect(script).toContain("(infer|capability) _openclaw_infer ;;");
+    expect(script).toContain("(infer|capability) _omnisclaw_infer ;;");
     expect(script).toContain("'create[Add a job]'");
-    expect(script).toContain("(add|create) _openclaw_cron_add ;;");
+    expect(script).toContain("(add|create) _omnisclaw_cron_add ;;");
   });
 
   it("completes root and nested aliases in bash command paths", () => {
@@ -70,16 +70,16 @@ describe("completion-cli command aliases", () => {
     const script = getCompletionScript("fish", createAliasedCompletionProgram());
 
     expect(script).toContain(
-      'complete -c omnisclaw -n "__openclaw_command_path_matches -- --profile" -a "capability" -d \'Run inference\'',
+      'complete -c omnisclaw -n "__omnisclaw_command_path_matches -- --profile" -a "capability" -d \'Run inference\'',
     );
     expect(script).toContain(
-      'complete -c omnisclaw -n "__openclaw_command_path_matches capability -- --profile" -a "embed" -d \'Embed text\'',
+      'complete -c omnisclaw -n "__omnisclaw_command_path_matches capability -- --profile" -a "embed" -d \'Embed text\'',
     );
     expect(script).toContain(
-      'complete -c omnisclaw -n "__openclaw_command_path_matches cron -- --profile" -a "create" -d \'Add a job\'',
+      'complete -c omnisclaw -n "__omnisclaw_command_path_matches cron -- --profile" -a "create" -d \'Add a job\'',
     );
     expect(script).toContain(
-      "complete -c omnisclaw -n \"__openclaw_command_path_matches cron create -- --profile --at\" -l at -r -d 'Schedule time'",
+      "complete -c omnisclaw -n \"__omnisclaw_command_path_matches cron create -- --profile --at\" -l at -r -d 'Schedule time'",
     );
   });
 

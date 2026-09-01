@@ -767,7 +767,7 @@ function buildExplicitApproveCommand(opts: DevicesRpcOpts, requestId: string): s
   if (opts.json === true) {
     args.push("--json");
   }
-  return args.map(quoteCliArg).join(" ");
+  return formatCliCommand(args.map(quoteCliArg).join(" "));
 }
 
 function formatAuthFlagReminder(opts: DevicesRpcOpts): string {

@@ -1,0 +1,16 @@
+{
+  "schema": "omnisclaw.cli-copy-exemptions.v1",
+  "note": "Unwrapped `openclaw <subcommand>` string literals and CLI argv arrays in src/, extensions/, and packages/ fail the build guard unless they are formatCliCommand/replaceCliName/formatInlineCliCommand arguments or listed here. Exemptions are for template helpers that return the raw name for a formatCliCommand caller, or genuine non-user-facing protocol/type strings. User-facing help, doctor, recovery, pairing, and hook-relay copy must go through the rewrite path.",
+  "sites": [
+    {
+      "file": "src/plugins/plugin-version-drift.ts",
+      "symbol": "resolvePluginVersionDriftUpdateCommand",
+      "reason": "template-helper: returns raw `openclaw plugins update …` for formatCliCommand callers in doctor/status"
+    },
+    {
+      "file": "packages/gateway-protocol/src/schema/environments.ts",
+      "symbol": "RuntimeTargetIssueSchema",
+      "reason": "protocol string: Type.Literal payloads `openclaw update` / `openclaw node restart` on the node-host wire"
+    }
+  ]
+}

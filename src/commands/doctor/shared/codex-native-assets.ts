@@ -6,6 +6,7 @@ import path from "node:path";
 import { isRecord as hasRecord } from "@openclaw/normalization-core/record-coerce";
 import { normalizeOptionalLowercaseString as normalizeString } from "@openclaw/normalization-core/string-coerce";
 import { collectConfiguredAgentHarnessRuntimes } from "../../../agents/harness-runtimes.js";
+import { formatCliCommand } from "../../../cli/command-format.js";
 import type { OpenClawConfig } from "../../../config/types.openclaw.js";
 
 type CodexNativeAssetHit = {
@@ -199,7 +200,7 @@ export async function collectCodexNativeAssetInfoNotes(params: {
   return [
     [
       `- Personal Codex CLI assets found (${counts.join(", ")}) in ${resolveCodexHome(env)} and ${resolvePersonalAgentSkillsDir(env)}; native Codex-mode agents use isolated per-agent homes and will not load them.`,
-      "- To review or promote them: install the Codex plugin (openclaw plugins install npm:@openclaw/codex), then run openclaw migrate plan codex.",
+      `- To review or promote them: install the Codex plugin (${formatCliCommand("openclaw plugins install npm:@openclaw/codex")}), then run ${formatCliCommand("openclaw migrate plan codex")}.`,
     ].join("\n"),
   ];
 }

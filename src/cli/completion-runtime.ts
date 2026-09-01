@@ -10,6 +10,7 @@ import {
 import { resolveStateDir } from "../config/paths.js";
 import { isErrno } from "../infra/errors.js";
 import { pathExists } from "../utils.js";
+import { resolveCliName } from "./cli-name.js";
 import { publishOutputFileAtomically } from "./output-file.runtime.js";
 
 export const COMPLETION_SHELLS = ["zsh", "bash", "powershell", "fish"] as const;
@@ -80,7 +81,7 @@ export function resolveCompletionCachePath(shell: CompletionShell, binName: stri
 /** Check if the completion cache file exists for the given shell. */
 export async function completionCacheExists(
   shell: CompletionShell,
-  binName = "openclaw",
+  binName = resolveCliName(),
 ): Promise<boolean> {
   const cachePath = resolveCompletionCachePath(shell, binName);
   return pathExists(cachePath);
@@ -383,7 +384,7 @@ export function resolveCompletionProfileHint(shell: CompletionShell): string {
 /** Returns whether a shell profile already contains an OpenClaw completion block or source line. */
 export async function isCompletionInstalled(
   shell: CompletionShell,
-  binName = "openclaw",
+  binName = resolveCliName(),
 ): Promise<boolean> {
   const profilePath = resolveCompletionProfilePath(shell);
 
@@ -403,7 +404,7 @@ export async function isCompletionInstalled(
  */
 export async function usesSlowDynamicCompletion(
   shell: CompletionShell,
-  binName = "openclaw",
+  binName = resolveCliName(),
 ): Promise<boolean> {
   const profilePath = resolveCompletionProfilePath(shell);
 
@@ -432,7 +433,7 @@ export function findCompletionProfileWriteError(err: unknown): NodeJS.ErrnoExcep
   return err instanceof Error ? findCompletionProfileWriteError(err.cause) : undefined;
 }
 
-export async function installCompletion(shell: string, yes: boolean, binName = "openclaw") {
+export async function installCompletion(shell: string, yes: boolean, binName = resolveCliName()) {
   const isShellSupported = isCompletionShell(shell);
   if (!isShellSupported) {
     throw new Error(`Automated installation not supported for ${shell} yet.`);

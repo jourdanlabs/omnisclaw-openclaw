@@ -22,7 +22,7 @@ export async function collectMatrixInstallPathWarnings(cfg: OpenClawConfig): Pro
   return formatPluginInstallPathIssue({
     issue,
     pluginLabel: "Matrix",
-    defaultInstallCommand: "openclaw plugins install @openclaw/matrix",
+    defaultInstallCommand: "omnisclaw plugins install @openclaw/matrix",
   }).map((entry) => `- ${entry}`);
 }
 

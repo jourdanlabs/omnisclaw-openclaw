@@ -2991,7 +2991,7 @@ describe("runCli exit behavior", () => {
 
   it("rejects unowned command roots before proxy and plugin runtime registration", async () => {
     await expect(runCli(["node", "openclaw", "foo"])).rejects.toThrow(
-      'OpenClaw does not know the command "foo".',
+      'OMNIS CLAW does not know the command "foo".',
     );
 
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -3044,7 +3044,7 @@ describe("runCli exit behavior", () => {
     const target = "https://gateway.example/dashboard/main/movies-a1166b81";
 
     await expect(runCli(["node", "openclaw", "unknown-owner", target])).rejects.toThrow(
-      'OpenClaw does not know the command "unknown-owner".',
+      'OMNIS CLAW does not know the command "unknown-owner".',
     );
 
     expect(runTuiCliActionMock).not.toHaveBeenCalled();
@@ -3139,7 +3139,7 @@ describe("runCli exit behavior", () => {
 
   it("does not claim a bare session ref as root-command sugar", async () => {
     await expect(runCli(["node", "openclaw", "movies-a1166b81"])).rejects.toThrow(
-      'OpenClaw does not know the command "movies-a1166b81".',
+      'OMNIS CLAW does not know the command "movies-a1166b81".',
     );
 
     expect(runTuiCliActionMock).not.toHaveBeenCalled();
@@ -3147,7 +3147,7 @@ describe("runCli exit behavior", () => {
 
   it("does not claim host shorthand as root-command sugar", async () => {
     await expect(runCli(["node", "openclaw", "gateway.example/main/a1166b81"])).rejects.toThrow(
-      'OpenClaw does not know the command "gateway.example/main/a1166b81".',
+      'OMNIS CLAW does not know the command "gateway.example/main/a1166b81".',
     );
 
     expect(runTuiCliActionMock).not.toHaveBeenCalled();
@@ -3171,7 +3171,7 @@ describe("runCli exit behavior", () => {
     const primary = "bad\u001b[31m-red\u001b[0m\nforged\tline";
 
     await expect(runCli(["node", "openclaw", primary])).rejects.toThrow(
-      'OpenClaw does not know the command "bad-red\\nforged\\tline".',
+      'OMNIS CLAW does not know the command "bad-red\\nforged\\tline".',
     );
 
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -3194,7 +3194,7 @@ describe("runCli exit behavior", () => {
     const message = (error as Error).message;
     const displayPrimary = `${"🦞".repeat(63)}…`;
     expect(displayPrimary.length).toBeLessThanOrEqual(128);
-    expect(message).toContain(`OpenClaw does not know the command "${displayPrimary}".`);
+    expect(message).toContain(`OMNIS CLAW does not know the command "${displayPrimary}".`);
     expect(message).not.toContain("�");
     expect(message.length).toBeLessThan(500);
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -3315,7 +3315,7 @@ describe("runCli exit behavior", () => {
 
   it("rejects unowned command roots even when --help is appended (regression for #81077)", async () => {
     await expect(runCli(["node", "openclaw", "foo", "--help"])).rejects.toThrow(
-      'OpenClaw does not know the command "foo".',
+      'OMNIS CLAW does not know the command "foo".',
     );
 
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -3326,7 +3326,7 @@ describe("runCli exit behavior", () => {
 
   it("rejects unowned command roots even when --version is appended", async () => {
     await expect(runCli(["node", "openclaw", "foo", "--version"])).rejects.toThrow(
-      'OpenClaw does not know the command "foo".',
+      'OMNIS CLAW does not know the command "foo".',
     );
 
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -3348,7 +3348,7 @@ describe("runCli exit behavior", () => {
     }
     expect(error).toBeInstanceOf(Error);
     expect((error as Error).message).toContain(
-      'OpenClaw does not know the command "totally-unknown".',
+      'OMNIS CLAW does not know the command "totally-unknown".',
     );
     expect((error as Error).message).not.toContain("plugins.allow");
     expect(startProxyMock).not.toHaveBeenCalled();
@@ -4823,9 +4823,9 @@ describe("runCli exit behavior", () => {
         loggingState.forceConsoleToStderr = machineOutput;
         expect(() => handler(new Error("boom"))).toThrow("process.exit(1)");
         expect(consoleErrorSpy).toHaveBeenCalledWith(
-          "[openclaw] OpenClaw hit an unexpected runtime error.",
+          "[omnisclaw] OMNIS CLAW hit an unexpected runtime error.",
         );
-        expect(consoleErrorSpy).toHaveBeenCalledWith("[openclaw] Reason: boom");
+        expect(consoleErrorSpy).toHaveBeenCalledWith("[omnisclaw] Reason: boom");
         expect(restoreRuntimeTerminalStateMock).toHaveBeenCalledWith("uncaught exception", {
           resumeStdinIfPaused: false,
         });
@@ -4866,7 +4866,7 @@ describe("runCli exit behavior", () => {
       });
       expect(handler(hostUnreachable)).toBeUndefined();
       expect(consoleWarnSpy.mock.calls).toEqual([
-        ["[openclaw] Non-fatal uncaught exception (continuing):", hostUnreachable.stack],
+        ["[omnisclaw] Non-fatal uncaught exception (continuing):", hostUnreachable.stack],
       ]);
       expect(restoreRuntimeTerminalStateMock).not.toHaveBeenCalled();
       expect(exitSpy).not.toHaveBeenCalled();
