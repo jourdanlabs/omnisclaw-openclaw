@@ -11,13 +11,23 @@ Builder: Tifa. Documented block = success. No self-CLEAR.
 | Branding remainder        | ~23064 files still match `openclaw` | User-facing display (`--version`, default bin name, package metadata) is OMNIS CLAW. A mechanical rename of `@openclaw/*`, `OPENCLAW_*` env, and `~/.openclaw` would break the product. Call: accept the exception catalog below, or order a follow-on identifier rewrite. |
 | Apache vs named branch    | `LICENSE`, `NOTICE`                 | `codex/claw-apache-release-prep-20260809` is still MIT and has no NOTICE. Pass 2 applied Apache-2.0 + NOTICE from scratch (not a cherry-pick). Confirm that is the intended license.                                                                                       |
 
+## Closed this packet (FIX 3 / §G)
+
+| Item                              | Fact                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Declared spawn-exemption manifest | `src/omnisclaw/terminus/spawn-exemptions.{json,ts}` — 82 production sites. Guard: `scripts/check-spawn-exemptions.mjs` (`pnpm check:spawn-exemptions`). Unlisted `child_process` / `createChildAdapter` import → exit 2. |
+| Not model-derived                 | Per listed site (except `gated-path` / `the-gate-itself`): source must not read `request.command` / `tool.command` / `opts.execCommand`. Can-fail in `spawn-exemptions.test.ts`.                                         |
+| Caller-argv helper                | `spawnWithFallback` now calls `assertTerminusAllow` before spawn. Listed as `gated-path`.                                                                                                                                |
+
+Honest line: **the model-directed exec path is gated**, and every other `src/` spawn site is **named**. Naming is not the same as TERMINUS on that site.
+
 ## Needs Bulma
 
-| Item                                             | File:line                                                                                  | Question                                                                                                                                                                       |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Supervisor chokepoint (re-check after NOT CLEAR) | `src/process/supervisor/supervisor.ts` `spawn()` — `assertTerminusAllow` before `startRun` | Every `supervisor.spawn()` caller now hits TERMINUS. No typed exemption list. Can-fail: missing CLI REFUSE on child/pty/anchored-shell; neutralize mock lets a real child run. |
-| Fail-closed missing CLI                          | `src/omnisclaw/terminus/action-gate.mjs`                                                   | Default ON outside VITEST. Missing CLI → `TERMINUS REFUSED (terminus_unavailable)`. Packaged pin: `scripts/terminus-authorize.mjs` (forwards to CADUCEUS or REFUSE).           |
-| Chain / override                                 | CADUCEUS ledger                                                                            | Unchanged. CLAW does not own the ledger. HOLD lifts; REFUSE does not.                                                                                                          |
+| Item                    | File:line                                | Question                                                                                |
+| ----------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------- |
+| Exec re-check r2        | `supervisor.spawn()` + spawn-exemptions  | Supervisor still first. §G manifest + guard + can-fail are on this HEAD. Re-check both. |
+| Fail-closed missing CLI | `src/omnisclaw/terminus/action-gate.mjs` | Unchanged. Missing CLI → `terminus_unavailable`.                                        |
+| Chain / override        | CADUCEUS ledger                          | Unchanged. CLAW does not own the ledger.                                                |
 
 ## Openclaw hits that stay (reason)
 

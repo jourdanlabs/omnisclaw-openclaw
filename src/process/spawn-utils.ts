@@ -3,6 +3,7 @@ import type { ChildProcess, SpawnOptions } from "node:child_process";
 import { spawn } from "node:child_process";
 import { expectDefined } from "@openclaw/normalization-core";
 import { toErrorObject } from "../infra/errors.js";
+import { assertTerminusAllow } from "../omnisclaw/terminus/action-gate.mjs";
 
 type SpawnFallback = {
   label: string;
@@ -86,6 +87,7 @@ async function spawnAndWaitForSpawn(
 export async function spawnWithFallback(
   params: SpawnWithFallbackParams,
 ): Promise<SpawnWithFallbackResult> {
+  assertTerminusAllow((params.argv ?? []).join(" "));
   const spawnImpl = params.spawnImpl ?? spawn;
   const retryCodes = params.retryCodes ?? DEFAULT_RETRY_CODES;
   const baseOptions = { ...params.options };

@@ -2053,7 +2053,8 @@
     "verify": "node --import ./scripts/tsx.mjs scripts/verify.mts",
     "omnisclaw:install": "node scripts/omnisclaw-stack.mjs install --with-gateway",
     "omnisclaw:probe": "node scripts/omnisclaw-stack.mjs probe",
-    "omnisclaw:status": "node scripts/omnisclaw-stack.mjs status"
+    "omnisclaw:status": "node scripts/omnisclaw-stack.mjs status",
+    "check:spawn-exemptions": "node scripts/check-spawn-exemptions.mjs"
   },
   "dependencies": {
     "@agentclientprotocol/sdk": "1.4.0",

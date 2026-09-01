@@ -283,3 +283,34 @@ Tests  29 passed (29)
 ### Smoke still owed
 
 `node openclaw.mjs --version` → `OMNIS CLAW 2026.8.1-omnisclaw.0 (fa0446a)` (launcher fast path in `openclaw.mjs`; commit pin is the JL-layer SHA the launcher resolves, not HEAD).
+
+---
+
+## Pass 3 — 2026-08-31 night (Tifa) — FIX 3 / §G spawn exemptions
+
+`assertTerminusAllow` on `supervisor.spawn()` covers the model-directed path. It does not cover direct `createChildAdapter` or raw `node:child_process`. This pass names those sites.
+
+| Artifact                                       | Role                                                                                                |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `src/omnisclaw/terminus/spawn-exemptions.json` | 82 sites: `file`, `reason`, `argvShape`, `modelDerived: false`                                      |
+| `src/omnisclaw/terminus/spawn-exemptions.ts`   | Typed load + `assertNotModelDerived`                                                                |
+| `scripts/check-spawn-exemptions.mjs`           | Walks `src/`. Unlisted value import → exit 2                                                        |
+| `src/process/spawn-utils.ts`                   | `spawnWithFallback` now `assertTerminusAllow`s argv (it _can_ take caller argv → gated, not exempt) |
+
+Reasons in the manifest: `gated-path` (2) · `the-gate-itself` (1) · `internal-worker` · `self-respawn` · `os-probe` · `fixed-argv` · `operator-config` · `test-harness`.
+
+Can-fail (proven this pass):
+
+1. Temp dir with `import { spawn } from "node:child_process"` not in the manifest → guard exit 2.
+2. Fixture source `argv = [request.command]` → `assertNotModelDerived` throws.
+
+```
+Test Files  2 passed (2)
+Tests  11 passed (11)
+```
+
+(`action-gate.test.ts` + `spawn-exemptions.test.ts`)
+
+`spawn-utils.test.ts` 2/2 after the wrap (VITEST carve-out).
+
+Full `pnpm test` 597-shard: **not repeated**. Branding remainder unchanged. No push.

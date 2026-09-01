@@ -1,0 +1,498 @@
+{
+  "schema": "omnisclaw.terminus.spawn-exemptions.v1",
+  "note": "Every src/ child_process value import or createChildAdapter import not listed here fails the build guard. gated-path / the-gate-itself are the TERMINUS chokepoints, not ungated exemptions. modelDerived must stay false; a listed site that reads request.command / tool.command / opts.execCommand into argv fails the not-model-derived test and must move onto assertTerminusAllow.",
+  "sites": [
+    {
+      "file": "acp/client.ts",
+      "reason": "operator-config",
+      "argvShape": "serverCommand/serverArgs from ACP client options",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/agent-bundle-lsp-process.ts",
+      "reason": "operator-config",
+      "argvShape": "LSP server from agent bundle config",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/cli-credentials.ts",
+      "reason": "os-probe",
+      "argvShape": "date/git/config probe",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/date-time.ts",
+      "reason": "os-probe",
+      "argvShape": "date/git/config probe",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/mcp-stdio-transport.ts",
+      "reason": "operator-config",
+      "argvShape": "serverParams.command + args from operator MCP config, not request.command",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/provider-local-service.ts",
+      "reason": "operator-config",
+      "argvShape": "local provider binary from operator config",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/sandbox/ssh.ts",
+      "reason": "operator-config",
+      "argvShape": "ssh binary + session target; remoteCommand is sandbox transport, not request.command",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/sessions/footer-data-provider.ts",
+      "reason": "os-probe",
+      "argvShape": "date/git/config probe",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/sessions/resolve-config-value.ts",
+      "reason": "os-probe",
+      "argvShape": "date/git/config probe",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/shell-snapshot.ts",
+      "reason": "fixed-argv",
+      "argvShape": "shell snapshot/utils/rg with fixed or config argv",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/shell-utils.ts",
+      "reason": "fixed-argv",
+      "argvShape": "shell snapshot/utils/rg with fixed or config argv",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/tool-search-code-mode.ts",
+      "reason": "fixed-argv",
+      "argvShape": "shell snapshot/utils/rg with fixed or config argv",
+      "modelDerived": false
+    },
+    {
+      "file": "agents/utils/tools-manager.ts",
+      "reason": "os-probe",
+      "argvShape": "date/git/config probe",
+      "modelDerived": false
+    },
+    {
+      "file": "channels/message/ingress-claim-owner.ts",
+      "reason": "os-probe",
+      "argvShape": "ingress owner pid probe",
+      "modelDerived": false
+    },
+    {
+      "file": "cli/attach-cli.ts",
+      "reason": "fixed-argv",
+      "argvShape": "CLI helper (ports/dns/container/update) fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "cli/container-target.ts",
+      "reason": "fixed-argv",
+      "argvShape": "CLI helper (ports/dns/container/update) fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "cli/dns-cli.ts",
+      "reason": "fixed-argv",
+      "argvShape": "CLI helper (ports/dns/container/update) fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "cli/ports.ts",
+      "reason": "fixed-argv",
+      "argvShape": "CLI helper (ports/dns/container/update) fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "cli/proxy-cli.runtime.ts",
+      "reason": "fixed-argv",
+      "argvShape": "CLI helper (ports/dns/container/update) fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "cli/update-cli/restart-helper.ts",
+      "reason": "fixed-argv",
+      "argvShape": "CLI helper (ports/dns/container/update) fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "cli/update-cli/shared.ts",
+      "reason": "fixed-argv",
+      "argvShape": "CLI helper (ports/dns/container/update) fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "cli/update-cli/update-command-post-core.ts",
+      "reason": "fixed-argv",
+      "argvShape": "CLI helper (ports/dns/container/update) fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "commands/doctor-claude-cli.ts",
+      "reason": "os-probe",
+      "argvShape": "doctor/triage probe with fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "commands/doctor-completion.ts",
+      "reason": "os-probe",
+      "argvShape": "doctor/triage probe with fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "commands/doctor-session-sqlite-github-issue.ts",
+      "reason": "os-probe",
+      "argvShape": "doctor/triage probe with fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "commands/doctor-whatsapp-responsiveness.ts",
+      "reason": "os-probe",
+      "argvShape": "doctor/triage probe with fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "commands/doctor/shared/legacy-oauth-sidecar.ts",
+      "reason": "os-probe",
+      "argvShape": "doctor/triage probe with fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "commands/triage.ts",
+      "reason": "os-probe",
+      "argvShape": "doctor/triage probe with fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "daemon/launchd-lifecycle.ts",
+      "reason": "self-respawn",
+      "argvShape": "launchd/schtasks lifecycle",
+      "modelDerived": false
+    },
+    {
+      "file": "daemon/launchd-restart-handoff.ts",
+      "reason": "self-respawn",
+      "argvShape": "launchd/schtasks lifecycle",
+      "modelDerived": false
+    },
+    {
+      "file": "daemon/schtasks-process.ts",
+      "reason": "self-respawn",
+      "argvShape": "launchd/schtasks lifecycle",
+      "modelDerived": false
+    },
+    {
+      "file": "daemon/schtasks-runtime.ts",
+      "reason": "self-respawn",
+      "argvShape": "launchd/schtasks lifecycle",
+      "modelDerived": false
+    },
+    {
+      "file": "entry.compile-cache.ts",
+      "reason": "self-respawn",
+      "argvShape": "process.execPath + compile-cache worker argv",
+      "modelDerived": false
+    },
+    {
+      "file": "entry.respawn.ts",
+      "reason": "self-respawn",
+      "argvShape": "process.execPath + current argv",
+      "modelDerived": false
+    },
+    {
+      "file": "fleet/containers.runtime.ts",
+      "reason": "fixed-argv",
+      "argvShape": "container engine start argv",
+      "modelDerived": false
+    },
+    {
+      "file": "gateway/worker-environments/tunnel-ssh-runner.ts",
+      "reason": "internal-worker",
+      "argvShape": "workspace sync/quiesce/rsync remote helper",
+      "modelDerived": false
+    },
+    {
+      "file": "gateway/worker-environments/workspace-accepted-remote-script.ts",
+      "reason": "internal-worker",
+      "argvShape": "workspace sync/quiesce/rsync remote helper",
+      "modelDerived": false
+    },
+    {
+      "file": "gateway/worker-environments/workspace-mutation-remote-script.ts",
+      "reason": "internal-worker",
+      "argvShape": "workspace sync/quiesce/rsync remote helper",
+      "modelDerived": false
+    },
+    {
+      "file": "gateway/worker-environments/workspace-quiescence-scripts.ts",
+      "reason": "internal-worker",
+      "argvShape": "workspace sync/quiesce/rsync remote helper",
+      "modelDerived": false
+    },
+    {
+      "file": "gateway/worker-environments/workspace-sync-inventory.ts",
+      "reason": "internal-worker",
+      "argvShape": "workspace sync/quiesce/rsync remote helper",
+      "modelDerived": false
+    },
+    {
+      "file": "gateway/worker-environments/workspace-sync-scripts.ts",
+      "reason": "internal-worker",
+      "argvShape": "workspace sync/quiesce/rsync remote helper",
+      "modelDerived": false
+    },
+    {
+      "file": "hooks/gmail-watcher.ts",
+      "reason": "fixed-argv",
+      "argvShape": "gmail watcher helper",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/gateway-lock.ts",
+      "reason": "os-probe",
+      "argvShape": "fixed probe argv (ps/mount/tasklist/encoding)",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/installed-apps.ts",
+      "reason": "os-probe",
+      "argvShape": "fixed probe argv (ps/mount/tasklist/encoding)",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/npm-install-env.ts",
+      "reason": "fixed-argv",
+      "argvShape": "npm/node env probe",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/os-summary.ts",
+      "reason": "os-probe",
+      "argvShape": "fixed probe argv (ps/mount/tasklist/encoding)",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/process-respawn.ts",
+      "reason": "self-respawn",
+      "argvShape": "process.execPath + fixed restart argv",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/restart-stale-pids.ts",
+      "reason": "self-respawn",
+      "argvShape": "fixed service restart argv",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/restart.ts",
+      "reason": "self-respawn",
+      "argvShape": "fixed service restart argv",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/shell-env.ts",
+      "reason": "os-probe",
+      "argvShape": "fixed probe argv (ps/mount/tasklist/encoding)",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/spawn-ps.ts",
+      "reason": "os-probe",
+      "argvShape": "fixed probe argv (ps/mount/tasklist/encoding)",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/sqlite-private-directory.ts",
+      "reason": "os-probe",
+      "argvShape": "sqlite/lsof/stat fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/sqlite-readonly-location.ts",
+      "reason": "os-probe",
+      "argvShape": "sqlite/lsof/stat fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/ssh-tunnel.ts",
+      "reason": "fixed-argv",
+      "argvShape": "ssh tunnel binary + operator host, not request.command",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/system-presence.ts",
+      "reason": "os-probe",
+      "argvShape": "fixed probe argv (ps/mount/tasklist/encoding)",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/tailscale-route-owner.worker.ts",
+      "reason": "fixed-argv",
+      "argvShape": "tailscale/fork helper with fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/tailscale.ts",
+      "reason": "fixed-argv",
+      "argvShape": "tailscale/fork helper with fixed argv",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/update-managed-service-handoff.ts",
+      "reason": "self-respawn",
+      "argvShape": "managed-service handoff spawn",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/windows-encoding.ts",
+      "reason": "os-probe",
+      "argvShape": "fixed probe argv (ps/mount/tasklist/encoding)",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/windows-install-roots.ts",
+      "reason": "os-probe",
+      "argvShape": "Windows service/task/port probe",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/windows-port-pids.ts",
+      "reason": "os-probe",
+      "argvShape": "fixed probe argv (ps/mount/tasklist/encoding)",
+      "modelDerived": false
+    },
+    {
+      "file": "infra/windows-task-restart.ts",
+      "reason": "self-respawn",
+      "argvShape": "fixed service restart argv",
+      "modelDerived": false
+    },
+    {
+      "file": "meeting-bot/configured-node-host.ts",
+      "reason": "internal-worker",
+      "argvShape": "meeting-bot node host / audio transport",
+      "modelDerived": false
+    },
+    {
+      "file": "meeting-bot/node-host.ts",
+      "reason": "internal-worker",
+      "argvShape": "meeting-bot node host / audio transport",
+      "modelDerived": false
+    },
+    {
+      "file": "meeting-bot/realtime-local-audio-transport.ts",
+      "reason": "internal-worker",
+      "argvShape": "meeting-bot node host / audio transport",
+      "modelDerived": false
+    },
+    {
+      "file": "node-host/desktop-launch-command.ts",
+      "reason": "internal-worker",
+      "argvShape": "node host worker/container/desktop launch",
+      "modelDerived": false
+    },
+    {
+      "file": "node-host/node-worker-bundle-installer.ts",
+      "reason": "internal-worker",
+      "argvShape": "node host worker/container/desktop launch",
+      "modelDerived": false
+    },
+    {
+      "file": "node-host/node-worker-launch-transport.ts",
+      "reason": "internal-worker",
+      "argvShape": "[process.execPath, entry, --internal-worker-ipc, --internal-worker-session] or container start argv from engine + containerId",
+      "modelDerived": false
+    },
+    {
+      "file": "omnisclaw/terminus/action-gate.mjs",
+      "reason": "the-gate-itself",
+      "argvShape": "process.execPath + terminus-authorize.mjs; stdin JSON action",
+      "modelDerived": false
+    },
+    {
+      "file": "plugin-sdk/provider-auth-claude-compat.ts",
+      "reason": "operator-config",
+      "argvShape": "claude CLI auth helper from operator install",
+      "modelDerived": false
+    },
+    {
+      "file": "process/spawn-utils.ts",
+      "reason": "gated-path",
+      "argvShape": "argv: string[] \u2014 assertTerminusAllow before spawn",
+      "modelDerived": false
+    },
+    {
+      "file": "process/supervisor/service-child-group-anchor.ts",
+      "reason": "internal-worker",
+      "argvShape": "supervisor service-child relay/anchor",
+      "modelDerived": false
+    },
+    {
+      "file": "process/supervisor/service-child-relay-host.ts",
+      "reason": "internal-worker",
+      "argvShape": "supervisor service-child relay/anchor",
+      "modelDerived": false
+    },
+    {
+      "file": "process/supervisor/service-child-relay.ts",
+      "reason": "internal-worker",
+      "argvShape": "supervisor service-child relay/anchor",
+      "modelDerived": false
+    },
+    {
+      "file": "process/supervisor/supervisor.ts",
+      "reason": "gated-path",
+      "argvShape": "createChildAdapter after assertTerminusAllow(spawnInputPayload)",
+      "modelDerived": false
+    },
+    {
+      "file": "shared/pid-alive.ts",
+      "reason": "os-probe",
+      "argvShape": "pid-alive probe",
+      "modelDerived": false
+    },
+    {
+      "file": "state/openclaw-database-verify.impl.ts",
+      "reason": "internal-worker",
+      "argvShape": "database verify worker fork",
+      "modelDerived": false
+    },
+    {
+      "file": "test-utils/node-process.ts",
+      "reason": "test-harness",
+      "argvShape": "test helper spawn, not a product exec path",
+      "modelDerived": false
+    },
+    {
+      "file": "test-utils/repo-files.ts",
+      "reason": "test-harness",
+      "argvShape": "test helper spawn, not a product exec path",
+      "modelDerived": false
+    },
+    {
+      "file": "tui/tui-launch.ts",
+      "reason": "internal-worker",
+      "argvShape": "TUI child / auth child",
+      "modelDerived": false
+    },
+    {
+      "file": "tui/tui.ts",
+      "reason": "internal-worker",
+      "argvShape": "TUI child / auth child",
+      "modelDerived": false
+    },
+    {
+      "file": "worker/browser-runtime.ts",
+      "reason": "internal-worker",
+      "argvShape": "browser runtime helper",
+      "modelDerived": false
+    }
+  ]
+}
