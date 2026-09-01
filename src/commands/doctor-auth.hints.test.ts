@@ -97,7 +97,7 @@ describe("doctor auth hints", () => {
     noteSharedAuthStoreStatus(env);
 
     expect(mocks.note).toHaveBeenCalledWith(
-      expect.stringContaining("openclaw doctor --fix"),
+      expect.stringContaining("omnisclaw doctor --fix"),
       "Shared auth store",
     );
 

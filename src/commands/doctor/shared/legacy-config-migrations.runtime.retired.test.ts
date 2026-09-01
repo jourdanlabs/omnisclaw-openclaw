@@ -202,7 +202,7 @@ describe("retired runtime config migrations", () => {
           candidate.path.join(".") === "agents.defaults.compaction.truncateAfterCompaction",
       );
       expect(retiredRule?.message).toBe(
-        'agents.defaults.compaction.truncateAfterCompaction is retired; byte-triggered compaction now opts in via maxActiveTranscriptBytes alone. Run "openclaw doctor --fix".',
+        'agents.defaults.compaction.truncateAfterCompaction is retired; byte-triggered compaction now opts in via maxActiveTranscriptBytes alone. Run "omnisclaw doctor --fix".',
       );
     }
   });

@@ -390,7 +390,7 @@ export function sessionTranscriptIssueToHealthFinding(
     message: `Session transcript has legacy branch or provider metadata that can be cleaned up.${metadata}`,
     path: issue.filePath,
     fixHint:
-      "To clean up the advisory artifact, run `openclaw doctor --fix` to rewrite affected transcripts to their active branch.",
+      "To clean up the advisory artifact, run `omnisclaw doctor --fix` to rewrite affected transcripts to their active branch.",
   };
 }
 
@@ -456,7 +456,9 @@ export async function noteSessionTranscriptHealth(params?: {
       lines.push(`- ...and ${broken.length - 20} more.`);
     }
     if (!shouldRepair) {
-      lines.push('- Run "openclaw doctor --fix" to rewrite affected files to their active branch.');
+      lines.push(
+        '- Run "omnisclaw doctor --fix" to rewrite affected files to their active branch.',
+      );
     } else if (repairedCount > 0) {
       lines.push(`- Repaired ${repairedCount} transcript file${repairedCount === 1 ? "" : "s"}.`);
     }
@@ -566,7 +568,7 @@ async function noteSessionSqliteMigrationHealth(params: {
     note(
       params.shouldRepair
         ? `- Renamed ${reservedKeyReport.repaired} durable session key(s) that collided with the reserved incognito namespace.`
-        : `- Found ${reservedKeyReport.found} durable session key(s) that collide with the reserved incognito namespace. Run "openclaw doctor --fix" to rename them.`,
+        : `- Found ${reservedKeyReport.found} durable session key(s) that collide with the reserved incognito namespace. Run "omnisclaw doctor --fix" to rename them.`,
       "Session SQLite",
     );
   }
@@ -574,7 +576,7 @@ async function noteSessionSqliteMigrationHealth(params: {
     note(
       params.shouldRepair
         ? `- Canonicalized ${canonicalKeyReport.repairedGroups} session-key group(s) in ${canonicalKeyReport.repairBatches} transaction batch(es), removed ${canonicalKeyReport.removedRows} duplicate or alias row(s), and preserved cross-store history in ${canonicalKeyReport.archivedTranscriptDirectories.length} archive director${canonicalKeyReport.archivedTranscriptDirectories.length === 1 ? "y" : "ies"}.`
-        : `- Found ${canonicalKeyReport.foundGroups} non-canonical or duplicate session-key group(s). Run "openclaw doctor --fix" to preserve their history and canonicalize the rows.`,
+        : `- Found ${canonicalKeyReport.foundGroups} non-canonical or duplicate session-key group(s). Run "omnisclaw doctor --fix" to preserve their history and canonicalize the rows.`,
       "Session SQLite",
     );
   }
@@ -582,15 +584,15 @@ async function noteSessionSqliteMigrationHealth(params: {
     note(
       params.shouldRepair
         ? `- Canonicalized delivery state for ${deliveryReport.repaired} durable session row(s).`
-        : `- Found ${deliveryReport.found} durable session row(s) with legacy delivery fields. Run "openclaw doctor --fix" to canonicalize them.`,
+        : `- Found ${deliveryReport.found} durable session row(s) with legacy delivery fields. Run "omnisclaw doctor --fix" to canonicalize them.`,
       "Session SQLite",
     );
   }
   if (resolvedSkillsReport.found > 0) {
     note(
       params.shouldRepair
-        ? `- Stripped the runtime-only skills catalog from ${resolvedSkillsReport.repaired} durable session row(s). Logical SQLite pages are freed; shrinking the on-disk database requires "openclaw doctor --session-sqlite compact --session-sqlite-all-agents".`
-        : `- Found ${resolvedSkillsReport.found} durable session row(s) carrying a runtime-only skills catalog. Run "openclaw doctor --fix" to strip it.`,
+        ? `- Stripped the runtime-only skills catalog from ${resolvedSkillsReport.repaired} durable session row(s). Logical SQLite pages are freed; shrinking the on-disk database requires "omnisclaw doctor --session-sqlite compact --session-sqlite-all-agents".`
+        : `- Found ${resolvedSkillsReport.found} durable session row(s) carrying a runtime-only skills catalog. Run "omnisclaw doctor --fix" to strip it.`,
       "Session SQLite",
     );
   }
@@ -632,7 +634,7 @@ async function noteSessionSqliteMigrationHealth(params: {
   }
   if (!params.shouldRepair) {
     lines.push(
-      '- Run "openclaw doctor --fix" to migrate legacy session metadata/transcripts to SQLite.',
+      '- Run "omnisclaw doctor --fix" to migrate legacy session metadata/transcripts to SQLite.',
     );
   }
   note(lines.join("\n"), "Session SQLite");

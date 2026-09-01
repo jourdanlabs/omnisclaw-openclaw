@@ -58,7 +58,7 @@ describe("handleCronCliError", () => {
     expect(() => handleCronCliError(error)).toThrow("exit 1");
     expect(errorOutput).toHaveBeenCalledWith(
       expect.stringContaining(
-        "Automation not found: missing-job. Run `openclaw cron list` to see recent automation ids.",
+        "Automation not found: missing-job. Run `omnisclaw cron list` to see recent automation ids.",
       ),
     );
     errorOutput.mockRestore();

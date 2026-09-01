@@ -266,7 +266,7 @@ describe("status-overview-rows", () => {
     expect(findRowValue(rows, "OS")).toBe("macOS");
     expect(findRowValue(rows, "Config")).toBe("/tmp/openclaw.json");
     expect(findRowValue(rows, "Update restart")).toBe("restart pending health verification");
-    expect(findRowValue(rows, "Security")).toBe("Run: openclaw security audit --deep");
+    expect(findRowValue(rows, "Security")).toBe("Run: omnisclaw security audit --deep");
     expect(findRowValue(rows, "Degraded secrets")).toBe("1 degraded · capability:tts");
     expect(findRowValue(rows, "Degraded plugins")).toBe("1 configured-unavailable · discord");
     expect(findRowValue(rows, "Secrets")).toBe("2 diagnostics");

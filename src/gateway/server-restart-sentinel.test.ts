@@ -2946,7 +2946,7 @@ describe("scheduleRestartSentinelWake", () => {
           deliveryContext: undefined,
           threadId: undefined,
           message: null,
-          doctorHint: "Run openclaw doctor --non-interactive",
+          doctorHint: "Run omnisclaw doctor --non-interactive",
           stats: {
             mode: kind === "config-patch" ? "config.patch" : "config.apply",
             root: "/tmp/openclaw.json",

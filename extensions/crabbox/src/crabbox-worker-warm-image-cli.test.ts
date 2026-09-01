@@ -156,7 +156,7 @@ describe("Crabbox warm-image CLI", () => {
     await runCli();
 
     expect(output).toContain(
-      `openclaw crabbox warm-images --recover ${SELECTOR} --acknowledge-provider-cleanup`,
+      `omnisclaw crabbox warm-images --recover ${SELECTOR} --acknowledge-provider-cleanup`,
     );
     expect(output).toContain("Stop the owning Gateway and capture processes");
     expect(output).toContain("Checkpoint deletion pending: chk_predecessor");

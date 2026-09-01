@@ -279,7 +279,7 @@ export async function maybeMigrateModelCatalogCredentials(params: {
   }
 
   note(
-    `Found ${detected} plaintext model credential${detected === 1 ? "" : "s"}. Run openclaw doctor --fix to copy and verify them in agent SQLite before plaintext catalog authentication is retired.`,
+    `Found ${detected} plaintext model credential${detected === 1 ? "" : "s"}. Run omnisclaw doctor --fix to copy and verify them in agent SQLite before plaintext catalog authentication is retired.`,
     "Model catalog credentials",
   );
   const shouldRepair =

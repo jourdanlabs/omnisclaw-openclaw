@@ -288,7 +288,7 @@ describe("Claw tool policy consent provenance", () => {
         config,
       }),
     ).toThrow(
-      "Add an explicit tools.allow list to its package OpenClaw profile, then run `openclaw claws update worker`",
+      "Add an explicit tools.allow list to its package OpenClaw profile, then run `omnisclaw claws update worker`",
     );
   });
 

@@ -84,7 +84,7 @@ describe("official Codex plugin version drift doctor evidence", () => {
           path: "plugins.entries.codex",
           target: "codex",
           requirement: "plugin-version-drift",
-          fixHint: "openclaw plugins update @openclaw/codex@2026.6.1 && openclaw gateway restart",
+          fixHint: "omnisclaw plugins update @openclaw/codex@2026.6.1 && omnisclaw gateway restart",
         },
       ]);
 
@@ -101,8 +101,8 @@ describe("official Codex plugin version drift doctor evidence", () => {
         expect(driftNotes[0]?.[0]).toContain(
           `codex: ${installedVersion} (npm) -> expected ${gatewayVersion}`,
         );
-        expect(driftNotes[0]?.[0]).toContain("openclaw plugins update @openclaw/codex@2026.6.1");
-        expect(driftNotes[0]?.[0]).toContain("openclaw gateway restart");
+        expect(driftNotes[0]?.[0]).toContain("omnisclaw plugins update @openclaw/codex@2026.6.1");
+        expect(driftNotes[0]?.[0]).toContain("omnisclaw gateway restart");
       } finally {
         noteSpy.mockRestore();
       }

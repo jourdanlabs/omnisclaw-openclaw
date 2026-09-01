@@ -568,7 +568,7 @@ describe("preflightDiscordMessage", () => {
   });
 
   it("preflights direct-message voice notes without mention gating", async () => {
-    transcribeFirstAudioMock.mockResolvedValue("hello openclaw from dm audio");
+    transcribeFirstAudioMock.mockResolvedValue("hello omnisclaw from dm audio");
 
     const result = await runDmPreflight({
       channelId: "dm-channel-audio-1",
@@ -607,7 +607,7 @@ describe("preflightDiscordMessage", () => {
     ]);
     const preflight = expectPreflightResult(result);
     expect(preflight.isDirectMessage).toBe(true);
-    expect(preflight.preflightAudioTranscript).toBe("hello openclaw from dm audio");
+    expect(preflight.preflightAudioTranscript).toBe("hello omnisclaw from dm audio");
   });
 
   it("downloads attachments during preflight, before the message reaches the run queue", async () => {

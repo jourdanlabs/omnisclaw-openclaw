@@ -197,7 +197,7 @@ describe("device bootstrap tokens", () => {
     expect(loadDeviceBootstrapTokenRecords(baseDir)[setup.token]?.setupId).toBe(setup.setupId);
   });
 
-  // `openclaw qr --voice-node` issues through the same setup boundary. Correlation
+  // `omnisclaw qr --voice-node` issues through the same setup boundary. Correlation
   // must never gate issuance on a profile allowlist or that command stops working.
   it.each([
     ["voice node", VOICE_NODE_PAIRING_SETUP_BOOTSTRAP_PROFILE],

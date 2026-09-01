@@ -2447,7 +2447,7 @@ describe("createOpenClawCodingTools", () => {
       }
 
       const textPath = path.join(tmpDir, "sample.txt");
-      const contents = "Hello from openclaw read tool.";
+      const contents = "Hello from omnisclaw read tool.";
       await fs.writeFile(textPath, contents, "utf8");
 
       const textResult = await readExecute("tool-2", {

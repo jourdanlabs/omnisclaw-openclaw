@@ -363,7 +363,7 @@ describe("dashboardCommand", () => {
       "Browser launch disabled (--no-open). Use the URL above.",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "One-time pairing URL not delivered. Run `openclaw dashboard --json` and open its `browserUrl` within ten minutes.",
+      "One-time pairing URL not delivered. Run `omnisclaw dashboard --json` and open its `browserUrl` within ten minutes.",
     );
   });
 

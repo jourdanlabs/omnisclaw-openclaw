@@ -1,7 +1,7 @@
 /**
  * Doctor contract for the copilot extension.
  *
- * Mirrors {@link ../codex/doctor-contract-api.ts} so `openclaw doctor`
+ * Mirrors {@link ../codex/doctor-contract-api.ts} so `omnisclaw doctor`
  * can detect retired config fields and migrate them
  *     (legacyConfigRules + normalizeCompatibilityConfig). No retired
  *     fields exist for copilot yet; the array is empty by design

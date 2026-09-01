@@ -267,7 +267,7 @@ describe("MCP OAuth provider", () => {
             scope: "docs.write",
           }),
         ).rejects.toThrow(
-          'MCP server "Remote Docs" requires additional OAuth authorization. Run openclaw mcp login Remote Docs.',
+          'MCP server "Remote Docs" requires additional OAuth authorization. Run omnisclaw mcp login Remote Docs.',
         );
         expect(authMock).not.toHaveBeenCalled();
         expect(provider.tokens()).toMatchObject({
@@ -560,7 +560,7 @@ describe("MCP OAuth provider", () => {
           resolveMcpOAuthAccessToken({
             identity: REMOTE_IDENTITY,
           }),
-        ).rejects.toThrow("Run openclaw mcp login Remote Docs.");
+        ).rejects.toThrow("Run omnisclaw mcp login Remote Docs.");
         expect(authMock).not.toHaveBeenCalled();
       },
       {
@@ -583,7 +583,7 @@ describe("MCP OAuth provider", () => {
             authorizationChallenge: true,
             scope: "docs.read",
           }),
-        ).rejects.toThrow("Run openclaw mcp login Remote Docs.");
+        ).rejects.toThrow("Run omnisclaw mcp login Remote Docs.");
         expect(readMcpOAuthStore(REMOTE_IDENTITY.storeKey)).toMatchObject({
           credentialState: "uninitialized",
           pendingAuthorizationChallenge: { scope: "docs.read" },
@@ -616,7 +616,7 @@ describe("MCP OAuth provider", () => {
             resourceMetadataUrl,
             scope: "docs.read",
           }),
-        ).rejects.toThrow("Run openclaw mcp login Remote Docs.");
+        ).rejects.toThrow("Run omnisclaw mcp login Remote Docs.");
         expect(authMock).not.toHaveBeenCalled();
         expect(readMcpOAuthStore(REMOTE_IDENTITY.storeKey)).toMatchObject({
           codeVerifier: "existing-verifier",
@@ -925,13 +925,13 @@ describe("MCP OAuth provider", () => {
           identity: REMOTE_IDENTITY,
         });
 
-        expect(() => provider.state?.()).toThrow("Run openclaw mcp login Remote Docs.");
+        expect(() => provider.state?.()).toThrow("Run omnisclaw mcp login Remote Docs.");
         expect(() => provider.saveCodeVerifier?.("verifier")).toThrow(
-          "Run openclaw mcp login Remote Docs.",
+          "Run omnisclaw mcp login Remote Docs.",
         );
         await expect(
           provider.redirectToAuthorization?.(new URL("https://auth.example.com/authorize")),
-        ).rejects.toThrow("Run openclaw mcp login Remote Docs.");
+        ).rejects.toThrow("Run omnisclaw mcp login Remote Docs.");
       },
       {
         prefix: "openclaw-mcp-oauth-noninteractive-",

@@ -387,7 +387,7 @@ describe("status.command-sections", () => {
     expect(rows).toContainEqual({
       Item: "Plugin calendar",
       Status: "warn(WARN)",
-      Detail: "failed - service scheduler: address already in use; run openclaw doctor",
+      Detail: "failed - service scheduler: address already in use; run omnisclaw doctor",
     });
   });
 

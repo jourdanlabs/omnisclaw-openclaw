@@ -32,12 +32,12 @@ describe("doctor WhatsApp responsiveness", () => {
       stdout: [
         " 101 openclaw-tui",
         " 102 /usr/bin/node /usr/lib/node_modules/openclaw/dist/index.js gateway --port 18789",
-        " 103 openclaw channels",
-        " 104 openclaw tui --local",
+        " 103 omnisclaw channels",
+        " 104 omnisclaw tui --local",
         " 105 /usr/bin/openclaw chat",
-        " 106 helper --note 'openclaw tui'",
-        " 107 openclaw-helper openclaw terminal",
-        " 108 openclaw --flag tui",
+        " 106 helper --note 'omnisclaw tui'",
+        " 107 openclaw-helper omnisclaw terminal",
+        " 108 omnisclaw --flag tui",
       ].join("\n"),
     });
 
@@ -47,7 +47,7 @@ describe("doctor WhatsApp responsiveness", () => {
     } else {
       expect(listLocalTuiProcesses()).toEqual([
         { pid: 101, command: "openclaw-tui" },
-        { pid: 104, command: "openclaw tui --local" },
+        { pid: 104, command: "omnisclaw tui --local" },
         { pid: 105, command: "/usr/bin/openclaw chat" },
       ]);
       expect(spawnSyncMock).toHaveBeenCalledWith("ps", ["-axo", "pid=,command="], {
@@ -158,7 +158,7 @@ describe("doctor WhatsApp responsiveness", () => {
         path: "channels.whatsapp",
         target: "101",
         requirement: "local-tui-event-loop-pressure",
-        fixHint: expect.stringContaining("openclaw doctor --fix"),
+        fixHint: expect.stringContaining("omnisclaw doctor --fix"),
       }),
     ]);
   });

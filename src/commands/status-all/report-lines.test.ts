@@ -91,7 +91,7 @@ describe("buildStatusAllReportLines", () => {
     expect(output).toContain("Config diagnostics:");
     expect(output).toContain("Config file is invalid: /tmp/openclaw.json");
     expect(output).toContain("gateway.port: invalid");
-    expect(output).toContain("Fix: openclaw doctor --fix");
+    expect(output).toContain("Fix: omnisclaw doctor --fix");
     expect(output.indexOf("Config diagnostics:")).toBeLessThan(
       output.indexOf("OpenClaw status --all"),
     );

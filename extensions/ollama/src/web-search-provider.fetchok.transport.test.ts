@@ -152,7 +152,7 @@ describe("ollama web search guarded fetch", () => {
       throw new Error("Expected Ollama web search tool");
     }
 
-    await expect(tool.execute({ query: "latest openclaw release" })).rejects.toThrow(
+    await expect(tool.execute({ query: "latest omnisclaw release" })).rejects.toThrow(
       "ollama signin",
     );
 
@@ -173,7 +173,9 @@ describe("ollama web search guarded fetch", () => {
       throw new Error("Expected Ollama web search tool");
     }
 
-    await expect(tool.execute({ query: "latest openclaw release" })).rejects.toThrow("unavailable");
+    await expect(tool.execute({ query: "latest omnisclaw release" })).rejects.toThrow(
+      "unavailable",
+    );
 
     expect(loopback.releases.length).toBeGreaterThan(0);
     for (const release of loopback.releases) {
@@ -208,7 +210,7 @@ describe("ollama web search guarded fetch", () => {
     }
 
     const error = await tool
-      .execute({ query: "latest openclaw release" })
+      .execute({ query: "latest omnisclaw release" })
       .catch((caught: unknown) => caught);
     if (!(error instanceof Error)) {
       throw new Error("expected Ollama web search error");
@@ -228,7 +230,7 @@ describe("ollama web search guarded fetch", () => {
     ]);
 
     loopback.status = 200;
-    const result = await tool.execute({ query: "latest openclaw release" });
+    const result = await tool.execute({ query: "latest omnisclaw release" });
     expect(result).toMatchObject({ provider: "ollama", count: 1 });
     console.info(
       "[ollama credential redaction proof] surface=web-search status=429 safe-marker-present=true authorization-secret-absent=true custom-secret-absent=true success-control=true",
@@ -259,7 +261,7 @@ describe("ollama web search guarded fetch", () => {
     }
 
     const error = await tool
-      .execute({ query: "latest openclaw release" })
+      .execute({ query: "latest omnisclaw release" })
       .catch((caught: unknown) => caught);
     if (!(error instanceof Error)) {
       throw new Error("expected Ollama web search error");

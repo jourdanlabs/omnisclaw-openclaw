@@ -64,12 +64,12 @@ export class InvalidPluginInstallRecordStateError extends Error {}
 function invalidPersistedInstallRecordMessage(filePath: string): string {
   return [
     `Persisted plugin install records are invalid at ${filePath}.`,
-    "Stop the Gateway, back up this database, delete only the config_machine_state row with state_key='plugins.installedIndex' using SQLite tooling, then rerun `openclaw doctor --fix` to rebuild it.",
+    "Stop the Gateway, back up this database, delete only the config_machine_state row with state_key='plugins.installedIndex' using SQLite tooling, then rerun `omnisclaw doctor --fix` to rebuild it.",
   ].join(" ");
 }
 
 const INVALID_CONFIG_INSTALL_RECORD_MESSAGE =
-  "plugins.installs contains invalid records. Back up openclaw.json, correct or remove the invalid retired plugins.installs record, then rerun `openclaw doctor --fix`.";
+  "plugins.installs contains invalid records. Back up openclaw.json, correct or remove the invalid retired plugins.installs record, then rerun `omnisclaw doctor --fix`.";
 
 export type PluginRegistryInstallMigrationParams = LoadInstalledPluginIndexParams &
   InstalledPluginIndexStoreOptions & {

@@ -276,7 +276,7 @@ describe("infra/device-auth-store", () => {
       openOpenClawStateDatabase({ env }).db.exec("DROP TABLE gateway_origin_device_tokens;");
 
       expect(() => loadDeviceAuthToken({ deviceId: "device-1", role: "operator", env })).toThrow(
-        "openclaw doctor --fix",
+        "omnisclaw doctor --fix",
       );
       expect(() =>
         storeDeviceAuthToken({
@@ -285,7 +285,7 @@ describe("infra/device-auth-store", () => {
           token: "replacement",
           env,
         }),
-      ).toThrow("openclaw doctor --fix");
+      ).toThrow("omnisclaw doctor --fix");
       expect(() =>
         loadOriginDeviceToken({
           gatewayScope: "wss://one.example",
@@ -293,7 +293,7 @@ describe("infra/device-auth-store", () => {
           role: "operator",
           env,
         }),
-      ).toThrow("openclaw doctor --fix");
+      ).toThrow("omnisclaw doctor --fix");
       expect(() =>
         storeOriginDeviceToken({
           gatewayScope: "wss://one.example",
@@ -302,7 +302,7 @@ describe("infra/device-auth-store", () => {
           token: "origin-token",
           env,
         }),
-      ).toThrow("openclaw doctor --fix");
+      ).toThrow("omnisclaw doctor --fix");
       expect(() =>
         clearOriginDeviceToken({
           gatewayScope: "wss://one.example",
@@ -310,7 +310,7 @@ describe("infra/device-auth-store", () => {
           role: "operator",
           env,
         }),
-      ).toThrow("openclaw doctor --fix");
+      ).toThrow("omnisclaw doctor --fix");
       expect(
         openOpenClawStateDatabase({ env })
           .db.prepare("SELECT name FROM sqlite_schema WHERE type = 'table' AND name = ?")

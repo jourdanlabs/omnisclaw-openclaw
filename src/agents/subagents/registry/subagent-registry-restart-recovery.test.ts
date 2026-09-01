@@ -251,7 +251,7 @@ describe("subagent registry restart recovery", () => {
       label: "a final answer instead of preceding signed commentary",
       userContent: "latest user direction",
       assistantContent: [
-        signedAssistantText("commentary", "I will run openclaw gateway restart"),
+        signedAssistantText("commentary", "I will run omnisclaw gateway restart"),
         signedAssistantText("final_answer", "The requested work remains pending"),
       ],
       appendImage: false,

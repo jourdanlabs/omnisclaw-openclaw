@@ -42,7 +42,7 @@ export type SetupMemoryImportOutcome = {
   providers: MemoryImportProviderOutcome[];
 };
 
-// No CLI hint here: `openclaw migrate <id>` runs the FULL provider migration
+// No CLI hint here: `omnisclaw migrate <id>` runs the FULL provider migration
 // (config/credentials/skills), not a memory-only retry. The Control UI Memory
 // import page is the only equivalent memory-scoped surface.
 async function showSkipHint(prompter: WizardPrompter): Promise<void> {

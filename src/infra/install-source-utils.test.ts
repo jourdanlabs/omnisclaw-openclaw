@@ -331,7 +331,7 @@ describe("resolveNpmSpecMetadata", () => {
     });
   });
 
-  it("accepts metadata without an openclaw block", async () => {
+  it("accepts metadata without an omnisclaw block", async () => {
     const { openclaw: _openclaw, ...withoutOpenClaw } = npmViewMetadata;
     mockPackCommandResult({ stdout: JSON.stringify(withoutOpenClaw) });
 

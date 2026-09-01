@@ -381,7 +381,7 @@ describe("successful update finalization ordering", () => {
       vi.mocked(defaultRuntime.log).mock.invocationCallOrder[warningIndex] ??
         Number.POSITIVE_INFINITY,
     );
-    expect(logCalls[warningIndex]?.join(" ")).toContain("openclaw completion --write-state");
+    expect(logCalls[warningIndex]?.join(" ")).toContain("omnisclaw completion --write-state");
   });
 
   it("restarts when shell completion cache generation returns false", async () => {
@@ -403,7 +403,7 @@ describe("successful update finalization ordering", () => {
 
     const output = vi.mocked(defaultRuntime.log).mock.calls.flat().map(String).join("\n");
     expect(output).toContain("completion cache generation failed");
-    expect(output).toContain("openclaw completion --write-state --install");
+    expect(output).toContain("omnisclaw completion --write-state --install");
     expect(mocks.restartService).toHaveBeenCalledOnce();
     expect(mocks.restartService.mock.invocationCallOrder[0]).toBeLessThan(
       mocks.ensureCompletionCache.mock.invocationCallOrder[0] ?? Number.POSITIVE_INFINITY,
@@ -1013,7 +1013,7 @@ describe("failed Git update recovery restart", () => {
     expect(log).toHaveBeenCalledWith(
       expect.stringContaining("repair the checkout or installation"),
     );
-    expect(log).toHaveBeenCalledWith(expect.stringContaining("rerun `openclaw update`"));
+    expect(log).toHaveBeenCalledWith(expect.stringContaining("rerun `omnisclaw update`"));
   });
 
   it("explains how to recover from a dirty rollback checkout", async () => {
@@ -1028,7 +1028,7 @@ describe("failed Git update recovery restart", () => {
     expect(output).toContain("From the update root shown above");
     expect(output).toContain("git status --short");
     expect(output).toContain("resolve the reported changes");
-    expect(output).toContain("rerun `openclaw update`");
+    expect(output).toContain("rerun `omnisclaw update`");
     expect(output).toContain("Keep the gateway stopped until the update succeeds");
   });
 
@@ -1041,8 +1041,8 @@ describe("failed Git update recovery restart", () => {
     );
 
     const output = log.mock.calls.flat().map(String).join("\n");
-    expect(output).toContain("rerun `openclaw --profile work update`");
-    expect(output).not.toContain("rerun `openclaw update`");
+    expect(output).toContain("rerun `omnisclaw --profile work update`");
+    expect(output).not.toContain("rerun `omnisclaw update`");
   });
 
   it("does not claim an unsafe recovery stopped a service that was already down", async () => {

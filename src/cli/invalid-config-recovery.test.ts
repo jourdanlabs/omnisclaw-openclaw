@@ -50,7 +50,7 @@ describe("offerInvalidConfigRecovery", () => {
       }),
     ).resolves.toEqual({ status: "declined" });
 
-    expect(runtime.error).toHaveBeenCalledWith(expect.stringContaining("openclaw doctor --fix"));
+    expect(runtime.error).toHaveBeenCalledWith(expect.stringContaining("omnisclaw doctor --fix"));
     expect(runDoctor).not.toHaveBeenCalled();
     expect(retry).not.toHaveBeenCalled();
   });
@@ -70,7 +70,7 @@ describe("offerInvalidConfigRecovery", () => {
     ).resolves.toEqual({ status: "declined" });
 
     expect(runtime.error).toHaveBeenCalledTimes(1);
-    expect(runtime.error).toHaveBeenCalledWith(expect.stringContaining("openclaw doctor --fix"));
+    expect(runtime.error).toHaveBeenCalledWith(expect.stringContaining("omnisclaw doctor --fix"));
     expect(confirm).not.toHaveBeenCalled();
     expect(runDoctor).not.toHaveBeenCalled();
     expect(retry).not.toHaveBeenCalled();

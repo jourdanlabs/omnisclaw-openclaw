@@ -84,7 +84,7 @@ describe("Crabbox warm-image lifecycle ownership", () => {
       if (deleteFails) {
         expect(warn).toHaveBeenCalledWith(
           expect.stringMatching(
-            /checkpoint retirement.*chk_profile_warm.*retained.*retry.*openclaw crabbox warm-images/iu,
+            /checkpoint retirement.*chk_profile_warm.*retained.*retry.*omnisclaw crabbox warm-images/iu,
           ),
         );
         expect(warn).not.toHaveBeenCalledWith(expect.stringContaining("warm image capture failed"));

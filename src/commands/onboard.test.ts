@@ -278,7 +278,7 @@ describe("setupWizardCommand", () => {
     await setupWizardCommand(options, runtime);
 
     const message =
-      "Onboarding needs an interactive TTY. Use `openclaw onboard --non-interactive --accept-risk ...` for automation.";
+      "Onboarding needs an interactive TTY. Use `omnisclaw onboard --non-interactive --accept-risk ...` for automation.";
     expect(runtime.error).toHaveBeenCalledWith(message);
     expect(vi.mocked(runtime.log).mock.calls).toEqual(
       "json" in options
@@ -459,7 +459,7 @@ describe("setupWizardCommand", () => {
     await setupWizardCommand({ resetScope: "full" }, runtime);
 
     expect(runtime.error).toHaveBeenCalledWith(
-      "--reset-scope requires --reset. Re-run with openclaw onboard --reset --reset-scope full.",
+      "--reset-scope requires --reset. Re-run with omnisclaw onboard --reset --reset-scope full.",
     );
     expect(runtime.exit).toHaveBeenCalledWith(1);
     expect(mocks.handleReset).not.toHaveBeenCalled();
@@ -526,7 +526,7 @@ describe("setupWizardCommand", () => {
           `remote mode without a URL${json ? " in JSON output" : ""}`,
           { mode: "remote" as const, json },
           formatCliCommand(
-            "openclaw onboard --non-interactive --accept-risk --mode remote --remote-url ws://127.0.0.1:3000",
+            "omnisclaw onboard --non-interactive --accept-risk --mode remote --remote-url ws://127.0.0.1:3000",
           ),
         ] as const,
     ),

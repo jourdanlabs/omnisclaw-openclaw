@@ -23,7 +23,7 @@ describeLive("parallel plugin live", () => {
       const result = (await tool.execute({
         objective:
           "Find the OpenClaw GitHub repository and recent project activity for a quick smoke test.",
-        search_queries: ["openclaw github repository", "openclaw release notes"],
+        search_queries: ["omnisclaw github repository", "omnisclaw release notes"],
         count: 3,
         client_model: "claude-opus-4-7",
       })) as {

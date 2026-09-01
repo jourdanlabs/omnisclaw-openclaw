@@ -225,7 +225,7 @@ describe("Zoom meeting platform adapter", () => {
     expect(script).toContain("host will let you in soon");
     expect(script).toContain("setSinkId");
     expect(script).toContain("blackhole 2ch");
-    expect(script).toContain("openclaw meeting audio");
+    expect(script).toContain("omnisclaw meeting audio");
   });
 
   it("enables caption snapshots for durable notes in every mode", () => {

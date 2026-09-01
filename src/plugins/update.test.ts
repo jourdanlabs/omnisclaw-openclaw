@@ -1877,7 +1877,7 @@ describe("updateNpmInstalledPlugins", () => {
           message:
             `demo is pinned to @acme/demo@1.2.3 (installed 1.2.3); ` +
             `registry ${updateChannel === "beta" ? "beta" : "latest"} resolves to ${registryVersion}. ` +
-            `Pass \`openclaw plugins update ${overrideSpec}\` to follow that registry line.`,
+            `Pass \`omnisclaw plugins update ${overrideSpec}\` to follow that registry line.`,
         },
       ]);
     },
@@ -1929,7 +1929,7 @@ describe("updateNpmInstalledPlugins", () => {
         nextVersion: "1.2.4",
         message:
           "demo is pinned to @acme/demo@1.2.3 (installed 1.2.3); registry latest resolves to 1.2.4. " +
-          "Pass `openclaw plugins update @acme/demo@latest` to follow that registry line.",
+          "Pass `omnisclaw plugins update @acme/demo@latest` to follow that registry line.",
       },
     ]);
   });
@@ -1989,7 +1989,7 @@ describe("updateNpmInstalledPlugins", () => {
     }
   });
 
-  it("repairs missing openclaw peer links before skipping unchanged npm plugins", async () => {
+  it("repairs missing omnisclaw peer links before skipping unchanged npm plugins", async () => {
     const installPath = createInstalledPackageDir({
       name: "@openclaw/codex",
       version: "2026.5.3",
@@ -2047,7 +2047,7 @@ describe("updateNpmInstalledPlugins", () => {
     ]);
   });
 
-  it("skips unchanged npm plugins when the openclaw peer link already resolves", async () => {
+  it("skips unchanged npm plugins when the omnisclaw peer link already resolves", async () => {
     const installPath = createInstalledPackageDir({
       name: "@openclaw/codex",
       version: "2026.5.3",
@@ -2168,7 +2168,7 @@ describe("updateNpmInstalledPlugins", () => {
     },
   );
 
-  it("repairs openclaw peer links after batch npm updates prune earlier plugin links", async () => {
+  it("repairs omnisclaw peer links after batch npm updates prune earlier plugin links", async () => {
     const plugins = [
       { pluginId: "brave", packageName: "@openclaw/brave-plugin" },
       { pluginId: "codex", packageName: "@openclaw/codex" },
@@ -2229,7 +2229,7 @@ describe("updateNpmInstalledPlugins", () => {
     );
   });
 
-  it("repairs sibling openclaw peer links after a targeted npm update prunes the shared install tree", async () => {
+  it("repairs sibling omnisclaw peer links after a targeted npm update prunes the shared install tree", async () => {
     const plugins = [
       { pluginId: "brave", packageName: "@openclaw/brave-plugin" },
       { pluginId: "codex", packageName: "@openclaw/codex" },
@@ -2384,7 +2384,7 @@ describe("updateNpmInstalledPlugins", () => {
     },
   );
 
-  it("continues repairing sibling openclaw peer links after one recorded npm install cannot be relinked", async () => {
+  it("continues repairing sibling omnisclaw peer links after one recorded npm install cannot be relinked", async () => {
     const plugins = [
       { pluginId: "brave", packageName: "@openclaw/brave-plugin" },
       { pluginId: "codex", packageName: "@openclaw/codex" },
@@ -2455,9 +2455,9 @@ describe("updateNpmInstalledPlugins", () => {
     expect(fs.existsSync(peerLinkPath("codex"))).toBe(true);
     expect(warnMessages).toEqual([
       expect.stringContaining(
-        `Could not repair openclaw peer link at ${malformedInstallPath}: SyntaxError:`,
+        `Could not repair omnisclaw peer link at ${malformedInstallPath}: SyntaxError:`,
       ),
-      `Skipping openclaw peerDependency link because ${path.join(brokenInstallPath, "node_modules")} is not a real directory.`,
+      `Skipping omnisclaw peerDependency link because ${path.join(brokenInstallPath, "node_modules")} is not a real directory.`,
     ]);
   });
 
@@ -3268,7 +3268,7 @@ describe("updateNpmInstalledPlugins", () => {
         status: "unchanged",
         currentVersion: "1.2.3",
         nextVersion: "1.2.4",
-        message: `demo is pinned to ${spec} (installed 1.2.3); registry latest resolves to 1.2.4. Pass \`openclaw plugins update @acme/demo@latest\` to follow that registry line.`,
+        message: `demo is pinned to ${spec} (installed 1.2.3); registry latest resolves to 1.2.4. Pass \`omnisclaw plugins update @acme/demo@latest\` to follow that registry line.`,
       });
     },
   );

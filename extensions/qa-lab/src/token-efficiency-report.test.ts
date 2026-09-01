@@ -575,7 +575,7 @@ describe("token efficiency report", () => {
 
     expect(report.pass).toBe(false);
     expect(report.failures).toEqual([
-      "missing-live-usage openclaw live usage totalTokens=0",
+      "missing-live-usage omnisclaw live usage totalTokens=0",
       "missing-live-usage codex live usage totalTokens=0",
     ]);
   });
@@ -652,8 +652,8 @@ describe("token efficiency report", () => {
 
     expect(report.pass).toBe(false);
     expect(report.failures).toEqual([
-      "fractional-live-usage openclaw live usage inputTokens must be a non-negative integer",
-      "fractional-live-usage openclaw live usage totalTokens must be a non-negative integer",
+      "fractional-live-usage omnisclaw live usage inputTokens must be a non-negative integer",
+      "fractional-live-usage omnisclaw live usage totalTokens must be a non-negative integer",
     ]);
   });
 

@@ -529,7 +529,7 @@ describe("cron cli", () => {
     await expect(program.parseAsync(args, { from: "user" })).rejects.toThrow("__exit__:1");
 
     expectRuntimeErrorContaining(
-      "Automation not found: missing. Run `openclaw cron list` to see recent automation ids.",
+      "Automation not found: missing. Run `omnisclaw cron list` to see recent automation ids.",
     );
   });
 

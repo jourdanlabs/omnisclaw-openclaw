@@ -81,22 +81,22 @@ export function registerSecurityCli(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw security audit", "Run a local security audit."],
+          ["omnisclaw security audit", "Run a local security audit."],
           [
-            "openclaw security audit --deep",
+            "omnisclaw security audit --deep",
             "Include best-effort live Gateway probes and plugin-owned security audit collectors.",
           ],
-          ["openclaw security audit --deep --token <token>", "Use explicit token for deep probe."],
+          ["omnisclaw security audit --deep --token <token>", "Use explicit token for deep probe."],
           [
-            "openclaw security audit --deep --password <password>",
+            "omnisclaw security audit --deep --password <password>",
             "Use explicit password for deep probe.",
           ],
           [
-            "openclaw security audit --auth password --password <password>",
+            "omnisclaw security audit --auth password --password <password>",
             "Audit a runtime-only password-mode Gateway secret.",
           ],
-          ["openclaw security audit --fix", "Apply safe remediations and file-permission fixes."],
-          ["openclaw security audit --json", "Output machine-readable JSON."],
+          ["omnisclaw security audit --fix", "Apply safe remediations and file-permission fixes."],
+          ["omnisclaw security audit --json", "Output machine-readable JSON."],
         ])}\n\n${theme.muted("Docs:")} ${formatDocsLink("/cli/security", "docs.openclaw.ai/cli/security")}\n`,
     );
 

@@ -233,7 +233,7 @@ describe("mantis Slack desktop smoke runtime", () => {
     expect(remoteScript).toContain('sudo apt-get update -y >>"$out/apt.log" 2>&1 || true');
     expect(remoteScript).toContain("slack-desktop-smoke.mp4");
     expect(remoteScript).not.toContain("-video_size");
-    expect(remoteScript).toContain("openclaw qa slack");
+    expect(remoteScript).toContain("omnisclaw qa slack");
     expect(remoteScript).toContain("--scenario 'slack-canary'");
     expect(remoteScript).toContain(
       'slack_qa_output_dir=".artifacts/qa-e2e/mantis/$(basename "$out")/slack-qa"',
@@ -741,7 +741,7 @@ describe("mantis Slack desktop smoke runtime", () => {
       expect(runCommand?.env?.OPENCLAW_QA_SLACK_SUT_BOT_TOKEN).toBe("xoxb-leased");
       const remoteScript = runCommand?.args.at(-1);
       expect(remoteScript).toContain("setup_gateway=1");
-      expect(remoteScript).toContain("openclaw gateway run");
+      expect(remoteScript).toContain("omnisclaw gateway run");
       expect(remoteScript).toContain('</dev/null >"$out/openclaw-gateway.log"');
       expect(remoteScript).toContain('kill -0 "$gateway_pid"');
       expect(remoteScript).toContain('disown "$gateway_pid"');

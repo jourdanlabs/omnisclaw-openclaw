@@ -155,7 +155,7 @@ describe("usage-format", () => {
     ).toBeUndefined();
   });
 
-  it("prefers models.json pricing over openclaw config and cached pricing", async () => {
+  it("prefers models.json pricing over omnisclaw config and cached pricing", async () => {
     const config = {
       models: {
         providers: {
@@ -372,7 +372,7 @@ describe("usage-format", () => {
     ).toBe(999);
   });
 
-  it("falls back to openclaw config pricing when models.json is absent", () => {
+  it("falls back to omnisclaw config pricing when models.json is absent", () => {
     const config = {
       models: {
         providers: {

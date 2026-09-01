@@ -203,7 +203,7 @@ describe("transcripts auto-start stop reporting", () => {
             expect(logged).toMatch(/summary saved.*export failed/i);
             expect(logged).toContain("ENOTDIR");
             expect(logged).toContain(JSON.stringify(summaryPath));
-            expect(logged).toContain("openclaw transcripts path <session>");
+            expect(logged).toContain("omnisclaw transcripts path <session>");
             expect(logged).toMatch(/(?:repair|correct).*destination/i);
           }
           if (outcome !== "ok") {

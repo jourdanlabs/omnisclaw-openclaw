@@ -52,12 +52,12 @@ describe("doctor empty allowlist policy scan", () => {
           },
         },
       },
-      { doctorFixCommand: "openclaw doctor --fix" },
+      { doctorFixCommand: "omnisclaw doctor --fix" },
     );
 
     expect(warnings).toEqual([
-      '- channels.signal.dmPolicy is "allowlist" but allowFrom is empty — all DMs will be blocked. Add sender IDs to channels.signal.allowFrom, or run "openclaw doctor --fix" to auto-migrate from pairing store when entries exist.',
-      '- channels.signal.accounts.work.dmPolicy is "allowlist" but allowFrom is empty — all DMs will be blocked. Add sender IDs to channels.signal.accounts.work.allowFrom, or run "openclaw doctor --fix" to auto-migrate from pairing store when entries exist.',
+      '- channels.signal.dmPolicy is "allowlist" but allowFrom is empty — all DMs will be blocked. Add sender IDs to channels.signal.allowFrom, or run "omnisclaw doctor --fix" to auto-migrate from pairing store when entries exist.',
+      '- channels.signal.accounts.work.dmPolicy is "allowlist" but allowFrom is empty — all DMs will be blocked. Add sender IDs to channels.signal.accounts.work.allowFrom, or run "omnisclaw doctor --fix" to auto-migrate from pairing store when entries exist.',
     ]);
   });
 
@@ -75,7 +75,7 @@ describe("doctor empty allowlist policy scan", () => {
           },
         },
       },
-      { doctorFixCommand: "openclaw doctor --fix" },
+      { doctorFixCommand: "omnisclaw doctor --fix" },
     );
 
     expect(warnings).toEqual([]);
@@ -95,7 +95,7 @@ describe("doctor empty allowlist policy scan", () => {
           },
         },
       },
-      { doctorFixCommand: "openclaw doctor --fix" },
+      { doctorFixCommand: "omnisclaw doctor --fix" },
     );
 
     expect(warnings).toContain(
@@ -117,7 +117,7 @@ describe("doctor empty allowlist policy scan", () => {
           },
         },
       },
-      { doctorFixCommand: "openclaw doctor --fix" },
+      { doctorFixCommand: "omnisclaw doctor --fix" },
     );
 
     expect(warnings).toContain(
@@ -138,7 +138,7 @@ describe("doctor empty allowlist policy scan", () => {
           },
         },
       },
-      { doctorFixCommand: "openclaw doctor --fix" },
+      { doctorFixCommand: "omnisclaw doctor --fix" },
     );
 
     expect(warnings).toEqual([]);
@@ -157,7 +157,7 @@ describe("doctor empty allowlist policy scan", () => {
           },
         },
       },
-      { doctorFixCommand: "openclaw doctor --fix" },
+      { doctorFixCommand: "omnisclaw doctor --fix" },
     );
 
     expect(warnings).toEqual([]);
@@ -177,7 +177,7 @@ describe("doctor empty allowlist policy scan", () => {
           },
         },
       },
-      { doctorFixCommand: "openclaw doctor --fix" },
+      { doctorFixCommand: "omnisclaw doctor --fix" },
     );
 
     expect(warnings).toContain(
@@ -195,7 +195,7 @@ describe("doctor empty allowlist policy scan", () => {
         },
       },
       {
-        doctorFixCommand: "openclaw doctor --fix",
+        doctorFixCommand: "omnisclaw doctor --fix",
         extraWarningsForAccount: ({ channelName, prefix }) =>
           channelName === "telegram" ? [`extra:${prefix}`] : [],
       },
@@ -227,7 +227,7 @@ describe("doctor empty allowlist policy scan", () => {
           },
         },
       },
-      { doctorFixCommand: "openclaw doctor --fix", extraWarningsForAccount },
+      { doctorFixCommand: "omnisclaw doctor --fix", extraWarningsForAccount },
     );
 
     expect(warnings).toEqual(["extra:channels.signal"]);

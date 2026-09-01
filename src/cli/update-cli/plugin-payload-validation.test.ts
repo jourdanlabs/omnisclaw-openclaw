@@ -499,7 +499,7 @@ describe("runPluginPayloadSmokeCheck", () => {
     expect(result.failures).toEqual([]);
   });
 
-  it("reports a failure when an openclaw peer link is missing", async () => {
+  it("reports a failure when an omnisclaw peer link is missing", async () => {
     const dir = path.join(tmpRoot, "codex");
     await writePackage(
       dir,
@@ -530,7 +530,7 @@ describe("runPluginPayloadSmokeCheck", () => {
     ]);
   });
 
-  it("reports a failure when an openclaw peer link is a stale real directory", async () => {
+  it("reports a failure when an omnisclaw peer link is a stale real directory", async () => {
     const dir = path.join(tmpRoot, "codex");
     await writePackage(
       dir,
@@ -561,7 +561,7 @@ describe("runPluginPayloadSmokeCheck", () => {
     );
   });
 
-  it("reports a failure when a direct openclaw dependency resolves to a stale copied host", async () => {
+  it("reports a failure when a direct omnisclaw dependency resolves to a stale copied host", async () => {
     const dir = path.join(tmpRoot, "email");
     await writePackage(
       dir,
@@ -624,7 +624,7 @@ describe("runPluginPayloadSmokeCheck", () => {
     },
   );
 
-  it("reports a failure when an openclaw peer link points at the wrong package root", async () => {
+  it("reports a failure when an omnisclaw peer link points at the wrong package root", async () => {
     const dir = path.join(tmpRoot, "codex");
     await writePackage(
       dir,
@@ -662,7 +662,7 @@ describe("runPluginPayloadSmokeCheck", () => {
     );
   });
 
-  it("accepts an openclaw peer link when it resolves to the host package root", async () => {
+  it("accepts an omnisclaw peer link when it resolves to the host package root", async () => {
     const dir = path.join(tmpRoot, "codex");
     await writePackage(
       dir,

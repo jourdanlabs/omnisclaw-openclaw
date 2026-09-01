@@ -101,7 +101,7 @@ const tick = () =>
     setImmediate(resolve);
   });
 
-describe("openclaw attach (action)", () => {
+describe("omnisclaw attach (action)", () => {
   beforeEach(() => {
     gatewayCalls.length = 0;
     logs.length = 0;

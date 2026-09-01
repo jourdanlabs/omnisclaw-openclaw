@@ -33,7 +33,7 @@ describe("state database schema migration error classification", () => {
     expect(
       findOpenClawStateDatabaseSchemaMigrationRequiredError(
         new Error(
-          "OpenClaw state database /tmp/openclaw.sqlite is stale; run openclaw doctor --fix.",
+          "OpenClaw state database /tmp/openclaw.sqlite is stale; run omnisclaw doctor --fix.",
         ),
       ),
     ).toBeUndefined();
@@ -44,7 +44,7 @@ describe("state database schema migration error classification", () => {
     expect(
       findOpenClawStateDatabaseSchemaMigrationRequiredError(
         new Error(
-          "OpenClaw agent database /tmp/openclaw-agent.sqlite uses schema version 5; run openclaw doctor --fix to migrate persisted media before using it.",
+          "OpenClaw agent database /tmp/openclaw-agent.sqlite uses schema version 5; run omnisclaw doctor --fix to migrate persisted media before using it.",
         ),
       ),
     ).toBeUndefined();

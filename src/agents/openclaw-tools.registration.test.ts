@@ -452,7 +452,7 @@ function stubAgentTool(name: string): AnyAgentTool {
 describe.each([
   { suite: "image", toolName: "image_generate", article: "an", label: "image-generation tool" },
   { suite: "video", toolName: "video_generate", article: "a", label: "video-generation tool" },
-])("openclaw tools $suite generation registration", ({ toolName, article, label }) => {
+])("omnisclaw tools $suite generation registration", ({ toolName, article, label }) => {
   it(`registers ${toolName} when ${article} ${label} is present`, () => {
     const tool = stubAgentTool(toolName);
     expect(collectPresentOpenClawTools([tool])).toEqual([tool]);

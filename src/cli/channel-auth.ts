@@ -132,7 +132,7 @@ async function resolveChannelPluginForMode(
       formatUnsupportedChannelActionMessage({
         channel: channelId,
         action: mode,
-        inspectCommand: "openclaw channels status --channel " + channelId,
+        inspectCommand: "omnisclaw channels status --channel " + channelId,
       }),
     );
   }
@@ -271,7 +271,7 @@ export async function runChannelLogin(
       formatUnsupportedChannelActionMessage({
         channel: channelInput,
         action: "login",
-        inspectCommand: "openclaw channels status --channel " + channelInput,
+        inspectCommand: "omnisclaw channels status --channel " + channelInput,
       }),
     );
   }
@@ -309,7 +309,7 @@ export async function runChannelLogout(
       formatUnsupportedChannelActionMessage({
         channel: channelInput,
         action: "logout",
-        inspectCommand: "openclaw channels status --channel " + channelInput,
+        inspectCommand: "omnisclaw channels status --channel " + channelInput,
       }),
     );
   }

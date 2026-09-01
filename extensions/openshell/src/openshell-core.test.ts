@@ -341,7 +341,7 @@ describe("openshell backend manager", () => {
         script: "true",
       }),
     ).rejects.toThrow(
-      `Run \`openclaw sandbox recreate --session ${shellEscape(scopeKey)}\` to migrate this scope`,
+      `Run \`omnisclaw sandbox recreate --session ${shellEscape(scopeKey)}\` to migrate this scope`,
     );
     expect(cliMocks.runOpenShellCli).toHaveBeenCalledTimes(1);
     expect(cliMocks.runOpenShellCli).not.toHaveBeenCalledWith(

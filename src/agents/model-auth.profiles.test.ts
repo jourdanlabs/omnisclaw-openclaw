@@ -865,9 +865,9 @@ describe("getApiKeyForModelCore", () => {
           `Auth store: ${resolveOpenClawStateSqlitePath(state.env)} (agentDir: ${state.agentDir()}).`,
         );
         expect((error as Error).message).toContain(
-          "openclaw models auth paste-api-key --provider openai",
+          "omnisclaw models auth paste-api-key --provider openai",
         );
-        expect((error as Error).message).not.toContain("openclaw agents add");
+        expect((error as Error).message).not.toContain("omnisclaw agents add");
       },
     );
 
@@ -979,7 +979,7 @@ describe("getApiKeyForModelCore", () => {
               "zai:default": {
                 type: "api_key",
                 provider: "zai",
-                key: "openclaw onboard --auth-choice zai-coding-global",
+                key: "omnisclaw onboard --auth-choice zai-coding-global",
               },
             },
           },

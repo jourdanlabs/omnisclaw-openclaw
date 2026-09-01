@@ -112,7 +112,7 @@ describe("loadLegacyOAuthSidecarMaterial keychain-only headless warning", () => 
     expect(load()).toBeNull();
     expect(warnSpy).toHaveBeenCalledTimes(1);
     const [firstMessage] = warnSpy.mock.calls[0] as [unknown];
-    expect(String(firstMessage)).toContain("openclaw doctor --fix");
+    expect(String(firstMessage)).toContain("omnisclaw doctor --fix");
     expect(String(firstMessage)).toContain("macOS Keychain");
 
     expect(load()).toBeNull();

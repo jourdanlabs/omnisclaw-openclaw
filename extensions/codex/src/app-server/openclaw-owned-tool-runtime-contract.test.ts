@@ -7,7 +7,7 @@ import {
   resetOpenClawOwnedToolHooks,
   textToolResult,
 } from "openclaw/plugin-sdk/agent-runtime-test-contracts";
-// Codex tests cover openclaw owned tool runtime contract plugin behavior.
+// Codex tests cover omnisclaw owned tool runtime contract plugin behavior.
 import { createRequireRecord } from "openclaw/plugin-sdk/test-fixtures";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createCodexDynamicToolBridge } from "./dynamic-tools.js";

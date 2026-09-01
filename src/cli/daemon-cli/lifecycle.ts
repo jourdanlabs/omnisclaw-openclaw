@@ -262,7 +262,7 @@ async function signalGatewayRestart(
   }
   if (pids.length > 1) {
     throw new Error(
-      `multiple gateway processes are listening on port ${port}: ${formatGatewayPidList(pids)}; use "openclaw gateway status --deep" before retrying restart`,
+      `multiple gateway processes are listening on port ${port}: ${formatGatewayPidList(pids)}; use "omnisclaw gateway status --deep" before retrying restart`,
     );
   }
   const pid = expectDefined(pids[0], "pids entry at 0");

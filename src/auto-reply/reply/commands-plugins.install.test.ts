@@ -756,7 +756,7 @@ describe("handleCommands /plugins install", () => {
     const warning =
       'ClawHub trust warning for "@openclaw/clawhub-demo@1.2.3": scan=pending; reasons=pending.';
     const setupWarning =
-      'Installed plugin "clawhub-demo" without enabling it because it requires configuration first. Configure it, then run `openclaw plugins enable clawhub-demo`.';
+      'Installed plugin "clawhub-demo" without enabling it because it requires configuration first. Configure it, then run `omnisclaw plugins enable clawhub-demo`.';
     const richWarning = `\u001b[33m${warning}\u001b[39m`;
     installPluginFromClawHubMock.mockImplementation(async (params: unknown) => {
       if (!params || typeof params !== "object" || !("logger" in params)) {

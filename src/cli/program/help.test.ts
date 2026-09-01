@@ -214,9 +214,9 @@ describe("configureProgramHelp", () => {
     const thirdError = await program.parseAsync(process.argv).catch((error: unknown) => error);
     expect(thirdError).toBeInstanceOf(CommanderError);
 
-    expect(stderr.match(/Try: openclaw plugins list --help/g)).toHaveLength(2);
-    expect(stderr).not.toContain("openclaw plugins list list --help");
-    expect(stderr).toContain("Did you mean this?\n  openclaw plugins list\n");
+    expect(stderr.match(/Try: omnisclaw plugins list --help/g)).toHaveLength(2);
+    expect(stderr).not.toContain("omnisclaw plugins list list --help");
+    expect(stderr).toContain("Did you mean this?\n  omnisclaw plugins list\n");
   });
 
   it("suppresses banner formatting when parent default help requests it", () => {

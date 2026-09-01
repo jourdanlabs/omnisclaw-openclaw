@@ -235,7 +235,7 @@ describe("paired-device automatic placement selection", () => {
           issues: [NODE_RUNNER_UPDATE_REQUIRED_ISSUE],
         }),
       ],
-      message: "run openclaw update, then reconnect",
+      message: "run omnisclaw update, then reconnect",
     },
   ])("explains $name with an operator recovery action", async ({ environments, message }) => {
     const result = await selectNodes(environments);

@@ -25,7 +25,7 @@ describe("status update restart formatting", () => {
     );
 
     expect(value).toBe(
-      "warn(failed · managed-service-handoff-failed · run openclaw gateway status --deep · 60000ms)",
+      "warn(failed · managed-service-handoff-failed · run omnisclaw gateway status --deep · 60000ms)",
     );
   });
 
@@ -35,13 +35,13 @@ describe("status update restart formatting", () => {
         ...basePayload,
         stats: { ...basePayload.stats, reason: "managed-service-handoff-started" },
       }),
-    ).toBe("handoff running · gateway restart pending · run openclaw update status");
+    ).toBe("handoff running · gateway restart pending · run omnisclaw update status");
     expect(
       formatUpdateRestartStatusValue({
         ...basePayload,
         stats: { ...basePayload.stats, reason: "restart-health-pending" },
       }),
-    ).toBe("restart pending health verification · run openclaw gateway status --deep");
+    ).toBe("restart pending health verification · run omnisclaw gateway status --deep");
   });
 
   it("formats verified update restarts with the running gateway version", () => {
@@ -64,14 +64,14 @@ describe("status update restart formatting", () => {
         status: "error",
         stats: { ...basePayload.stats, reason: "managed-service-handoff-failed" },
       }),
-    ).toContain("Update restart failed; run openclaw gateway status --deep.");
+    ).toContain("Update restart failed; run omnisclaw gateway status --deep.");
     expect(
       formatUpdateRestartActionLines({
         ...basePayload,
         stats: { ...basePayload.stats, reason: "restart-health-pending" },
       }),
     ).toContain(
-      "Update restart is still pending; run openclaw update status --json for handoff state.",
+      "Update restart is still pending; run omnisclaw update status --json for handoff state.",
     );
     expect(
       formatUpdateRestartActionLines({

@@ -39,13 +39,13 @@ const QUEUE_MODE_RULES: LegacyConfigRule[] = [
   {
     path: ["messages", "queue", "mode"],
     message:
-      'messages.queue.mode uses a retired queue mode; use steer, followup, collect, or interrupt. Run "openclaw doctor --fix".',
+      'messages.queue.mode uses a retired queue mode; use steer, followup, collect, or interrupt. Run "omnisclaw doctor --fix".',
     match: isRetiredQueueMode,
   },
   {
     path: ["messages", "queue", "byChannel"],
     message:
-      'messages.queue.byChannel contains a retired queue mode; use steer, followup, collect, or interrupt. Run "openclaw doctor --fix".',
+      'messages.queue.byChannel contains a retired queue mode; use steer, followup, collect, or interrupt. Run "omnisclaw doctor --fix".',
     match: hasRetiredQueueModeByChannel,
   },
 ];

@@ -212,11 +212,11 @@ describe("status-all diagnosis port checks", () => {
 
     const output = params.lines.join("\n");
     expect(output).toContain(
-      "Update restart: failed · managed-service-handoff-failed · run openclaw gateway status --deep",
+      "Update restart: failed · managed-service-handoff-failed · run omnisclaw gateway status --deep",
     );
-    expect(output).toContain("Update restart failed; run openclaw gateway status --deep.");
+    expect(output).toContain("Update restart failed; run omnisclaw gateway status --deep.");
     expect(output).toContain(
-      "If the service is down, run openclaw gateway restart or openclaw gateway install --force.",
+      "If the service is down, run omnisclaw gateway restart or omnisclaw gateway install --force.",
     );
   });
 
@@ -239,10 +239,10 @@ describe("status-all diagnosis port checks", () => {
 
     const output = params.lines.join("\n");
     expect(output).toContain(
-      "Update restart: restart pending health verification · run openclaw gateway status --deep",
+      "Update restart: restart pending health verification · run omnisclaw gateway status --deep",
     );
     expect(output).toContain(
-      "Update restart is still pending; run openclaw update status --json for handoff state.",
+      "Update restart is still pending; run omnisclaw update status --json for handoff state.",
     );
   });
 
@@ -355,12 +355,12 @@ describe("status-all diagnosis port checks", () => {
     expect(output).toContain(
       "Exporter diagnostics failed: Error: diagnostics probe timed out at wss://***:***@gateway.example/socket?token=***",
     );
-    expect(output).toContain("Retry: openclaw gateway stability --type telemetry.exporter");
+    expect(output).toContain("Retry: omnisclaw gateway stability --type telemetry.exporter");
     expect(output).toContain("! Inbound delivery telemetry: unavailable");
     expect(output).toContain(
       "Delivery diagnostics failed: Error: diagnostics probe timed out at wss://***:***@gateway.example/socket?token=***",
     );
-    expect(output).toContain("Retry: openclaw gateway stability");
+    expect(output).toContain("Retry: omnisclaw gateway stability");
     expect(output).not.toContain("received 0 · dispatch 0/0 · turns 0 · processed 0");
     expect(output).not.toContain("probe-user");
     expect(output).not.toContain("probe-pass");
@@ -481,7 +481,7 @@ describe("status-all diagnosis port checks", () => {
     expect(output).not.toContain("Gateway health:");
     expect(output).not.toContain("Inbound delivery telemetry: unavailable");
     expect(output).not.toContain("Telemetry exporters: unavailable");
-    expect(output).not.toContain("Retry: openclaw gateway stability");
+    expect(output).not.toContain("Retry: omnisclaw gateway stability");
   });
 
   it("does not read or display stale stderr tails on Darwin", async () => {

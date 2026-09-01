@@ -207,7 +207,7 @@ describe("transcript tool selection", () => {
     const shown = [...text.matchAll(/^(?:pending|active): (.+)$/gm)].map((match) => match[1]);
     expect(shown).toEqual([selectors[0], ...selectors.slice(1).toSorted().slice(0, 2)]);
     expect(text).toContain(`pending: ${selectors[0]}`);
-    expect(text).toContain("1 more; ask a local operator to run openclaw transcripts list.");
+    expect(text).toContain("1 more; ask a local operator to run omnisclaw transcripts list.");
     expect(text).toContain("\nSelectors:\n");
     expect(text.slice(text.indexOf("Selectors:")).length).toBeLessThanOrEqual(1024);
     expect(text).not.toContain("x".repeat(900));

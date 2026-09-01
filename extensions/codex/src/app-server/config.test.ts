@@ -2830,7 +2830,7 @@ allowed_sandbox_modes = ["read-only", "workspace-write"]
       name: "AgentHarnessPreflightError",
       scope: "harness",
       message: expect.stringContaining(
-        "inspect them with `openclaw approvals get --gateway` and update that same target with `openclaw approvals set --gateway --stdin`",
+        "inspect them with `omnisclaw approvals get --gateway` and update that same target with `omnisclaw approvals set --gateway --stdin`",
       ),
     });
     expect((error as Error).message).not.toContain("--node");
@@ -3086,7 +3086,7 @@ allowed_sandbox_modes = ["read-only", "workspace-write"]
         appServer: { approvalPolicy: "untrusted" },
       }),
     ).toThrow(
-      'plugins.entries.codex.config.appServer.approvalPolicy="untrusted" is retired; run "openclaw doctor --fix" to migrate it to "on-request".',
+      'plugins.entries.codex.config.appServer.approvalPolicy="untrusted" is retired; run "omnisclaw doctor --fix" to migrate it to "on-request".',
     );
     expect(() =>
       resolveRuntimeForTest({
@@ -3094,7 +3094,7 @@ allowed_sandbox_modes = ["read-only", "workspace-write"]
         env: { OPENCLAW_CODEX_APP_SERVER_APPROVAL_POLICY: "untrusted" },
       }),
     ).toThrow(
-      'Codex app-server approval policy "untrusted" is retired; run "openclaw doctor --fix" and use "on-request".',
+      'Codex app-server approval policy "untrusted" is retired; run "omnisclaw doctor --fix" and use "on-request".',
     );
   });
 

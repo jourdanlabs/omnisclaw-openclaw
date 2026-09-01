@@ -414,6 +414,6 @@ describe("legacy node-host Doctor migration", () => {
 
     expect(result.warnings[0]).toContain("source or Doctor claim remains after cleanup");
     expect(fs.existsSync(sourcePath)).toBe(true);
-    await expect(loadNodeHostConfig(env)).rejects.toThrow("openclaw doctor --fix");
+    await expect(loadNodeHostConfig(env)).rejects.toThrow("omnisclaw doctor --fix");
   });
 });

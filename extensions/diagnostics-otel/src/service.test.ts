@@ -4220,7 +4220,7 @@ describe("diagnostics-otel service", () => {
     expect(JSON.stringify(genAiTokenUsage?.record.mock.calls)).not.toContain("session-key");
   });
 
-  test("advertises explicit duration buckets on the openclaw run/harness/context histograms", async () => {
+  test("advertises explicit duration buckets on the omnisclaw run/harness/context histograms", async () => {
     const priorSdkBoundaries = [
       0, 5, 10, 25, 50, 75, 100, 250, 500, 750, 1000, 2500, 5000, 7500, 10000,
     ];

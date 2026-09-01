@@ -622,7 +622,7 @@ describe("Feishu webhook signed-request e2e", () => {
       };
       const needsMigration = configuredPath !== acceptedTarget;
       if (needsMigration) {
-        await expect(monitorWebhook(monitorParams)).rejects.toThrow("openclaw doctor --fix");
+        await expect(monitorWebhook(monitorParams)).rejects.toThrow("omnisclaw doctor --fix");
         expect(httpServers.has(accountId)).toBe(false);
         expect(handler).not.toHaveBeenCalled();
         expect(statusSink).not.toHaveBeenCalled();

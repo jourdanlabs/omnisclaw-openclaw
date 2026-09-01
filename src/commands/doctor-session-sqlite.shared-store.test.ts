@@ -313,11 +313,11 @@ describe("Doctor canonical session SQLite targets", () => {
         expect(migrated.changes).toEqual([]);
         expect(migrated.warnings).toEqual([
           expect.stringMatching(
-            /^Agent database maintenance deferred: .*stop that process and rerun openclaw doctor --fix/s,
+            /^Agent database maintenance deferred: .*stop that process and rerun omnisclaw doctor --fix/s,
           ),
         ]);
         await expect(repairHistoricalSharedStore(store, mode)).rejects.toThrow(
-          /stop that process and rerun openclaw doctor --fix/,
+          /stop that process and rerun omnisclaw doctor --fix/,
         );
         expect(fs.readFileSync(store.sqlitePath)).toEqual(before);
       } finally {

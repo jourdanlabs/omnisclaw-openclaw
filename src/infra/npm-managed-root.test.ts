@@ -1346,7 +1346,7 @@ describe("managed npm root", () => {
     });
   });
 
-  it("repairs stale managed openclaw peer state without dropping plugin packages", async () => {
+  it("repairs stale managed omnisclaw peer state without dropping plugin packages", async () => {
     const npmRoot = await makeTempRoot();
     await fs.mkdir(path.join(npmRoot, "node_modules", "openclaw"), { recursive: true });
     await fs.writeFile(

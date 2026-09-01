@@ -7,7 +7,7 @@ import {
 import { applyDoctorConfigMutation } from "./config-mutation-state.js";
 import type { DoctorConfigMutationState } from "./config-mutation-state.js";
 
-const DOCTOR_FIX_HINT = 'Run "openclaw doctor --fix" to apply these changes.';
+const DOCTOR_FIX_HINT = 'Run "omnisclaw doctor --fix" to apply these changes.';
 
 function emptyMutationState(): DoctorConfigMutationState {
   return {
@@ -38,7 +38,7 @@ describe("doctor config mutation state", () => {
       cfg: { channels: {} },
       candidate: { channels: { signal: { enabled: true } } },
       pendingChanges: true,
-      fixHints: ['Run "openclaw doctor --fix" to apply these changes.'],
+      fixHints: ['Run "omnisclaw doctor --fix" to apply these changes.'],
     });
   });
 

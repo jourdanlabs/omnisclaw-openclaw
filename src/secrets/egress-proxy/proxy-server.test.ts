@@ -470,7 +470,7 @@ describe("secret egress proxy", () => {
 
       expect(result).toMatchObject({ status: 502 });
       expect(result.body).toContain(
-        "openclaw secrets store set SERVICE_API_KEY --allow-host localhost",
+        "omnisclaw secrets store set SERVICE_API_KEY --allow-host localhost",
       );
       expect(originRequests).toEqual([]);
       expect(JSON.stringify(originRequests)).not.toContain(secret);

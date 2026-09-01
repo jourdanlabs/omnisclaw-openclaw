@@ -111,7 +111,7 @@ describe("renderTriagePrompt", () => {
         checkId: "core/error",
         severity: "error",
         message: "model routing failed",
-        fixHint: "Run `openclaw doctor --fix`.",
+        fixHint: "Run `omnisclaw doctor --fix`.",
       },
     ];
 
@@ -123,7 +123,7 @@ describe("renderTriagePrompt", () => {
 
     expect(prompt.indexOf("[error]")).toBeLessThan(prompt.indexOf("[warning]"));
     expect(prompt.indexOf("[warning]")).toBeLessThan(prompt.indexOf("[info]"));
-    expect(prompt).toContain("Fix: Run `openclaw doctor --fix`.");
+    expect(prompt).toContain("Fix: Run `omnisclaw doctor --fix`.");
     expect(prompt).toContain("Sanitized ZIP: $OPENCLAW_STATE_DIR/diagnostics.zip");
     expect(prompt).toContain("Secrets, tokens, raw chat payloads, and raw logs are excluded");
   });
@@ -166,7 +166,7 @@ describe("renderTriagePrompt", () => {
     const rendered = prompt.match(/^- \[warning\]/gmu)?.length ?? 0;
     expect(rendered).toBeGreaterThan(0);
     expect(prompt).toContain(
-      `${findings.length - rendered} more findings omitted; run \`openclaw doctor\` for the full list.`,
+      `${findings.length - rendered} more findings omitted; run \`omnisclaw doctor\` for the full list.`,
     );
     expect(prompt).toContain("## Privacy");
     expect(prompt).not.toContain("\uFFFD");
@@ -240,7 +240,7 @@ describe("triageCommand", () => {
       suggestedCommands: [
         `claude "$(cat '${promptPath}')"`,
         `codex exec - < '${promptPath}'`,
-        "openclaw triage --run",
+        "omnisclaw triage --run",
       ],
     });
     expect(await fs.readFile(promptPath, "utf8")).toContain("[error] core/error: broken");
@@ -337,7 +337,7 @@ describe("triageCommand", () => {
 
     await withInteractiveTerminal(async () => {
       await expect(triageCommand(runtime, { noExport: true, run: true })).rejects.toThrow(
-        "Run `openclaw onboard` or use a suggested handoff command.",
+        "Run `omnisclaw onboard` or use a suggested handoff command.",
       );
     });
 

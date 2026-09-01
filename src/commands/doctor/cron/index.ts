@@ -312,7 +312,7 @@ export async function collectLegacyCronStoreHealthFindings(params: {
         path: sqliteStorePath,
         requirement: "legacy-gateway-exec-recreation",
         fixHint:
-          "Review the affected jobs with `openclaw automations list --all`, then recreate each one from a fresh authenticated creator turn or explicitly reauthorize its complete tool cap from a trusted operator shell.",
+          "Review the affected jobs with `omnisclaw automations list --all`, then recreate each one from a fresh authenticated creator turn or explicitly reauthorize its complete tool cap from a trusted operator shell.",
       }),
     );
   }

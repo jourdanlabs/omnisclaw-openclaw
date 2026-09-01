@@ -177,7 +177,7 @@ describe("runPostUpgradeProbes — plugin.entry_unresolved", () => {
           code: "plugin.entry_unresolved",
           plugin: "broken",
           entry: "missing-package.json",
-          message: expect.stringContaining("openclaw plugins registry --refresh"),
+          message: expect.stringContaining("omnisclaw plugins registry --refresh"),
         }),
       ]);
       const line = stderrSpy.mock.calls.map(([value]) => String(value)).join("");
@@ -207,7 +207,7 @@ describe("runPostUpgradeProbes — plugin.entry_unresolved", () => {
           code: "plugin.entry_unresolved",
           plugin: "broken",
           entry: "package.json",
-          message: expect.stringContaining("openclaw plugins registry --refresh"),
+          message: expect.stringContaining("omnisclaw plugins registry --refresh"),
         }),
       ]);
       expect(stderrSpy).toHaveBeenCalled();
@@ -249,7 +249,7 @@ describe("runPostUpgradeProbes — plugin.entry_unresolved", () => {
     {
       label: "non-object metadata",
       openclaw: "invalid",
-      reason: "package.json openclaw must be an object",
+      reason: "package.json omnisclaw must be an object",
     },
     {
       label: "non-array entries",

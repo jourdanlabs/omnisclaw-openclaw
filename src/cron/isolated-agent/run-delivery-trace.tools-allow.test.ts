@@ -31,7 +31,7 @@ describe("configured MCP inherited-cap diagnostics", () => {
       source: "cron-preflight",
       severity: "warn",
     });
-    expect(diagnostics?.summary).toContain("openclaw automations edit job-1 --tools <tool,...>");
+    expect(diagnostics?.summary).toContain("omnisclaw automations edit job-1 --tools <tool,...>");
   });
 
   it("does not warn after final executable-surface capture", async () => {

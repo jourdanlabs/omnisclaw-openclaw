@@ -193,7 +193,7 @@ describe("config cli integration", () => {
         expect(fs.readFileSync(configPath, "utf8")).toBe(raw);
         expect(output.logs).toStrictEqual([]);
         expect(output.errors.join("\n")).toContain(
-          "Config path not found: gateway.bind. Nothing was changed. Run openclaw config get <path> first if you are unsure of the path.",
+          "Config path not found: gateway.bind. Nothing was changed. Run omnisclaw config get <path> first if you are unsure of the path.",
         );
       },
     );

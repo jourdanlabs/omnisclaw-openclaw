@@ -25,7 +25,7 @@ type MeasurePreflightStep = <T>(name: string, run: () => T | Promise<T>) => Prom
 
 function throwPluginRegistryPersistenceFailed(reason: string): never {
   throw new Error(
-    `OpenClaw refreshed the plugin registry but could not verify the persisted replacement (${reason}); refusing to write the migration checkpoint. Run "openclaw doctor --fix" and retry.`,
+    `OpenClaw refreshed the plugin registry but could not verify the persisted replacement (${reason}); refusing to write the migration checkpoint. Run "omnisclaw doctor --fix" and retry.`,
   );
 }
 

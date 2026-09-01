@@ -249,7 +249,7 @@ async function selectSetupMigrationProvider(params: {
 
 /**
  * Rejects a provider id that is absent from the listed options, naming the ids that are present.
- * `openclaw migrate` already answers an unknown provider this way; onboarding has to match, because
+ * `omnisclaw migrate` already answers an unknown provider this way; onboarding has to match, because
  * a typed id is far likelier to be a typo here than a genuinely missing plugin. An undefined id
  * means the operator dismissed the prompt, which is a cancellation rather than a bad choice.
  */

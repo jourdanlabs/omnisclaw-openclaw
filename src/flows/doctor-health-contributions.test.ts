@@ -1267,7 +1267,7 @@ describe("doctor health contributions", () => {
     mocks.replaceConfigFile.mockRejectedValueOnce(
       Object.assign(
         new Error(
-          'Config write refused: cannot inspect cron ownership. Run "openclaw doctor --fix", then retry.',
+          'Config write refused: cannot inspect cron ownership. Run "omnisclaw doctor --fix", then retry.',
         ),
         { code: "CONFIG_WRITE_REJECTED", refusal: "cron-owner-safety" },
       ),
@@ -2098,7 +2098,7 @@ describe("doctor health contributions", () => {
           severity: "warning",
           message: "Retired Workspaces plugin state remains at /tmp/workspaces.",
           path: "/tmp/workspaces",
-          fixHint: "Run openclaw doctor --fix.",
+          fixHint: "Run omnisclaw doctor --fix.",
         },
       ],
       remainingFindings: [],
@@ -3472,7 +3472,7 @@ describe("doctor health contributions", () => {
           message: "structured finding needs attention",
           path: "openclaw.json",
           line: 12,
-          fixHint: "run openclaw doctor --fix",
+          fixHint: "run omnisclaw doctor --fix",
         },
       ],
       remainingFindings: [],
@@ -3500,7 +3500,7 @@ describe("doctor health contributions", () => {
     expect(ctx.runtime.log).toHaveBeenCalledWith(
       "[warning] core/doctor/test-structured-findings openclaw.json:12 - structured finding needs attention",
     );
-    expect(ctx.runtime.log).toHaveBeenCalledWith("  fix: run openclaw doctor --fix");
+    expect(ctx.runtime.log).toHaveBeenCalledWith("  fix: run omnisclaw doctor --fix");
   });
 
   it("runs structured-only contributions in dry-run mode when doctor is not repairing", async () => {

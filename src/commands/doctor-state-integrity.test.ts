@@ -96,7 +96,7 @@ describe("structured state integrity findings", () => {
       checkId: "core/doctor/state-integrity",
       severity: "error",
       path: path.join(tempHome, ".openclaw"),
-      fixHint: "Run `openclaw doctor --fix` to create the state directory.",
+      fixHint: "Run `omnisclaw doctor --fix` to create the state directory.",
     });
     expect(stateIntegrityIssueToRepairEffect(issue)).toEqual({
       kind: "state",
@@ -434,7 +434,7 @@ describe("doctor state integrity oauth dir checks", () => {
     const text = stateIntegrityText();
     expect(text).toContain("automatic restart recovery tombstoned");
     expect(text).toContain("agent:main:subagent:wedged-child");
-    expect(text).toContain("openclaw tasks maintenance --apply");
+    expect(text).toContain("omnisclaw tasks maintenance --apply");
     expect(hasRepairPromptMessage(confirmRuntimeRepair, "Clear stale aborted recovery flags")).toBe(
       true,
     );

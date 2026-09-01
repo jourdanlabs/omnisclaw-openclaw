@@ -488,7 +488,7 @@ describe("ensureSandboxContainer config-hash recreation", () => {
     expect(spawnState.calls.some((call) => call.args[0] === "rm")).toBe(false);
     expect(spawnState.calls.some((call) => call.args[0] === "create")).toBe(false);
     expect(runtimeMocks.log).toHaveBeenCalledWith(
-      expect.stringContaining("Recreate to apply: openclaw sandbox recreate --all"),
+      expect.stringContaining("Recreate to apply: omnisclaw sandbox recreate --all"),
     );
     expect(registryMocks.updateRegistry.mock.calls.at(-1)?.[0]?.configHash).toBe(oldHash);
   });

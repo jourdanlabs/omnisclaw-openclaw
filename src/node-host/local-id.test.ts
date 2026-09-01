@@ -53,7 +53,7 @@ describe("resolveLocalNodeId", () => {
     const legacyPath = state.statePath("node.json");
     await fs.writeFile(legacyPath, "{}\n", "utf8");
 
-    await expect(resolveLocalNodeId(state.env)).rejects.toThrow("openclaw doctor --fix");
+    await expect(resolveLocalNodeId(state.env)).rejects.toThrow("omnisclaw doctor --fix");
 
     await fs.rm(legacyPath);
     await configureNodeHost({

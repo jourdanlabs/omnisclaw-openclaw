@@ -13,7 +13,7 @@ const LEGACY_WEB_SEARCH_RULES: LegacyConfigRule[] = [
   {
     path: ["tools", "web", "search"],
     message:
-      'tools.web.search provider-owned config moved to plugins.entries.<plugin>.config.webSearch. Run "openclaw doctor --fix".',
+      'tools.web.search provider-owned config moved to plugins.entries.<plugin>.config.webSearch. Run "omnisclaw doctor --fix".',
     match: (_value, root) => listLegacyWebSearchConfigPaths(root).length > 0,
     requireSourceLiteral: true,
   },

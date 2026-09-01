@@ -642,7 +642,7 @@ describe("doctor gateway runtime checks", () => {
         message: expect.stringContaining("cold account:discord:ops"),
         path: "channels.discord.accounts.ops.token",
         target: "account:discord:ops",
-        fixHint: expect.stringContaining("openclaw secrets reload"),
+        fixHint: expect.stringContaining("omnisclaw secrets reload"),
       }),
       expect.objectContaining({
         checkId: "core/doctor/gateway-health",
@@ -650,7 +650,7 @@ describe("doctor gateway runtime checks", () => {
         message: expect.stringContaining("stale capability:tts"),
         path: "tts.providers.elevenlabs.apiKey",
         target: "capability:tts",
-        fixHint: expect.stringContaining("openclaw secrets reload"),
+        fixHint: expect.stringContaining("omnisclaw secrets reload"),
       }),
       expect.objectContaining({
         checkId: "core/doctor/gateway-health",
@@ -817,7 +817,7 @@ describe("doctor gateway runtime checks", () => {
       message: "Gateway service is not installed.",
       path: "gateway.mode",
       target: "openclaw-gateway",
-      fixHint: "Run `openclaw doctor --fix` or `openclaw gateway install` to install it.",
+      fixHint: "Run `omnisclaw doctor --fix` or `omnisclaw gateway install` to install it.",
     });
   });
 

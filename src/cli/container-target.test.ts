@@ -507,7 +507,7 @@ describe("maybeRunCliInContainer", () => {
         spawnSync,
       }),
     ).toThrow(
-      "openclaw update is not supported with --container; rebuild or restart the container image instead.",
+      "omnisclaw update is not supported with --container; rebuild or restart the container image instead.",
     );
     expect(spawnSync).not.toHaveBeenCalled();
   });
@@ -521,7 +521,7 @@ describe("maybeRunCliInContainer", () => {
         spawnSync,
       }),
     ).toThrow(
-      "openclaw update is not supported with --container; rebuild or restart the container image instead.",
+      "omnisclaw update is not supported with --container; rebuild or restart the container image instead.",
     );
     expect(spawnSync).not.toHaveBeenCalled();
   });
@@ -535,7 +535,7 @@ describe("maybeRunCliInContainer", () => {
         spawnSync,
       }),
     ).toThrow(
-      "openclaw update is not supported with --container; rebuild or restart the container image instead.",
+      "omnisclaw update is not supported with --container; rebuild or restart the container image instead.",
     );
     expect(spawnSync).not.toHaveBeenCalled();
   });

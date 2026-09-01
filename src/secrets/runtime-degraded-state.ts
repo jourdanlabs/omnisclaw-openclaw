@@ -1,4 +1,5 @@
 /** Process-local registry for SecretRef owners isolated during cold startup. */
+import { formatCliCommand } from "../cli/command-format.js";
 import type { SecretRefSource } from "../config/types.secrets.js";
 import {
   describeSecretResolutionError,
@@ -57,7 +58,7 @@ type SecretResolutionErrorOwner = DegradedSecretOwner & {
   source: "auth-store" | "config";
 };
 
-export const SECRET_DEGRADATION_RETRY_HINT = "openclaw secrets reload" as const;
+export const SECRET_DEGRADATION_RETRY_HINT = formatCliCommand("openclaw secrets reload");
 
 /** Only transient/unavailable resolution failures may enter degraded runtime state. */
 export function isRetryableSecretDegradationReason(reason: string): boolean {

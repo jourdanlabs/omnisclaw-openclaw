@@ -85,10 +85,10 @@ describe("evaluateStoredCredentialEligibility", () => {
   });
 
   it.each([
-    "openclaw onboard --auth-choice zai-coding-global",
-    "openclaw onboard --auth-choice=zai-coding-global",
-    "openclaw onboard --non-interactive --auth-choice zai-coding-global --zai-api-key $ZAI_API_KEY",
-    "openclaw onboard --non-interactive --auth-choice=zai-coding-global --zai-api-key $ZAI_API_KEY",
+    "omnisclaw onboard --auth-choice zai-coding-global",
+    "omnisclaw onboard --auth-choice=zai-coding-global",
+    "omnisclaw onboard --non-interactive --auth-choice zai-coding-global --zai-api-key $ZAI_API_KEY",
+    "omnisclaw onboard --non-interactive --auth-choice=zai-coding-global --zai-api-key $ZAI_API_KEY",
   ])("marks pasted OpenClaw onboarding command %p as a malformed api key", (key) => {
     const result = evaluateStoredCredentialEligibility({
       credential: {

@@ -546,7 +546,9 @@ describe("runDaemonInstall", () => {
     expect(actionState.failed[0]?.message).toContain("Gateway install blocked");
     expect(actionState.failed[0]?.message).toContain("gateway.bind=lan");
     expect(actionState.failed[0]?.message).toContain("gateway.auth.mode=none");
-    expect(actionState.failed[0]?.message).toContain("openclaw config set gateway.auth.mode token");
+    expect(actionState.failed[0]?.message).toContain(
+      "omnisclaw config set gateway.auth.mode token",
+    );
     expect(buildGatewayInstallPlanMock).not.toHaveBeenCalled();
     expect(installDaemonServiceAndEmitMock).not.toHaveBeenCalled();
   });

@@ -146,7 +146,7 @@ describe("port collision prevention", () => {
     // Raw config shows empty - no ports used
     expect(usedFromRaw.size).toBe(0);
 
-    // But resolved config has implicit openclaw at 18800
+    // But resolved config has implicit omnisclaw at 18800
     const resolved = resolveBrowserConfig({});
     const usedFromResolved = getUsedPorts(resolved.profiles);
     expect(usedFromResolved.has(CDP_PORT_RANGE_START)).toBe(true);
@@ -165,7 +165,7 @@ describe("port collision prevention", () => {
     // Raw config: first allocation gets 18800
     expect(buggyAllocatedPort).toBe(CDP_PORT_RANGE_START);
 
-    // Resolved config: includes implicit openclaw at 18800
+    // Resolved config: includes implicit omnisclaw at 18800
     const resolved = resolveBrowserConfig(
       rawConfig.browser as Parameters<typeof resolveBrowserConfig>[0],
     );

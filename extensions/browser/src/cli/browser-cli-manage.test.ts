@@ -485,7 +485,7 @@ describe("browser manage output", () => {
     ).rejects.toThrow("__exit__:1");
 
     expect(getBrowserCliRuntimeCapture().runtimeErrors.at(-1)).toContain(
-      "--driver must be openclaw or existing-session",
+      "--driver must be omnisclaw or existing-session",
     );
     expect(getBrowserManageCallBrowserRequestMock()).not.toHaveBeenCalled();
   });

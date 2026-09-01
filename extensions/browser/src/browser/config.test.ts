@@ -628,7 +628,7 @@ describe("browser config", () => {
     });
   });
 
-  it("rejects openclaw profiles without cdpPort or cdpUrl", () => {
+  it("rejects omnisclaw profiles without cdpPort or cdpUrl", () => {
     const resolved = resolveBrowserConfig(withProfile("bad", { driver: "openclaw" }));
     expect(() => resolveProfile(resolved, "bad")).toThrow("must define cdpPort or cdpUrl");
   });

@@ -116,7 +116,7 @@ describe("setupWizardShellCompletion", () => {
       ).resolves.not.toThrow();
 
       expect(prompter.note).toHaveBeenCalledWith(
-        `Shell completion was not changed: ${profilePath} is not writable. Run \`openclaw completion --install\` against a writable profile file.`,
+        `Shell completion was not changed: ${profilePath} is not writable. Run \`omnisclaw completion --install\` against a writable profile file.`,
         "Shell completion",
       );
     },
@@ -170,7 +170,7 @@ describe("setupWizardShellCompletion", () => {
         generationMode: "full",
       });
       expect(prompter.note).toHaveBeenCalledWith(
-        "Failed to generate completion cache. Run `openclaw completion --write-state --install` later.",
+        "Failed to generate completion cache. Run `omnisclaw completion --write-state --install` later.",
         "Shell completion",
       );
       expect(deps.installCompletion).not.toHaveBeenCalled();
@@ -206,7 +206,7 @@ describe("setupWizardShellCompletion", () => {
   ])("installs and reports the actual configured $shell startup profile", async (testCase) => {
     const homeDir = tempDirs.make("openclaw-wizard-completion-home-");
     const stateDir = tempDirs.make("openclaw-wizard-completion-state-");
-    const profileRoot = tempDirs.make(`openclaw wizard ${testCase.shell} Ada's !42 profile-`);
+    const profileRoot = tempDirs.make(`omnisclaw wizard ${testCase.shell} Ada's !42 profile-`);
 
     await withEnvAsync(
       {

@@ -150,9 +150,9 @@ describe("plugin package authoring metadata", () => {
 
   it.each([
     {
-      name: "non-object openclaw metadata",
+      name: "non-object omnisclaw metadata",
       manifest: { openclaw: "invalid" } as unknown as PackageManifest,
-      error: "package.json openclaw must be an object",
+      error: "package.json omnisclaw must be an object",
     },
     {
       name: "non-array extension metadata",

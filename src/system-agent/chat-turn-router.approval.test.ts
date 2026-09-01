@@ -359,7 +359,7 @@ describe("SystemAgentChatEngine approval", () => {
     expect(reply.text).toContain("replace the inference route powering this session");
     // A gateway reader is in a browser or the app and cannot "exit OpenClaw"
     // into a shell; the copy must name where the command runs instead.
-    expect(reply.text).toContain("`openclaw onboard`");
+    expect(reply.text).toContain("`omnisclaw onboard`");
     expect(reply.text).toContain("machine running OpenClaw");
     expect(reply.text).toContain("Stop the OpenClaw host");
     expect(reply.text).toContain("restart the host");

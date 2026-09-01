@@ -70,7 +70,7 @@ describe("plugin CLI metadata registration count", () => {
 
     const session = createPluginCliLoadSession();
     onTestFinished(() => session.close());
-    // Stage order mirrors one `openclaw counting-cli --help` invocation: the unowned-primary
+    // Stage order mirrors one `omnisclaw counting-cli --help` invocation: the unowned-primary
     // guard resolves plugin CLI root ownership, then command registration resolves descriptors
     // for the same primary. The CLI carries one preparation session through both stages.
     const ownerIds = await resolvePluginCliRootOwnerIds({

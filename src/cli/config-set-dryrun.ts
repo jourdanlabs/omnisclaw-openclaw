@@ -2,7 +2,7 @@ import { info } from "../globals.js";
 import { writeRuntimeJson, type RuntimeEnv } from "../runtime.js";
 import { shortenHomePath } from "../utils.js";
 
-// Shared dry-run result contract for `openclaw config set` validation-only paths.
+// Shared dry-run result contract for `omnisclaw config set` validation-only paths.
 /** Config-set input mode that produced the simulated operation. */
 export type ConfigSetDryRunInputMode = "value" | "json" | "builder" | "unset";
 

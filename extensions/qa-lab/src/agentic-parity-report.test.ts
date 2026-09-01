@@ -959,7 +959,7 @@ status=done`,
       }),
     );
 
-    expect(report).toContain("# OpenClaw Runtime Parity Report — openclaw vs codex");
+    expect(report).toContain("# OpenClaw Runtime Parity Report — omnisclaw vs codex");
     expect(report).toContain("| Tool-call-shape drift | 1 |");
     expect(report).toContain("## Runtime Timing");
     expect(report).toContain("| openclaw | 40 ms | 20 ms | 20 ms |");

@@ -122,7 +122,7 @@ describe("doctor context-engine host compatibility", () => {
           },
         },
       }),
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings.join("\n")).toContain("OpenClaw embedded runner");
@@ -143,7 +143,7 @@ describe("doctor context-engine host compatibility", () => {
           },
         },
       }),
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings).toEqual([]);
@@ -166,7 +166,7 @@ describe("doctor context-engine host compatibility", () => {
           },
         },
       }),
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings).toEqual([]);
@@ -191,11 +191,11 @@ describe("doctor context-engine host compatibility", () => {
     });
     const warnings = await collectContextEngineHostCompatibilityWarnings({
       cfg,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
     const result = await maybeRepairContextEngineHostCompatibility({
       cfg,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings.join("\n")).toContain(
@@ -220,7 +220,7 @@ describe("doctor context-engine host compatibility", () => {
     });
     const result = await maybeRepairContextEngineHostCompatibility({
       cfg,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.config).toBe(cfg);
@@ -241,7 +241,7 @@ describe("doctor context-engine host compatibility", () => {
     });
     const result = await maybeRepairContextEngineHostCompatibility({
       cfg,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.config).toBe(cfg);

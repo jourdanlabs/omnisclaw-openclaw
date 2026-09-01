@@ -73,7 +73,7 @@ function formatStartupPluginSmokeFailure(failure: PluginPayloadSmokeFailure): st
     reason: failure.reason,
     detail: failure.detail,
     ...(failure.installPath ? { installPath: failure.installPath } : {}),
-  })}. Run \`openclaw update repair\` to retry plugin repair.`;
+  })}. Run \`omnisclaw update repair\` to retry plugin repair.`;
 }
 
 export async function runStartupUpgradeConvergence(params: {

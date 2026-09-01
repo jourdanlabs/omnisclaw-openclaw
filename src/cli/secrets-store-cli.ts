@@ -135,7 +135,7 @@ async function noteGatewayReload(): Promise<void> {
     const { readActiveGatewayLockIdentity } = await import("../infra/gateway-lock.js");
     if (await readActiveGatewayLockIdentity()) {
       defaultRuntime.log(
-        "A gateway is running. Run `openclaw secrets reload` for config-referenced values to take effect.",
+        "A gateway is running. Run `omnisclaw secrets reload` for config-referenced values to take effect.",
       );
     }
   } catch {

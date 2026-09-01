@@ -149,7 +149,7 @@ async function inspectManagedGatewayServiceBeforeUpdate(params: {
     kind: "unavailable",
     message:
       "Gateway service management skipped: its owner or runtime could not be inspected. " +
-      "Code update can continue; run `openclaw gateway status --deep` and restart the gateway manually when service access is restored.",
+      "Code update can continue; run `omnisclaw gateway status --deep` and restart the gateway manually when service access is restored.",
   });
   if (!command) {
     return !state.installed && !state.running && state.runtime?.missingUnit
@@ -322,7 +322,7 @@ function gatewayAncestryBlockMessage(pid: unknown): string | undefined {
   if (!inherited && !getSelfAndAncestorPidsSync().has(gatewayPid)) {
     return undefined;
   }
-  return `openclaw update detected it is running inside the gateway process tree.
+  return `omnisclaw update detected it is running inside the gateway process tree.
 Gateway PID ${gatewayPid} is an ancestor of this process, so this updater cannot safely stop or restart the gateway that owns it.
 Run \`${replaceCliName(formatCliCommand("openclaw update"), CLI_NAME)}\` from a shell outside the gateway service, or stop the gateway service first and then update.`;
 }
@@ -495,7 +495,7 @@ export async function maybeStopManagedServiceBeforeMutableUpdate(params: {
       serviceMutationAllowed: false,
       serviceMutationSkipMessage:
         "Gateway service management skipped: inspection is unavailable. Code update can continue; " +
-        "run `openclaw gateway status --deep` and restart the gateway manually when service access is restored.",
+        "run `omnisclaw gateway status --deep` and restart the gateway manually when service access is restored.",
     };
   }
   const serviceUpdateVerdict = await inspectManagedGatewayServiceBeforeUpdate({
@@ -747,8 +747,8 @@ export async function resolvePackageRuntimePreflight(params: {
       `${runtimeLabel} is too old for openclaw@${targetVersion}.`,
       `The requested package requires ${status.nodeEngine}.`,
       runtime.nodeRunner
-        ? "Upgrade the Node runtime that owns the managed Gateway service, then rerun `openclaw update`."
-        : "Upgrade to Node 22.22.3+, Node 24.15.0+, or Node 25.9.0+, then rerun `openclaw update`.",
+        ? "Upgrade the Node runtime that owns the managed Gateway service, then rerun `omnisclaw update`."
+        : "Upgrade to Node 22.22.3+, Node 24.15.0+, or Node 25.9.0+, then rerun `omnisclaw update`.",
       "Bare `npm i -g openclaw` can silently install an older compatible release.",
       "After upgrading Node, use `npm i -g openclaw@latest`.",
     ].join("\n"),
@@ -1406,7 +1406,7 @@ export async function maybeRestartService(params: {
     } catch (err) {
       defaultRuntime.error(
         `Gateway: restart failed: ${String(err)}. Code update remains installed; a service stopped for update may still be stopped. ` +
-          "Run `openclaw gateway status --deep` and ask its service owner to restart it manually.",
+          "Run `omnisclaw gateway status --deep` and ask its service owner to restart it manually.",
       );
       if (requiresVerifiedRestart()) {
         return false;

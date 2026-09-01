@@ -17,11 +17,11 @@ export const legacyConfigRules = [
   {
     path: ["canvasHost"],
     message:
-      'canvasHost is retired; only plugins.entries.canvas.config.host.enabled remains. Run "openclaw doctor --fix".',
+      'canvasHost is retired; only plugins.entries.canvas.config.host.enabled remains. Run "omnisclaw doctor --fix".',
   },
   ...(["root", "port", "liveReload"] as const).map((key) => ({
     path: [...RETIRED_CANVAS_HOST_CONFIG_PATH, key],
-    message: `${[...RETIRED_CANVAS_HOST_CONFIG_PATH, key].join(".")} is retired. Run "openclaw doctor --fix".`,
+    message: `${[...RETIRED_CANVAS_HOST_CONFIG_PATH, key].join(".")} is retired. Run "omnisclaw doctor --fix".`,
   })),
 ];
 
@@ -92,7 +92,7 @@ export const stateMigrations: PluginDoctorStateMigration[] = [
           migrated += 1;
         } catch (error) {
           warnings.push(
-            `Skipped Canvas document ${documentId}; core target may already exist: ${String(error)}. Keep plugins.entries.canvas.config.host.root, resolve the copy or target conflict, then rerun "openclaw doctor --fix".`,
+            `Skipped Canvas document ${documentId}; core target may already exist: ${String(error)}. Keep plugins.entries.canvas.config.host.root, resolve the copy or target conflict, then rerun "omnisclaw doctor --fix".`,
           );
         } finally {
           if (tempParent) {

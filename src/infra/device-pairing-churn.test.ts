@@ -78,7 +78,7 @@ describe("device pairing requestId churn", () => {
     expect(readRepair.request.scopes).toEqual(["operator.read"]);
     expect((await listDevicePairing(baseDir)).pending).toHaveLength(1);
 
-    // `openclaw devices approve <requestId>` reconnects with the caller scopes
+    // `omnisclaw devices approve <requestId>` reconnects with the caller scopes
     // needed by the gateway. That reconnect supersedes the earlier repair request.
     const approveReconnect = await requestDevicePairing(
       {
@@ -134,7 +134,7 @@ describe("device pairing requestId churn", () => {
     );
     expect(broad.created).toBe(true);
 
-    // `openclaw devices approve <id>` reconnects as a CLI probe that only needs
+    // `omnisclaw devices approve <id>` reconnects as a CLI probe that only needs
     // `operator.pairing`. That subset re-request must not mint a new id, or the
     // id the owner copied would fail to approve with "unknown requestId".
     const subsetReconnect = await requestDevicePairing(

@@ -468,14 +468,14 @@ describe("serveAcpGateway startup", () => {
     {
       name: "default logging",
       opts: {},
-      expected: ["openclaw acp: gateway event chat failed\n"],
+      expected: ["omnisclaw acp: gateway event chat failed\n"],
     },
     {
       name: "verbose logging",
       opts: { verbose: true },
       expected: [
-        "openclaw acp: gateway event chat failed\n",
-        "openclaw acp: gateway event chat error: handler boom\n",
+        "omnisclaw acp: gateway event chat failed\n",
+        "omnisclaw acp: gateway event chat error: handler boom\n",
       ],
     },
   ])("contains rejected gateway event handling with $name", async ({ opts, expected }) => {

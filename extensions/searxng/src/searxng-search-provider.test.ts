@@ -73,7 +73,7 @@ describe("searxng web search provider", () => {
     }
 
     const result = await tool.execute({
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
       categories: "general,news",
       language: "en",
@@ -81,14 +81,14 @@ describe("searxng web search provider", () => {
 
     expect(runSearxngSearch).toHaveBeenCalledWith({
       config: { test: true },
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
       categories: "general,news",
       language: "en",
     });
     expect(result).toEqual({
       config: { test: true },
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
       categories: "general,news",
       language: "en",
@@ -105,11 +105,11 @@ describe("searxng web search provider", () => {
     }
     const controller = new AbortController();
 
-    await tool.execute({ query: "openclaw docs" }, { signal: controller.signal });
+    await tool.execute({ query: "omnisclaw docs" }, { signal: controller.signal });
 
     expect(runSearxngSearch).toHaveBeenCalledWith({
       config: { test: true },
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: undefined,
       categories: undefined,
       language: undefined,
@@ -126,10 +126,10 @@ describe("searxng web search provider", () => {
       throw new Error("Expected tool definition");
     }
 
-    await expect(tool.execute({ query: "openclaw docs", count: 4.5 })).rejects.toThrow(
+    await expect(tool.execute({ query: "omnisclaw docs", count: 4.5 })).rejects.toThrow(
       "count must be an integer from 1 to 10.",
     );
-    await expect(tool.execute({ query: "openclaw docs", count: 11 })).rejects.toThrow(
+    await expect(tool.execute({ query: "omnisclaw docs", count: 11 })).rejects.toThrow(
       "count must be an integer from 1 to 10.",
     );
     expect(runSearxngSearch).not.toHaveBeenCalled();

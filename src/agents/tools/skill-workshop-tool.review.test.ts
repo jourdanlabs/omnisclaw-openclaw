@@ -464,7 +464,7 @@ describe("skill_workshop review mode", () => {
     const workspaceDir = await tempDirs.make("openclaw-skill-workshop-review-read-cap-");
     const oldString = "Run the legacy deployment preflight.";
     const secondOldString = "Record the deployment outcome after the preflight.";
-    const newString = "Run openclaw doctor and resolve every reported blocker.";
+    const newString = "Run omnisclaw doctor and resolve every reported blocker.";
     await seedLiveSkill(
       workspaceDir,
       "big-skill",

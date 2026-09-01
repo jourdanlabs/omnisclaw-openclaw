@@ -20,7 +20,7 @@ describe("agent roster ownership", () => {
     expect(result.success).toBe(false);
     if (!result.success) {
       expect(result.error.issues[0]?.message).toContain('agents.ownership="explicit"');
-      expect(result.error.issues[0]?.message).toContain("run openclaw doctor");
+      expect(result.error.issues[0]?.message).toContain("run omnisclaw doctor");
     }
   });
 

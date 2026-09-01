@@ -186,7 +186,7 @@ describe("CLI help process exit", () => {
     });
 
     expect(result.stderr).toBe("");
-    expect(result.stdout).toContain("Usage: openclaw [options] [command]");
+    expect(result.stdout).toContain("Usage: omnisclaw [options] [command]");
     expect(() => parseJsonLines(result.stdout)).toThrow();
   });
 
@@ -196,7 +196,7 @@ describe("CLI help process exit", () => {
     const result = await runCliProcess({ args: ["backup", "--help"], keepAlive: true });
 
     expect(result.stderr).toBe("");
-    expect(result.stdout).toContain("Usage: openclaw backup [options] [command]");
+    expect(result.stdout).toContain("Usage: omnisclaw backup [options] [command]");
   });
   it("flushes explicitly requested entry traces on precomputed help", async () => {
     const result = await runCliProcess({
@@ -320,7 +320,7 @@ describe("models list JSON failure process output", () => {
       {
         provider: "autoqa-no-such-provider",
         message:
-          'Unknown provider filter "autoqa-no-such-provider" for this installation. Run openclaw plugins list --json to see installed providers, or configure it under models.providers.',
+          'Unknown provider filter "autoqa-no-such-provider" for this installation. Run omnisclaw plugins list --json to see installed providers, or configure it under models.providers.',
       },
     ].flatMap(({ provider, message }) => [
       {

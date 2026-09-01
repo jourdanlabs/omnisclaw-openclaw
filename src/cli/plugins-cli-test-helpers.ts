@@ -261,7 +261,7 @@ vi.mock("../config/config.js", () => ({
       throw new Error(
         [
           "Config is managed by Nix (`OPENCLAW_NIX_MODE=1`), so OpenClaw treats openclaw.json as immutable.",
-          "Do not run setup, onboarding, openclaw update, plugin install/update/uninstall/enable, doctor repair/token-generation, or config set against this file.",
+          "Do not run setup, onboarding, omnisclaw update, plugin install/update/uninstall/enable, doctor repair/token-generation, or config set against this file.",
           "Agent-first Nix setup: https://github.com/openclaw/nix-openclaw#quick-start",
           "OpenClaw Nix overview: https://docs.openclaw.ai/install/nix",
         ].join("\n"),

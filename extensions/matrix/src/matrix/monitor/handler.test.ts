@@ -3546,7 +3546,7 @@ describe("matrix monitor handler draft streaming", () => {
       name: "exec",
       phase: "end",
       status: "failed",
-      progressText: "run openclaw cron -> run jq (agent) failed",
+      progressText: "run omnisclaw cron -> run jq (agent) failed",
     });
     await opts.onItemEvent?.({
       itemId: "command-1",
@@ -3554,7 +3554,7 @@ describe("matrix monitor handler draft streaming", () => {
       name: "exec",
       phase: "end",
       status: "failed",
-      progressText: "run openclaw cron -> run jq (agent) failed",
+      progressText: "run omnisclaw cron -> run jq (agent) failed",
     });
     expect(sendSingleTextMessageMatrixMock).not.toHaveBeenCalled();
     await vi.advanceTimersByTimeAsync(5_000);
@@ -3583,7 +3583,7 @@ describe("matrix monitor handler draft streaming", () => {
     );
     expect(recoveredEdit?.[2]).not.toContain("completed");
     expect(recoveredEdit?.[2]).not.toContain("failed");
-    expect(recoveredEdit?.[2]).not.toContain("run openclaw cron -> run jq");
+    expect(recoveredEdit?.[2]).not.toContain("run omnisclaw cron -> run jq");
     vi.useRealTimers();
   });
 

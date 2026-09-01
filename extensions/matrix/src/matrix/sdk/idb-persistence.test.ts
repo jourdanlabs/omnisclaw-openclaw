@@ -90,13 +90,13 @@ describe("Matrix IndexedDB persistence", () => {
     await expect(restoreIdbFromDisk(snapshotPath)).rejects.toMatchObject({
       name: "MatrixIdbSnapshotMigrationRequiredError",
       code: "matrix-idb-snapshot-requires-doctor",
-      remediation: "openclaw doctor --fix",
+      remediation: "omnisclaw doctor --fix",
     });
     expect(warnSpy).toHaveBeenCalledWith(
       "IdbPersistence",
       expect.objectContaining({
         code: "matrix-idb-snapshot-requires-doctor",
-        remediation: "openclaw doctor --fix",
+        remediation: "omnisclaw doctor --fix",
       }),
     );
     expect(JSON.stringify(warnSpy.mock.calls)).not.toContain(snapshotPath);

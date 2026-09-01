@@ -165,7 +165,7 @@ async function runSetupWizardOnce(
     normalizedExplicitFlow !== "import"
   ) {
     runtime.error(
-      "Invalid --flow. Use quickstart, manual, advanced, or import. Example: openclaw onboard --flow quickstart",
+      "Invalid --flow. Use quickstart, manual, advanced, or import. Example: omnisclaw onboard --flow quickstart",
     );
     runtime.exit(1);
     return;
@@ -243,7 +243,7 @@ async function runSetupWizardOnce(
         async commitConfigFile(cfg, expectedConfig) {
           const latest = await readSetupConfigFileSnapshot();
           if (!latest.valid) {
-            throw new Error("Migration target config became invalid. Run `openclaw doctor`.");
+            throw new Error("Migration target config became invalid. Run `omnisclaw doctor`.");
           }
           const latestConfig = latest.exists ? (latest.sourceConfig ?? latest.config) : {};
           if (!isDeepStrictEqual(latestConfig, expectedConfig)) {
@@ -277,7 +277,7 @@ async function runSetupWizardOnce(
     acknowledgeMigrationPromotion = migrationOutcome.acknowledgePromotion;
     const migratedSnapshot = await readSetupConfigFileSnapshot();
     if (!migratedSnapshot.valid) {
-      throw new Error("Migration produced an invalid OpenClaw config. Run `openclaw doctor`.");
+      throw new Error("Migration produced an invalid OpenClaw config. Run `omnisclaw doctor`.");
     }
     currentSetupSnapshot = migratedSnapshot;
     baseConfig = migratedSnapshot.runtimeConfig ?? migratedSnapshot.config;

@@ -365,7 +365,7 @@ describe("deliverDiscordReply", () => {
           text: [
             "📊 Session Status: current",
             "🛠️ run git status",
-            "⚠️ 🛠️ `run openclaw definitely-not-a-real-subcommand (agent)` failed",
+            "⚠️ 🛠️ `run omnisclaw definitely-not-a-real-subcommand (agent)` failed",
             "🛠️ `gh pr view`",
             "🛠️ `docker compose up`",
             "🛠️ elevated · `cd /tmp && pnpm test`",
@@ -391,7 +391,7 @@ describe("deliverDiscordReply", () => {
     await deliverDiscordReply({
       replies: [
         {
-          text: "⚠️ 🛠️ `run openclaw definitely-not-a-real-subcommand (agent)` failed",
+          text: "⚠️ 🛠️ `run omnisclaw definitely-not-a-real-subcommand (agent)` failed",
           isError: true,
         },
       ],

@@ -1,4 +1,4 @@
-// `openclaw plugins list`: builds registry reports and defers terminal-only formatting modules.
+// `omnisclaw plugins list`: builds registry reports and defers terminal-only formatting modules.
 import { getRuntimeConfig } from "../config/config.js";
 import type { PluginRecord } from "../plugins/registry.js";
 import { defaultRuntime, writeRuntimeJson, type RuntimeEnv } from "../runtime.js";

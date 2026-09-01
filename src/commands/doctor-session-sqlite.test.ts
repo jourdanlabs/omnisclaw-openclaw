@@ -498,7 +498,7 @@ describe("runDoctorSessionSqlite", () => {
     );
     const failureReport = fs.readFileSync(failureReportPath, "utf-8");
     expect(failureReport).toContain("sqlite_compact_failed");
-    expect(failureReport).toContain("openclaw doctor --session-sqlite recover --github-issue");
+    expect(failureReport).toContain("omnisclaw doctor --session-sqlite recover --github-issue");
     expect(failureReport).not.toContain("supersecret");
     const after = new sqlite.DatabaseSync(sqlitePath);
     try {
@@ -633,7 +633,7 @@ describe("runDoctorSessionSqlite", () => {
         )((event) => {
           events.push(event);
         }),
-      ).toThrow(/stop active session writers and rerun `openclaw doctor --fix`/);
+      ).toThrow(/stop active session writers and rerun `omnisclaw doctor --fix`/);
       expect(events).toEqual([]);
     } finally {
       statSpy.mockRestore();
@@ -660,7 +660,7 @@ describe("runDoctorSessionSqlite", () => {
     try {
       await expect(
         runDoctorSessionSqlite({ env: store.env, mode: "import", store: store.storePath }),
-      ).rejects.toThrow(/stop active session writers and rerun `openclaw doctor --fix`/);
+      ).rejects.toThrow(/stop active session writers and rerun `omnisclaw doctor --fix`/);
       expect(fs.existsSync(store.transcriptPath)).toBe(true);
     } finally {
       statSpy.mockRestore();
@@ -1105,7 +1105,7 @@ describe("runDoctorSessionSqlite", () => {
       mutate: (database: DatabaseSync) => {
         database.exec(`PRAGMA user_version = ${OPENCLAW_AGENT_SCHEMA_VERSION - 1};`);
       },
-      message: /run openclaw doctor --fix before compacting/iu,
+      message: /run omnisclaw doctor --fix before compacting/iu,
     },
   ])("rejects $label before compaction", async ({ mutate, message }) => {
     const { sqlitePath, store } = await createImportedStoreForCompaction();

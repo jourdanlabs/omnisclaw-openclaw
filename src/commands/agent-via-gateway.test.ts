@@ -807,7 +807,7 @@ describe("agentCliCommand", () => {
             localGatewayLockOptions: lockOptions,
           }),
         ).rejects.toThrow(
-          `A Gateway is running for this state directory (pid ${process.pid}, port 28789). Run without --local to use it, or stop the Gateway first (openclaw gateway stop).`,
+          `A Gateway is running for this state directory (pid ${process.pid}, port 28789). Run without --local to use it, or stop the Gateway first (omnisclaw gateway stop).`,
         );
         expect(agentCommand).not.toHaveBeenCalled();
         expect(startOneShotDiagnosticsExporters).not.toHaveBeenCalled();
@@ -2906,7 +2906,7 @@ describe("agentCliCommand", () => {
       expect(agentCommand).not.toHaveBeenCalled();
       expect(runtime.exit).toHaveBeenCalledWith(1);
       const errorMessages = mockMessages(runtime.error);
-      expect(errorMessages.some((m) => m.includes("openclaw sessions compact"))).toBe(true);
+      expect(errorMessages.some((m) => m.includes("omnisclaw sessions compact"))).toBe(true);
     });
   }
 
@@ -2926,7 +2926,7 @@ describe("agentCliCommand", () => {
     expect(agentCommand).not.toHaveBeenCalled();
     expect(runtime.exit).toHaveBeenCalledWith(1);
     const errorMessages = mockMessages(runtime.error);
-    expect(errorMessages.some((m) => m.includes("openclaw sessions compact"))).toBe(true);
+    expect(errorMessages.some((m) => m.includes("omnisclaw sessions compact"))).toBe(true);
   });
 
   it("does not mistake a /compacting-prefixed message for the /compact control command", async () => {

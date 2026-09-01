@@ -179,7 +179,7 @@ describe("onboarding main-agent creation", () => {
     });
 
     expect(result.sessionMigrationWarnings).toEqual([
-      expect.stringMatching(/database is locked.*openclaw doctor --fix/),
+      expect.stringMatching(/database is locked.*omnisclaw doctor --fix/),
     ]);
   });
 

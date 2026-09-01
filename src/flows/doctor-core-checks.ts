@@ -281,7 +281,7 @@ const gatewayConfigCheck: HealthCheck = {
         message: "gateway.mode is unset; gateway start will be blocked.",
         path: "gateway.mode",
         fixHint:
-          "Run `openclaw configure` and set Gateway mode (local/remote), or `openclaw config set gateway.mode local`.",
+          "Run `omnisclaw configure` and set Gateway mode (local/remote), or `omnisclaw config set gateway.mode local`.",
       });
     }
     if (ctx.cfg.gateway?.mode !== "remote" && hasAmbiguousGatewayAuthModeConfig(ctx.cfg)) {
@@ -292,7 +292,7 @@ const gatewayConfigCheck: HealthCheck = {
           "gateway.auth.token and gateway.auth.password are both configured while gateway.auth.mode is unset; auth selection is ambiguous.",
         path: "gateway.auth.mode",
         fixHint:
-          "Set an explicit mode: `openclaw config set gateway.auth.mode token` or `... password`.",
+          "Set an explicit mode: `omnisclaw config set gateway.auth.mode token` or `... password`.",
       });
     }
     return findings;
@@ -316,7 +316,7 @@ const commandOwnerCheck: HealthCheck = {
           "No command owner is configured. Owner-only commands (/diagnostics, /export-trajectory, /config, exec approvals) have no allowed sender.",
         path: "commands.ownerAllowFrom",
         fixHint:
-          "Set commands.ownerAllowFrom to your channel user id, e.g. `openclaw config set commands.ownerAllowFrom '[\"telegram:123456789\"]'`.",
+          "Set commands.ownerAllowFrom to your channel user id, e.g. `omnisclaw config set commands.ownerAllowFrom '[\"telegram:123456789\"]'`.",
       },
     ];
   },
@@ -376,7 +376,7 @@ export function buildGatewayTokenSecretRefUnavailableMessage(params: {
 
 export function buildGatewayTokenSecretRefFixHint(ref: SecretRef): string {
   if (ref.source === "exec") {
-    return "Run `openclaw doctor --allow-exec` to verify exec SecretRefs during doctor, or `openclaw secrets audit --allow-exec` to audit all exec SecretRefs.";
+    return "Run `omnisclaw doctor --allow-exec` to verify exec SecretRefs during doctor, or `omnisclaw secrets audit --allow-exec` to audit all exec SecretRefs.";
   }
   return "Resolve or rotate the external secret source, then rerun doctor.";
 }
@@ -458,7 +458,7 @@ const gatewayAuthCheck: HealthCheck = {
         severity: "warning",
         message: "Gateway auth is off or missing a token.",
         path: "gateway.auth",
-        fixHint: "Run `openclaw doctor --fix --generate-gateway-token` to generate a token.",
+        fixHint: "Run `omnisclaw doctor --fix --generate-gateway-token` to generate a token.",
       },
     ];
   },
@@ -554,7 +554,7 @@ const legacyStateCheck: HealthCheck & { readonly defaultEnabled: false } = {
           severity: "warning",
           message: line.replace(/^- /, ""),
           path: detected.stateDir,
-          fixHint: "Run `openclaw doctor --fix` to migrate legacy state.",
+          fixHint: "Run `omnisclaw doctor --fix` to migrate legacy state.",
         }),
       ),
       ...detected.warnings.map(
@@ -563,7 +563,7 @@ const legacyStateCheck: HealthCheck & { readonly defaultEnabled: false } = {
           severity: "warning",
           message: warning,
           path: detected.stateDir,
-          fixHint: "Resolve the warning, then rerun `openclaw doctor --fix`.",
+          fixHint: "Resolve the warning, then rerun `omnisclaw doctor --fix`.",
         }),
       ),
     ];
@@ -681,7 +681,7 @@ function createModelReferenceCheck(): HealthCheck {
           ? {
               message: `Configured model "${inspection.ref}" is a legacy reference. Doctor can migrate it to "${migrationTarget}".`,
               requirement: `canonical model reference "${migrationTarget}"`,
-              fixHint: `Run \`openclaw doctor --fix\` to migrate this model reference to "${migrationTarget}".`,
+              fixHint: `Run \`omnisclaw doctor --fix\` to migrate this model reference to "${migrationTarget}".`,
             }
           : undefined;
         if (inspection.status === "unknown-provider") {
@@ -940,7 +940,7 @@ const codexSessionRoutesCheck: HealthCheck = {
               "or set the affected OpenAI models to an OpenClaw runtime policy.",
             ].join(" ")
           : [
-              "Run `openclaw doctor --fix`: it enables plugins.entries.codex,",
+              "Run `omnisclaw doctor --fix`: it enables plugins.entries.codex,",
               "or set the affected OpenAI models to an OpenClaw runtime policy.",
             ].join(" "),
       }),
@@ -975,7 +975,7 @@ const telegramGeneralTopicConversationsCheck: HealthCheck = {
       message: `Agent ${repair.agentId} has a stale Telegram General-topic conversation identity.`,
       target: repair.agentId,
       requirement: "One canonical chat-scoped conversation binding for Telegram General topic.",
-      fixHint: "Run `openclaw doctor --fix` to merge the stale topic-qualified identity.",
+      fixHint: "Run `omnisclaw doctor --fix` to merge the stale topic-qualified identity.",
     }));
   },
   async repair(ctx) {
@@ -1180,7 +1180,7 @@ function unavailableSkillToFinding(skill: SkillStatusEntry): HealthFinding {
     message: `${skill.name} is allowed but unavailable: ${formatMissingSkillSummary(skill)}.`,
     path: skillReadinessPath(skill),
     fixHint:
-      "Install/configure the missing requirement, or run `openclaw doctor --fix` to disable unused unavailable skills.",
+      "Install/configure the missing requirement, or run `omnisclaw doctor --fix` to disable unused unavailable skills.",
   };
 }
 
@@ -1213,7 +1213,7 @@ function browserResidueFinding(residue: LegacyClawdBrowserProfileResidue): Healt
     path: residue.legacyProfileDir,
     ocPath: "oc://state/browser/clawd",
     fixHint:
-      "Run `openclaw doctor --fix` to archive the stale clawd profile safely instead of deleting it in place.",
+      "Run `omnisclaw doctor --fix` to archive the stale clawd profile safely instead of deleting it in place.",
   };
 }
 

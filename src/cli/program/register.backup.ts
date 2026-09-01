@@ -49,24 +49,24 @@ export function registerBackupCommand(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw backup create", "Create a timestamped backup in the current directory."],
+          ["omnisclaw backup create", "Create a timestamped backup in the current directory."],
           [
-            "openclaw backup create --output ~/Backups",
+            "omnisclaw backup create --output ~/Backups",
             "Write the archive into an existing backup directory.",
           ],
           [
-            "openclaw backup create --dry-run --json",
+            "omnisclaw backup create --dry-run --json",
             "Preview the archive plan without writing any files.",
           ],
           [
-            "openclaw backup create --verify",
+            "omnisclaw backup create --verify",
             "Create the archive and immediately validate its manifest and payload layout.",
           ],
           [
-            "openclaw backup create --no-include-workspace",
+            "omnisclaw backup create --no-include-workspace",
             "Back up state/config without agent workspace files.",
           ],
-          ["openclaw backup create --only-config", "Back up only the active JSON config file."],
+          ["omnisclaw backup create --only-config", "Back up only the active JSON config file."],
         ])}`,
     )
     .action(async (opts) => {
@@ -91,11 +91,11 @@ export function registerBackupCommand(program: Command) {
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
           [
-            "openclaw backup verify ./2026-03-09T08-00-00.000+08-00-openclaw-backup.tar.gz",
+            "omnisclaw backup verify ./2026-03-09T08-00-00.000+08-00-openclaw-backup.tar.gz",
             "Check that the archive structure and manifest are intact.",
           ],
           [
-            "openclaw backup verify ~/Backups/latest.tar.gz --json",
+            "omnisclaw backup verify ~/Backups/latest.tar.gz --json",
             "Emit machine-readable verification output.",
           ],
         ])}`,
@@ -119,11 +119,11 @@ export function registerBackupCommand(program: Command) {
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
           [
-            "openclaw backup restore ~/Backups/latest.tar.gz --target ./restored-openclaw",
+            "omnisclaw backup restore ~/Backups/latest.tar.gz --target ./restored-openclaw",
             "Verify, then extract the whole archive into a fresh staging directory.",
           ],
           [
-            "openclaw backup restore ~/Backups/latest.tar.gz --target ./restored-openclaw --json",
+            "omnisclaw backup restore ~/Backups/latest.tar.gz --target ./restored-openclaw --json",
             "Emit machine-readable restore details and rollback warnings.",
           ],
         ])}`,
@@ -295,11 +295,11 @@ function registerBackupSqliteCommands(backup: Command): void {
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
           [
-            "openclaw backup sqlite create --global --repository ~/Backups/openclaw-sqlite",
+            "omnisclaw backup sqlite create --global --repository ~/Backups/openclaw-sqlite",
             "Snapshot the shared state database.",
           ],
           [
-            "openclaw backup sqlite create --agent main --repository ~/Backups/openclaw-sqlite",
+            "omnisclaw backup sqlite create --agent main --repository ~/Backups/openclaw-sqlite",
             "Snapshot the main agent database.",
           ],
         ])}`,

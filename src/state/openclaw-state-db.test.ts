@@ -1521,7 +1521,7 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe("openclaw state database", () => {
+describe("omnisclaw state database", () => {
   it("resolves under the shared state database directory", () => {
     const stateDir = createTempStateDir();
 
@@ -6195,7 +6195,7 @@ INSERT INTO macos_port_guardian_records VALUES (4242, 18789, '/usr/bin/ssh', 're
     expect(result.warnings).toEqual([
       expect.stringContaining("automatic repair refused the unrecognized schema shape"),
     ]);
-    expect(result.warnings[0]).not.toContain("run openclaw doctor --fix");
+    expect(result.warnings[0]).not.toContain("run omnisclaw doctor --fix");
   });
 
   it.each([

@@ -390,7 +390,7 @@ describe("doctor session transcript repair", () => {
     const [message, title] = requireFirstMockCall(note, "doctor note") as [string, string];
     expect(title).toBe("Session transcripts");
     expect(message).toContain("legacy state");
-    expect(message).toContain('Run "openclaw doctor --fix"');
+    expect(message).toContain('Run "omnisclaw doctor --fix"');
     expect(countNonEmptyLines(await fs.readFile(filePath, "utf-8"))).toBe(3);
   });
 
@@ -421,7 +421,7 @@ describe("doctor session transcript repair", () => {
       checkId: "core/doctor/session-transcripts",
       severity: "info",
       path: filePath,
-      fixHint: expect.stringContaining("openclaw doctor --fix"),
+      fixHint: expect.stringContaining("omnisclaw doctor --fix"),
     });
     expect(sessionTranscriptIssueToRepairEffect(issue)).toEqual({
       kind: "file",
@@ -578,7 +578,7 @@ describe("doctor session transcript repair", () => {
     );
     expect(note).toHaveBeenCalledWith(
       expect.stringContaining(
-        'shrinking the on-disk database requires "openclaw doctor --session-sqlite compact --session-sqlite-all-agents"',
+        'shrinking the on-disk database requires "omnisclaw doctor --session-sqlite compact --session-sqlite-all-agents"',
       ),
       "Session SQLite",
     );
@@ -642,7 +642,7 @@ describe("doctor session transcript repair", () => {
     });
     runPostSessionPluginDoctorStateRepairs.mockResolvedValueOnce({
       changes: ["Removed 2 orphaned plugin session bindings"],
-      warnings: ["Plugin lifecycle ownership unavailable; rerun openclaw doctor --fix"],
+      warnings: ["Plugin lifecycle ownership unavailable; rerun omnisclaw doctor --fix"],
     });
 
     await noteSessionTranscriptHealth({
@@ -658,7 +658,7 @@ describe("doctor session transcript repair", () => {
       "Plugin session repair",
     );
     expect(note).toHaveBeenCalledWith(
-      expect.stringContaining("rerun openclaw doctor --fix"),
+      expect.stringContaining("rerun omnisclaw doctor --fix"),
       "Plugin session repair",
     );
   });
@@ -689,7 +689,7 @@ describe("doctor session transcript repair", () => {
       "Session SQLite",
     );
     expect(note).toHaveBeenCalledWith(
-      expect.stringContaining('run "openclaw doctor --fix" for session-store maintenance'),
+      expect.stringContaining('run "omnisclaw doctor --fix" for session-store maintenance'),
       "Session SQLite",
     );
   });

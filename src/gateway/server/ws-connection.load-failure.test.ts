@@ -56,7 +56,7 @@ describe("WebSocket message handler load failures", () => {
 
     expect(socket.close).toHaveBeenCalledWith(
       1011,
-      "gateway install changed; run: openclaw gateway restart",
+      "gateway install changed; run: omnisclaw gateway restart",
     );
     expect(Buffer.byteLength(String(socket.close.mock.calls[0]?.[1]), "utf8")).toBeLessThanOrEqual(
       123,
@@ -65,14 +65,14 @@ describe("WebSocket message handler load failures", () => {
       expect.stringContaining("OpenClaw installation changed while the Gateway was running"),
     );
     expect(logWsControl.error).toHaveBeenCalledWith(
-      expect.stringContaining("openclaw --profile r13 gateway restart"),
+      expect.stringContaining("omnisclaw --profile r13 gateway restart"),
     );
     expect(logWsControl.warn).toHaveBeenCalledWith(
       expect.stringContaining("closed before connect"),
       expect.objectContaining({
         cause: "message-handler-load-failed",
         staleInstall: true,
-        restartCommand: "openclaw --profile r13 gateway restart",
+        restartCommand: "omnisclaw --profile r13 gateway restart",
       }),
     );
   });

@@ -67,7 +67,7 @@ describe("embedded TUI state ownership", () => {
         await expect(
           withEmbeddedTuiStateLock(run, { gatewayLockOptions: lockOptions }),
         ).rejects.toThrow(
-          `A Gateway is running for this state directory (pid ${process.pid}, port 28789). Run without --local to use it, or stop the Gateway first (openclaw gateway stop).`,
+          `A Gateway is running for this state directory (pid ${process.pid}, port 28789). Run without --local to use it, or stop the Gateway first (omnisclaw gateway stop).`,
         );
         expect(run).not.toHaveBeenCalled();
       } finally {

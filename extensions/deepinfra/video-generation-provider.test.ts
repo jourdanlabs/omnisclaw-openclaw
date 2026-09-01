@@ -323,7 +323,7 @@ describe("deepinfra video generation provider", () => {
       );
 
     expect(error?.message).toMatch(/retired native \/v1\/inference surface/u);
-    expect(error?.message).toContain("openclaw doctor --fix");
+    expect(error?.message).toContain("omnisclaw doctor --fix");
     // Fail-closed means no submit request and no configured-URL echo (it may
     // carry credentials).
     expect(postJsonRequestMock).not.toHaveBeenCalled();

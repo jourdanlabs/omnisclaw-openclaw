@@ -637,7 +637,7 @@ export async function runDoctorConfigPreflight(
           persistedIdentity.pluginDoctorConfigFingerprint
       ) {
         throw new Error(
-          'OpenClaw config identity changed while persisting the refreshed plugin registry; refusing to write the migration checkpoint. Run "openclaw doctor --fix" and retry.',
+          'OpenClaw config identity changed while persisting the refreshed plugin registry; refusing to write the migration checkpoint. Run "omnisclaw doctor --fix" and retry.',
         );
       }
       // The durable reread supplies the accepted inventory. Replace both the

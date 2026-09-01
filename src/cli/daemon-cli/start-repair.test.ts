@@ -453,7 +453,7 @@ describe("repairLoadedGatewayServiceForStart", () => {
           '- OPENCLAW_STATE_DIR: installed="/home/openclaw/.openclaw", ambient="/home/openclaw/stress-state"',
           '- OPENCLAW_CONFIG_PATH: installed="/home/openclaw/.openclaw/openclaw.json", ambient="/home/openclaw/stress-state/openclaw.json"',
           '- gateway.port: installed="18789", ambient="18999"',
-          `Run \`openclaw gateway ${action}\` with the installed state directory, config path, and port (or unset conflicting environment overrides). To retarget intentionally, run \`openclaw gateway install --force\`.`,
+          `Run \`omnisclaw gateway ${action}\` with the installed state directory, config path, and port (or unset conflicting environment overrides). To retarget intentionally, run \`omnisclaw gateway install --force\`.`,
         ].join("\n"),
       );
 

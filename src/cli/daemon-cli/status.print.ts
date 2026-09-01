@@ -279,7 +279,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean; d
       );
       defaultRuntime.error(
         warnText(
-          "Check `openclaw --version`, `which openclaw`, and `openclaw gateway status --deep`; if this mismatch is unexpected, update PATH so `openclaw` points to the version you want, or reinstall the Gateway service from that same OpenClaw install.",
+          "Check `omnisclaw --version`, `which openclaw`, and `omnisclaw gateway status --deep`; if this mismatch is unexpected, update PATH so `openclaw` points to the version you want, or reinstall the Gateway service from that same OpenClaw install.",
         ),
       );
     }
@@ -454,7 +454,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean; d
           ? // systemd gave up restarting after repeated crashes; sending the operator
             // to restart (which now clears the failed latch) beats "exited immediately".
             `systemd stopped restarting the gateway after repeated crashes; run ${formatCliCommand(
-              "openclaw gateway restart",
+              "omnisclaw gateway restart",
             )} or inspect logs.`
           : "Service is loaded but not running (likely exited immediately).",
       ),

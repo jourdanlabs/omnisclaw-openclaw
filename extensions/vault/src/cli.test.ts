@@ -206,9 +206,11 @@ describe("vault CLI setup plan", () => {
     try {
       const output = await runSetup(planPath, setupArgs);
       expect(output).toContain(
-        `openclaw secrets apply --from '${canonicalPlanPath}' --dry-run --allow-exec`,
+        `omnisclaw secrets apply --from '${canonicalPlanPath}' --dry-run --allow-exec`,
       );
-      expect(output).toContain(`openclaw secrets apply --from '${canonicalPlanPath}' --allow-exec`);
+      expect(output).toContain(
+        `omnisclaw secrets apply --from '${canonicalPlanPath}' --allow-exec`,
+      );
     } finally {
       await fs.rm(dir, { recursive: true, force: true });
     }

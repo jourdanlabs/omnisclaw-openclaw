@@ -3391,7 +3391,7 @@ describe("gateway session utils", () => {
             clone: false,
             includeStoreChildEntries: true,
           }),
-        ).toThrow("openclaw doctor --fix");
+        ).toThrow("omnisclaw doctor --fix");
       });
     } finally {
       resetConfigRuntimeState();
@@ -3499,7 +3499,7 @@ describe("gateway session utils", () => {
         } as OpenClawConfig;
         setRuntimeConfigSnapshot(cfg, cfg);
 
-        expect(() => loadSessionEntry("agent:main:work")).toThrow("openclaw doctor --fix");
+        expect(() => loadSessionEntry("agent:main:work")).toThrow("omnisclaw doctor --fix");
       });
     } finally {
       resetConfigRuntimeState();
@@ -3562,7 +3562,7 @@ describe("gateway session utils", () => {
         key: "agent:ops:main",
         store,
       }),
-    ).toThrow("openclaw doctor --fix");
+    ).toThrow("omnisclaw doctor --fix");
   });
 
   test("listAgentsForGateway rejects avatar symlink escapes outside workspace", () => {

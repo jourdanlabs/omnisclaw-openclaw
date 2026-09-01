@@ -111,9 +111,9 @@ describe("setupCommand", () => {
       expect(runtime.log.mock.calls.map((call) => String(call[0])).slice(-5)).toStrictEqual([
         "",
         "Setup complete: config, workspace, and session directories are ready.",
-        "Next guided path: openclaw onboard.",
-        "Next targeted changes: openclaw configure for models, channels, Gateway, plugins, skills, and health checks.",
-        "Add a chat channel later: openclaw channels add.",
+        "Next guided path: omnisclaw onboard.",
+        "Next targeted changes: omnisclaw configure for models, channels, Gateway, plugins, skills, and health checks.",
+        "Add a chat channel later: omnisclaw channels add.",
       ]);
     });
   });
@@ -485,7 +485,7 @@ describe("setupCommand", () => {
         await setupCommand(json ? { json: true } : undefined, runtime, deps);
 
         expect(runtime.exit).toHaveBeenCalledWith(1);
-        expect(runtime.error).toHaveBeenCalledWith(expect.stringContaining("openclaw doctor"));
+        expect(runtime.error).toHaveBeenCalledWith(expect.stringContaining("omnisclaw doctor"));
         if (json) {
           expect(runtime.log).toHaveBeenCalledOnce();
           expect(JSON.parse(String(runtime.log.mock.calls[0]?.[0]))).toEqual({
@@ -533,7 +533,7 @@ describe("setupCommand", () => {
         await setupCommand(undefined, runtime, deps);
 
         expect(runtime.exit).toHaveBeenCalledWith(1);
-        expect(runtime.error).toHaveBeenCalledWith(expect.stringContaining("openclaw doctor"));
+        expect(runtime.error).toHaveBeenCalledWith(expect.stringContaining("omnisclaw doctor"));
         expect(await fs.readFile(configPath, "utf-8")).toBe(raw);
         expect(deps.replaceConfigFile).not.toHaveBeenCalled();
         expect(deps.ensureAgentWorkspace).not.toHaveBeenCalled();

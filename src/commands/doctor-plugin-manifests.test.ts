@@ -200,7 +200,7 @@ describe("doctor plugin manifest legacy contract repair", () => {
       target: "openai",
       requirement: "contracts-capability-keys",
       fixHint:
-        "Run `openclaw doctor --fix` to rewrite legacy plugin manifest capability keys under contracts.*.",
+        "Run `omnisclaw doctor --fix` to rewrite legacy plugin manifest capability keys under contracts.*.",
     });
   });
 

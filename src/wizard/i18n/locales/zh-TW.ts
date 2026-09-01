@@ -95,7 +95,7 @@ export const zh_TW = {
       tokenPrompt: "Gateway 權杖",
       tokenPromptGenerate: "Gateway 權杖（留空則產生）",
       tokenStoreProvisioned:
-        "已產生 Gateway 權杖並以 {name} 存入 OpenClaw 祕密儲存。設定中只保留參照；可用 `openclaw secrets store list` 檢視。",
+        "已產生 Gateway 權杖並以 {name} 存入 OpenClaw 祕密儲存。設定中只保留參照；可用 `omnisclaw secrets store list` 檢視。",
       trustedProxyAllowLoopback: "允許回環可信代理驗證？",
       trustedProxyLoopbackTitle: "回環代理安全警告",
       trustedProxyLoopbackWarning:
@@ -130,7 +130,7 @@ export const zh_TW = {
       apply: "現在套用這次遷移？",
       appliedTitle: "遷移已套用",
       cancelled: "遷移已取消",
-      complete: "遷移完成。下一步執行 `openclaw doctor`。",
+      complete: "遷移完成。下一步執行 `omnisclaw doctor`。",
       continuing: "遷移完成。繼續設定。",
       importFrom: "從 {source} 匯入",
       importFromAnotherAgent: "從其他 agent 匯入",
@@ -212,7 +212,7 @@ export const zh_TW = {
       arrayPromptSuffix: "（逗號分隔，留空則清除）",
       arrayPlaceholder: "value1, value2",
       sensitiveField:
-        '"{label}" 是敏感欄位。請透過以下方式設定：\n  openclaw config set plugins.entries.{plugin}.config.{field} <value>\n或使用 Web UI 設定頁。',
+        '"{label}" 是敏感欄位。請透過以下方式設定：\n  omnisclaw config set plugins.entries.{plugin}.config.{field} <value>\n或使用 Web UI 設定頁。',
       sensitiveTitle: "敏感欄位",
       skipConfigHint: "繼續，不設定插件",
       useLocalPluginPath: "使用本機插件路徑",
@@ -322,7 +322,7 @@ export const zh_TW = {
       enterApiKey: "輸入 API key — {label}",
       existingModelKept:
         "已設定的預設模型保持不變。請在下方選擇如何繼續——重試、連接其他提供商，或離開。此檢查在工作區之外執行，因此工作區外掛提供的模型可能在這裡失敗，但在 agent 中仍可正常運作。",
-      escapeHatches: "如需完整的分步精靈，請執行 `openclaw onboard --classic`。",
+      escapeHatches: "如需完整的分步精靈，請執行 `omnisclaw onboard --classic`。",
       failureAuth: "認證失敗。請重新登入或檢查 key。",
       failureBilling: "此模型或帳號尚未啟用計費。",
       failureFormat: "模型沒有傳回可用的回覆。",
@@ -340,9 +340,9 @@ export const zh_TW = {
       invalidConfigUnknown: "- 無法解析設定。",
       manualChoice: "你想如何連接 AI？",
       nextSteps:
-        "工作區：{workspace}\n新增頻道：`openclaw channels add`\n偏好聊天？執行 `openclaw setup`，然後說 `connect telegram`（或 `connect slack`）。\n開啟 dashboard：`openclaw dashboard`\n稍後聊天：`openclaw`",
+        "工作區：{workspace}\n新增頻道：`omnisclaw channels add`\n偏好聊天？執行 `omnisclaw setup`，然後說 `connect telegram`（或 `connect slack`）。\n開啟 dashboard：`omnisclaw dashboard`\n稍後聊天：`openclaw`",
       nextStepsWithoutAi:
-        "工作區：{workspace}\n稍後新增 AI：重新執行 `openclaw onboard`\n連接 AI 後新增頻道：`openclaw channels add`\n開啟 dashboard：`openclaw dashboard`",
+        "工作區：{workspace}\n稍後新增 AI：重新執行 `omnisclaw onboard`\n連接 AI 後新增頻道：`omnisclaw channels add`\n開啟 dashboard：`omnisclaw dashboard`",
       nextStepsTitle: "下一步",
       noInferenceOptions:
         "尚無可用的推理選項。請先登入 Claude Code 或 Codex，或設定 API 金鑰供應商，然後重新執行引導。",
@@ -359,7 +359,7 @@ export const zh_TW = {
       testingManualProvider: "正在測試 {label} — 真實 completion，並非 ping…",
       tryCandidate: "嘗試 {label}（{detail}）",
       ttyRequired:
-        "Onboarding 需要互動式 TTY。自動化請使用 `openclaw onboard --non-interactive --accept-risk ...`。",
+        "Onboarding 需要互動式 TTY。自動化請使用 `omnisclaw onboard --non-interactive --accept-risk ...`。",
       welcomeTitle: "設定選項",
       workspaceConflictClassic:
         "本次驗證保留了已設定的工作區。執行 `{command}` 以檢視並明確核准移動現有 agent fleet。",
@@ -460,7 +460,7 @@ export const zh_TW = {
       accept: "是，分享功能使用統計",
       decline: "不用，謝謝",
       description:
-        "在每日更新檢查中分享你使用的功能（頻道、提供者、插件數量）。絕不包含訊息或識別碼。查看實際傳送的內容：`openclaw telemetry show`。隨時變更：`openclaw telemetry on|off`。",
+        "在每日更新檢查中分享你使用的功能（頻道、提供者、插件數量）。絕不包含訊息或識別碼。查看實際傳送的內容：`omnisclaw telemetry show`。隨時變更：`omnisclaw telemetry on|off`。",
       title: "幫助 OpenClaw 變得更好？",
     },
     skills: {
@@ -480,7 +480,7 @@ export const zh_TW = {
       installed: "已安裝 {name}",
       installedWithWarnings: "已安裝 {name}（有警告）",
       installing: "正在安裝 {name}...",
-      manualPrereqsDoctorHint: "請先安裝這些工具，然後執行 `openclaw doctor` 檢查技能和需求。",
+      manualPrereqsDoctorHint: "請先安裝這些工具，然後執行 `omnisclaw doctor` 檢查技能和需求。",
       manualPrereqsIntro: "已略過需要先安裝本機工具的選用技能安裝：",
       manualPrereqsTitle: "手動技能先決條件",
       nodeManager: "技能安裝首選 Node 管理器",
@@ -861,7 +861,7 @@ export const zh_TW = {
       helpRecommendedTls: "建議：TLS 使用 6697 連接埠。",
       multipleEntries: "多個項目請用逗號分隔。",
       nextRestartGateway: "下一步：重新啟動 gateway 並驗證狀態。",
-      nextStatusCommand: "命令：openclaw channels status --probe",
+      nextStatusCommand: "命令：omnisclaw channels status --probe",
       nextStepsTitle: "IRC 後續步驟",
       nickPrompt: "IRC nick",
       nickServConfigurePrompt: "設定 NickServ identify/register？",
@@ -1065,7 +1065,7 @@ export const zh_TW = {
       credentialRequired: "需要 {label}",
       chooseProvider: "選擇一個提供方。有些提供方需要 API key，有些無需 key。",
       configured: "已設定",
-      configureLaterHint: "稍後可用 openclaw configure --section web 設定",
+      configureLaterHint: "稍後可用 omnisclaw configure --section web 設定",
       docsLine: "文件：{url}",
       intro: "Web search 可以讓 agent 線上查詢資料。",
       keyFree: "無需 key",

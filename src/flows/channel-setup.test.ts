@@ -941,7 +941,7 @@ describe("setupChannels workspace shadow exclusion", () => {
     expect(getStatus).toHaveBeenCalledTimes(2);
     expect(note).toHaveBeenCalledWith(
       "Status unavailable (controlled status failure).\n" +
-        "Retry: openclaw channels status --channel external-chat",
+        "Retry: omnisclaw channels status --channel external-chat",
       "Channel status",
     );
   });

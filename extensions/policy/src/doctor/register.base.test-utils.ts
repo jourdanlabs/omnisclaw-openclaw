@@ -1183,7 +1183,7 @@ describe("registerPolicyDoctorChecks", () => {
       expect.objectContaining({
         checkId: "policy/channels-denied-provider",
         severity: "error",
-        path: "openclaw config",
+        path: "omnisclaw config",
         ocPath: "oc://openclaw.config/channels/telegram",
         target: "oc://openclaw.config/channels/telegram",
         requirement: "oc://policy.jsonc/channels/denyRules/#0",

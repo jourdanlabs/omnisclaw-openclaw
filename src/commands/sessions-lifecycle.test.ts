@@ -428,7 +428,7 @@ describe("sessions lifecycle commands", () => {
             key: "agent:main:missing",
             ok: false,
             status: "not_found",
-            error: expect.stringContaining("openclaw sessions list --json"),
+            error: expect.stringContaining("omnisclaw sessions list --json"),
           },
           {
             key: "agent:main:last",

@@ -31,7 +31,7 @@ export async function collectChannelPreviewWarningHealthFindings(params: {
 }): Promise<readonly HealthFinding[]> {
   const { collectChannelDoctorPreviewWarnings } =
     await import("../commands/doctor/shared/channel-doctor.js");
-  const doctorFixCommand = params.doctorFixCommand ?? "openclaw doctor --fix";
+  const doctorFixCommand = params.doctorFixCommand ?? "omnisclaw doctor --fix";
   const previewConfig = await resolveDoctorChannelPreviewConfig({
     cfg: params.cfg,
     env: params.env ?? process.env,

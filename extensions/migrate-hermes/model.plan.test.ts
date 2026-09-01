@@ -103,7 +103,7 @@ describe("Hermes migration model planning", () => {
       if (["qwen-cli", "qwen-oauth", "qwen-portal"].includes(hermesProvider)) {
         const reauthItem = plan.items.find((item) => item.id === "manual:auth-reauthenticate:qwen");
         expect(reauthItem?.reason).toBe(
-          "Authenticate qwen with an API key after migration: openclaw onboard --auth-choice qwen-api-key.",
+          "Authenticate qwen with an API key after migration: omnisclaw onboard --auth-choice qwen-api-key.",
         );
       }
     }
@@ -124,7 +124,7 @@ describe("Hermes migration model planning", () => {
 
     expect(plan.items[0]?.details?.model).toBe("qwen/qwen3.5-plus");
     expect(plan.items.find((item) => item.id === "manual:auth-reauthenticate:qwen")?.reason).toBe(
-      "Authenticate qwen with an API key after migration: openclaw onboard --auth-choice qwen-api-key.",
+      "Authenticate qwen with an API key after migration: omnisclaw onboard --auth-choice qwen-api-key.",
     );
   });
 

@@ -89,7 +89,7 @@ export const createDiscordDraftStream = deliveryMocks.createDiscordDraftStream;
 export function createNonTerminalToolWarningPayload(): ReplyPayload {
   return setReplyPayloadMetadata(
     {
-      text: "⚠️ 🛠️ `run openclaw definitely-not-a-real-subcommand (agent)` failed",
+      text: "⚠️ 🛠️ `run omnisclaw definitely-not-a-real-subcommand (agent)` failed",
       isError: true,
     },
     { nonTerminalToolErrorWarning: true },

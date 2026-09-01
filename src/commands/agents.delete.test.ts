@@ -306,7 +306,7 @@ describe("agents delete command", () => {
           error: {
             type: "cli_error",
             message:
-              'Agent "main" owns the legacy shared auth store and cannot be deleted. Run openclaw doctor --fix to migrate shared auth, then retry.',
+              'Agent "main" owns the legacy shared auth store and cannot be deleted. Run omnisclaw doctor --fix to migrate shared auth, then retry.',
           },
         },
       ]);
@@ -389,7 +389,7 @@ describe("agents delete command", () => {
       await agentsDeleteCommand({ id: "агент✨", force: true }, runtime);
 
       expect(runtime.error).toHaveBeenCalledWith(
-        'Agent "агент✨" not found. Run openclaw agents list to see configured agents.',
+        'Agent "агент✨" not found. Run omnisclaw agents list to see configured agents.',
       );
       expect(runtime.exit).toHaveBeenCalledWith(1);
       expect(gatewayMocks.callGateway).not.toHaveBeenCalled();

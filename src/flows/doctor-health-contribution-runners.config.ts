@@ -111,7 +111,7 @@ export async function runWriteConfigHealth(
           [
             "Doctor could not apply config fixes: the repaired config still fails validation.",
             ...issueLines,
-            `${unpersistedLine} Fix the value(s) above in ${shortenHomePath(ctx.configPath)} by hand, then rerun "openclaw doctor --fix".`,
+            `${unpersistedLine} Fix the value(s) above in ${shortenHomePath(ctx.configPath)} by hand, then rerun "omnisclaw doctor --fix".`,
           ].join("\n"),
           "Doctor warnings",
         );
@@ -127,7 +127,7 @@ export async function runWriteConfigHealth(
         [
           error.message,
           "Doctor left the config unchanged, preserving any retained legacy owner for a later repair.",
-          'Resolve the reported Gateway or cron-store condition, then rerun "openclaw doctor --fix".',
+          'Resolve the reported Gateway or cron-store condition, then rerun "omnisclaw doctor --fix".',
         ].join("\n"),
         "Doctor warnings",
       );

@@ -85,7 +85,7 @@ vi.mock("../../daemon/runtime-hints.js", () => ({
     "Logs: node service log",
     "Restart attempts: node restart log",
   ],
-  buildPlatformServiceStartHints: () => ["openclaw node install", "openclaw node start"],
+  buildPlatformServiceStartHints: () => ["omnisclaw node install", "omnisclaw node start"],
 }));
 
 vi.mock("../../daemon/systemd.js", async () => {
@@ -487,7 +487,7 @@ describe("runNodeDaemonStatus", () => {
     );
     expect(mocks.runtime.exit).toHaveBeenCalledWith(1);
     expect(stdout()).not.toContain("not loaded");
-    expect(stdout()).not.toContain("openclaw node install");
+    expect(stdout()).not.toContain("omnisclaw node install");
   });
 
   it("reports a failed service check as JSON without inventing node status", async () => {

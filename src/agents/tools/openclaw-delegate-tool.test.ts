@@ -15,7 +15,7 @@ beforeEach(() => {
   callGateway.mockReset();
 });
 
-describe("openclaw delegation tool", () => {
+describe("omnisclaw delegation tool", () => {
   it("relays context and surfaces pending approval", async () => {
     callGateway.mockResolvedValue({
       sessionId: "ignored-by-client",

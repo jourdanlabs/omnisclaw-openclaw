@@ -918,7 +918,7 @@ describe("sanitizeAssistantVisibleText", () => {
   it("strips internal tool trace warning lines on the delivery path", () => {
     const input = [
       "Visible intro.",
-      "⚠️ 🛠️ `run openclaw definitely-not-a-real-subcommand (agent)` failed",
+      "⚠️ 🛠️ `run omnisclaw definitely-not-a-real-subcommand (agent)` failed",
       "⚠️ 🛠️ gh search issues --repo openclaw/openclaw --state open --no-search-pages.jsonl /tmp/openclaw_open_unlabeled_current.json (agent) failed",
       "⚠️ 🛠️ gh search issues --repo openclaw/openclaw --state open (agent) failed: command timed out",
       "⚠️ 🛠️ Exec failed: `python3 /path/to/daily-cost-audit.py` (exit 1)",
@@ -946,7 +946,7 @@ describe("sanitizeAssistantVisibleText", () => {
       "Example:",
       "```",
       "⚠️ 🛠️ Exec failed: `python3 /path/to/daily-cost-audit.py` (exit 1)",
-      "⚠️ 🛠️ `run openclaw definitely-not-a-real-subcommand (agent)` failed",
+      "⚠️ 🛠️ `run omnisclaw definitely-not-a-real-subcommand (agent)` failed",
       "```",
     ].join("\n");
 

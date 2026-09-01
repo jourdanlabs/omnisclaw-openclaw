@@ -1148,26 +1148,26 @@ describe("handleToolExecutionEnd cron mutation tracking", () => {
   });
 
   it.each([
-    ["exec", "openclaw cron add --at +1h --message 'follow up' --name reminder"],
-    ["exec", "npx openclaw cron add --at=+1h --message 'follow up'"],
-    ["exec", "bunx openclaw cron add --at +1h --message 'follow up'"],
-    ["exec", "pnpm exec openclaw cron add --at +1h --message 'follow up'"],
-    ["exec", "pnpm dlx openclaw cron add --at +1h --message 'follow up'"],
-    ["exec", "npx -y openclaw cron add --at +1h --message 'follow up'"],
-    ["exec", "bunx --bun openclaw cron add --at +1h --message 'follow up'"],
+    ["exec", "omnisclaw cron add --at +1h --message 'follow up' --name reminder"],
+    ["exec", "npx omnisclaw cron add --at=+1h --message 'follow up'"],
+    ["exec", "bunx omnisclaw cron add --at +1h --message 'follow up'"],
+    ["exec", "pnpm exec omnisclaw cron add --at +1h --message 'follow up'"],
+    ["exec", "pnpm dlx omnisclaw cron add --at +1h --message 'follow up'"],
+    ["exec", "npx -y omnisclaw cron add --at +1h --message 'follow up'"],
+    ["exec", "bunx --bun omnisclaw cron add --at +1h --message 'follow up'"],
     ["exec", "pnpm dlx openclaw@latest cron add --at +1h --message 'follow up'"],
     ["exec", "npx openclaw@latest cron add --at +1h --message 'follow up'"],
     ["exec", "bunx openclaw@latest cron add --at +1h --message 'follow up'"],
     ["exec", "/usr/local/bin/openclaw cron add --at +1h --message 'follow up'"],
-    ["bash", "corepack pnpm exec openclaw cron add --at +1h --message 'follow up'"],
-    ["exec", "env OPENCLAW_PROFILE=test openclaw cron add --at +1h --message 'follow up'"],
-    ["exec", "openclaw cron create --at +1h --message 'follow up'"],
-    ["exec", "openclaw --profile work cron create --at +1h --message 'follow up'"],
-    ["exec", "openclaw --dev cron add --at +1h --message 'follow up'"],
-    ["exec", "openclaw --log-level debug --no-color cron add --at +1h --message 'follow up'"],
-    ["exec", "openclaw --container helper cron add --at +1h --message 'follow up'"],
-    ["exec", "openclaw cron add --at +1h --message 'follow up || wait'"],
-    ["exec", "openclaw cron add --at +1h --message 'follow up' 2>&1"],
+    ["bash", "corepack pnpm exec omnisclaw cron add --at +1h --message 'follow up'"],
+    ["exec", "env OPENCLAW_PROFILE=test omnisclaw cron add --at +1h --message 'follow up'"],
+    ["exec", "omnisclaw cron create --at +1h --message 'follow up'"],
+    ["exec", "omnisclaw --profile work cron create --at +1h --message 'follow up'"],
+    ["exec", "omnisclaw --dev cron add --at +1h --message 'follow up'"],
+    ["exec", "omnisclaw --log-level debug --no-color cron add --at +1h --message 'follow up'"],
+    ["exec", "omnisclaw --container helper cron add --at +1h --message 'follow up'"],
+    ["exec", "omnisclaw cron add --at +1h --message 'follow up || wait'"],
+    ["exec", "omnisclaw cron add --at +1h --message 'follow up' 2>&1"],
   ] as const)("increments successfulCronAdds when %s runs %s", async (toolName, command) => {
     const { ctx } = createTestContext();
     await executeTool(ctx, {
@@ -1194,7 +1194,7 @@ describe("handleToolExecutionEnd cron mutation tracking", () => {
       toolName: "exec",
       toolCallId: "tool-exec-cron-add-failed",
       args: {
-        command: "openclaw cron add --at +1h --message 'follow up' --name reminder",
+        command: "omnisclaw cron add --at +1h --message 'follow up' --name reminder",
       },
       isError: false,
       result: {
@@ -1210,25 +1210,25 @@ describe("handleToolExecutionEnd cron mutation tracking", () => {
   });
 
   it.each([
-    ["openclaw cron list --json", "a different cron action"],
-    ["echo openclaw cron add --at +1h", "a command that only mentions cron add"],
-    ["openclaw cron add --at '+1h", "an unterminated shell argument"],
-    ["cd /tmp && openclaw cron add --at +1h", "a compound command"],
-    ["openclaw cron add --help", "the add command help"],
-    ["openclaw cron create -h", "the create alias help"],
-    ["openclaw cron add --bad||true", "a masked cron failure"],
-    ["openclaw cron add --at +1h; true", "a semicolon suffix"],
-    ["openclaw cron add --at +1h | cat", "a pipeline suffix"],
-    ["openclaw cron add --at +1h & true", "a background suffix"],
-    ["openclaw cron add --at +1h\ntrue", "a newline-separated suffix"],
-    ["openclaw cron add --bad # ignored\ntrue", "a comment-masked cron failure"],
-    ["npx -y echo openclaw cron add --at +1h", "a package runner for another executable"],
-    ["pnpm openclaw cron add --at +1h", "a bare pnpm package script"],
-    ["corepack pnpm openclaw cron add --at +1h", "a corepack pnpm package script"],
+    ["omnisclaw cron list --json", "a different cron action"],
+    ["echo omnisclaw cron add --at +1h", "a command that only mentions cron add"],
+    ["omnisclaw cron add --at '+1h", "an unterminated shell argument"],
+    ["cd /tmp && omnisclaw cron add --at +1h", "a compound command"],
+    ["omnisclaw cron add --help", "the add command help"],
+    ["omnisclaw cron create -h", "the create alias help"],
+    ["omnisclaw cron add --bad||true", "a masked cron failure"],
+    ["omnisclaw cron add --at +1h; true", "a semicolon suffix"],
+    ["omnisclaw cron add --at +1h | cat", "a pipeline suffix"],
+    ["omnisclaw cron add --at +1h & true", "a background suffix"],
+    ["omnisclaw cron add --at +1h\ntrue", "a newline-separated suffix"],
+    ["omnisclaw cron add --bad # ignored\ntrue", "a comment-masked cron failure"],
+    ["npx -y echo omnisclaw cron add --at +1h", "a package runner for another executable"],
+    ["pnpm omnisclaw cron add --at +1h", "a bare pnpm package script"],
+    ["corepack pnpm omnisclaw cron add --at +1h", "a corepack pnpm package script"],
     ["openclaw@latest cron add --at +1h", "a package spec without a package runner"],
     ["pnpm exec openclaw@latest cron add --at +1h", "a package spec passed to pnpm exec"],
-    ["openclaw cron add --bad &>/tmp/cron.log", "a bash-only combined redirection"],
-    ["openclaw cron add --bad &>>/tmp/cron.log", "a bash-only append redirection"],
+    ["omnisclaw cron add --bad &>/tmp/cron.log", "a bash-only combined redirection"],
+    ["omnisclaw cron add --bad &>>/tmp/cron.log", "a bash-only append redirection"],
   ])("does not count %s (%s)", async (command) => {
     const { ctx } = createTestContext();
     await executeTool(ctx, {
@@ -2934,10 +2934,10 @@ describe("handleToolExecutionEnd exec approval prompts", () => {
     );
     expect(text).toContain("no interactive approval client is currently available");
     expect(text).toContain(
-      "Print the Control UI URL with `openclaw dashboard --no-open`, open it in a browser, then use the approval inbox.",
+      "Print the Control UI URL with `omnisclaw dashboard --no-open`, open it in a browser, then use the approval inbox.",
     );
     expect(text).toContain(
-      "Inspect the node's effective exec policy with `openclaw approvals get --node node-mac-1`.",
+      "Inspect the node's effective exec policy with `omnisclaw approvals get --node node-mac-1`.",
     );
     expect(text).not.toContain("/approve");
     expect(text).not.toContain("Pending command:");

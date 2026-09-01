@@ -1,4 +1,5 @@
 /** Safety checks for deleting agents whose workspaces may overlap other agents. */
+import { formatCliCommand } from "../cli/command-format.js";
 import type { OpenClawConfig } from "../config/types.openclaw.js";
 import { isPathInside } from "../infra/path-guards.js";
 import { normalizeAgentId } from "../routing/session-key.js";
@@ -24,7 +25,7 @@ export function isSharedAuthStoreOwner(params: {
 }
 
 export function formatSharedAuthStoreOwnerDeleteError(agentId: string): string {
-  return `Agent "${agentId}" owns the legacy shared auth store and cannot be deleted. Run openclaw doctor --fix to migrate shared auth, then retry.`;
+  return `Agent "${agentId}" owns the legacy shared auth store and cannot be deleted. Run ${formatCliCommand("openclaw doctor --fix")} to migrate shared auth, then retry.`;
 }
 
 export function isInheritedAuthStoreOwner(cfg: OpenClawConfig, agentId: string): boolean {

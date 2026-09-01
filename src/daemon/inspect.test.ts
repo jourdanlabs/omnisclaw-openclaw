@@ -34,7 +34,7 @@ Environment=OPENCLAW_SERVICE_KIND=gateway
 WantedBy=default.target
 `;
 
-// Real content from the openclaw-test.service unit file (a non-gateway openclaw service).
+// Real content from the openclaw-test.service unit file (a non-gateway omnisclaw service).
 const TEST_SERVICE_CONTENTS = `\
 [Unit]
 Description=OpenClaw test service
@@ -76,11 +76,11 @@ ExecStart=/usr/bin/node /opt/openclaw/dist/entry.js gateway --port 18888
 `;
 
 describe("detectMarkerLineWithGateway", () => {
-  it("returns null for openclaw-test.service (openclaw only in description, no gateway on same line)", () => {
+  it("returns null for openclaw-test.service (omnisclaw only in description, no gateway on same line)", () => {
     expect(detectMarkerLineWithGateway(TEST_SERVICE_CONTENTS)).toBeNull();
   });
 
-  it("returns openclaw for the canonical gateway unit (ExecStart has both openclaw and gateway)", () => {
+  it("returns omnisclaw for the canonical gateway unit (ExecStart has both omnisclaw and gateway)", () => {
     expect(detectMarkerLineWithGateway(GATEWAY_SERVICE_CONTENTS)).toBe("openclaw");
   });
 
@@ -312,7 +312,7 @@ describe("findExtraGatewayServices (linux / scanSystemdDir) — real filesystem"
   );
 
   it.skipIf(!isLinux)(
-    "reports custom-named gateway units that execute openclaw gateway",
+    "reports custom-named gateway units that execute omnisclaw gateway",
     async () => {
       const tmpHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-"));
       const systemdDir = path.join(tmpHome, ".config", "systemd", "user");
@@ -417,7 +417,7 @@ describe("findExtraGatewayServices (darwin / scanLaunchdDir) — real filesystem
     }
   });
 
-  it("reports custom LaunchAgents that execute openclaw gateway", async () => {
+  it("reports custom LaunchAgents that execute omnisclaw gateway", async () => {
     const tmpHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-"));
     const launchdDir = path.join(tmpHome, "Library", "LaunchAgents");
     const plistPath = path.join(launchdDir, "com.example.openclaw-gateway.plist");

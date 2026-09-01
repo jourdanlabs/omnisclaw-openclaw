@@ -13,7 +13,7 @@ export function runNodeIdentityShow(opts: { json?: boolean }) {
   const identity = loadDeviceIdentityIfPresent();
   if (!identity) {
     defaultRuntime.error(
-      "no node device identity found (start the node host once with `openclaw node run` or `openclaw node install`)",
+      "no node device identity found (start the node host once with `omnisclaw node run` or `omnisclaw node install`)",
     );
     defaultRuntime.exit(1);
     return;

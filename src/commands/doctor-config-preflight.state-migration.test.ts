@@ -774,7 +774,7 @@ describe("runDoctorConfigPreflight state migration", () => {
             pluginId: "discord",
             reason: "missing-install-path: install path missing",
             message: 'Plugin "discord" has no install path.',
-            guidance: ["Run `openclaw update repair` to retry plugin repair."],
+            guidance: ["Run `omnisclaw update repair` to retry plugin repair."],
           },
         ],
         smokeFailures: [
@@ -906,7 +906,7 @@ describe("runDoctorConfigPreflight state migration", () => {
           {
             reason: "Configured plugin discord is not installed.",
             message: "Configured plugin discord is not installed.",
-            guidance: ["Run `openclaw update repair` to retry plugin repair."],
+            guidance: ["Run `omnisclaw update repair` to retry plugin repair."],
           },
         ],
       }),
@@ -927,7 +927,7 @@ describe("runDoctorConfigPreflight state migration", () => {
     });
     expect(recordSuccessfulStartupMigrations).not.toHaveBeenCalled();
     expect(note).toHaveBeenCalledWith(
-      "- Configured plugin discord is not installed. Run `openclaw update repair` to retry plugin repair.",
+      "- Configured plugin discord is not installed. Run `omnisclaw update repair` to retry plugin repair.",
       "Doctor warnings",
     );
     expect(startupMigrationLeaseRelease).toHaveBeenCalledOnce();
@@ -966,8 +966,8 @@ describe("runDoctorConfigPreflight state migration", () => {
             reason: "missing-main-entry: index.js",
             message: 'Plugin "discord" failed post-core payload smoke check (missing): index.js',
             guidance: [
-              "Run `openclaw update repair` to retry plugin repair.",
-              "Run `openclaw plugins inspect discord --runtime --json` for details.",
+              "Run `omnisclaw update repair` to retry plugin repair.",
+              "Run `omnisclaw plugins inspect discord --runtime --json` for details.",
             ],
           },
         ],

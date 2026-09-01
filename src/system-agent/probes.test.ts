@@ -3,7 +3,7 @@ import { MAX_TIMER_TIMEOUT_MS } from "@openclaw/normalization-core/number-coerci
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { probeGatewayUrl, probeLocalCommand } from "./probes.js";
 
-describe("openclaw probes", () => {
+describe("omnisclaw probes", () => {
   afterEach(() => {
     vi.restoreAllMocks();
     vi.unstubAllGlobals();

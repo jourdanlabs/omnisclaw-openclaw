@@ -349,7 +349,7 @@ describe("resolveMissingPluginCommandMessage", () => {
         { registry: browserCommandAliasRegistry },
       ),
     ).toBe(
-      'The `openclaw browser` command is unavailable because `plugins.allow` excludes "browser". Add "browser" to `plugins.allow` if you want that bundled plugin CLI surface.',
+      'The `omnisclaw browser` command is unavailable because `plugins.allow` excludes "browser". Add "browser" to `plugins.allow` if you want that bundled plugin CLI surface.',
     );
   });
 
@@ -365,7 +365,7 @@ describe("resolveMissingPluginCommandMessage", () => {
         },
       }),
     ).toBe(
-      "The `openclaw browser` command is unavailable because `plugins.entries.browser.enabled=false`. Re-enable that entry if you want the bundled plugin CLI surface.",
+      "The `omnisclaw browser` command is unavailable because `plugins.entries.browser.enabled=false`. Re-enable that entry if you want the bundled plugin CLI surface.",
     );
   });
 
@@ -399,7 +399,7 @@ describe("resolveMissingPluginCommandMessage", () => {
       },
     );
     expect(message).toBe(
-      '"dreaming" is a runtime slash command (/dreaming), not a CLI command. It is provided by the "memory-core" plugin. Use `openclaw memory` for related CLI operations, or `/dreaming` in a chat session.',
+      '"dreaming" is a runtime slash command (/dreaming), not a CLI command. It is provided by the "memory-core" plugin. Use `omnisclaw memory` for related CLI operations, or `/dreaming` in a chat session.',
     );
   });
 
@@ -454,7 +454,7 @@ describe("resolveMissingPluginCommandMessage", () => {
 
     expect(message).toContain('"voice-call" plugin');
     expect(message).toContain("disabled by default");
-    expect(message).toContain("openclaw plugins enable voice-call");
+    expect(message).toContain("omnisclaw plugins enable voice-call");
   });
 
   it("prefers CLI ownership for plugins that also register a slash command", () => {
@@ -465,7 +465,7 @@ describe("resolveMissingPluginCommandMessage", () => {
     );
 
     expect(message).toBe(
-      'The `openclaw workboard` command is provided by the "workboard" plugin, but that bundled plugin is disabled by default. Run `openclaw plugins enable workboard` to enable that CLI surface.',
+      'The `omnisclaw workboard` command is provided by the "workboard" plugin, but that bundled plugin is disabled by default. Run `omnisclaw plugins enable workboard` to enable that CLI surface.',
     );
   });
 
@@ -557,7 +557,7 @@ describe("resolveMissingPluginCommandMessage", () => {
       throw new Error("expected missing plugin command message");
     }
     expect(message).toBe(
-      '"lcm_recent" is an agent tool available from the "lossless-claw" plugin, not a CLI subcommand. Use it from an agent turn (model tool-use), not the CLI. Run `openclaw --help` to see available CLI subcommands.',
+      '"lcm_recent" is an agent tool available from the "lossless-claw" plugin, not a CLI subcommand. Use it from an agent turn (model tool-use), not the CLI. Run `omnisclaw --help` to see available CLI subcommands.',
     );
   });
 
@@ -655,7 +655,7 @@ describe("resolveMissingPluginCommandMessage", () => {
       throw new Error("expected missing plugin command message");
     }
     expect(message).toBe(
-      '"feishu_chat" may be provided by the "feishu" plugin as an agent tool, not a CLI subcommand. Run `openclaw --help` to see available CLI subcommands.',
+      '"feishu_chat" may be provided by the "feishu" plugin as an agent tool, not a CLI subcommand. Run `omnisclaw --help` to see available CLI subcommands.',
     );
   });
 });

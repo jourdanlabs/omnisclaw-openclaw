@@ -765,7 +765,7 @@ describe("legacy media persistence doctor migration", () => {
     database.close();
 
     expect(() => openOpenClawAgentDatabase({ agentId: "main", env })).toThrow(
-      "run openclaw doctor --fix to migrate persisted media",
+      "run omnisclaw doctor --fix to migrate persisted media",
     );
     closeOpenClawAgentDatabasesForTest();
     const result = await migrateLegacyMediaPersistence({ env });

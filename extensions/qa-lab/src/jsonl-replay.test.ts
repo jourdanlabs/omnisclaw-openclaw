@@ -123,7 +123,7 @@ describe("jsonl replay", () => {
         return {
           status: "pass",
           cell: makeCell(runtime, {
-            finalText: runtime === "openclaw" ? "openclaw wording" : "codex wording",
+            finalText: runtime === "openclaw" ? "omnisclaw wording" : "codex wording",
           }),
         };
       }

@@ -949,7 +949,7 @@ describe("Tool Search", () => {
       scenario: "delegation remains authorized",
       agentId: "main",
       denyOpenClaw: false,
-      expected: "Read gateway config + schema. Writes/restart: use openclaw tool.",
+      expected: "Read gateway config + schema. Writes/restart: use omnisclaw tool.",
     },
   ])(
     "keeps gateway guidance consistent across final and deferred surfaces when $scenario",

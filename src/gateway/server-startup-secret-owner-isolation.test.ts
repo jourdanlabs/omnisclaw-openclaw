@@ -611,7 +611,7 @@ describe("Gateway startup SecretRef owner isolation", () => {
         ).rejects.toMatchObject({
           code: "sandbox_provisioning",
           backendId: "ssh",
-          message: expect.stringContaining("openclaw secrets reload"),
+          message: expect.stringContaining("omnisclaw secrets reload"),
           cause: {
             code: "SECRET_SURFACE_UNAVAILABLE",
             ownerKind: "capability",

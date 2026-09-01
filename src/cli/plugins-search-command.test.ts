@@ -56,25 +56,25 @@ describe("plugins search command", () => {
       context: "default",
       profile: undefined,
       container: undefined,
-      command: "openclaw plugins install clawhub:openclaw-calendar",
+      command: "omnisclaw plugins install clawhub:openclaw-calendar",
     },
     {
       context: "profile",
       profile: "work",
       container: undefined,
-      command: "openclaw --profile work plugins install clawhub:openclaw-calendar",
+      command: "omnisclaw --profile work plugins install clawhub:openclaw-calendar",
     },
     {
       context: "container",
       profile: undefined,
       container: "staging",
-      command: "openclaw --container staging plugins install clawhub:openclaw-calendar",
+      command: "omnisclaw --container staging plugins install clawhub:openclaw-calendar",
     },
     {
       context: "container over profile",
       profile: "work",
       container: "staging",
-      command: "openclaw --container staging plugins install clawhub:openclaw-calendar",
+      command: "omnisclaw --container staging plugins install clawhub:openclaw-calendar",
     },
   ])("searches ClawHub plugin families with the $context install context", async (scenario) => {
     mocks.searchClawHubPackages
@@ -143,7 +143,7 @@ describe("plugins search command", () => {
 
   it("leaves missing-query JSON failures to the root renderer", async () => {
     await expect(runPluginsSearchCommand([], { json: true }, mocks.runtime)).rejects.toThrow(
-      "Usage: openclaw plugins search <query>",
+      "Usage: omnisclaw plugins search <query>",
     );
 
     expect(mocks.runtime.error).not.toHaveBeenCalled();

@@ -110,7 +110,7 @@ describe("collectCodexNativeAssetInfoNotes", () => {
     expect(notes).toStrictEqual([
       [
         `- Personal Codex CLI assets found (1 skill, 0 plugins, 0 config files, 0 hook files) in ${codexHome} and ${path.join(root, ".agents", "skills")}; native Codex-mode agents use isolated per-agent homes and will not load them.`,
-        "- To review or promote them: install the Codex plugin (openclaw plugins install npm:@openclaw/codex), then run openclaw migrate plan codex.",
+        "- To review or promote them: install the Codex plugin (omnisclaw plugins install npm:@openclaw/codex), then run omnisclaw migrate plan codex.",
       ].join("\n"),
     ]);
   });

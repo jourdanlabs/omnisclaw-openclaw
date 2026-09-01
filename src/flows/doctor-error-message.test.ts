@@ -4,10 +4,12 @@ import { scrubDoctorErrorMessage } from "./doctor-error-message.js";
 describe("scrubDoctorErrorMessage", () => {
   it("keeps word separation for multi-line errors", () => {
     const scrubbed = scrubDoctorErrorMessage(
-      new Error("Gateway not reachable.\nStart it with `openclaw gateway run`.\r\n\tCheck status."),
+      new Error(
+        "Gateway not reachable.\nStart it with `omnisclaw gateway run`.\r\n\tCheck status.",
+      ),
     );
     expect(scrubbed).toBe(
-      "Gateway not reachable. Start it with `openclaw gateway run`. Check status.",
+      "Gateway not reachable. Start it with `omnisclaw gateway run`. Check status.",
     );
   });
 

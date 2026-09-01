@@ -201,7 +201,7 @@ describe("repairStaleConfiguredAuthOrders", () => {
 
       const preview = collectStaleConfiguredAuthOrderWarnings({
         cfg,
-        doctorFixCommand: "openclaw doctor --fix",
+        doctorFixCommand: "omnisclaw doctor --fix",
         env: { OPENCLAW_STATE_DIR: stateDir },
       });
       const result = maybeRepairStaleConfiguredAuthOrders({
@@ -300,7 +300,7 @@ describe("repairStaleConfiguredAuthOrders", () => {
       expect(
         collectStaleConfiguredAuthOrderWarnings({
           cfg,
-          doctorFixCommand: "openclaw doctor --fix",
+          doctorFixCommand: "omnisclaw doctor --fix",
         }),
       ).toEqual([]);
     },
@@ -321,7 +321,7 @@ describe("repairStaleConfiguredAuthOrders", () => {
     expect(
       collectStaleConfiguredAuthOrderWarnings({
         cfg,
-        doctorFixCommand: "openclaw doctor --fix",
+        doctorFixCommand: "omnisclaw doctor --fix",
       }),
     ).toEqual([]);
   });
@@ -833,7 +833,7 @@ describe("repairStaleConfiguredAuthOrders", () => {
       expect(
         collectStaleConfiguredAuthOrderWarnings({
           cfg,
-          doctorFixCommand: "openclaw doctor --fix",
+          doctorFixCommand: "omnisclaw doctor --fix",
           env: { OPENCLAW_STATE_DIR: stateDir },
         }).join("\n"),
       ).toContain("SQLite auth profile store is unreadable");

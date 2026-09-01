@@ -143,7 +143,7 @@ describe("managed local embedding setup health check", () => {
       reason: "Local embeddings need the managed llama.cpp server config.",
       requirement: "managed-llama-cpp-setup",
       fixHint:
-        "Run `openclaw models --agent main auth login --provider llama-cpp --method local` in an interactive terminal, then rerun this check.",
+        "Run `omnisclaw models --agent main auth login --provider llama-cpp --method local` in an interactive terminal, then rerun this check.",
     }));
 
     await expect(check.detect(checkContext)).resolves.toEqual([
@@ -158,7 +158,7 @@ describe("managed local embedding setup health check", () => {
           'embedding provider "local" cannot initialize (Local embeddings need',
         ),
         fixHint:
-          "Run `openclaw models --agent main auth login --provider llama-cpp --method local` in an interactive terminal, then rerun this check.",
+          "Run `omnisclaw models --agent main auth login --provider llama-cpp --method local` in an interactive terminal, then rerun this check.",
       },
     ]);
     expect(JSON.stringify(checkContext.cfg)).toBe(configBefore);
@@ -189,7 +189,7 @@ describe("managed local embedding setup health check", () => {
         target: "main/local",
         requirement: "memory-embedding-provider-plugin",
         message: expect.stringContaining("official llama.cpp provider plugin"),
-        fixHint: expect.stringContaining("openclaw plugins install @openclaw/llama-cpp-provider"),
+        fixHint: expect.stringContaining("omnisclaw plugins install @openclaw/llama-cpp-provider"),
       }),
     ]);
   });

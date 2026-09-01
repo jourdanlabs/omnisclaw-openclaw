@@ -829,18 +829,18 @@ describe("firecrawl tools", () => {
     }
 
     const result = await tool.execute({
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
     });
 
     expect(runFirecrawlSearch).toHaveBeenCalledWith({
       cfg: { test: true },
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
     });
     expect(result).toEqual({
       cfg: { test: true },
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
     });
   });
@@ -863,13 +863,13 @@ describe("firecrawl tools", () => {
     }
 
     await tool.execute({
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
     });
 
     expect(runFirecrawlSearch).toHaveBeenCalledWith({
       cfg: { test: true },
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
       access: "keyless",
     });
@@ -915,18 +915,18 @@ describe("firecrawl tools", () => {
     }
 
     await tool.execute({
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: "4",
     });
 
     expect(runFirecrawlSearch).toHaveBeenCalledWith({
       cfg: { test: true },
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       count: 4,
     });
     await expect(
       tool.execute({
-        query: "openclaw docs",
+        query: "omnisclaw docs",
         count: "4.5",
       }),
     ).rejects.toThrow("count must be an integer from 1 to 10");
@@ -1505,7 +1505,7 @@ describe("firecrawl tools", () => {
             },
           },
         } as OpenClawConfig,
-        query: "openclaw malformed search",
+        query: "omnisclaw malformed search",
       }),
     ).rejects.toThrow("Firecrawl Search API error: malformed JSON response");
   });
@@ -1537,7 +1537,7 @@ describe("firecrawl tools", () => {
             },
           },
         } as OpenClawConfig,
-        query: `openclaw malformed ${kind} search`,
+        query: `omnisclaw malformed ${kind} search`,
         access: "keyless",
       }),
     ).rejects.toThrow("Firecrawl Search API error: malformed JSON response");
@@ -1555,7 +1555,7 @@ describe("firecrawl tools", () => {
 
     await expect(
       runActualFirecrawlSearch({
-        query: "openclaw bounded search response",
+        query: "omnisclaw bounded search response",
         access: "keyless",
       }),
     ).rejects.toThrow("Firecrawl Search API error: JSON response exceeds 16777216 bytes");

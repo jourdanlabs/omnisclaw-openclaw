@@ -263,7 +263,7 @@ describe("pairing cli", () => {
     expect(listChannelPairingRequests).toHaveBeenCalledWith("slack");
   });
 
-  it("redirects to openclaw devices when no pairing channels are configured", async () => {
+  it("redirects to omnisclaw devices when no pairing channels are configured", async () => {
     listPairingChannels.mockReturnValueOnce([]);
 
     const error = await runPairing(["pairing", "list"]).then(
@@ -273,7 +273,7 @@ describe("pairing cli", () => {
 
     expect(error).toBeInstanceOf(Error);
     const message = (error as Error).message;
-    expect(message).toContain("openclaw devices");
+    expect(message).toContain("omnisclaw devices");
     // Must not leak the empty enum that originally read like a bug.
     expect(message).not.toContain("expected one of: )");
     expect(message).not.toContain("()");

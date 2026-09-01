@@ -105,7 +105,7 @@ describe("security audit rosterless configs", () => {
   it("accepts a fresh-install sole-agent roster without a default marker", async () => {
     const { stateDir, workspaceDir } = makeAuditPaths("fresh-install-roster");
 
-    // `openclaw onboard` and `agents add` write markerless entries; runtime
+    // `omnisclaw onboard` and `agents add` write markerless entries; runtime
     // resolves the sole agent as default, so the audit must not warn.
     const report = await runSecurityAuditCore({
       config: { agents: { entries: { main: {} } } } as never,

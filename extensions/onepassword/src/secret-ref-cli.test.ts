@@ -188,11 +188,13 @@ describe("1Password SecretRef setup", () => {
     const canonicalPlanPath = path.join(await fs.realpath(tempDir), "plan with spaces.json");
     try {
       const output = await runSetup(planPath, ["--openai-id", "op://openclaw/OpenAI/credential"]);
-      expect(output).toContain("openclaw onepassword secretref status");
+      expect(output).toContain("omnisclaw onepassword secretref status");
       expect(output).toContain(
-        `openclaw secrets apply --from '${canonicalPlanPath}' --dry-run --allow-exec`,
+        `omnisclaw secrets apply --from '${canonicalPlanPath}' --dry-run --allow-exec`,
       );
-      expect(output).toContain(`openclaw secrets apply --from '${canonicalPlanPath}' --allow-exec`);
+      expect(output).toContain(
+        `omnisclaw secrets apply --from '${canonicalPlanPath}' --allow-exec`,
+      );
     } finally {
       await fs.rm(tempDir, { recursive: true, force: true });
     }

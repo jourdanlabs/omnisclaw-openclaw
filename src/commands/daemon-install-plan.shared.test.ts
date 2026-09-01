@@ -57,8 +57,8 @@ describe("resolveDaemonRuntimeBinDir", () => {
   });
 });
 
-describe("resolveDaemonServicePathDirs openclaw discovery", () => {
-  it("uses the active openclaw command directory", () => {
+describe("resolveDaemonServicePathDirs omnisclaw discovery", () => {
+  it("uses the active omnisclaw command directory", () => {
     expect(
       resolveDaemonServicePathDirs({
         argv: ["node", "/Users/testuser/.npm-global/bin/openclaw", "gateway", "install"],
@@ -95,7 +95,7 @@ describe("resolveDaemonServicePathDirs openclaw discovery", () => {
   );
 
   it.skipIf(process.platform === "win32")(
-    "ignores unrelated openclaw commands elsewhere on PATH",
+    "ignores unrelated omnisclaw commands elsewhere on PATH",
     () => {
       const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-daemon-path-"));
       try {
@@ -124,7 +124,7 @@ describe("resolveDaemonServicePathDirs openclaw discovery", () => {
 });
 
 describe("resolveDaemonServicePathDirs", () => {
-  it("combines runtime and active openclaw command directories", () => {
+  it("combines runtime and active omnisclaw command directories", () => {
     expect(
       resolveDaemonServicePathDirs({
         runtimePath: "/opt/homebrew/opt/node/bin/node",

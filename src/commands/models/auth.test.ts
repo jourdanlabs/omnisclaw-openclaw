@@ -486,10 +486,10 @@ describe("modelsAuthLoginCommand", () => {
       "Auth profile: openai:user@example.com (openai/oauth)",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "Default model available: openai/gpt-5.5 (current default unchanged; run openclaw models set openai/gpt-5.5 to apply)",
+      "Default model available: openai/gpt-5.5 (current default unchanged; run omnisclaw models set openai/gpt-5.5 to apply)",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "Tip: Codex-capable models can use native Codex web search. Configure the `web_search` tool with `openclaw configure --section web`. Docs: https://docs.openclaw.ai/tools/web",
+      "Tip: Codex-capable models can use native Codex web search. Configure the `web_search` tool with `omnisclaw configure --section web`. Docs: https://docs.openclaw.ai/tools/web",
     );
     expect(mocks.callGateway).toHaveBeenCalledWith({
       method: "models.authStatus",
@@ -1173,7 +1173,7 @@ describe("modelsAuthLoginCommand", () => {
     });
     expect(lastUpdatedConfig?.auth).toBeUndefined();
     expect(runtime.log).toHaveBeenCalledWith(
-      "Default model available: openai/gpt-5.5 (current default unchanged; run openclaw models set openai/gpt-5.5 to apply)",
+      "Default model available: openai/gpt-5.5 (current default unchanged; run omnisclaw models set openai/gpt-5.5 to apply)",
     );
   });
 
@@ -1337,7 +1337,7 @@ describe("modelsAuthLoginCommand", () => {
     const runtime = createRuntime();
 
     await expect(modelsAuthLoginCommand({ provider: "anthropic" }, runtime)).rejects.toThrow(
-      'Unknown provider "anthropic". Loaded providers: openai. Verify plugins via `openclaw plugins list --json`.',
+      'Unknown provider "anthropic". Loaded providers: openai. Verify plugins via `omnisclaw plugins list --json`.',
     );
   });
 
@@ -1517,7 +1517,7 @@ describe("modelsAuthLoginCommand", () => {
     );
 
     expect(validateMessages).toEqual([
-      "That looks like an OpenAI API key. Use openclaw models auth paste-api-key --provider openai for API-key auth.",
+      "That looks like an OpenAI API key. Use omnisclaw models auth paste-api-key --provider openai for API-key auth.",
     ]);
     expect(mocks.upsertAuthProfileWithLock).not.toHaveBeenCalled();
     expect(mocks.updateConfig).not.toHaveBeenCalled();
@@ -1661,7 +1661,7 @@ describe("modelsAuthLoginCommand", () => {
     );
 
     expect(validateMessages).toEqual([
-      "That looks like token or OAuth material, not an OpenAI API key. Use openclaw models auth paste-token --provider openai for token auth material.",
+      "That looks like token or OAuth material, not an OpenAI API key. Use omnisclaw models auth paste-token --provider openai for token auth material.",
     ]);
     expect(mocks.upsertAuthProfileWithLock).not.toHaveBeenCalled();
     expect(mocks.updateConfig).not.toHaveBeenCalled();
@@ -1674,7 +1674,7 @@ describe("modelsAuthLoginCommand", () => {
     await expect(
       modelsAuthPasteTokenCommand({ provider: "openai", agent: "missing" }, runtime),
     ).rejects.toThrow(
-      'Unknown agent id "missing". Use "openclaw agents list" to see configured agents.',
+      'Unknown agent id "missing". Use "omnisclaw agents list" to see configured agents.',
     );
 
     expect(mocks.clackPassword).not.toHaveBeenCalled();

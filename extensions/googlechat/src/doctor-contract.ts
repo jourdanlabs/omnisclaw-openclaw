@@ -78,13 +78,13 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
   {
     path: ["channels", "googlechat"],
     message:
-      'channels.googlechat.actions.reactions is retired and ignored. Run "openclaw doctor --fix".',
+      'channels.googlechat.actions.reactions is retired and ignored. Run "omnisclaw doctor --fix".',
     match: hasRetiredReactions,
   },
   {
     path: ["channels", "googlechat", "accounts"],
     message:
-      'channels.googlechat.accounts.<id>.actions.reactions is retired and ignored. Run "openclaw doctor --fix".',
+      'channels.googlechat.accounts.<id>.actions.reactions is retired and ignored. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyAccountStreamingAliases(value, hasRetiredReactions),
   },
   {
@@ -101,13 +101,13 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
   {
     path: ["channels", "googlechat"],
     message:
-      'channels.googlechat.groups.<id>.allow is legacy; use channels.googlechat.groups.<id>.enabled instead. Run "openclaw doctor --fix".',
+      'channels.googlechat.groups.<id>.allow is legacy; use channels.googlechat.groups.<id>.enabled instead. Run "omnisclaw doctor --fix".',
     match: groupAllowMigration.hasLegacy,
   },
   {
     path: ["channels", "googlechat", "accounts"],
     message:
-      'channels.googlechat.accounts.<id>.groups.<id>.allow is legacy; use channels.googlechat.accounts.<id>.groups.<id>.enabled instead. Run "openclaw doctor --fix".',
+      'channels.googlechat.accounts.<id>.groups.<id>.allow is legacy; use channels.googlechat.accounts.<id>.groups.<id>.enabled instead. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyAccountStreamingAliases(value, groupAllowMigration.hasLegacy),
   },
   ...streamingAliasMigration.legacyConfigRules,

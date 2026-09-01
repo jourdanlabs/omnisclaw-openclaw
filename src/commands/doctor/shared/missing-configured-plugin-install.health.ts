@@ -284,35 +284,35 @@ const CONFIGURED_PLUGIN_INSTALL_ISSUE_DETAILS = {
   "missing-installed-payload": {
     message: (pluginId: string) =>
       `Configured plugin ${pluginId} has an install record but its package payload is missing.`,
-    fixHint: "Run `openclaw doctor --fix` to reinstall the configured plugin package.",
+    fixHint: "Run `omnisclaw doctor --fix` to reinstall the configured plugin package.",
     action: "would-reinstall-configured-plugin",
     dryRunSafe: false,
   },
   "repairable-installed-plugin": {
     message: (pluginId: string) =>
       `Configured plugin ${pluginId} has a repairable package install problem.`,
-    fixHint: "Run `openclaw doctor --fix` to repair the configured plugin package.",
+    fixHint: "Run `omnisclaw doctor --fix` to repair the configured plugin package.",
     action: "would-repair-configured-plugin-install",
     dryRunSafe: false,
   },
   "stale-version-bound-runtime": {
     message: (pluginId: string) =>
       `Configured runtime plugin ${pluginId} is older than this OpenClaw version.`,
-    fixHint: "Run `openclaw doctor --fix` to refresh the configured runtime plugin.",
+    fixHint: "Run `omnisclaw doctor --fix` to refresh the configured runtime plugin.",
     action: "would-refresh-configured-runtime-plugin",
     dryRunSafe: false,
   },
   "stale-channel-config-descriptor": {
     message: (pluginId: string) =>
       `Configured plugin ${pluginId} has stale channel config metadata.`,
-    fixHint: "Run `openclaw doctor --fix` to repair the configured plugin install metadata.",
+    fixHint: "Run `omnisclaw doctor --fix` to repair the configured plugin install metadata.",
     action: "would-repair-configured-plugin-install",
     dryRunSafe: false,
   },
   "deferred-package-manager-repair": {
     message: (pluginId: string) =>
       `Configured plugin ${pluginId} package repair is deferred until the package update finishes.`,
-    fixHint: "Rerun `openclaw doctor --fix` after the package update completes.",
+    fixHint: "Rerun `omnisclaw doctor --fix` after the package update completes.",
     action: "would-defer-configured-plugin-install-repair",
     dryRunSafe: true,
   },
@@ -338,7 +338,7 @@ export function configuredPluginInstallIssueToHealthFinding(
     ...("installPath" in issue && issue.installPath ? { path: issue.installPath } : {}),
     fixHint:
       issue.kind === "missing-install-record"
-        ? `Run \`openclaw doctor --fix\` to install ${issue.installSpec}.`
+        ? `Run \`omnisclaw doctor --fix\` to install ${issue.installSpec}.`
         : detail.fixHint,
   };
 }

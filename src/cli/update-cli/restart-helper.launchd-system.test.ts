@@ -70,7 +70,7 @@ exit 0
 
       expect(exitCode).toBe(78);
       await expect(fs.access(activationMarker)).rejects.toMatchObject({ code: "ENOENT" });
-      expect(log).toContain("openclaw restart blocked source=update");
+      expect(log).toContain("omnisclaw restart blocked source=update");
       expect(log).toContain("loaded system LaunchDaemon system/ai.openclaw.gateway");
     } finally {
       await fs.rm(tmpDir, { recursive: true, force: true });

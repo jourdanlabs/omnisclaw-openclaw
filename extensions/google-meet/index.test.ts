@@ -6312,7 +6312,7 @@ describe("google-meet plugin", () => {
     });
 
     expect(result.details.error).toContain("No connected Google Meet-capable node");
-    expect(result.details.error).toContain("openclaw node run");
+    expect(result.details.error).toContain("omnisclaw node run");
   });
 
   it("requires chromeNode.node when multiple capable nodes are connected", async () => {

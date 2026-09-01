@@ -6,6 +6,7 @@ import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
 import { z } from "zod";
 import { loadSqliteVecExtension } from "../../packages/memory-host-sdk/src/engine-storage.js";
+import { formatCliCommand } from "../cli/command-format.js";
 import {
   ensureDurableDirectory,
   getPublishFileExclusiveFailureDetails,
@@ -600,14 +601,14 @@ class LocalSqliteSnapshotProvider implements SqliteSnapshotProvider {
     const repositoryStat = await lstatIfExists(this.#repositoryPath);
     if (!repositoryStat) {
       throw new Error(
-        `SQLite snapshot repository does not exist: ${this.#repositoryPath}. Check the snapshot path or create a snapshot with \`openclaw backup sqlite create\`.`,
+        `SQLite snapshot repository does not exist: ${this.#repositoryPath}. Check the snapshot path or create a snapshot with \`${formatCliCommand("openclaw backup sqlite create")}\`.`,
       );
     }
     assertDirectory(repositoryStat, this.#repositoryPath, "SQLite snapshot repository");
     const snapshotStat = await lstatIfExists(snapshotDir);
     if (!snapshotStat) {
       throw new Error(
-        `SQLite snapshot does not exist: ${snapshotDir}. Run \`openclaw backup sqlite list --repository ${this.#repositoryPath}\` to inspect available snapshots.`,
+        `SQLite snapshot does not exist: ${snapshotDir}. Run \`${formatCliCommand(`openclaw backup sqlite list --repository ${this.#repositoryPath}`)}\` to inspect available snapshots.`,
       );
     }
     assertDirectory(snapshotStat, snapshotDir, "SQLite snapshot");

@@ -107,7 +107,7 @@ function collectInstallFindings(
         path: `claws.${agentId}`,
         target: agentId,
         requirement: "Claw installs should complete or retain explicit partial ownership state",
-        fixHint: "Inspect `openclaw claws status` before retrying or removing this Claw.",
+        fixHint: "Inspect `omnisclaw claws status` before retrying or removing this Claw.",
       }),
     );
   }
@@ -166,7 +166,7 @@ function collectInstallFindings(
         target: `${pkg.source}:${pkg.ref}@${pkg.version}`,
         requirement: "Claw package references should match canonical installed package state",
         fixHint:
-          "Inspect package state with `openclaw claws status` before updating or removing the Claw.",
+          "Inspect package state with `omnisclaw claws status` before updating or removing the Claw.",
       }),
     );
   }

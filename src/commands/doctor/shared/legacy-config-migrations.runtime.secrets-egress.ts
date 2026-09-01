@@ -14,7 +14,7 @@ const rule = (
   match?: LegacyConfigRule["match"],
 ): LegacyConfigRule => ({
   path,
-  message: `${message} Run "openclaw doctor --fix".`,
+  message: `${message} Run "omnisclaw doctor --fix".`,
   ...(match ? { match } : {}),
 });
 

@@ -120,7 +120,7 @@ describe("handleControlUiHttpRequest prepared root lifecycle", () => {
     expect(res.statusCode).toBe(503);
     expect(setHeader).not.toHaveBeenCalledWith("Retry-After", expect.anything());
     expect(responseBody(end)).toBe(
-      "Control UI assets could not be prepared. Check the Gateway logs or run `openclaw doctor --fix`.",
+      "Control UI assets could not be prepared. Check the Gateway logs or run `omnisclaw doctor --fix`.",
     );
     expect(responseBody(end)).not.toContain("private-credential");
     expect(responseBody(end)).not.toContain("/home/operator/private");

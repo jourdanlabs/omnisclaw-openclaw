@@ -953,7 +953,7 @@ describe("exec approvals CLI", () => {
       ).rejects.toThrow("__exit__:1");
 
       expect(runtimeErrors).toStrictEqual([
-        'Unknown agent id "nope-agent". Run openclaw agents list to see configured agents.',
+        'Unknown agent id "nope-agent". Run omnisclaw agents list to see configured agents.',
       ]);
       expect(updateExecApprovals).not.toHaveBeenCalled();
       expect(localSnapshot.file.agents).toEqual({});

@@ -204,7 +204,7 @@ describe("appendSessionTranscriptMessage - redaction", () => {
         apiKey: "plainsecretvalue123",
         password: "hunter2",
         nested: { accessToken: ["nestedplainsecret123"] },
-        command: "OPENAI_API_KEY=sk-abcdef1234567890xyz openclaw health",
+        command: "OPENAI_API_KEY=sk-abcdef1234567890xyz omnisclaw health",
         safe: "visible",
       },
       config,
@@ -233,7 +233,7 @@ describe("appendSessionTranscriptMessage - redaction", () => {
       ),
     ).toBe("nested…t123");
     expect(expectDefined(msg, "msg test invariant").command).toBe(
-      "OPENAI_API_KEY=sk-abc…0xyz openclaw health",
+      "OPENAI_API_KEY=sk-abc…0xyz omnisclaw health",
     );
     expect(expectDefined(msg, "msg test invariant").safe).toBe("visible");
   });
@@ -281,7 +281,7 @@ describe("appendSessionTranscriptMessage - redaction", () => {
             id: "call_1",
             name: "shell",
             arguments: {
-              command: "OPENAI_API_KEY=sk-abcdef1234567890xyz openclaw health",
+              command: "OPENAI_API_KEY=sk-abcdef1234567890xyz omnisclaw health",
               env: { nested: ["token sk-abcdef1234567890xyz"] },
               apiKey: "plainsecretvalue123",
               password: "hunter2",
@@ -296,8 +296,8 @@ describe("appendSessionTranscriptMessage - redaction", () => {
     expect(raw).not.toContain("sk-abcdef1234567890xyz");
     expect(raw).not.toContain("plainsecretvalue123");
     expect(raw).not.toContain("hunter2");
-    expect(raw).toContain("OPENAI_API_KEY=sk-abc…0xyz openclaw health");
-    expect(raw).toContain("openclaw health");
+    expect(raw).toContain("OPENAI_API_KEY=sk-abc…0xyz omnisclaw health");
+    expect(raw).toContain("omnisclaw health");
 
     const [msg] = readMessages(sessionFile) as Array<{
       content: Array<{
@@ -322,7 +322,7 @@ describe("appendSessionTranscriptMessage - redaction", () => {
         expectDefined(msg, "msg test invariant").content[0],
         "msg.content[0] test invariant",
       ).arguments.command,
-    ).toBe("OPENAI_API_KEY=sk-abc…0xyz openclaw health");
+    ).toBe("OPENAI_API_KEY=sk-abc…0xyz omnisclaw health");
     expect(
       expectDefined(
         expectDefined(msg, "msg test invariant").content[0],

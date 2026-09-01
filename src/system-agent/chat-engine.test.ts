@@ -118,14 +118,14 @@ describe("SystemAgentChatEngine facade", () => {
     const planner = vi.fn(async () => null);
     const engine = new SystemAgentChatEngine({
       runAgentTurn: async () => {
-        throw new Error("workspace owner openclaw is missing from the roster");
+        throw new Error("workspace owner omnisclaw is missing from the roster");
       },
       planWithAssistant: planner,
       deps: { loadOverview: fakeOverviewLoader() },
     });
 
     await expect(engine.handle("please make everything nice")).rejects.toThrow(
-      "workspace owner openclaw is missing from the roster",
+      "workspace owner omnisclaw is missing from the roster",
     );
   });
 });

@@ -306,7 +306,7 @@ describe("legacy MCP OAuth Doctor migration", () => {
         authorizationChallenge: true,
         scope: "docs.read",
       }),
-    ).rejects.toThrow("Run openclaw mcp login Remote Docs.");
+    ).rejects.toThrow("Run omnisclaw mcp login Remote Docs.");
     const provider = createMcpOAuthClientProvider({
       identity,
       allowAuthorizationRedirect: true,

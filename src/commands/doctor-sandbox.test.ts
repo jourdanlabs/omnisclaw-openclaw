@@ -144,7 +144,7 @@ describe("resolveSandboxScript", () => {
   });
 
   it("keeps searching cwd when the launcher resolves to a package root without the script", () => {
-    // Installed/published openclaw package root: it carries the package.json marker but not
+    // Installed/published omnisclaw package root: it carries the package.json marker but not
     // scripts/sandbox-setup.sh, because the npm files allowlist drops scripts/. It resolves from
     // argv1 before cwd, so stopping at the first root would miss the source checkout below.
     const installed = mkTmp("ocsbx-installed-");

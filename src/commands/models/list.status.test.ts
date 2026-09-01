@@ -572,7 +572,7 @@ describe("modelsStatusCommand auth overview", () => {
           kind: "cooldown",
           reason: "session_expired",
           recoveryHint:
-            "Re-authenticate with `openclaw models auth login --provider anthropic --profile-id 'anthropic:default'`.",
+            "Re-authenticate with `omnisclaw models auth login --provider anthropic --profile-id 'anthropic:default'`.",
         }),
       ]);
 
@@ -583,7 +583,7 @@ describe("modelsStatusCommand auth overview", () => {
         .join("\n");
       expect(output).toContain("Unavailable auth profiles");
       expect(output).toContain("anthropic:default (anthropic) cooldown:session_expired");
-      expect(output).toContain("openclaw models auth login --provider anthropic");
+      expect(output).toContain("omnisclaw models auth login --provider anthropic");
     } finally {
       delete store.usageStats;
       mocks.resolveProfileUnusableUntilForDisplay.mockReset().mockReturnValue(undefined);

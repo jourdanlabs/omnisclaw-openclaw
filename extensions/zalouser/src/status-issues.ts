@@ -42,7 +42,7 @@ export function collectZalouserStatusIssues(
           channel: "zalouser",
           accountId,
           message: "Not authenticated (no saved Zalo session).",
-          fix: "Run: openclaw channels login --channel zalouser",
+          fix: "Run: omnisclaw channels login --channel zalouser",
         }),
       );
       continue;

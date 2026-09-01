@@ -3905,7 +3905,7 @@ describe("linkOpenClawPeerDependencies (via installPluginFromDir)", () => {
     },
   );
 
-  it("keeps the openclaw peer symlink when a local plugin already has dependencies", async () => {
+  it("keeps the omnisclaw peer symlink when a local plugin already has dependencies", async () => {
     const { pluginDir, extensionsDir } = setupPluginInstallDirs();
     const fakeHostRoot = suiteTempRootTracker.makeTempDir();
     resolveRootMock.mockReturnValue(fakeHostRoot);
@@ -3933,7 +3933,7 @@ describe("linkOpenClawPeerDependencies (via installPluginFromDir)", () => {
   });
 
   it.each(hostDependencyDeclarations)(
-    "replaces a copied local openclaw package with the host symlink for $declaration",
+    "replaces a copied local omnisclaw package with the host symlink for $declaration",
     async ({ peerDependencies, dependencies }) => {
       const { pluginDir, extensionsDir } = setupPluginInstallDirs();
       const fakeHostRoot = suiteTempRootTracker.makeTempDir();
@@ -4020,7 +4020,7 @@ describe("linkOpenClawPeerDependencies (via installPluginFromDir)", () => {
       if (!result.ok) {
         expect(result.error).toContain("plugin-local node_modules/openclaw link");
       }
-      expectWarningIncludes(warnings, "Could not locate openclaw package root");
+      expectWarningIncludes(warnings, "Could not locate omnisclaw package root");
     },
   );
 });

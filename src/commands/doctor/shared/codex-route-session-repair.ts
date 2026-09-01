@@ -472,7 +472,7 @@ export async function maybeRepairCodexSessionRoutes(params: {
               [
                 "- Legacy `codex/*` or `openai-codex/*` session route state detected.",
                 `- Affected sessions: ${stale.length}.`,
-                "- Run `openclaw doctor --fix` to rewrite stale session model/provider pins across all agent session stores.",
+                "- Run `omnisclaw doctor --fix` to rewrite stale session model/provider pins across all agent session stores.",
               ].join("\n"),
             ]
           : [],

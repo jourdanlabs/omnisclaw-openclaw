@@ -74,7 +74,7 @@ async function readHeartbeatSource(
     }
     if (!options?.recoverClaims) {
       throw new Error(
-        `an interrupted migration claim exists at ${staleClaim}; run openclaw doctor --fix to restore it`,
+        `an interrupted migration claim exists at ${staleClaim}; run omnisclaw doctor --fix to restore it`,
         { cause: error },
       );
     }

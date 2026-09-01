@@ -189,38 +189,41 @@ describe("channelsCapabilitiesCommand", () => {
     {
       name: "account without a channel",
       options: { account: "ghost", json: true },
-      message: "--account requires a specific --channel. Run openclaw channels list to choose one.",
+      message:
+        "--account requires a specific --channel. Run omnisclaw channels list to choose one.",
       discoversChannels: false,
     },
     {
       name: "account with all channels",
       options: { channel: "all", account: "ghost" },
-      message: "--account requires a specific --channel. Run openclaw channels list to choose one.",
+      message:
+        "--account requires a specific --channel. Run omnisclaw channels list to choose one.",
       discoversChannels: false,
     },
     {
       name: "target without a channel",
       options: { target: "channel:1", json: true },
-      message: "--target requires a specific --channel. Run openclaw channels list to choose one.",
+      message: "--target requires a specific --channel. Run omnisclaw channels list to choose one.",
       discoversChannels: false,
     },
     {
       name: "target with all channels",
       options: { channel: "all", target: "channel:1" },
-      message: "--target requires a specific --channel. Run openclaw channels list to choose one.",
+      message: "--target requires a specific --channel. Run omnisclaw channels list to choose one.",
       discoversChannels: false,
     },
     {
       name: "account before target when both lack a channel",
       options: { account: "ghost", target: "channel:1" },
-      message: "--account requires a specific --channel. Run openclaw channels list to choose one.",
+      message:
+        "--account requires a specific --channel. Run omnisclaw channels list to choose one.",
       discoversChannels: false,
     },
     {
       name: "unknown channel after installable plugin lookup",
       options: { channel: "definitely-not-a-channel", json: true },
       message:
-        'Unknown channel "definitely-not-a-channel". Run `openclaw channels list --all` to see configured and installable channels.',
+        'Unknown channel "definitely-not-a-channel". Run `omnisclaw channels list --all` to see configured and installable channels.',
       discoversChannels: true,
     },
   ])("rejects $name before resolving or probing an account", async (testCase) => {

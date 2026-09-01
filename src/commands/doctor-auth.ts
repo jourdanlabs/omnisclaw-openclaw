@@ -58,7 +58,7 @@ export function noteSharedAuthStoreStatus(env: NodeJS.ProcessEnv = process.env):
     return;
   }
   note(
-    "Shared auth profiles still live in the main agent database. Run `openclaw doctor --fix` to move them into shared SQLite state and make the main agent deletable.",
+    "Shared auth profiles still live in the main agent database. Run `omnisclaw doctor --fix` to move them into shared SQLite state and make the main agent deletable.",
     "Shared auth store",
   );
 }
@@ -314,8 +314,8 @@ function authProfileIssueToHealthFinding(params: {
     fixHint:
       params.hint ??
       (params.issue.status === "expiring"
-        ? "Run `openclaw doctor --fix` to refresh expiring OAuth profiles, or re-authenticate static tokens."
-        : "Run `openclaw doctor --fix` to refresh OAuth profiles, or re-authenticate this provider."),
+        ? "Run `omnisclaw doctor --fix` to refresh expiring OAuth profiles, or re-authenticate static tokens."
+        : "Run `omnisclaw doctor --fix` to refresh OAuth profiles, or re-authenticate this provider."),
   };
 }
 

@@ -374,7 +374,7 @@ describe("prepareCodexAttemptConnection", () => {
         },
       }),
     ).rejects.toThrow(
-      'plugins.entries.codex.config.appServer.approvalPolicy="untrusted" is retired; run "openclaw doctor --fix" to migrate it to "on-request".',
+      'plugins.entries.codex.config.appServer.approvalPolicy="untrusted" is retired; run "omnisclaw doctor --fix" to migrate it to "on-request".',
     );
   });
 

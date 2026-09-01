@@ -1,4 +1,4 @@
-// Fast-path argv parser for `openclaw gateway ...` without full Commander registration.
+// Fast-path argv parser for `omnisclaw gateway ...` without full Commander registration.
 import { consumeRootOptionToken, isValueToken } from "../infra/cli-root-options.js";
 
 const GATEWAY_RUN_VALUE_FLAGS = new Set([

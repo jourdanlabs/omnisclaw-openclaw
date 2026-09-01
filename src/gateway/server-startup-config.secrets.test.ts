@@ -1482,14 +1482,14 @@ describe("gateway startup config secret preflight", () => {
     expect(String(startupFailure)).not.toContain("PRIVATE_STARTUP_AUTH_REF");
     expect(logSecrets.warn).toHaveBeenCalledWith(
       "[SECRETS_DEGRADED] cold gateway:auth: secret reference was not found. " +
-        "Retry: openclaw secrets reload.",
+        "Retry: omnisclaw secrets reload.",
       {
         event: "secrets.degraded",
         ownerKind: "gateway",
         ownerId: "auth",
         reason: "secret reference was not found",
         state: "cold",
-        retryHint: "openclaw secrets reload",
+        retryHint: "omnisclaw secrets reload",
       },
     );
     expect(JSON.stringify(logSecrets.warn.mock.calls)).not.toContain("PRIVATE_STARTUP_AUTH_REF");
@@ -1574,14 +1574,14 @@ describe("gateway startup config secret preflight", () => {
     expect(logSecrets.warn).toHaveBeenCalledWith(`[${warning.code}] ${warning.message}`);
     expect(logSecrets.warn).toHaveBeenCalledWith(
       "[SECRETS_DEGRADED] cold capability:tts: secret provider policy denied resolution. " +
-        "Retry: openclaw secrets reload.",
+        "Retry: omnisclaw secrets reload.",
       {
         event: "secrets.degraded",
         ownerKind: "capability",
         ownerId: "tts",
         reason: "secret provider policy denied resolution",
         state: "cold",
-        retryHint: "openclaw secrets reload",
+        retryHint: "omnisclaw secrets reload",
       },
     );
     expect(JSON.stringify(logSecrets.warn.mock.calls)).not.toContain("ELEVENLABS_API_KEY");
@@ -1640,7 +1640,7 @@ describe("gateway startup config secret preflight", () => {
     expect(logSecrets.warn).toHaveBeenCalledWith(
       "[SECRETS_PROVIDER_DEGRADED] exec:vault: secret provider failed. " +
         "Affected owners: stale capability:tts, cold provider:openai. " +
-        "Retry: openclaw secrets reload.",
+        "Retry: omnisclaw secrets reload.",
       {
         event: "secrets.provider_degraded",
         source: "exec",
@@ -1650,7 +1650,7 @@ describe("gateway startup config secret preflight", () => {
           { ownerKind: "capability", ownerId: "tts", state: "stale" },
           { ownerKind: "provider", ownerId: "openai", state: "cold" },
         ],
-        retryHint: "openclaw secrets reload",
+        retryHint: "omnisclaw secrets reload",
       },
     );
   });
@@ -1814,14 +1814,14 @@ describe("gateway startup config secret preflight", () => {
 
     expect(logSecrets.warn).toHaveBeenCalledWith(
       "[SECRETS_DEGRADED] cold unknown:unmapped: secret reference was not found. " +
-        "Retry: openclaw secrets reload.",
+        "Retry: omnisclaw secrets reload.",
       {
         event: "secrets.degraded",
         ownerKind: "unknown",
         ownerId: "unmapped",
         reason: "secret reference was not found",
         state: "cold",
-        retryHint: "openclaw secrets reload",
+        retryHint: "omnisclaw secrets reload",
       },
     );
     expect(JSON.stringify(logSecrets.warn.mock.calls)).not.toContain("PRIVATE_UNMAPPED_REF");
@@ -2118,14 +2118,14 @@ describe("gateway startup config secret preflight", () => {
     expect(logSecrets.warn).toHaveBeenCalledTimes(2);
     expect(logSecrets.warn).toHaveBeenCalledWith(
       "[SECRETS_DEGRADED] stale provider:openai: secret reference was not found. " +
-        "Retry: openclaw secrets reload.",
+        "Retry: omnisclaw secrets reload.",
       {
         event: "secrets.degraded",
         ownerKind: "provider",
         ownerId: "openai",
         reason: "secret reference was not found",
         state: "stale",
-        retryHint: "openclaw secrets reload",
+        retryHint: "omnisclaw secrets reload",
       },
     );
     expect(JSON.stringify(logSecrets.warn.mock.calls)).not.toContain("OPENAI_API_KEY");

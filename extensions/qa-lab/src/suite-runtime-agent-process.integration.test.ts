@@ -110,7 +110,7 @@ describe("qa suite runtime CLI integration", () => {
 
     expect(error).toMatchObject({ code: "qa_cli_timeout" });
     const message = error instanceof Error ? error.message : String(error);
-    expect(message).toContain("qa cli timed out: openclaw qa suite");
+    expect(message).toContain("qa cli timed out: omnisclaw qa suite");
     expect(message).toContain("stdout:\ntimeout stdout marker");
     expect(message).toContain("stderr:\ntimeout stderr marker");
   });

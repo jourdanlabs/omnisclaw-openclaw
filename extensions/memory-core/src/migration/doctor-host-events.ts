@@ -524,7 +524,7 @@ async function migrateLegacyMemoryHostEventSource(params: {
     }
     if (source.storage !== "archive" && (await source.root.exists(activeRelativePath))) {
       params.warnings.push(
-        "An old writer recreated the Memory Core host event source; rerun openclaw doctor --fix to import the retained rows",
+        "An old writer recreated the Memory Core host event source; rerun omnisclaw doctor --fix to import the retained rows",
       );
     }
     return "completed";

@@ -106,7 +106,7 @@ describe("verifyBuzzAfterSetup", () => {
     });
 
     expect(runtime.log).toHaveBeenCalledWith(
-      "Buzz config was saved. Start OpenClaw to connect: openclaw gateway",
+      "Buzz config was saved. Start OpenClaw to connect: omnisclaw gateway",
     );
   });
 

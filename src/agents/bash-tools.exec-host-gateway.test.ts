@@ -2190,7 +2190,7 @@ describe("processGatewayAllowlist", () => {
     });
 
     const result = await runGatewayAllowlist({
-      command: "openclaw config set security.audit.suppressions '[]'",
+      command: "omnisclaw config set security.audit.suppressions '[]'",
       security: "full",
       ask: "on-miss",
     });
@@ -2209,7 +2209,7 @@ describe("processGatewayAllowlist", () => {
     });
 
     const result = await runGatewayAllowlist({
-      command: "openclaw config set security.audit.suppressions '[]'",
+      command: "omnisclaw config set security.audit.suppressions '[]'",
       security: "full",
       ask: "on-miss",
       autoReview: true,
@@ -2231,7 +2231,7 @@ describe("processGatewayAllowlist", () => {
     });
 
     await runGatewayAllowlist({
-      command: "openclaw config set security.audit.suppressions '[]'",
+      command: "omnisclaw config set security.audit.suppressions '[]'",
       security: "full",
       ask: "off",
     });
@@ -2258,7 +2258,7 @@ describe("processGatewayAllowlist", () => {
     });
 
     await runGatewayAllowlist({
-      command: "openclaw config get security.audit.suppressions",
+      command: "omnisclaw config get security.audit.suppressions",
       security: "full",
       ask: "on-miss",
     });
@@ -2288,7 +2288,7 @@ describe("processGatewayAllowlist", () => {
     });
 
     await runGatewayAllowlist({
-      command: "openclaw --profile rescue config get security.audit.suppressions",
+      command: "omnisclaw --profile rescue config get security.audit.suppressions",
       security: "full",
       ask: "on-miss",
     });
@@ -2319,7 +2319,7 @@ describe("processGatewayAllowlist", () => {
 
     const result = await runGatewayAllowlist({
       command:
-        "openclaw config get security.audit.suppressions; openclaw config set security.audit.suppressions '[]'",
+        "omnisclaw config get security.audit.suppressions; omnisclaw config set security.audit.suppressions '[]'",
       security: "full",
       ask: "on-miss",
     });
@@ -2347,7 +2347,7 @@ describe("processGatewayAllowlist", () => {
 
     const result = await runGatewayAllowlist({
       command:
-        "openclaw config get security.audit.suppressions; openclaw config set security.audit.suppressions '[]'",
+        "omnisclaw config get security.audit.suppressions; omnisclaw config set security.audit.suppressions '[]'",
       security: "full",
       ask: "on-miss",
     });
@@ -2363,12 +2363,12 @@ describe("processGatewayAllowlist", () => {
       allowlistSatisfied: false,
       segments: [
         {
-          raw: "openclaw config get security.audit.suppressions",
+          raw: "omnisclaw config get security.audit.suppressions",
           resolution: null,
           argv: ["openclaw", "config", "get", "security.audit.suppressions"],
         },
         {
-          raw: "openclaw config patch --stdin <<'EOF'",
+          raw: "omnisclaw config patch --stdin <<'EOF'",
           resolution: null,
           argv: ["openclaw", "config", "patch", "--stdin"],
         },
@@ -2383,7 +2383,7 @@ describe("processGatewayAllowlist", () => {
     });
 
     const result = await runGatewayAllowlist({
-      command: `openclaw config get security.audit.suppressions; openclaw config patch --stdin <<'EOF'
+      command: `omnisclaw config get security.audit.suppressions; omnisclaw config patch --stdin <<'EOF'
 {"security":{"audit":{"suppressions":[]}}}
 EOF`,
       security: "full",
@@ -2512,7 +2512,7 @@ EOF`,
     );
 
     const result = await runGatewayAllowlist({
-      command: "openclaw gateway diagnostics export --json",
+      command: "omnisclaw gateway diagnostics export --json",
       trigger: "diagnostics",
       approvalFollowupMode: "direct",
       approvalFollowup,
@@ -2559,7 +2559,7 @@ EOF`,
     });
 
     const result = await runGatewayAllowlist({
-      command: "openclaw sessions export-trajectory --json",
+      command: "omnisclaw sessions export-trajectory --json",
       approvalFollowupMode: "agent",
       sessionId: "approval-session",
       sessionStore: "/tmp/openclaw-sessions.json",
@@ -2685,7 +2685,7 @@ EOF`,
     });
 
     const result = await runGatewayAllowlist({
-      command: "openclaw sessions export-trajectory --json",
+      command: "omnisclaw sessions export-trajectory --json",
       approvalFollowupMode: "agent",
       sessionId: "approval-session",
       sessionStore: "/tmp/openclaw-sessions.json",

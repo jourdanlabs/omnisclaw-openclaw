@@ -160,8 +160,8 @@ describe("plugin compatibility registry", () => {
     );
     expect(records.get("deprecated-session-store-beta5-api")?.surfaces).toEqual(
       expect.arrayContaining([
-        "openclaw package root loadSessionStore",
-        "openclaw package root saveSessionStore",
+        "omnisclaw package root loadSessionStore",
+        "omnisclaw package root saveSessionStore",
       ]),
     );
   });

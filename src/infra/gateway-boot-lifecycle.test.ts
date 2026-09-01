@@ -391,13 +391,13 @@ describe("formatGatewayCrashLoopManualChannelStartHint", () => {
 
   it.each([
     { name: "default", profile: "", container: "", command: "openclaw" },
-    { name: "named profile", profile: "work", container: "", command: "openclaw --profile work" },
-    { name: "container", profile: "", container: "demo", command: "openclaw --container demo" },
+    { name: "named profile", profile: "work", container: "", command: "omnisclaw --profile work" },
+    { name: "container", profile: "", container: "demo", command: "omnisclaw --container demo" },
     {
       name: "container and profile",
       profile: "work",
       container: "demo",
-      command: "openclaw --container demo",
+      command: "omnisclaw --container demo",
     },
   ])("targets the active gateway for $name", ({ profile, container, command }) => {
     vi.stubEnv("OPENCLAW_PROFILE", profile);

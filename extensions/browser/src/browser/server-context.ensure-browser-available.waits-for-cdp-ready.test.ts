@@ -135,7 +135,7 @@ describe("browser server-context ensureBrowserAvailable", () => {
     isChromeCdpReady.mockResolvedValue(true);
     const runtime = state.profiles.get("openclaw");
     if (!runtime) {
-      throw new Error("expected openclaw runtime");
+      throw new Error("expected omnisclaw runtime");
     }
     const previousFailure = {
       consecutiveFailures: 2,
@@ -336,7 +336,7 @@ describe("browser server-context ensureBrowserAvailable", () => {
     const existingProc = new EventEmitter() as unknown as ChildProcessWithoutNullStreams;
     const runtime = state.profiles.get("openclaw");
     if (!runtime) {
-      throw new Error("expected openclaw runtime");
+      throw new Error("expected omnisclaw runtime");
     }
     runtime.running = {
       pid: 111,

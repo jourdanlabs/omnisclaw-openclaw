@@ -924,7 +924,7 @@ describe("openclaw.chat", () => {
     const engine = new SystemAgentChatEngine({
       verifiedInference: requireVerifiedInferenceFixture(),
       runAgentTurn: async () => {
-        throw new Error("workspace owner openclaw is missing from the roster");
+        throw new Error("workspace owner omnisclaw is missing from the roster");
       },
       planWithAssistant: async () => null,
       deps: requireVerifiedInferenceDeps(),
@@ -939,7 +939,7 @@ describe("openclaw.chat", () => {
       ok: false,
       error: {
         code: "UNAVAILABLE",
-        message: expect.stringContaining("workspace owner openclaw is missing from the roster"),
+        message: expect.stringContaining("workspace owner omnisclaw is missing from the roster"),
         details: { code: "system_agent_session_invalidated" },
       },
     });

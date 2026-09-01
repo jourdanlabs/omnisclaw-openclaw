@@ -508,7 +508,7 @@ describe("BrowserProfilesService", () => {
       undefined,
     ],
     [
-      "deletes attach-only openclaw profiles without touching local browser data",
+      "deletes attach-only omnisclaw profiles without touching local browser data",
       "work",
       { cdpPort: 18801, color: "#0066CC" },
       { cdpPort: 18801, color: "#0066CC", driver: "openclaw", attachOnly: true },

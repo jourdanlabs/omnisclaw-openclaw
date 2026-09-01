@@ -406,7 +406,7 @@ describe("runBrowserHatchHandoff", () => {
     expect(displayed).toContain("ssh -N -L 18789:127.0.0.1:18789");
     expect(displayed).toContain("http://localhost:18789/dashboard/");
     expect(displayed).not.toContain(`http://${host}:18789`);
-    expect(displayed).not.toContain("openclaw devices approve <requestId>");
+    expect(displayed).not.toContain("omnisclaw devices approve <requestId>");
     expect(displayed).not.toContain("test-token");
     expect(displayed).not.toContain("#token=");
     expect(displayed).not.toContain("#bootstrapToken=");
@@ -456,7 +456,7 @@ describe("runBrowserHatchHandoff", () => {
       .mock.calls.map(([message]) => message)
       .join("\n");
     expect(displayed).toContain(`https://${host}:18789/dashboard/`);
-    expect(displayed).toContain("openclaw devices approve <requestId>");
+    expect(displayed).toContain("omnisclaw devices approve <requestId>");
     expect(displayed).not.toContain("ssh -N -L");
     expect(displayed).not.toContain("test-token");
     expect(displayed).not.toContain("#token=");

@@ -259,7 +259,7 @@ describe("collectChannelStatusIssues", () => {
         kind: "runtime",
         message:
           "Channel cannot admit inbound events; its durable ingress queue is unavailable. Outbound may still work.",
-        fix: "check openclaw logs for the ingress failure, then rerun openclaw doctor",
+        fix: "check omnisclaw logs for the ingress failure, then rerun omnisclaw doctor",
       },
     ]);
   });

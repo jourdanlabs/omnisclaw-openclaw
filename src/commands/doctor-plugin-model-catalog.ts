@@ -176,7 +176,7 @@ export async function maybeMigrateLegacyPluginModelCatalogs(params: {
         (migration) =>
           `- ${shortenHomePath(path.join(migration.agentDir, migration.relativePath))}`,
       ),
-      "Run openclaw doctor --fix to verify and migrate these catalogs into agent SQLite.",
+      "Run omnisclaw doctor --fix to verify and migrate these catalogs into agent SQLite.",
     ].join("\n"),
     "Plugin model catalogs",
   );

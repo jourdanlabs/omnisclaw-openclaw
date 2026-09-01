@@ -243,7 +243,7 @@ async function readPersistedInstallRecord(stateDir: string) {
   }
 }
 
-describe("openclaw plugins install ClawHub E2E", () => {
+describe("omnisclaw plugins install ClawHub E2E", () => {
   it("reports successful installs and repeat updates after persisting the install record", async () => {
     const testServer = await startClawHubServer();
     const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-plugin-telemetry-e2e-"));

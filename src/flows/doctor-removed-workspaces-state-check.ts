@@ -134,7 +134,7 @@ export const removedWorkspacesStateCheck: HealthCheck = {
         severity: "warning",
         message: `Retired Workspaces plugin state remains at ${target}.`,
         path: target,
-        fixHint: "Run `openclaw doctor --fix` to remove the stale plugin state.",
+        fixHint: "Run `omnisclaw doctor --fix` to remove the stale plugin state.",
       },
     ];
   },

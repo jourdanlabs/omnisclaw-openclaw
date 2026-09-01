@@ -35,7 +35,7 @@ export const LEGACY_CONFIG_MIGRATIONS_RUNTIME_TOOL_NAMES: LegacyConfigMigrationS
       describe: migration.describe,
       legacyRules: TOOL_POLICY_ROOTS.map((root) => ({
         path: [root],
-        message: `Tool policies still rely on legacy ${migration.migration.legacyName} coverage; run "openclaw doctor --fix" to preserve equivalent ${migration.migration.canonicalName} access.`,
+        message: `Tool policies still rely on legacy ${migration.migration.legacyName} coverage; run "omnisclaw doctor --fix" to preserve equivalent ${migration.migration.canonicalName} access.`,
         match: (value) => findLegacyToolNamePaths(value, migration.migration, [root]).length > 0,
       })),
       apply: (raw, changes) => {

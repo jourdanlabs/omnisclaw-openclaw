@@ -34,10 +34,13 @@ function normalizeExecutableName(value: string | undefined): string {
 function isLocalTuiCommand(command: string): boolean {
   const argv = tokenizeCommandLine(command);
   const executable = normalizeExecutableName(argv[0]);
-  if (executable === "openclaw-tui") {
+  if (executable === "openclaw-tui" || executable === "omnisclaw-tui") {
     return true;
   }
-  return executable === "openclaw" && LOCAL_TUI_SUBCOMMANDS.has(argv[1] ?? "");
+  return (
+    (executable === "openclaw" || executable === "omnisclaw") &&
+    LOCAL_TUI_SUBCOMMANDS.has(argv[1] ?? "")
+  );
 }
 
 function parsePsPidLine(line: string): LocalTuiProcess | null {
@@ -129,7 +132,7 @@ export function collectWhatsappResponsivenessHealthFindings(params: {
       target: pids,
       requirement: "local-tui-event-loop-pressure",
       fixHint: `Close local TUI sessions (${pids}), or run ${formatCliCommand(
-        "openclaw doctor --fix",
+        "omnisclaw doctor --fix",
       )}.`,
     },
   ];

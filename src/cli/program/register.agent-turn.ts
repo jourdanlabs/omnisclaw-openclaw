@@ -12,7 +12,7 @@ function collectFallback(value: string, previous: string[]): string[] {
   return [...previous, value];
 }
 
-/** Register `openclaw agent` for one Gateway-backed agent turn. */
+/** Register `omnisclaw agent` for one Gateway-backed agent turn. */
 export function registerAgentTurnCommand(
   program: Command,
   args: { agentChannelOptions: string },
@@ -56,24 +56,24 @@ export function registerAgentTurnCommand(
         `
 ${theme.heading("Examples:")}
 ${formatHelpExamples([
-  ['openclaw agent --to +15555550123 --message "status update"', "Start a new session."],
-  ['openclaw agent --agent ops --message "Summarize logs"', "Use a specific agent."],
-  ["openclaw agent --agent ops --message-file ./task.md", "Read a multiline message file."],
+  ['omnisclaw agent --to +15555550123 --message "status update"', "Start a new session."],
+  ['omnisclaw agent --agent ops --message "Summarize logs"', "Use a specific agent."],
+  ["omnisclaw agent --agent ops --message-file ./task.md", "Read a multiline message file."],
   [
-    'openclaw agent --session-key agent:ops:incident-42 --message "Summarize status"',
+    'omnisclaw agent --session-key agent:ops:incident-42 --message "Summarize status"',
     "Target an exact session key.",
   ],
   [
-    'openclaw agent --session-id 1234 --message "Summarize inbox" --thinking medium',
+    'omnisclaw agent --session-id 1234 --message "Summarize inbox" --thinking medium',
     "Target a session with explicit thinking level.",
   ],
   [
-    'openclaw agent --to +15555550123 --message "Trace logs" --verbose on --json',
+    'omnisclaw agent --to +15555550123 --message "Trace logs" --verbose on --json',
     "Enable verbose logging and JSON output.",
   ],
-  ['openclaw agent --to +15555550123 --message "Summon reply" --deliver', "Deliver reply."],
+  ['omnisclaw agent --to +15555550123 --message "Summon reply" --deliver', "Deliver reply."],
   [
-    'openclaw agent --agent ops --message "Generate report" --deliver --reply-channel slack --reply-to "#reports"',
+    'omnisclaw agent --agent ops --message "Generate report" --deliver --reply-channel slack --reply-to "#reports"',
     "Send reply to a different channel/target.",
   ],
 ])}
@@ -137,17 +137,17 @@ ${theme.muted("Docs:")} ${formatDocsLink("/cli/agent", "docs.openclaw.ai/cli/age
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ['openclaw agent exec "Fix the failing test"', "Run in the current directory."],
+          ['omnisclaw agent exec "Fix the failing test"', "Run in the current directory."],
           [
-            "openclaw agent exec --message-file task.md --cwd ./repo",
+            "omnisclaw agent exec --message-file task.md --cwd ./repo",
             "Read a prompt file and set the workspace.",
           ],
           [
-            'openclaw agent exec "Summarize this repo" --model openai/gpt-5.6-sol --fallback anthropic/claude-sonnet-4-6 --json',
+            'omnisclaw agent exec "Summarize this repo" --model openai/gpt-5.6-sol --fallback anthropic/claude-sonnet-4-6 --json',
             "Use an explicit fallback chain and JSON output.",
           ],
           [
-            'openclaw agent exec "Inspect this repo" --model ollama/qwen3.5:9b --code-mode code --local-model-lean --json',
+            'omnisclaw agent exec "Inspect this repo" --model ollama/qwen3.5:9b --code-mode code --local-model-lean --json',
             "Force Code Mode with the lean local-model tool surface.",
           ],
         ])}\n\n${theme.muted("Docs:")} ${formatDocsLink("/cli/agent#agent-exec", "docs.openclaw.ai/cli/agent#agent-exec")}`,

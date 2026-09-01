@@ -462,7 +462,7 @@ export async function createSetupMigrationStage(params: {
             retainForRecovery = true;
             await writePromotionJournal(journalPath, journal);
             throw new Error(
-              `Migration config commit is indeterminate. Review ${journalPath} and run openclaw doctor before retrying.`,
+              `Migration config commit is indeterminate. Review ${journalPath} and run omnisclaw doctor before retrying.`,
               { cause: error },
             );
           }
@@ -493,7 +493,7 @@ export async function createSetupMigrationStage(params: {
         retainForRecovery = true;
         await writePromotionJournal(journalPath, journal);
         throw new Error(
-          `Migration promotion could not be rolled back. Review ${journalPath} and run openclaw doctor before retrying.`,
+          `Migration promotion could not be rolled back. Review ${journalPath} and run omnisclaw doctor before retrying.`,
           { cause: error },
         );
       }

@@ -141,8 +141,8 @@ describe("doctor skills", () => {
     expect(typeof body === "string" ? body.split("\n") : []).toEqual([
       "2 allowed skills are not usable in this environment (missing binaries, env vars, or config).",
       "- calendar, places",
-      "Disable unused skills: openclaw doctor --fix",
-      "Inspect details: openclaw skills check --agent <id> or openclaw skills info <name> --agent <id>",
+      "Disable unused skills: omnisclaw doctor --fix",
+      "Inspect details: omnisclaw skills check --agent <id> or omnisclaw skills info <name> --agent <id>",
     ]);
   });
 

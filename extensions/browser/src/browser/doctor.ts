@@ -101,7 +101,7 @@ export function buildBrowserDoctorReport(params: {
         ? {}
         : {
             fixHint:
-              "Install the OpenClaw Chrome extension (openclaw browser extension path), run openclaw browser extension pair, and paste the pairing string into the extension popup.",
+              "Install the OpenClaw Chrome extension (omnisclaw browser extension path), run omnisclaw browser extension pair, and paste the pairing string into the extension popup.",
           }),
     });
 
@@ -192,7 +192,7 @@ export function buildBrowserDoctorReport(params: {
       ...(status.cdpHttp || !status.running
         ? {}
         : {
-            fixHint: "Run openclaw browser start or inspect browser.cdpUrl/CDP port reachability.",
+            fixHint: "Run omnisclaw browser start or inspect browser.cdpUrl/CDP port reachability.",
           }),
     });
 

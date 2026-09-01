@@ -311,7 +311,7 @@ describe("mantis visual task runtime", () => {
       }
       if (command === "pnpm") {
         return {
-          stdout: `\n> openclaw qa mantis visual-driver --vision-prompt '{"visible": boolean}'\n${JSON.stringify(
+          stdout: `\n> omnisclaw qa mantis visual-driver --vision-prompt '{"visible": boolean}'\n${JSON.stringify(
             {
               ok: true,
               outputs: [

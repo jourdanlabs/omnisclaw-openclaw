@@ -29,14 +29,14 @@ it("renders root-status recovery guidance for a rejected node runtime", async ()
 
   expect(summary.runtime).toEqual({
     status: "unknown",
-    detail: "service runtime inspection failed; retry with openclaw status --deep",
+    detail: "service runtime inspection failed; retry with omnisclaw status --deep",
     inspectionFailure: {
       code: "service-runtime-inspection-failed",
       detail: "node service manager unavailable",
     },
   });
   expect(formatStatusServiceValue(summary)).toBe(
-    "systemd user disabled (inspection failed: service runtime inspection failed; retry with openclaw status --deep) · unknown",
+    "systemd user disabled (inspection failed: service runtime inspection failed; retry with omnisclaw status --deep) · unknown",
   );
 });
 

@@ -336,7 +336,7 @@ describe("collectLegacyCronStoreHealthFindings", () => {
     expect(finding).toEqual(
       expect.objectContaining({
         message: "2 tool-bearing automations require explicit scheduled authority reauthorization.",
-        fixHint: expect.stringContaining("openclaw automations list --all"),
+        fixHint: expect.stringContaining("omnisclaw automations list --all"),
       }),
     );
   });
@@ -942,8 +942,8 @@ describe("maybeRepairLegacyCronStore", () => {
       expectNoteContaining("1 automation is still marked in-flight", "Cron");
       expectNoNoteContaining("shows it as `running`", "Cron");
       expectNoteContaining("marks such runs interrupted the next time it starts", "Cron");
-      expectNoteContaining("openclaw automations list --all", "Cron");
-      expectNoteContaining("openclaw automations show <id>", "Cron");
+      expectNoteContaining("omnisclaw automations list --all", "Cron");
+      expectNoteContaining("omnisclaw automations show <id>", "Cron");
 
       // Observer-only: no repair prompt and the running marker is left untouched.
       expect(prompter.confirm).not.toHaveBeenCalled();
@@ -967,7 +967,7 @@ describe("maybeRepairLegacyCronStore", () => {
       });
 
       expectNoteContaining("2 automations are still marked in-flight", "Cron");
-      expectNoteContaining("openclaw automations list --all", "Cron");
+      expectNoteContaining("omnisclaw automations list --all", "Cron");
     });
 
     it("stays silent when no job is marked in-flight", async () => {
@@ -1005,7 +1005,7 @@ describe("maybeRepairLegacyCronStore", () => {
       expectNoteContaining("re-fires it on error backoff", "Cron");
       expectNoteContaining("resets on the next successful run", "Cron");
       expectNoteContaining("interrupted by a gateway restart", "Cron");
-      expectNoteContaining("openclaw automations show <id>", "Cron");
+      expectNoteContaining("omnisclaw automations show <id>", "Cron");
 
       // Observer-only: no repair prompt and the failure counters stay untouched.
       expect(prompter.confirm).not.toHaveBeenCalled();
@@ -1110,10 +1110,10 @@ describe("maybeRepairLegacyCronStore", () => {
       expectNoteContaining("2 automations are auto-disabled", "Cron");
       expectNoteContaining("Run failure job (run-failure-job)", "Cron");
       expectNoteContaining("recorded reason `consecutive-failures` after 10", "Cron");
-      expectNoteContaining("openclaw automations enable run-failure-job", "Cron");
+      expectNoteContaining("omnisclaw automations enable run-failure-job", "Cron");
       expectNoteContaining("Schedule error job (schedule-error-job)", "Cron");
       expectNoteContaining("recorded reason `schedule-errors` after 3", "Cron");
-      expectNoteContaining("openclaw automations enable schedule-error-job", "Cron");
+      expectNoteContaining("omnisclaw automations enable schedule-error-job", "Cron");
       expectNoNoteContaining("disabled-one-shot", "Cron");
     });
   });
@@ -1884,7 +1884,7 @@ describe("maybeRepairLegacyCronStore", () => {
     expectNoteContaining("Shell prompt job 1", "Cron");
     expectNoteContaining("Shell prompt job 2", "Cron");
     expectNoteContaining("Shell prompt job 3", "Cron");
-    expectNoNoteContaining("openclaw doctor --fix", "Cron");
+    expectNoNoteContaining("omnisclaw doctor --fix", "Cron");
     expectNoNoteContaining("jobs.json", "Cron");
     expect(prompter.confirm).not.toHaveBeenCalled();
 
@@ -1951,7 +1951,7 @@ describe("maybeRepairLegacyCronStore", () => {
     expectNoteContaining("Recreate it as a command automation", "Cron");
     expectNoNoteContaining("informational only", "Cron");
     expectNoNoteContaining("keep running as-is", "Cron");
-    expectNoNoteContaining("openclaw doctor --fix", "Cron");
+    expectNoNoteContaining("omnisclaw doctor --fix", "Cron");
     expect(prompter.confirm).not.toHaveBeenCalled();
 
     const job = requirePersistedJob(await readPersistedJobs(storePath), 0);

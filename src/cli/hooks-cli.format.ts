@@ -1,4 +1,4 @@
-// Renders the `openclaw hooks` list, info, and check reports.
+// Renders the `omnisclaw hooks` list, info, and check reports.
 // Kept apart from command wiring so each surface stays readable and under the file-size cap.
 
 import {

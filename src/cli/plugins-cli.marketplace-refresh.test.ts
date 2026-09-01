@@ -219,7 +219,9 @@ describe("plugins marketplace refresh", () => {
     expect(mocks.defaultRuntime.writeJson).toHaveBeenCalledOnce();
     expect(mocks.defaultRuntime.log).not.toHaveBeenCalled();
     expect(mocks.defaultRuntime.error.mock.calls.map(([message]) => message)).toEqual([
-      expect.stringContaining('Run "openclaw gateway restart" to apply the current catalog state.'),
+      expect.stringContaining(
+        'Run "omnisclaw gateway restart" to apply the current catalog state.',
+      ),
       "Pinned marketplace feed refresh did not accept a fresh hosted payload (source: hosted-snapshot).",
     ]);
     expect(mocks.defaultRuntime.exit).toHaveBeenCalledWith(1);
@@ -236,7 +238,9 @@ describe("plugins marketplace refresh", () => {
     await runPluginMarketplaceRefreshCommand({});
 
     expect(mocks.defaultRuntime.log).toHaveBeenCalledWith(
-      expect.stringContaining('Run "openclaw gateway restart" to apply the current catalog state.'),
+      expect.stringContaining(
+        'Run "omnisclaw gateway restart" to apply the current catalog state.',
+      ),
     );
     expect(mocks.defaultRuntime.error).not.toHaveBeenCalled();
     expect(mocks.defaultRuntime.exit).not.toHaveBeenCalled();
@@ -255,7 +259,9 @@ describe("plugins marketplace refresh", () => {
     expect(mocks.defaultRuntime.writeJson).toHaveBeenCalledOnce();
     expect(mocks.defaultRuntime.log).not.toHaveBeenCalled();
     expect(mocks.defaultRuntime.error).toHaveBeenCalledWith(
-      expect.stringContaining('Run "openclaw gateway restart" to apply the current catalog state.'),
+      expect.stringContaining(
+        'Run "omnisclaw gateway restart" to apply the current catalog state.',
+      ),
     );
     expect(mocks.defaultRuntime.exit).not.toHaveBeenCalled();
   });

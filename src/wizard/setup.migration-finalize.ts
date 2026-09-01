@@ -53,7 +53,7 @@ export function assertDeferredMigrationApplyContract(
 }
 
 function deferredRetryInstruction(providerId: string): string {
-  return `Some post-promotion migration activation steps are still pending. Retry only those steps with openclaw onboard --flow import --import-from ${providerId}.`;
+  return `Some post-promotion migration activation steps are still pending. Retry only those steps with omnisclaw onboard --flow import --import-from ${providerId}.`;
 }
 
 function deferredMigrationFailure(plan: MigrationPlan, error: unknown): MigrationApplyResult {

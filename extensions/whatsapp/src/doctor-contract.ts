@@ -31,12 +31,12 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
   {
     path: ["channels", "whatsapp", "exposeErrorText"],
     message:
-      'channels.whatsapp.exposeErrorText is retired and ignored. Run "openclaw doctor --fix".',
+      'channels.whatsapp.exposeErrorText is retired and ignored. Run "omnisclaw doctor --fix".',
   },
   {
     path: ["channels", "whatsapp", "accounts"],
     message:
-      'channels.whatsapp.accounts.<id>.exposeErrorText is retired and ignored. Run "openclaw doctor --fix".',
+      'channels.whatsapp.accounts.<id>.exposeErrorText is retired and ignored. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyAccountStreamingAliases(value, hasExposeErrorText),
   },
 ];

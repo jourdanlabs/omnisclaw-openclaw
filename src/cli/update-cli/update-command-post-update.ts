@@ -173,7 +173,7 @@ export async function finishUpdate(params: {
         ),
       );
       defaultRuntime.log(
-        theme.muted("Commit, stash, or discard the local changes, then rerun `openclaw update`."),
+        theme.muted("Commit, stash, or discard the local changes, then rerun `omnisclaw update`."),
       );
     }
     if (params.result.reason === "not-git-install") {
@@ -476,7 +476,7 @@ export async function finishUpdate(params: {
       serviceMutationAllowed = false;
       serviceMutationSkipMessage =
         "Code update completed; gateway service management skipped because its current ownership could not be inspected. " +
-        "Run `openclaw gateway status --deep` before restarting it manually.";
+        "Run `omnisclaw gateway status --deep` before restarting it manually.";
     }
   }
 

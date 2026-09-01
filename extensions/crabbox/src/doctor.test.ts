@@ -224,7 +224,7 @@ describe("Crabbox warm-image doctor", () => {
                 checkId: CRABBOX_WARM_IMAGES_CHECK_ID,
                 target: "profile",
                 severity,
-                fixHint: expect.stringContaining("openclaw crabbox warm-images"),
+                fixHint: expect.stringContaining("omnisclaw crabbox warm-images"),
               }),
             ]
           : [],

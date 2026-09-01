@@ -8,13 +8,13 @@ import {
 const CRON_RUN_LOG_RULE: LegacyConfigRule = {
   path: ["cron", "runLog"],
   message:
-    'cron.runLog is retired; run history now has fixed per-job retention. Run "openclaw doctor --fix".',
+    'cron.runLog is retired; run history now has fixed per-job retention. Run "omnisclaw doctor --fix".',
 };
 
 const CRON_WEBHOOK_RULE: LegacyConfigRule = {
   path: ["cron", "webhook"],
   message:
-    'cron.webhook was retired after per-job delivery migration. Run "openclaw doctor --fix".',
+    'cron.webhook was retired after per-job delivery migration. Run "omnisclaw doctor --fix".',
 };
 
 export const LEGACY_CONFIG_MIGRATIONS_RUNTIME_CRON: LegacyConfigMigrationSpec[] = [

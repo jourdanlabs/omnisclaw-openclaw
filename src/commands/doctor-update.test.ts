@@ -783,7 +783,7 @@ describe("maybeOfferUpdateBeforeDoctor", () => {
     expect(mocks.note).toHaveBeenCalledWith(expect.stringContaining(`(${reason})`), "Update");
     expect(mocks.note).toHaveBeenCalledWith(expect.stringContaining(guidance), "Update");
     expect(mocks.note).toHaveBeenCalledWith(
-      expect.stringContaining("rerun `openclaw update`"),
+      expect.stringContaining("rerun `omnisclaw update`"),
       "Update",
     );
     expect(mocks.note).toHaveBeenCalledWith(
@@ -831,7 +831,7 @@ describe("maybeOfferUpdateBeforeDoctor", () => {
     await runOffer({ confirm: vi.fn().mockResolvedValue(true) });
 
     expect(mocks.note).toHaveBeenCalledWith(
-      expect.stringContaining("rerun `openclaw --profile work update`"),
+      expect.stringContaining("rerun `omnisclaw --profile work update`"),
       "Update",
     );
   });

@@ -28,23 +28,23 @@ const ROOT_COMMANDS_HINT =
   "Hint: commands suffixed with * have subcommands. Run <command> --help for details.";
 
 const EXAMPLES = [
-  ["openclaw onboard", "Run guided setup for a local Gateway, workspace, auth, and channels."],
-  ["openclaw setup", "Create the baseline config, workspace, and session folders."],
-  ["openclaw configure", "Change models, Gateway, channels, plugins, skills, and health checks."],
-  ["openclaw status", "Check Gateway, channel, model, and recent-session status."],
-  ["openclaw doctor --fix", "Repair common config, service, plugin, and channel problems."],
-  ["openclaw channels add", "Add or update a chat channel account with guided prompts."],
-  ["openclaw channels status", "See connected messaging accounts and login state."],
-  ["openclaw --dev gateway", "Run a dev Gateway (isolated state/config) on ws://127.0.0.1:19001."],
-  ["openclaw gateway run --force", "Start the Gateway and replace anything bound to its port."],
-  ["openclaw models status", "Show model/provider auth health before running agents."],
-  ["openclaw plugins list", "Inspect enabled, disabled, and installed plugins."],
+  ["omnisclaw onboard", "Run guided setup for a local Gateway, workspace, auth, and channels."],
+  ["omnisclaw setup", "Create the baseline config, workspace, and session folders."],
+  ["omnisclaw configure", "Change models, Gateway, channels, plugins, skills, and health checks."],
+  ["omnisclaw status", "Check Gateway, channel, model, and recent-session status."],
+  ["omnisclaw doctor --fix", "Repair common config, service, plugin, and channel problems."],
+  ["omnisclaw channels add", "Add or update a chat channel account with guided prompts."],
+  ["omnisclaw channels status", "See connected messaging accounts and login state."],
+  ["omnisclaw --dev gateway", "Run a dev Gateway (isolated state/config) on ws://127.0.0.1:19001."],
+  ["omnisclaw gateway run --force", "Start the Gateway and replace anything bound to its port."],
+  ["omnisclaw models status", "Show model/provider auth health before running agents."],
+  ["omnisclaw plugins list", "Inspect enabled, disabled, and installed plugins."],
   [
-    'openclaw agent --to +15555550123 --message "Run summary" --deliver',
+    'omnisclaw agent --to +15555550123 --message "Run summary" --deliver',
     "Run one agent turn through the Gateway and optionally deliver the reply.",
   ],
   [
-    'openclaw message send --channel telegram --target @mychat --message "Hi"',
+    'omnisclaw message send --channel telegram --target @mychat --message "Hi"',
     "Send via your Telegram bot.",
   ],
 ] as const;

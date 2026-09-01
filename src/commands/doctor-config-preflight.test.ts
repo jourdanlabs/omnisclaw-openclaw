@@ -218,7 +218,7 @@ describe("runDoctorConfigPreflight", () => {
             ...startupCheckpointOptions,
             skipPristineStartupStateMigrations: true,
           }),
-        ).rejects.toThrow("openclaw doctor --fix");
+        ).rejects.toThrow("omnisclaw doctor --fix");
       });
       expect(await fs.readFile(configPath, "utf-8")).toBe(original);
       await expect(fs.access(`${configPath}.bak`)).rejects.toMatchObject({ code: "ENOENT" });
@@ -589,11 +589,11 @@ describe("runDoctorConfigPreflight", () => {
             "is not parseable and cannot be repaired automatically",
           );
           expect((failure as Error).message).toContain(
-            "openclaw --container repair-test config validate",
+            "omnisclaw --container repair-test config validate",
           );
           expect((failure as Error).message).toContain("hand-edit the file");
           expect((failure as Error).message).toContain("move it aside");
-          expect((failure as Error).message).toContain("openclaw --container repair-test onboard");
+          expect((failure as Error).message).toContain("omnisclaw --container repair-test onboard");
         }
       });
 

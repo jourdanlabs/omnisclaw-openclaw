@@ -1243,7 +1243,7 @@ export async function agentCliCommand(
   // Fail loudly and point at the first-class command instead of no-opping.
   if (isCompactControlCommand(messageOpts.message)) {
     runtime.error?.(
-      "Slash commands cannot be executed via --message from the CLI. Use: openclaw sessions compact <key>",
+      `Slash commands cannot be executed via --message from the CLI. Use: ${formatCliCommand("openclaw sessions compact <key>")}`,
     );
     runtime.exit(1);
     return undefined;

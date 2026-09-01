@@ -163,7 +163,7 @@ describe("device worker provider", () => {
     }).provider;
 
     await expect(provider.provision({ device: DEVICE_ID }, "operation")).rejects.toThrow(
-      `device worker node ${DEVICE_ID} requires an update before it can host sessions; run openclaw update, then reconnect it (for a headless node, run openclaw node restart)`,
+      `device worker node ${DEVICE_ID} requires an update before it can host sessions; run omnisclaw update, then reconnect it (for a headless node, run omnisclaw node restart)`,
     );
   });
 

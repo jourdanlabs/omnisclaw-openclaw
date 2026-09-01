@@ -757,7 +757,7 @@ describe("schtasks Windows integration principal assertion", () => {
 
   it("redacts task identities without rewriting placeholders", () => {
     expect(
-      sanitizeDiagnosticText("openclaw user on host-user", [
+      sanitizeDiagnosticText("omnisclaw user on host-user", [
         ["openclaw", "<product>"],
         ["user", "<task-user>"],
       ]),

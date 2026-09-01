@@ -66,7 +66,7 @@ function writeCatalogFile(
             $schema: "./manifest.schema.json",
             schemaVersion: 1,
             description:
-              "Extension manifest. Declares plugin packages that OpenClaw can discover during onboarding and install on demand via `openclaw plugins install`.",
+              "Extension manifest. Declares plugin packages that OpenClaw can discover during onboarding and install on demand via `omnisclaw plugins install`.",
           }
         : {}),
       entries: [entry],

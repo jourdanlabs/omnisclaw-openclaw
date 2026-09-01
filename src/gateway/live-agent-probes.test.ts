@@ -68,7 +68,7 @@ describe("live-agent-probes", () => {
       "Preserve job.sessionTarget and job.sessionKey exactly as provided.",
     );
     expect(claudeRetryPrompt).toContain(
-      "search/load MCP tools for `openclaw automations` or `automations`",
+      "search/load MCP tools for `omnisclaw automations` or `automations`",
     );
     expect(claudeRetryPrompt).toContain("mcp__openclaw__automations");
     expect(claudeRetryPrompt).toContain("Do not use Claude native `CronCreate`");

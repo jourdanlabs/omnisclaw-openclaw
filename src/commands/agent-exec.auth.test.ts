@@ -236,7 +236,7 @@ describe("agent exec stored auth", () => {
       expect(result.envelope.error?.message).toContain(
         path.join(state.stateDir, "state", "openclaw.sqlite"),
       );
-      expect(result.envelope.error?.message).toContain("is unreadable; run openclaw doctor --fix");
+      expect(result.envelope.error?.message).toContain("is unreadable; run omnisclaw doctor --fix");
       expect(runAgent).not.toHaveBeenCalled();
     });
   });

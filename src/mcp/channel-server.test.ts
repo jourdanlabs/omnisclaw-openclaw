@@ -76,7 +76,7 @@ function requireFirstMockCall(mock: { mock: { calls: unknown[][] } }, label: str
   return call;
 }
 
-describe("openclaw channel mcp server", () => {
+describe("omnisclaw channel mcp server", () => {
   describe("gateway-backed flows", () => {
     describe("gateway integration", () => {
       test("returns conversation and message payloads in primary MCP content", async () => {

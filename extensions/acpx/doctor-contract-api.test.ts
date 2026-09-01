@@ -30,15 +30,15 @@ import {
 } from "./src/state.js";
 
 describe("acpx doctor config repair", () => {
-  it("flags both retired config keys for openclaw doctor --fix", () => {
+  it("flags both retired config keys for omnisclaw doctor --fix", () => {
     expect(legacyConfigRules).toEqual([
       expect.objectContaining({
         path: ["plugins", "entries", "acpx", "config", "strictWindowsCmdWrapper"],
-        message: expect.stringContaining("openclaw doctor --fix"),
+        message: expect.stringContaining("omnisclaw doctor --fix"),
       }),
       expect.objectContaining({
         path: ["plugins", "entries", "acpx", "config", "queueOwnerTtlSeconds"],
-        message: expect.stringContaining("openclaw doctor --fix"),
+        message: expect.stringContaining("omnisclaw doctor --fix"),
       }),
     ]);
   });

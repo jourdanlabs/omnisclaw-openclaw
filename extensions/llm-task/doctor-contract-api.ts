@@ -21,11 +21,11 @@ function preserveLiteralLegacyModelRefs(values: string[]): string[] {
 export const legacyConfigRules = [
   {
     path: ["plugins", "entries", "llm-task", "config", "allowedModels"],
-    message: `${ENTRY_PATH}.config.allowedModels moved to ${ENTRY_PATH}.llm.allowedCompletionModels. Run "openclaw doctor --fix".`,
+    message: `${ENTRY_PATH}.config.allowedModels moved to ${ENTRY_PATH}.llm.allowedCompletionModels. Run "omnisclaw doctor --fix".`,
   },
   {
     path: ["plugins", "entries", "llm-task"],
-    message: `${ENTRY_PATH} needs host-owned LLM model/profile permissions to preserve shipped tool parameters. Run "openclaw doctor --fix".`,
+    message: `${ENTRY_PATH} needs host-owned LLM model/profile permissions to preserve shipped tool parameters. Run "omnisclaw doctor --fix".`,
     match: (value: unknown) => {
       const entry = asObjectRecord(value);
       const llm = asObjectRecord(entry?.llm);

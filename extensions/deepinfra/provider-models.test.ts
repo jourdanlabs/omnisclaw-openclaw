@@ -147,7 +147,7 @@ describe("buildDeepInfraModelDefinition", () => {
 });
 
 describe("DEEPINFRA_MODELS_URL", () => {
-  it("points at /v1/openai/models with the openclaw sort + filter=with_meta gate", () => {
+  it("points at /v1/openai/models with the omnisclaw sort + filter=with_meta gate", () => {
     expect(DEEPINFRA_MODELS_URL).toBe(
       "https://api.deepinfra.com/v1/openai/models?sort_by=openclaw&filter=with_meta",
     );

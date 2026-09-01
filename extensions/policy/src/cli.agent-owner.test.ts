@@ -173,21 +173,21 @@ describe("policy CLI agent ownership", () => {
       args: ["check", "--agent", "ghost", "--json"],
       profile: "",
       container: "",
-      hint: "openclaw agents list",
+      hint: "omnisclaw agents list",
     },
     {
       name: "check with an active profile",
       args: ["check", "--agent", "ghost", "--json"],
       profile: "testprof",
       container: "",
-      hint: "openclaw --profile testprof agents list",
+      hint: "omnisclaw --profile testprof agents list",
     },
     {
       name: "relative compare with an active container",
       args: ["compare", "--agent", "ghost", "--baseline", "baseline.policy.jsonc", "--json"],
       profile: "testprof",
       container: "testbox",
-      hint: "openclaw --container testbox agents list",
+      hint: "omnisclaw --container testbox agents list",
     },
   ])("rejects an unknown explicit owner for $name with runnable guidance", async (testCase) => {
     await writeExplicitFleetConfig();

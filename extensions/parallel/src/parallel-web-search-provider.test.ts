@@ -118,7 +118,7 @@ type CacheKeyParams = Parameters<typeof testing.buildParallelCacheKey>[0];
 const CACHE_KEY_BASE: CacheKeyParams = {
   endpoint: "https://api.parallel.ai/v1/search",
   objective: "Find OpenClaw on GitHub",
-  searchQueries: ["openclaw github"],
+  searchQueries: ["omnisclaw github"],
   count: 5,
 };
 const cacheKey = (overrides: Partial<CacheKeyParams> = {}) =>
@@ -255,7 +255,7 @@ describe("parallel web search provider", () => {
   it("partitions Parallel cache keys by objective and by search_queries set", () => {
     expect(cacheKey()).not.toBe(cacheKey({ objective: "Find the OpenClaw release notes" }));
     expect(cacheKey()).not.toBe(
-      cacheKey({ searchQueries: ["openclaw github", "openclaw repository"] }),
+      cacheKey({ searchQueries: ["omnisclaw github", "omnisclaw repository"] }),
     );
   });
   it("partitions Parallel cache keys by caller-provided session id", () => {
@@ -278,16 +278,16 @@ describe("parallel web search provider", () => {
   it("normalizes search_queries: trim, drop blanks, dedupe, cap length, cap count", () => {
     expect(
       testing.normalizeParallelSearchQueries([
-        "openclaw github",
-        "  openclaw github  ",
+        "omnisclaw github",
+        "  omnisclaw github  ",
         "",
         " ",
         42,
-        "openclaw releases",
+        "omnisclaw releases",
       ]),
-    ).toEqual(["openclaw github", "openclaw releases"]);
+    ).toEqual(["omnisclaw github", "omnisclaw releases"]);
     expect(testing.normalizeParallelSearchQueries(undefined)).toEqual([]);
-    expect(testing.normalizeParallelSearchQueries("openclaw github")).toEqual([]);
+    expect(testing.normalizeParallelSearchQueries("omnisclaw github")).toEqual([]);
     expect(testing.normalizeParallelSearchQueries(["x".repeat(250)])).toEqual(["x".repeat(200)]);
     expect(testing.normalizeParallelSearchQueries([`${"x".repeat(199)}🚀tail`])).toEqual([
       "x".repeat(199),
@@ -455,7 +455,7 @@ describe("parallel web search provider", () => {
       timeoutSeconds: 5,
     }).execute({
       objective: "Find the OpenClaw repository on GitHub",
-      search_queries: ["openclaw github", "openclaw repository"],
+      search_queries: ["omnisclaw github", "omnisclaw repository"],
     });
     expect(endpointMockState.calls).toHaveLength(1);
     const call = endpointCall(0);
@@ -463,7 +463,7 @@ describe("parallel web search provider", () => {
     expect(call.timeoutSeconds).toBe(5);
     expect(readBody(call)).toEqual({
       objective: "Find the OpenClaw repository on GitHub",
-      search_queries: ["openclaw github", "openclaw repository"],
+      search_queries: ["omnisclaw github", "omnisclaw repository"],
       advanced_settings: { max_results: 3 },
     });
     const headers = (call.init.headers ?? {}) as Record<string, string>;
@@ -479,13 +479,13 @@ describe("parallel web search provider", () => {
     enqueueJson({ search_id: "search_test", session_id: "session-caller-supplied", results: [] });
     const result = await paidTool().execute({
       objective: "Find the OpenClaw repository on GitHub",
-      search_queries: ["openclaw github"],
+      search_queries: ["omnisclaw github"],
       session_id: "session-caller-supplied",
       client_model: "claude-opus-4-7",
     });
     expect(readBody()).toMatchObject({
       objective: "Find the OpenClaw repository on GitHub",
-      search_queries: ["openclaw github"],
+      search_queries: ["omnisclaw github"],
       session_id: "session-caller-supplied",
       client_model: "claude-opus-4-7",
     });
@@ -638,9 +638,9 @@ describe("parallel web search provider", () => {
     const objective = `parallel-cache-isolation-${Date.now()}-${Math.random()}`;
     enqueueJson({ search_id: "first", session_id: "session-generated-by-parallel", results: [] });
     const tool = paidTool();
-    const firstResult = await tool.execute({ objective, search_queries: ["openclaw github"] });
+    const firstResult = await tool.execute({ objective, search_queries: ["omnisclaw github"] });
     expect(firstResult.sessionId).toBe("session-generated-by-parallel");
-    const secondResult = await tool.execute({ objective, search_queries: ["openclaw github"] });
+    const secondResult = await tool.execute({ objective, search_queries: ["omnisclaw github"] });
     expect(endpointMockState.calls).toHaveLength(1);
     expect(secondResult.sessionId).toBeUndefined();
   });
@@ -649,10 +649,10 @@ describe("parallel web search provider", () => {
     const sessionId = `session-${Date.now()}`;
     enqueueJson({ search_id: "first", session_id: sessionId, results: [] });
     const tool = paidTool();
-    await tool.execute({ objective, search_queries: ["openclaw github"], session_id: sessionId });
+    await tool.execute({ objective, search_queries: ["omnisclaw github"], session_id: sessionId });
     const cached = await tool.execute({
       objective,
-      search_queries: ["openclaw github"],
+      search_queries: ["omnisclaw github"],
       session_id: sessionId,
     });
     expect(endpointMockState.calls).toHaveLength(1);

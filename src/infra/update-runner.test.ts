@@ -828,7 +828,7 @@ describe("runGatewayUpdate", () => {
         if (
           options?.cwd &&
           preflightPrefixPattern.test(options.cwd) &&
-          key === "pnpm openclaw config validate --json"
+          key === "pnpm omnisclaw config validate --json"
         ) {
           return { code: 1, stderr: invalidConfig };
         }
@@ -2948,7 +2948,7 @@ describe("runGatewayUpdate", () => {
 
     expect(result.status).toBe("ok");
     expect(calls).toContain(doctorCommand);
-    expect(result.steps.map((step) => step.name)).toContain("openclaw doctor");
+    expect(result.steps.map((step) => step.name)).toContain("omnisclaw doctor");
     expect(doctorEnv?.OPENCLAW_UPDATE_IN_PROGRESS).toBe("1");
     expect(doctorEnv?.OPENCLAW_UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE).toBe("1");
     expect(doctorEnv?.OPENCLAW_UPDATE_PARENT_SUPPORTS_GATEWAY_RESTART).toBe("1");
@@ -2992,7 +2992,7 @@ describe("runGatewayUpdate", () => {
     expect(result.reason).toBe("doctor-failed");
     expect(calls).toContain(doctorCommand);
     const lastStep = result.steps.at(-1);
-    expect(lastStep?.name).toBe("openclaw doctor");
+    expect(lastStep?.name).toBe("omnisclaw doctor");
     expect(lastStep?.exitCode).toBe(1);
     expect(lastStep?.stderrTail).toBe("doctor refused migration");
   });
@@ -3246,7 +3246,7 @@ describe("runGatewayUpdate", () => {
     expect(result.mode).toBe("pnpm");
     expect(result.after?.version).toBe("2.0.0");
     const npmPrefixedGlobalInstallCalls = calls.filter((call) =>
-      call.startsWith("npm i -g --allow-scripts=openclaw --prefix "),
+      call.startsWith("npm i -g --allow-scripts=omnisclaw --prefix "),
     );
     const pnpmAddGlobalCalls = calls.filter((call) => call.startsWith("pnpm add -g"));
     expect(npmPrefixedGlobalInstallCalls.length).toBeGreaterThan(0);
@@ -3327,7 +3327,7 @@ describe("runGatewayUpdate", () => {
     },
   );
 
-  it("rejects git roots that are not a openclaw checkout", async () => {
+  it("rejects git roots that are not a omnisclaw checkout", async () => {
     await fs.mkdir(path.join(tempDir, ".git"));
     const cwdSpy = vi.spyOn(process, "cwd").mockReturnValue(tempDir);
     const { runner, calls } = createRunner({
@@ -3359,7 +3359,7 @@ describe("runGatewayUpdate", () => {
 
     expect(result.status).toBe("error");
     expect(result.reason).toBe("doctor-entry-missing");
-    expect(result.steps.some((step) => step.name === "openclaw doctor entry")).toBe(true);
+    expect(result.steps.some((step) => step.name === "omnisclaw doctor entry")).toBe(true);
     expect(result.steps.at(-1)?.name).toMatch(/^git rollback/);
   });
 

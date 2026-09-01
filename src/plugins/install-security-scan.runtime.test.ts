@@ -248,7 +248,7 @@ describe("installed dependency tree scan", () => {
     expect(runInstallPolicyMock).toHaveBeenCalledTimes(1);
   });
 
-  it("rejects an openclaw dependency symlink that does not target the trusted host", async () => {
+  it("rejects an omnisclaw dependency symlink that does not target the trusted host", async () => {
     const npmRoot = makeTempDir();
     const outsideRoot = makeTempDir("openclaw-install-outside-");
     const packageDir = path.join(npmRoot, "node_modules", "runtime-plugin");
@@ -451,7 +451,7 @@ describe("legacy file install scan compatibility", () => {
         guidance: [
           "This invocation cannot approve install policy warnings.",
           "To continue:",
-          "  • Run the matching direct `openclaw plugins ...` or `openclaw skills ...` command interactively.",
+          "  • Run the matching direct `omnisclaw plugins ...` or `omnisclaw skills ...` command interactively.",
           "  • For reviewed direct CLI automation, add --acknowledge-install-policy-warning.",
           "  • If no equivalent direct command exists, change security.installPolicy to allow this reviewed request, then retry.",
           "  • --force does not approve install policy warnings.",
@@ -630,7 +630,7 @@ describe("legacy file install scan compatibility", () => {
       const guidance = [
         "This invocation cannot approve install policy warnings.",
         "To continue:",
-        "  • Run the matching direct `openclaw plugins ...` or `openclaw skills ...` command interactively.",
+        "  • Run the matching direct `omnisclaw plugins ...` or `omnisclaw skills ...` command interactively.",
         "  • For reviewed direct CLI automation, add --acknowledge-install-policy-warning.",
         "  • If no equivalent direct command exists, change security.installPolicy to allow this reviewed request, then retry.",
         "  • --force does not approve install policy warnings.",

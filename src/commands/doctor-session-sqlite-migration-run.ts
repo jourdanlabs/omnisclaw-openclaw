@@ -730,7 +730,7 @@ export function writeSessionSqliteMigrationFailureReports(
     generatedAt: new Date().toISOString(),
     manifestPath: sanitizeFailureReportText(shortenFailureReportPath(manifestPath)),
     reason: params.reason,
-    recoveryCommand: "openclaw doctor --session-sqlite recover --github-issue",
+    recoveryCommand: "omnisclaw doctor --session-sqlite recover --github-issue",
     restoreStatus: manifest?.restore?.status ?? "not_attempted",
     runId: manifest?.runId ?? path.basename(manifestPath, ".json"),
     targets:
@@ -775,7 +775,7 @@ export function createSessionSqliteMigrationFailureIssue(
     generatedAt: new Date().toISOString(),
     manifestPath: sanitizeFailureReportText(shortenFailureReportPath(manifestPath)),
     reason: "session SQLite migration failed",
-    recoveryCommand: "openclaw doctor --session-sqlite recover --github-issue",
+    recoveryCommand: "omnisclaw doctor --session-sqlite recover --github-issue",
     restoreStatus: manifest.restore?.status ?? "not_attempted",
     runId: manifest.runId,
     targets: targets.map((target) => ({

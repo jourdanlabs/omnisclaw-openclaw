@@ -603,7 +603,7 @@ describe("gateway bonjour advertiser", () => {
     await started.stop();
   });
 
-  it("falls back to openclaw when system hostname is invalid for DNS", async () => {
+  it("falls back to omnisclaw when system hostname is invalid for DNS", async () => {
     // Allow advertiser to run in unit tests.
     vi.stubEnv("VITEST", undefined);
     vi.stubEnv("NODE_ENV", "development");

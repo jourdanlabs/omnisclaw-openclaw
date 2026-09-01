@@ -5,6 +5,7 @@ import type {
   ChannelId,
   ChannelStatusIssue,
 } from "../channels/plugins/types.public.js";
+import { formatCliCommand } from "../cli/command-format.js";
 import {
   DEFAULT_CHANNEL_CONNECT_GRACE_MS,
   DEFAULT_CHANNEL_STALE_EVENT_THRESHOLD_MS,
@@ -38,7 +39,7 @@ function collectGenericRuntimeStatusIssues(
         kind: "runtime",
         message:
           "Channel cannot admit inbound events; its durable ingress queue is unavailable. Outbound may still work.",
-        fix: "check openclaw logs for the ingress failure, then rerun openclaw doctor",
+        fix: `check ${formatCliCommand("openclaw logs")} for the ingress failure, then rerun ${formatCliCommand("openclaw doctor")}`,
       });
       continue;
     }

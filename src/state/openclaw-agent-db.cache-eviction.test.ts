@@ -79,7 +79,7 @@ afterAll(() => {
   }
 });
 
-describe("openclaw agent database handle cache", () => {
+describe("omnisclaw agent database handle cache", () => {
   it("keeps only the capped number of open handles", () => {
     const env = requireFixtureEnv();
     const databases = [

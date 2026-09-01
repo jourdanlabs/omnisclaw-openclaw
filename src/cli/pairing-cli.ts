@@ -85,7 +85,7 @@ export function registerPairingCli(program: Command) {
       const channelRaw = opts.channel ?? channelArg ?? (channels.length === 1 ? channels[0] : "");
       if (!channelRaw) {
         if (channels.length === 0) {
-          // `pairing` is chat DM only; TUI/device approvals live under `openclaw devices`.
+          // `pairing` is chat DM only; TUI/device approvals live under `omnisclaw devices`.
           throw new Error(
             `No chat DM pairing channels are configured. To approve a TUI or device request, ` +
               `use ${formatCliCommand("openclaw devices approve")} instead.`,

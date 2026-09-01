@@ -2253,7 +2253,7 @@ describe("launchd install", () => {
 
     expect(output).toContain("Warning:");
     expect(output).toContain("contains custom behavior and will be overwritten");
-    expect(output).toContain("openclaw gateway install --wrapper <path>");
+    expect(output).toContain("omnisclaw gateway install --wrapper <path>");
     expect(output).toContain("OPENCLAW_WRAPPER");
     expect(state.files.get(wrapperPath)).toBe(generatedWrapper);
   });
@@ -2286,7 +2286,7 @@ describe("launchd install", () => {
 
     expect(output).toContain("Warning:");
     expect(output).toContain("contains custom behavior and will be overwritten");
-    expect(output).toContain("openclaw gateway install --wrapper <path>");
+    expect(output).toContain("omnisclaw gateway install --wrapper <path>");
     expect(output).toContain("OPENCLAW_WRAPPER");
     expect(state.files.get(wrapperPath)).toBe(generatedWrapper);
   });
@@ -3266,7 +3266,7 @@ describe("launchd install", () => {
     );
     expect(message).toContain(`LaunchAgent ${domain}/ai.openclaw.gateway is not loaded`);
     expect(message).toContain("The gateway is down and launchd has no job left to respawn it.");
-    expect(message).toContain("openclaw gateway start");
+    expect(message).toContain("omnisclaw gateway start");
   });
 
   it("does not wait out the teardown deadline when the reload bootstrap reports already-loaded", async () => {

@@ -424,7 +424,7 @@ describe("completion-runtime", () => {
     await withBashCompletionHome(async ({ homeDir }) => {
       await fs.writeFile(
         path.join(homeDir, ".bash_profile"),
-        "source <(openclaw completion --shell bash)\n",
+        "source <(omnisclaw completion --shell bash)\n",
         "utf-8",
       );
 
@@ -533,7 +533,7 @@ describe("completion-runtime", () => {
     await withBashCompletionHome(async ({ homeDir }) => {
       const cachePath = resolveCompletionCachePath("bash", "openclaw");
       const profilePath = path.join(homeDir, ".bash_profile");
-      const refreshAlias = "alias refresh_openclaw='openclaw completion --write-state'";
+      const refreshAlias = "alias refresh_openclaw='omnisclaw completion --write-state'";
       await fs.mkdir(path.dirname(cachePath), { recursive: true });
       await fs.writeFile(cachePath, "complete -W 'status' openclaw\n", "utf-8");
       await fs.writeFile(
@@ -556,12 +556,12 @@ describe("completion-runtime", () => {
     await withBashCompletionHome(async ({ homeDir }) => {
       const cachePath = resolveCompletionCachePath("bash", "openclaw");
       const profilePath = path.join(homeDir, ".bash_profile");
-      const refreshAlias = "alias refresh_openclaw='openclaw completion --write-state'";
+      const refreshAlias = "alias refresh_openclaw='omnisclaw completion --write-state'";
       await fs.mkdir(path.dirname(cachePath), { recursive: true });
       await fs.writeFile(cachePath, "complete -W 'status' openclaw\n", "utf-8");
       await fs.writeFile(
         profilePath,
-        `export IMPORTANT=keep\nsource <(openclaw completion --shell bash)\n${refreshAlias}\n`,
+        `export IMPORTANT=keep\nsource <(omnisclaw completion --shell bash)\n${refreshAlias}\n`,
         "utf-8",
       );
 
@@ -570,17 +570,17 @@ describe("completion-runtime", () => {
       const profile = await fs.readFile(profilePath, "utf-8");
       expect(profile).toContain("export IMPORTANT=keep\n");
       expect(profile).toContain(`${refreshAlias}\n`);
-      expect(profile).not.toContain("source <(openclaw completion");
+      expect(profile).not.toContain("source <(omnisclaw completion");
       expect(profile).toContain(cachePath);
     });
   });
 
   it.each([
-    "export IMPORTANT=keep; source <(openclaw completion --shell bash)",
-    "source <(openclaw completion --shell bash); export IMPORTANT=keep",
-    'source <(openclaw completion --shell bash) >"$HOME/completion.log"',
-    'eval "$(openclaw completion --shell bash)" >"$HOME/completion.log"',
-    'source <(openclaw completion --shell bash >"$HOME/completion.log")',
+    "export IMPORTANT=keep; source <(omnisclaw completion --shell bash)",
+    "source <(omnisclaw completion --shell bash); export IMPORTANT=keep",
+    'source <(omnisclaw completion --shell bash) >"$HOME/completion.log"',
+    'eval "$(omnisclaw completion --shell bash)" >"$HOME/completion.log"',
+    'source <(omnisclaw completion --shell bash >"$HOME/completion.log")',
   ])("preserves compound user-owned Bash profile statements: %s", async (compoundLine) => {
     await withBashCompletionHome(async ({ homeDir }) => {
       const cachePath = resolveCompletionCachePath("bash", "openclaw");
@@ -600,17 +600,17 @@ describe("completion-runtime", () => {
   it.each([
     {
       name: "dot-sourced process substitution",
-      sourceLine: ". <(openclaw completion --shell bash)",
+      sourceLine: ". <(omnisclaw completion --shell bash)",
     },
     {
       name: "eval command substitution",
-      sourceLine: 'eval "$(openclaw completion --shell bash)"',
+      sourceLine: 'eval "$(omnisclaw completion --shell bash)"',
     },
   ])("replaces $name without deleting unrelated aliases", async ({ sourceLine }) => {
     await withBashCompletionHome(async ({ homeDir }) => {
       const cachePath = resolveCompletionCachePath("bash", "openclaw");
       const profilePath = path.join(homeDir, ".bash_profile");
-      const refreshAlias = "alias refresh_openclaw='openclaw completion --write-state'";
+      const refreshAlias = "alias refresh_openclaw='omnisclaw completion --write-state'";
       await fs.mkdir(path.dirname(cachePath), { recursive: true });
       await fs.writeFile(cachePath, "complete -W 'status' openclaw\n", "utf-8");
       await fs.writeFile(profilePath, `${sourceLine}\n${refreshAlias}\n`, "utf-8");
@@ -628,8 +628,9 @@ describe("completion-runtime", () => {
     await withBashCompletionHome(async () => {
       const cachePath = resolveCompletionCachePath("powershell", "openclaw");
       const profilePath = resolveCompletionProfilePath("powershell");
-      const dynamicLine = "openclaw completion --shell powershell | Out-String | Invoke-Expression";
-      const refreshCommand = '$refresh = "openclaw completion --write-state"';
+      const dynamicLine =
+        "omnisclaw completion --shell powershell | Out-String | Invoke-Expression";
+      const refreshCommand = '$refresh = "omnisclaw completion --write-state"';
       await fs.mkdir(path.dirname(cachePath), { recursive: true });
       await fs.writeFile(cachePath, "# PowerShell completion\n", "utf-8");
       await fs.mkdir(path.dirname(profilePath), { recursive: true });
@@ -646,8 +647,8 @@ describe("completion-runtime", () => {
   });
 
   it.each([
-    "openclaw completion --shell powershell | Out-String | Invoke-Expression; $env:IMPORTANT = 'keep'",
-    'openclaw completion --shell powershell | Tee-Object "$HOME/generated.ps1" | Out-String | Invoke-Expression',
+    "omnisclaw completion --shell powershell | Out-String | Invoke-Expression; $env:IMPORTANT = 'keep'",
+    'omnisclaw completion --shell powershell | Tee-Object "$HOME/generated.ps1" | Out-String | Invoke-Expression',
   ])("preserves compound user-owned PowerShell profile statements: %s", async (compoundLine) => {
     await withBashCompletionHome(async () => {
       const cachePath = resolveCompletionCachePath("powershell", "openclaw");

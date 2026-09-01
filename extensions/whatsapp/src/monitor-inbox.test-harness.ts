@@ -388,7 +388,7 @@ export async function waitForPairingPromptSent(sock: MockSock, jid: string, send
   expect(sendCall?.[0]).toBe(jid);
   // The mocked pairing upsert always issues PAIRCODE.
   const text = (sendCall?.[1] as { text?: string } | undefined)?.text ?? "";
-  expect(text).toContain("OpenClaw: access not configured.");
+  expect(text).toContain("OMNIS CLAW: access not configured.");
   expect(text).toContain(`Your WhatsApp phone number: ${senderE164}`);
   expect(text).toContain("Pairing code:");
   expect(text).toContain("\n```\nPAIRCODE\n```\n");

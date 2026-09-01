@@ -1440,7 +1440,7 @@ async function runCliWithPreparedOutputMode(
     if (bareSessionInvocation) {
       if (!process.stdin.isTTY || !process.stdout.isTTY) {
         console.error(
-          "OpenClaw TUI needs an interactive TTY. Use `openclaw agent --local ...` for automation.",
+          "OpenClaw TUI needs an interactive TTY. Use `omnisclaw agent --local ...` for automation.",
         );
         process.exitCode = 1;
         return;
@@ -1500,8 +1500,8 @@ async function runCliWithPreparedOutputMode(
         if (!process.stdin.isTTY || !process.stdout.isTTY) {
           console.error(
             bareRootLaunchTarget.classic
-              ? "OpenClaw config is invalid. Run `openclaw doctor --fix` before onboarding."
-              : "Onboarding needs an interactive TTY. Use `openclaw onboard --non-interactive --accept-risk ...` for automation.",
+              ? "OpenClaw config is invalid. Run `omnisclaw doctor --fix` before onboarding."
+              : "Onboarding needs an interactive TTY. Use `omnisclaw onboard --non-interactive --accept-risk ...` for automation.",
           );
           process.exitCode = 1;
           return;
@@ -1513,7 +1513,7 @@ async function runCliWithPreparedOutputMode(
       if (bareRootLaunchTarget.kind === "tui") {
         if (!process.stdin.isTTY || !process.stdout.isTTY) {
           console.error(
-            "OpenClaw TUI needs an interactive TTY. Use `openclaw agent --local ...` for automation.",
+            "OpenClaw TUI needs an interactive TTY. Use `omnisclaw agent --local ...` for automation.",
           );
           process.exitCode = 1;
           return;

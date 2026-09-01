@@ -72,9 +72,9 @@ function requireIncludedCounts(prompt: string): [included: number, total: number
 }
 
 const COMPACT_OMITTED_NOTICE =
-  "⚠️ Skills catalog using compact format (descriptions omitted). Run `openclaw skills check` to audit.";
+  "⚠️ Skills catalog using compact format (descriptions omitted). Run `omnisclaw skills check` to audit.";
 const COMPACT_SHORTENED_NOTICE =
-  "⚠️ Skills catalog using compact format (descriptions shortened). Run `openclaw skills check` to audit.";
+  "⚠️ Skills catalog using compact format (descriptions shortened). Run `omnisclaw skills check` to audit.";
 
 describe("applySkillsPromptLimits (via buildWorkspaceSkillsPrompt)", () => {
   let envSnapshot: SkillsHomeEnvSnapshot;
@@ -178,7 +178,7 @@ describe("applySkillsPromptLimits (via buildWorkspaceSkillsPrompt)", () => {
     const tenSkills = skills.slice(0, 10);
     const fullLen = formatSkillsForPromptCore(tenSkills).length;
     const truncatedNotice =
-      "⚠️ Skills truncated: included 10 of 30 (compact format, descriptions shortened). Run `openclaw skills check` to audit.";
+      "⚠️ Skills truncated: included 10 of 30 (compact format, descriptions shortened). Run `omnisclaw skills check` to audit.";
     const budget = `${truncatedNotice}\n${formatSkillsCompact(tenSkills)}`.length;
     // Verify precondition: full format of 10 skills exceeds budget
     expect(fullLen).toBeGreaterThan(budget);

@@ -322,7 +322,7 @@ describe("web auto-reply connection", () => {
       lifecycle: "blocked",
       terminalDisconnect: true,
     });
-    expectErrorContaining(runtime.error, "openclaw channels login --channel whatsapp");
+    expectErrorContaining(runtime.error, "omnisclaw channels login --channel whatsapp");
   });
 
   it("keeps post-open Baileys 428 on the reconnect path", async () => {
@@ -484,7 +484,7 @@ describe("web auto-reply connection", () => {
     expect(sleep).not.toHaveBeenCalled();
     expectErrorContaining(runtime.error, "status 440");
     expectErrorContaining(runtime.error, "session conflict");
-    expectErrorContaining(runtime.error, "openclaw channels logout --channel whatsapp");
+    expectErrorContaining(runtime.error, "omnisclaw channels logout --channel whatsapp");
     expectErrorContaining(runtime.error, "Stopping web monitoring");
   });
 

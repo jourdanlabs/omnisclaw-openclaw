@@ -73,8 +73,8 @@ const getMissingLocalMemoryEmbeddingProviderMessage = vi.hoisted(() =>
     () =>
       "Unknown memory embedding provider: local.\n" +
       "Local GGUF embeddings are provided by the official llama.cpp provider plugin.\n" +
-      "Install it with: openclaw plugins install @openclaw/llama-cpp-provider\n" +
-      "Then restart OpenClaw and retry: openclaw memory status --deep",
+      "Install it with: omnisclaw plugins install @openclaw/llama-cpp-provider\n" +
+      "Then restart OpenClaw and retry: omnisclaw memory status --deep",
   ),
 );
 
@@ -382,8 +382,8 @@ describe("noteMemorySearchHealth", () => {
     expect(note).toHaveBeenCalledTimes(1);
     expectFirstNoteContains(
       "Unknown memory embedding provider: local",
-      "openclaw plugins install @openclaw/llama-cpp-provider",
-      "openclaw memory status --deep",
+      "omnisclaw plugins install @openclaw/llama-cpp-provider",
+      "omnisclaw memory status --deep",
     );
     expect(getMissingLocalMemoryEmbeddingProviderMessage).toHaveBeenCalledOnce();
   });
@@ -402,9 +402,9 @@ describe("noteMemorySearchHealth", () => {
     expectFirstNoteContains(
       'Installed plugin "llama-cpp" does not provide current local-memory setup diagnostics',
       "legacy llama.cpp server is unavailable",
-      "openclaw plugins update llama-cpp",
+      "omnisclaw plugins update llama-cpp",
     );
-    expectFirstNoteExcludes("openclaw plugins install @openclaw/llama-cpp-provider");
+    expectFirstNoteExcludes("omnisclaw plugins install @openclaw/llama-cpp-provider");
   });
 
   it.each([
@@ -416,7 +416,7 @@ describe("noteMemorySearchHealth", () => {
     [
       "plugin-disabled",
       'Installed plugin "llama-cpp" is disabled for this config',
-      "openclaw plugins enable llama-cpp --accept-capabilities",
+      "omnisclaw plugins enable llama-cpp --accept-capabilities",
     ],
     [
       "not-in-allowlist",
@@ -430,8 +430,8 @@ describe("noteMemorySearchHealth", () => {
 
     expectFirstNoteContains(message, "local provider is blocked", fix);
     expectFirstNoteExcludes(
-      "openclaw plugins install @openclaw/llama-cpp-provider",
-      "openclaw plugins update llama-cpp",
+      "omnisclaw plugins install @openclaw/llama-cpp-provider",
+      "omnisclaw plugins update llama-cpp",
     );
     expect(loadTrustedExternalProviderPolicyArtifacts).not.toHaveBeenCalled();
   });
@@ -448,7 +448,7 @@ describe("noteMemorySearchHealth", () => {
 
     expectFirstNoteContains(
       "Plugin loading is disabled for this config",
-      "openclaw config set plugins.enabled true --strict-json",
+      "omnisclaw config set plugins.enabled true --strict-json",
     );
     expectFirstNoteExcludes("No active memory plugin is registered");
     expect(resolveActiveMemoryBackendConfig).not.toHaveBeenCalled();
@@ -486,7 +486,7 @@ describe("noteMemorySearchHealth", () => {
     );
     expect(loadTrustedExternalProviderPolicyArtifacts).toHaveBeenCalledWith([selectedOwner]);
     expectFirstNoteContains("Selected provider needs setup", "Configure the selected provider");
-    expectFirstNoteExcludes("openclaw plugins enable a-disabled");
+    expectFirstNoteExcludes("omnisclaw plugins enable a-disabled");
   });
 
   it("uses installed provider setup guidance instead of reinstalling the plugin", async () => {
@@ -495,7 +495,7 @@ describe("noteMemorySearchHealth", () => {
       reason: "Local embeddings need the managed llama.cpp server config.",
       requirement: "managed-llama-cpp-setup",
       fixHint:
-        "Run `openclaw models --agent agent-default auth login --provider llama-cpp --method local` in an interactive terminal, then rerun this check.",
+        "Run `omnisclaw models --agent agent-default auth login --provider llama-cpp --method local` in an interactive terminal, then rerun this check.",
     });
 
     await runMemorySearchHealth(
@@ -505,10 +505,10 @@ describe("noteMemorySearchHealth", () => {
 
     expectFirstNoteContains(
       "Local embeddings need the managed llama.cpp server config",
-      "openclaw models --agent agent-default auth login --provider llama-cpp --method local",
+      "omnisclaw models --agent agent-default auth login --provider llama-cpp --method local",
       "Managed local embeddings are unavailable",
     );
-    expectFirstNoteExcludes("openclaw plugins install @openclaw/llama-cpp-provider");
+    expectFirstNoteExcludes("omnisclaw plugins install @openclaw/llama-cpp-provider");
   });
 
   it("supports silent structured collection through an injected note sink", async () => {
@@ -535,7 +535,7 @@ describe("noteMemorySearchHealth", () => {
       "managed llama-server unavailable",
       "Repair the llama.cpp server problem reported by the Gateway",
     );
-    expectFirstNoteExcludes("openclaw plugins install @openclaw/llama-cpp-provider");
+    expectFirstNoteExcludes("omnisclaw plugins install @openclaw/llama-cpp-provider");
   });
 
   it("does not warn when local provider with default model and gateway probe is ready", async () => {
@@ -630,7 +630,7 @@ describe("noteMemorySearchHealth", () => {
     );
     expectFirstNoteExcludes(
       "Gateway probe: GGUF load failed",
-      "openclaw plugins install @openclaw/llama-cpp-provider",
+      "omnisclaw plugins install @openclaw/llama-cpp-provider",
     );
   });
 
@@ -642,7 +642,7 @@ describe("noteMemorySearchHealth", () => {
           checked: false,
           ready: false,
           error:
-            "memory embedding readiness not checked; run `openclaw memory status --deep` to probe",
+            "memory embedding readiness not checked; run `omnisclaw memory status --deep` to probe",
           skipped: true,
         },
       },
@@ -660,7 +660,7 @@ describe("noteMemorySearchHealth", () => {
           checked: false,
           ready: false,
           error:
-            "memory embedding readiness not checked; run `openclaw memory status --deep` to probe",
+            "memory embedding readiness not checked; run `omnisclaw memory status --deep` to probe",
           skipped: true,
         },
       },
@@ -984,7 +984,7 @@ describe("noteMemorySearchHealth", () => {
         contains: [
           'provider is set to "openai-compatible"',
           "remote.baseUrl",
-          "openclaw config set",
+          "omnisclaw config set",
         ],
         noApiKeyLookup: true,
       },
@@ -998,7 +998,7 @@ describe("noteMemorySearchHealth", () => {
         contains: [
           'provider is set to "openai-compatible"',
           "memory.search.model",
-          "openclaw config set",
+          "omnisclaw config set",
         ],
         noApiKeyLookup: true,
       },
@@ -1184,9 +1184,9 @@ describe("noteMemorySearchHealth", () => {
 
     expectFirstNoteContains(
       "Gateway memory probe for default agent is not ready",
-      "openclaw configure --section model",
+      "omnisclaw configure --section model",
     );
-    expectFirstNoteExcludes("openclaw auth add --provider");
+    expectFirstNoteExcludes("omnisclaw auth add --provider");
   });
 
   it("does not probe unrelated embedding providers for the resolved default", async () => {

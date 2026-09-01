@@ -284,7 +284,7 @@ describe("OpenClaw rescue message", () => {
     const cfg: OpenClawConfig = {};
     const reply = await runRescue("/openclaw configure model provider", cfg);
     expect(reply).toContain("cannot host model-provider credential setup");
-    expect(reply).toContain("openclaw onboard");
+    expect(reply).toContain("omnisclaw onboard");
   });
 
   it("refuses doctor repairs without creating a pending approval", async () => {
@@ -299,7 +299,7 @@ describe("OpenClaw rescue message", () => {
       const reply = await runRescue("/openclaw doctor fix", cfg, commandContext(), deps);
       expect(reply).toContain("machine running OpenClaw");
       expect(reply).toContain("with OpenClaw stopped");
-      expect(reply).toContain("run `openclaw doctor --fix`");
+      expect(reply).toContain("run `omnisclaw doctor --fix`");
       await expect(runRescue("/openclaw yes", cfg, commandContext(), deps)).resolves.toBe(
         "No pending OpenClaw rescue change is waiting for approval.",
       );

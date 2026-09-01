@@ -4464,7 +4464,7 @@ describe("chat directive tag stripping for non-streaming final payloads", () => 
         payload: {
           text: [
             "Trajectory exports can include prompts, model messages, tool schemas, tool results, runtime events, and local paths.",
-            "Trajectory bundle: requested `openclaw sessions export-trajectory` through exec approval. Approve once to create the bundle; do not use allow-all for trajectory exports.",
+            "Trajectory bundle: requested `omnisclaw sessions export-trajectory` through exec approval. Approve once to create the bundle; do not use allow-all for trajectory exports.",
           ].join("\n"),
         },
       },

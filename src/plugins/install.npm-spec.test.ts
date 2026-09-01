@@ -2098,7 +2098,7 @@ describe("installPluginFromNpmSpec", () => {
   });
 
   it.runIf(process.platform !== "win32")(
-    "does not let managed openclaw peer links poison later npm installs",
+    "does not let managed omnisclaw peer links poison later npm installs",
     async () => {
       const stateDir = suiteTempRootTracker.makeTempDir();
       const npmRoot = path.join(stateDir, "npm");
@@ -2198,7 +2198,7 @@ describe("installPluginFromNpmSpec", () => {
     },
   );
 
-  it("rejects managed npm plugins when their openclaw peer link cannot be repaired", async () => {
+  it("rejects managed npm plugins when their omnisclaw peer link cannot be repaired", async () => {
     const stateDir = suiteTempRootTracker.makeTempDir();
     const npmRoot = path.join(stateDir, "npm");
     const warnings: string[] = [];
@@ -2226,7 +2226,7 @@ describe("installPluginFromNpmSpec", () => {
     expect(result.error).toContain("@openclaw/codex");
     expect(result.error).toContain("plugin-local node_modules/openclaw link");
     expect(
-      warnings.some((warning) => warning.includes("Could not locate openclaw package root")),
+      warnings.some((warning) => warning.includes("Could not locate omnisclaw package root")),
     ).toBe(true);
     expect(fs.existsSync(resolveTestPluginPackageDir(npmRoot, "@openclaw/codex"))).toBe(false);
     const npmProjectRoot = resolvePluginNpmProjectDir({
@@ -2560,7 +2560,7 @@ describe("installPluginFromNpmSpec", () => {
   });
 
   it.runIf(process.platform !== "win32")(
-    "repairs root openclaw materialized by npm peer handling",
+    "repairs root omnisclaw materialized by npm peer handling",
     async () => {
       const stateDir = suiteTempRootTracker.makeTempDir();
       const npmRoot = path.join(stateDir, "npm");
@@ -2600,7 +2600,7 @@ describe("installPluginFromNpmSpec", () => {
     },
   );
 
-  it("repairs stale managed openclaw root packages before npm plugin installs", async () => {
+  it("repairs stale managed omnisclaw root packages before npm plugin installs", async () => {
     const stateDir = suiteTempRootTracker.makeTempDir();
     const npmRoot = path.join(stateDir, "npm");
     const npmProjectRoot = resolvePluginNpmProjectDir({
@@ -2690,7 +2690,7 @@ describe("installPluginFromNpmSpec", () => {
     expect(lockfile.dependencies?.openclaw).toBeUndefined();
   });
 
-  it("preserves the active host openclaw runtime package during npm plugin installs", async () => {
+  it("preserves the active host omnisclaw runtime package during npm plugin installs", async () => {
     const stateDir = suiteTempRootTracker.makeTempDir();
     const npmRoot = path.join(stateDir, "npm");
     const hostPackageRoot = path.join(npmRoot, "node_modules", "openclaw");
@@ -2942,7 +2942,7 @@ describe("installPluginFromNpmSpec", () => {
     },
   );
 
-  it("does not fail rollback snapshots on plugin-local openclaw peer symlinks", async () => {
+  it("does not fail rollback snapshots on plugin-local omnisclaw peer symlinks", async () => {
     const npmRoot = path.join(suiteTempRootTracker.makeTempDir(), "npm");
     const npmProjectRoot = resolvePluginNpmProjectDir({
       npmDir: npmRoot,

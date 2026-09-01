@@ -427,7 +427,7 @@ export function legacyPluginDependencyStateIssueToHealthFinding(
     target: issue.path,
     path: issue.path,
     requirement: "legacy-plugin-dependency-state-removed",
-    fixHint: "Run `openclaw doctor --fix` to remove legacy plugin dependency state.",
+    fixHint: "Run `omnisclaw doctor --fix` to remove legacy plugin dependency state.",
   };
 }
 

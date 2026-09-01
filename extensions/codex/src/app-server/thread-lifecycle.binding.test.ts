@@ -713,7 +713,7 @@ describe("Codex app-server thread lifecycle bindings", () => {
               hooks: [
                 {
                   type: "command",
-                  command: "openclaw hooks relay --event pre_tool_use",
+                  command: "omnisclaw hooks relay --event pre_tool_use",
                 },
               ],
             },
@@ -762,7 +762,7 @@ describe("Codex app-server thread lifecycle bindings", () => {
     expect(resumeConfig).toMatchObject({
       config: { "features.hooks": true, "hooks.PreToolUse": [] },
     });
-    expect(JSON.stringify(resumeConfig)).not.toContain("openclaw hooks relay");
+    expect(JSON.stringify(resumeConfig)).not.toContain("omnisclaw hooks relay");
   });
 
   it("cold-resumes a warm thread when final config adds an image-generation deny", async () => {

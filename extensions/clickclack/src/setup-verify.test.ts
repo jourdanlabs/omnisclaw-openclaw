@@ -158,13 +158,13 @@ describe("ClickClack post-write setup verification", () => {
             code: 1006,
           }),
         ),
-      expected: "Start OpenClaw to connect: openclaw gateway",
+      expected: "Start OpenClaw to connect: omnisclaw gateway",
     },
     {
       name: "unavailable",
       arrange: () => mocks.callGatewayFromCli.mockRejectedValue(new Error("probe failed")),
       expected:
-        "If OpenClaw is running it connects automatically; otherwise start it with: openclaw gateway",
+        "If OpenClaw is running it connects automatically; otherwise start it with: omnisclaw gateway",
     },
   ])("prints the gateway next step when status is $name", async ({ arrange, expected }) => {
     arrange();

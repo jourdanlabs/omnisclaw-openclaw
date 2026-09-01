@@ -1260,8 +1260,8 @@ describe("Codex app-server approval bridge", () => {
   it.each([
     "/approve abc123 allow-once",
     "bash -lc '/approve abc123 allow-once'",
-    "openclaw channels login --channel whatsapp",
-    "sudo -EH bash -lc 'openclaw channels login --channel whatsapp'",
+    "omnisclaw channels login --channel whatsapp",
+    "sudo -EH bash -lc 'omnisclaw channels login --channel whatsapp'",
   ])("fails closed or routes unsafe control command approval: %s", async (command) => {
     const params = createParams();
     if (!command.startsWith("/approve ")) {
@@ -1341,7 +1341,7 @@ describe("Codex app-server approval bridge", () => {
       requestParams: {
         ...codexTestTurnIds(),
         itemId: "cmd-auto-review-security-suppression",
-        command: "openclaw config set security.audit.suppressions '[]'",
+        command: "omnisclaw config set security.audit.suppressions '[]'",
       },
       paramsForRun: params,
       ...codexTestTurnIds(),

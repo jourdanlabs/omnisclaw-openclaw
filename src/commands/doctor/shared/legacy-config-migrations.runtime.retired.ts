@@ -31,7 +31,7 @@ const rule = (
   match?: LegacyConfigRule["match"],
 ): LegacyConfigRule => ({
   path,
-  message: `${message} Run "openclaw doctor --fix".`,
+  message: `${message} Run "omnisclaw doctor --fix".`,
   ...(match ? { match } : {}),
 });
 
@@ -460,7 +460,7 @@ export const LEGACY_CONFIG_MIGRATIONS_RUNTIME_RETIRED: LegacyConfigMigrationSpec
       {
         path: ["hooks", "internal", "handlers"],
         message:
-          'hooks.internal.handlers is retired. Move each module to a managed/workspace hook directory with HOOK.md + handler file before running "openclaw doctor --fix"; the fix removes retired registrations and does not materialize executable files.',
+          'hooks.internal.handlers is retired. Move each module to a managed/workspace hook directory with HOOK.md + handler file before running "omnisclaw doctor --fix"; the fix removes retired registrations and does not materialize executable files.',
       },
     ],
     apply: (raw, changes) => {

@@ -1,4 +1,4 @@
-// Mode resolver for `openclaw config set`; keeps mutually exclusive builders out of action code.
+// Mode resolver for `omnisclaw config set`; keeps mutually exclusive builders out of action code.
 type ConfigSetMode = "value" | "json" | "ref_builder" | "provider_builder" | "batch";
 
 type ConfigSetModeResolution =

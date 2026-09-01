@@ -95,7 +95,7 @@ describe("Canvas document migration through doctor config persistence", () => {
             .map(([message]) => message)
             .join("\n");
           expect.soft(warnings).toContain("Canvas");
-          expect.soft(warnings).toContain("openclaw doctor --fix");
+          expect.soft(warnings).toContain("omnisclaw doctor --fix");
           if (failure === "blind") {
             expect.soft(warnings).toContain("EACCES");
           } else {

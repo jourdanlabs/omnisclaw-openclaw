@@ -1,5 +1,5 @@
 // Browser tests cover agent.act.normalize batch contract behavior.
-// Locks the documented `openclaw browser batch` examples against the real
+// Locks the documented `omnisclaw browser batch` examples against the real
 // /act normalizer so a doc example the route rejects cannot slip back in.
 import { describe, expect, it } from "vitest";
 import { normalizeActRequest } from "./agent.act.normalize.js";

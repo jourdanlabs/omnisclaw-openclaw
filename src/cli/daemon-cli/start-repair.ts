@@ -89,7 +89,7 @@ function assertGatewayRepairTargetMatches(params: {
     installedEnv.USERPROFILE?.trim();
   if (!installedStateOverride && !installedHome) {
     throw new Error(
-      `Refusing to repair the managed Gateway service because its installed state directory cannot be determined from the service definition. Run \`openclaw gateway install --force\` to replace it intentionally.`,
+      `Refusing to repair the managed Gateway service because its installed state directory cannot be determined from the service definition. Run \`omnisclaw gateway install --force\` to replace it intentionally.`,
     );
   }
   const installedStateDir = resolveStateDir(installedEnv);
@@ -130,7 +130,7 @@ function assertGatewayRepairTargetMatches(params: {
     )
     .join("\n");
   throw new Error(
-    `Refusing to repair the managed Gateway service because the current invocation targets a different Gateway:\n${details}\nRun \`openclaw gateway ${params.action}\` with the installed state directory, config path, and port (or unset conflicting environment overrides). To retarget intentionally, run \`openclaw gateway install --force\`.`,
+    `Refusing to repair the managed Gateway service because the current invocation targets a different Gateway:\n${details}\nRun \`omnisclaw gateway ${params.action}\` with the installed state directory, config path, and port (or unset conflicting environment overrides). To retarget intentionally, run \`omnisclaw gateway install --force\`.`,
   );
 }
 
@@ -259,7 +259,7 @@ export async function repairLoadedGatewayServiceForStart(
     message:
       params.action === "restart"
         ? "Gateway service definition repaired and restarted."
-        : "Gateway service definition repaired and started. Reopen the Control UI with `openclaw dashboard` or copy a fresh auth URL with `openclaw dashboard --no-open`.",
+        : "Gateway service definition repaired and started. Reopen the Control UI with `omnisclaw dashboard` or copy a fresh auth URL with `omnisclaw dashboard --no-open`.",
     warnings: warnings.length ? warnings : undefined,
     loaded,
   };

@@ -355,7 +355,7 @@ export async function collectSecurityWarnings(
           : [
               `Fix: ${formatCliCommand("openclaw doctor --fix")} to generate a token`,
               `Or set token directly: ${formatCliCommand(
-                "openclaw config set gateway.auth.mode token",
+                "omnisclaw config set gateway.auth.mode token",
               )}`,
             ];
       findings.push({

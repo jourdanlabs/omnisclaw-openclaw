@@ -43,8 +43,8 @@ function finding(params: {
 function repairHint(profileId: string, explicitBinary?: string): string {
   const configPath = `cloudWorkers.profiles.${profileId}.settings.binary`;
   return explicitBinary
-    ? `Install Crabbox 0.41.1 or newer at ${explicitBinary}, or set ${configPath} to an executable absolute path, then rerun \`openclaw doctor --json\`.`
-    : `Install Crabbox 0.41.1 or newer on the Gateway user's PATH, or set ${configPath} to an executable absolute path, then rerun \`openclaw doctor --json\`.`;
+    ? `Install Crabbox 0.41.1 or newer at ${explicitBinary}, or set ${configPath} to an executable absolute path, then rerun \`omnisclaw doctor --json\`.`
+    : `Install Crabbox 0.41.1 or newer on the Gateway user's PATH, or set ${configPath} to an executable absolute path, then rerun \`omnisclaw doctor --json\`.`;
 }
 
 function createCrabboxCloudWorkerProfileCheck(openclawRoot: string): HealthCheck {
@@ -105,7 +105,7 @@ function createCrabboxCloudWorkerProfileCheck(openclawRoot: string): HealthCheck
               binary,
               severity: "info",
               message: `has an executable Crabbox binary, but Doctor could not determine its version: ${result.reason}.`,
-              fixHint: `Run \`${binary} --version\` and confirm it reports Crabbox 0.41.1 or newer, then rerun \`openclaw doctor --json --severity-min info\`.`,
+              fixHint: `Run \`${binary} --version\` and confirm it reports Crabbox 0.41.1 or newer, then rerun \`omnisclaw doctor --json --severity-min info\`.`,
             }),
           );
         }
@@ -147,7 +147,7 @@ export function registerCrabboxWorkerProviderDoctorChecks(
                 : `Warm-image capture ${image.capture.selector} is in progress.`,
               fixHint: paused
                 ? crabboxWarmImageRecoveryHint(image.capture.selector)
-                : "Allow the current capture to finish; inspect `openclaw crabbox warm-images --json` if it remains pending.",
+                : "Allow the current capture to finish; inspect `omnisclaw crabbox warm-images --json` if it remains pending.",
             });
           }
           if (image.retirement) {
@@ -155,7 +155,7 @@ export function registerCrabboxWorkerProviderDoctorChecks(
               ...details,
               message: `Warm-image checkpoint ${image.retirement.checkpointId} is still awaiting deletion.`,
               fixHint:
-                "Cleanup retries during the next warm-image-enabled worker teardown. Inspect `openclaw crabbox warm-images --json` and resolve provider deletion errors if it remains pending.",
+                "Cleanup retries during the next warm-image-enabled worker teardown. Inspect `omnisclaw crabbox warm-images --json` and resolve provider deletion errors if it remains pending.",
             });
           }
         }

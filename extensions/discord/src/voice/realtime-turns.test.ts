@@ -718,7 +718,7 @@ defineDiscordVoiceTests(
     });
 
     it("accepts OpenClaw as a default wake name before realtime agent-proxy consults", async () => {
-      agentCommandMock.mockResolvedValueOnce({ payloads: [{ text: "openclaw wake answer" }] });
+      agentCommandMock.mockResolvedValueOnce({ payloads: [{ text: "omnisclaw wake answer" }] });
       const { entry, bridgeParams } = await createWakeNameFixture();
 
       beginSpeakerTurn(entry);
@@ -730,7 +730,7 @@ defineDiscordVoiceTests(
       });
       expect(lastAgentCommandArgs().message).toContain("how is it going");
       expect(lastAgentCommandArgs().message).not.toContain("OpenClaw");
-      expectUserMessageIncludes("openclaw wake answer");
+      expectUserMessageIncludes("omnisclaw wake answer");
     });
 
     it("ignores default agent wake names longer than two words", async () => {

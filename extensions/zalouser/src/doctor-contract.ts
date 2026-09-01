@@ -71,13 +71,13 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
   {
     path: ["channels", "zalouser", "groups"],
     message:
-      'channels.zalouser.groups.<id>.allow is legacy; use channels.zalouser.groups.<id>.enabled instead. Run "openclaw doctor --fix".',
+      'channels.zalouser.groups.<id>.allow is legacy; use channels.zalouser.groups.<id>.enabled instead. Run "omnisclaw doctor --fix".',
     match: hasLegacyZalouserGroupAllowAliases,
   },
   {
     path: ["channels", "zalouser", "accounts"],
     message:
-      'channels.zalouser.accounts.<id>.groups.<id>.allow is legacy; use channels.zalouser.accounts.<id>.groups.<id>.enabled instead. Run "openclaw doctor --fix".',
+      'channels.zalouser.accounts.<id>.groups.<id>.allow is legacy; use channels.zalouser.accounts.<id>.groups.<id>.enabled instead. Run "omnisclaw doctor --fix".',
     match: (value) =>
       hasLegacyAccountStreamingAliases(value, (account) =>
         hasLegacyZalouserGroupAllowAliases(asObjectRecord(account)?.groups),

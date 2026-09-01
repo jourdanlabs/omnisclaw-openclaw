@@ -155,7 +155,7 @@ function legacyRouteWarning(...routes: string[]): string {
   return [
     "- Legacy `codex/*` and `openai-codex/*` model refs should be rewritten to `openai/*`.",
     ...routes,
-    "- Run `openclaw doctor --fix`: it rewrites configured model refs and stale sessions to `openai/*`, moves Codex intent to provider/model runtime policy, and clears old whole-agent runtime pins.",
+    "- Run `omnisclaw doctor --fix`: it rewrites configured model refs and stale sessions to `openai/*`, moves Codex intent to provider/model runtime policy, and clears old whole-agent runtime pins.",
   ].join("\n");
 }
 
@@ -586,7 +586,7 @@ describe("collectCodexRouteWarnings", () => {
       codexCompactionWarning(
         "- agents.defaults.compaction.model: openai/gpt-5.4 is ignored while this agent uses Codex runtime.",
         "- agents.defaults.compaction.provider: custom-summary is ignored while this agent uses Codex runtime.",
-        "- Run `openclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
+        "- Run `omnisclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
       ),
     ]);
   });
@@ -604,7 +604,7 @@ describe("collectCodexRouteWarnings", () => {
       codexCompactionWarning(
         "- agents.defaults.compaction.model: openai/gpt-5.4 is ignored while this agent uses Codex runtime.",
         "- agents.defaults.compaction.provider: custom-summary is ignored while this agent uses Codex runtime.",
-        "- Run `openclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
+        "- Run `omnisclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
       ),
     ]);
   });
@@ -624,7 +624,7 @@ describe("collectCodexRouteWarnings", () => {
       codexCompactionWarning(
         "- agents.defaults.compaction.model: openai/gpt-5.4 is ignored while this agent uses Codex runtime.",
         "- agents.defaults.compaction.provider: custom-summary is ignored while this agent uses Codex runtime.",
-        "- Run `openclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
+        "- Run `omnisclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
       ),
     ]);
   });
@@ -1601,7 +1601,7 @@ describe("collectCodexRouteWarnings", () => {
       codexCompactionWarning(
         "- agents.defaults.compaction.model: openai/gpt-5.4 is ignored while this agent uses Codex runtime.",
         "- agents.defaults.compaction.provider: custom-summary is ignored while this agent uses Codex runtime.",
-        "- Run `openclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
+        "- Run `omnisclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
       ),
     ]);
 
@@ -1689,7 +1689,7 @@ describe("collectCodexRouteWarnings", () => {
       ),
       codexCompactionWarning(
         "- agents.list.codex.compaction.model: openai/gpt-5.4 is ignored while this agent uses Codex runtime.",
-        "- Run `openclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
+        "- Run `omnisclaw doctor --fix`: it removes unsupported Codex compaction overrides.",
       ),
     ]);
   });

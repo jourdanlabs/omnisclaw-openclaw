@@ -1816,7 +1816,7 @@ describe("Windows startup fallback", () => {
             stdout: JSON.stringify([
               {
                 ProcessId: 5151,
-                CommandLine: "node openclaw node run --host 127.0.0.1 --port 18789",
+                CommandLine: "node omnisclaw node run --host 127.0.0.1 --port 18789",
               },
             ]),
             stderr: "",

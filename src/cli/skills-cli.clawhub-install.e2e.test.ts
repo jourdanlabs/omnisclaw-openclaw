@@ -48,7 +48,7 @@ async function buildGitHubSkillZip(): Promise<Buffer> {
   return await zip.generateAsync({ type: "nodebuffer" });
 }
 
-describe("openclaw skills install ClawHub GitHub-backed E2E", () => {
+describe("omnisclaw skills install ClawHub GitHub-backed E2E", () => {
   it("installs from the install resolver and reports install telemetry", async () => {
     const commit = "c".repeat(40);
     const telemetryBodies: unknown[] = [];

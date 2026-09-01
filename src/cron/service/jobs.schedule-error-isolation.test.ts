@@ -151,7 +151,7 @@ describe("cron schedule error isolation", () => {
       "cron: auto-disabled job after repeated schedule errors",
     );
     expect(state.deps.enqueueSystemEvent).toHaveBeenCalledWith(
-      expect.stringContaining("openclaw automations enable bad-job"),
+      expect.stringContaining("omnisclaw automations enable bad-job"),
       expect.objectContaining({ contextKey: "cron:bad-job:auto-disabled" }),
     );
     const notification = vi.mocked(state.deps.enqueueSystemEvent).mock.calls[0]?.[0];

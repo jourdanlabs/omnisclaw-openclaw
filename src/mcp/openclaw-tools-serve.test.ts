@@ -66,7 +66,7 @@ describe("OpenClaw tools MCP server", () => {
     ).toBe("agent:worker:main");
   });
 
-  it("serves the ring-zero openclaw tool without an agent session key", async () => {
+  it("serves the ring-zero omnisclaw tool without an agent session key", async () => {
     const handlers = createPluginToolsMcpHandlers(
       resolveOpenClawToolsForMcp({ tools: ["openclaw"], systemAgentSurface: "cli" }),
     );
@@ -108,7 +108,7 @@ describe("OpenClaw tools MCP server", () => {
     ).toThrow(OPENCLAW_TOOLS_MCP_TOOLS_ENV);
   });
 
-  it("parses the openclaw surface from env and defaults to cli", () => {
+  it("parses the omnisclaw surface from env and defaults to cli", () => {
     expect(resolveOpenClawToolsMcpSystemAgentSurface({})).toBe("cli");
     expect(
       resolveOpenClawToolsMcpSystemAgentSurface({
@@ -122,7 +122,7 @@ describe("OpenClaw tools MCP server", () => {
     ).toThrow(OPENCLAW_TOOLS_MCP_SYSTEM_AGENT_SURFACE_ENV);
   });
 
-  it("builds a openclaw-only stdio server config under the openclaw name", () => {
+  it("builds a openclaw-only stdio server config under the omnisclaw name", () => {
     const config = buildSystemAgentToolsMcpServerConfig({ surface: "gateway" });
 
     expect(Object.keys(config.mcpServers)).toEqual(["openclaw"]);

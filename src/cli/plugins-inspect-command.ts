@@ -1,4 +1,4 @@
-// `openclaw plugins inspect`: renders plugin registry shape, capabilities, policy, diagnostics, and install records.
+// `omnisclaw plugins inspect`: renders plugin registry shape, capabilities, policy, diagnostics, and install records.
 import { getTerminalTableWidth, renderTable } from "../../packages/terminal-core/src/table.js";
 import { theme } from "../../packages/terminal-core/src/theme.js";
 import { listAgentIds } from "../agents/agent-scope-config.js";
@@ -14,7 +14,7 @@ import { formatCliJsonFailure } from "./failure-output.js";
 import { quietPluginJsonLogger } from "./plugins-json-logger.js";
 import { formatPluginBundleFormat } from "./plugins-list-format.js";
 
-/** Options accepted by `openclaw plugins inspect`. */
+/** Options accepted by `omnisclaw plugins inspect`. */
 export type PluginInspectOptions = {
   json?: boolean;
   all?: boolean;
@@ -283,7 +283,7 @@ export async function runPluginsInspectCommand(
   });
   if (!inspect) {
     failPluginInspect(
-      formatMissingPluginMessage({ id, listCommand: "openclaw plugins list --json" }),
+      formatMissingPluginMessage({ id, listCommand: "omnisclaw plugins list --json" }),
       opts.json,
     );
     return;

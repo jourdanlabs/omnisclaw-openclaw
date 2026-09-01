@@ -113,12 +113,12 @@ describe("stale subagent allowlist doctor repair", () => {
           normalizedAgentId: "research",
         },
       ],
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings).toStrictEqual([
       '- agents.defaults.subagents.allowAgents: stale subagent target "research" is not in the configured agent registry.',
-      '- Run "openclaw doctor --fix" to remove stale subagent target ids, or add a configured agent or ACP target for each intended target.',
+      '- Run "omnisclaw doctor --fix" to remove stale subagent target ids, or add a configured agent or ACP target for each intended target.',
     ]);
   });
 });

@@ -284,13 +284,13 @@ describe("doctor transcript and heartbeat session repairs", () => {
     expect(text).toContain(path.join("agents", "alpha", "agent", "openclaw-agent.sqlite"));
     expect(text).toContain(path.join("agents", "beta", "agent", "openclaw-agent.sqlite"));
     expect(text).toMatch(
-      /openclaw sessions cleanup --store ".*openclaw-agent\.sqlite" --dry-run --fix-missing/,
+      /omnisclaw sessions cleanup --store ".*openclaw-agent\.sqlite" --dry-run --fix-missing/,
     );
     expect(text).not.toMatch(
-      /openclaw sessions cleanup --store ".*openclaw-agent\.sqlite" --dry-run(?! --fix-missing)/,
+      /omnisclaw sessions cleanup --store ".*openclaw-agent\.sqlite" --dry-run(?! --fix-missing)/,
     );
     expect(text).toMatch(
-      /openclaw sessions cleanup --store ".*openclaw-agent\.sqlite" --enforce --fix-missing/,
+      /omnisclaw sessions cleanup --store ".*openclaw-agent\.sqlite" --enforce --fix-missing/,
     );
     expect(text).not.toContain("--active");
     expect(text).not.toContain(" ls ");

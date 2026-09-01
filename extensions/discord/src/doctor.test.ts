@@ -627,7 +627,7 @@ describe("discord doctor", () => {
       },
     } as unknown as OpenClawConfig;
 
-    const result = maybeRepairDiscordNumericIds(cfg, "openclaw doctor --fix");
+    const result = maybeRepairDiscordNumericIds(cfg, "omnisclaw doctor --fix");
     expect(result.config.channels?.discord?.allowFrom).toEqual(["123"]);
     expect(
       (result.config.channels?.discord?.dm as { allowFrom?: string[] } | undefined)?.allowFrom,
@@ -641,11 +641,11 @@ describe("discord doctor", () => {
   it("formats repair guidance for unsafe numeric ids", () => {
     const warnings = collectDiscordNumericIdWarnings({
       hits: [{ path: "channels.discord.allowFrom[0]", entry: 106232522769186816, safe: false }],
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings[0]).toContain("cannot be auto-repaired");
-    expect(warnings[1]).toContain("openclaw doctor --fix");
+    expect(warnings[1]).toContain("omnisclaw doctor --fix");
   });
 
   it("warns when default env fallback token is missing after migration", async () => {
@@ -668,7 +668,7 @@ describe("discord doctor", () => {
     expect(
       await discordDoctor.collectPreviewWarnings?.({
         cfg,
-        doctorFixCommand: "openclaw doctor --fix",
+        doctorFixCommand: "omnisclaw doctor --fix",
         env: {},
       }),
     ).toStrictEqual([missingTokenWarning]);
@@ -721,7 +721,7 @@ describe("discord doctor", () => {
     const warnings =
       (await discordDoctor.collectPreviewWarnings?.({
         cfg,
-        doctorFixCommand: "openclaw doctor --fix",
+        doctorFixCommand: "omnisclaw doctor --fix",
         env: {},
       })) ?? [];
 

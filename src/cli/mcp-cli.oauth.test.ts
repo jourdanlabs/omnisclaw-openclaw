@@ -89,7 +89,7 @@ describe("mcp cli OAuth", () => {
               {
                 level: "warning",
                 message:
-                  "OAuth credentials require additional authorization; run openclaw mcp login docs",
+                  "OAuth credentials require additional authorization; run omnisclaw mcp login docs",
               },
             ],
           },

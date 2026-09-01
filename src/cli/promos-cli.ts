@@ -29,7 +29,7 @@ export function registerPromosCli(program: Command) {
   promos
     .command("claim")
     .description("Claim a promotion: set up provider auth and register its models")
-    .argument("<slug>", "Promotion slug from `openclaw promos list`")
+    .argument("<slug>", "Promotion slug from `omnisclaw promos list`")
     // Credential-on-argv matches the shipped `onboard --<provider>-api-key` /
     // `onboard --token` non-interactive contract (AGENTS.md: public API). The
     // no-argv alternative is the provider's env var, detected as existing auth.

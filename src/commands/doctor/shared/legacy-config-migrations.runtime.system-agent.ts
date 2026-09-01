@@ -8,7 +8,7 @@ import {
 const LEGACY_SYSTEM_AGENT_CONFIG_RULE: LegacyConfigRule = {
   path: ["crestodian"],
   message:
-    'crestodian config was retired; system-agent rescue now uses built-in policy. Run "openclaw doctor --fix" to remove it.',
+    'crestodian config was retired; system-agent rescue now uses built-in policy. Run "omnisclaw doctor --fix" to remove it.',
 };
 
 export const LEGACY_CONFIG_MIGRATIONS_RUNTIME_SYSTEM_AGENT: LegacyConfigMigrationSpec[] = [

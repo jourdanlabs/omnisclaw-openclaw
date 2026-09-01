@@ -43,7 +43,7 @@ describeNonWin("exec live OpenClaw state SQLite guard", () => {
       ).resolves.toBe("live-state-sqlite");
       await expect(
         detectUnsafeExecControlShellCommand(
-          `sudo -u openclaw env sqlite3 -header -column ${quote(databasePath)}`,
+          `sudo -u omnisclaw env sqlite3 -header -column ${quote(databasePath)}`,
           context,
         ),
       ).resolves.toBe("live-state-sqlite");

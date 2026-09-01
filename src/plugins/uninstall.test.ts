@@ -1678,7 +1678,7 @@ describe("uninstallPlugin", () => {
     },
   );
 
-  it("repairs remaining npm plugin openclaw peer links after npm uninstall prunes them", async () => {
+  it("repairs remaining npm plugin omnisclaw peer links after npm uninstall prunes them", async () => {
     const stateDir = path.join(tempDir, "state");
     const npmRoot = path.join(stateDir, "npm");
     const removedPluginDir = path.join(npmRoot, "node_modules", "removed-plugin");

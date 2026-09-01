@@ -52,10 +52,10 @@ const CONFIG_SET_DESCRIPTION = [
   "Examples:",
   formatCliCommand("openclaw config set gateway.port 19001 --strict-json"),
   formatCliCommand(
-    "openclaw config set channels.discord.token --ref-provider default --ref-source env --ref-id DISCORD_BOT_TOKEN",
+    "omnisclaw config set channels.discord.token --ref-provider default --ref-source env --ref-id DISCORD_BOT_TOKEN",
   ),
   formatCliCommand(
-    "openclaw config set secrets.providers.vault --provider-source file --provider-path /etc/openclaw/secrets.json --provider-mode json",
+    "omnisclaw config set secrets.providers.vault --provider-source file --provider-path /etc/openclaw/secrets.json --provider-mode json",
   ),
   formatCliCommand("openclaw config set --batch-file ./config-set.batch.json --dry-run"),
 ].join("\n");

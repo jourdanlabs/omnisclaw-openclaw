@@ -376,7 +376,7 @@ describe("config cli roster integration", () => {
           expect(registeredRuntimeErrors.join("\n")).toContain(
             'Cannot set model reference "<configured model reference>" at agents.entries.main.model',
           );
-          expect(registeredRuntimeErrors.join("\n")).toContain("openclaw models list");
+          expect(registeredRuntimeErrors.join("\n")).toContain("omnisclaw models list");
         },
       );
     },

@@ -123,8 +123,8 @@ export function uiProtocolFreshnessIssueToHealthFinding(
     path: issue.uiIndexPath,
     fixHint: issue.canBuild
       ? issue.kind === "missing-assets"
-        ? "Run `openclaw doctor --fix` to build Control UI assets."
-        : "Run `openclaw doctor --fix --force` to rebuild Control UI assets, or run `pnpm ui:build`."
+        ? "Run `omnisclaw doctor --fix` to build Control UI assets."
+        : "Run `omnisclaw doctor --fix --force` to rebuild Control UI assets, or run `pnpm ui:build`."
       : "Reinstall OpenClaw to restore bundled Control UI assets.",
   };
 }

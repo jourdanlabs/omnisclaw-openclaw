@@ -69,14 +69,14 @@ describe("lockWorktreeForProcess", () => {
       "worktree",
       "lock",
       "--reason",
-      `openclaw pid=${stalePid}`,
+      `omnisclaw pid=${stalePid}`,
       record.path,
     );
     expect(await lockState(record)).toEqual({ kind: "dead", pid: stalePid });
 
     await expect(lockWorktreeForProcess(record)).resolves.toBeUndefined();
 
-    expect(await lockedReason(record.repoRoot, record.path)).toBe(`openclaw pid=${process.pid}`);
+    expect(await lockedReason(record.repoRoot, record.path)).toBe(`omnisclaw pid=${process.pid}`);
   });
 
   it("keeps a lock held by a live OpenClaw process", async () => {
@@ -88,13 +88,13 @@ describe("lockWorktreeForProcess", () => {
       "worktree",
       "lock",
       "--reason",
-      `openclaw pid=${livePid}`,
+      `omnisclaw pid=${livePid}`,
       record.path,
     );
 
     await expect(lockWorktreeForProcess(record)).rejects.toThrow(/git worktree lock/);
 
-    expect(await lockedReason(record.repoRoot, record.path)).toBe(`openclaw pid=${livePid}`);
+    expect(await lockedReason(record.repoRoot, record.path)).toBe(`omnisclaw pid=${livePid}`);
   });
 
   it("keeps a foreign lock that OpenClaw does not own", async () => {
@@ -112,6 +112,6 @@ describe("lockWorktreeForProcess", () => {
 
     await expect(lockWorktreeForProcess(record)).resolves.toBeUndefined();
 
-    expect(await lockedReason(record.repoRoot, record.path)).toBe(`openclaw pid=${process.pid}`);
+    expect(await lockedReason(record.repoRoot, record.path)).toBe(`omnisclaw pid=${process.pid}`);
   });
 });

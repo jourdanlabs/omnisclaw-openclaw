@@ -351,7 +351,7 @@ describe("push APNs send semantics", () => {
       alert: { title: "Wake", body: "Ping" },
       sound: "default",
     });
-    const openclawPayload = requireRecord(payload.openclaw, "openclaw payload");
+    const openclawPayload = requireRecord(payload.openclaw, "omnisclaw payload");
     expectRecordFields(openclawPayload, {
       kind: "push.test",
       nodeId: "ios-node-alert",
@@ -493,7 +493,7 @@ describe("push APNs send semantics", () => {
     expect(payload.aps).toEqual({
       "content-available": 1,
     });
-    const openclawPayload = requireRecord(payload.openclaw, "openclaw payload");
+    const openclawPayload = requireRecord(payload.openclaw, "omnisclaw payload");
     expectRecordFields(openclawPayload, {
       kind: "node.wake",
       reason: "node.invoke",
@@ -629,7 +629,7 @@ describe("push APNs send semantics", () => {
       category: "openclaw.exec-approval",
       "content-available": 1,
     });
-    const openclawPayload = requireRecord(payload.openclaw, "openclaw payload");
+    const openclawPayload = requireRecord(payload.openclaw, "omnisclaw payload");
     expectRecordFields(openclawPayload, {
       kind: "exec.approval.requested",
       approvalId: "approval-123",
@@ -675,7 +675,7 @@ describe("push APNs send semantics", () => {
     expect(payload.aps).toEqual({
       "content-available": 1,
     });
-    const openclawPayload = requireRecord(payload.openclaw, "openclaw payload");
+    const openclawPayload = requireRecord(payload.openclaw, "omnisclaw payload");
     expectRecordFields(openclawPayload, {
       kind: "exec.approval.resolved",
       approvalId: "approval-123",
@@ -719,7 +719,7 @@ describe("push APNs send semantics", () => {
       category: "openclaw.plugin-approval",
       "content-available": 1,
     });
-    const openclawPayload = requireRecord(payload.openclaw, "openclaw payload");
+    const openclawPayload = requireRecord(payload.openclaw, "omnisclaw payload");
     expectRecordFields(openclawPayload, {
       kind: "plugin.approval.requested",
       approvalId: "plugin:approval-123",
@@ -775,7 +775,7 @@ describe("push APNs send semantics", () => {
 
     const payload = requirePayload(requireSendRequest(send));
     expect(payload.aps).toEqual({ "content-available": 1 });
-    const openclawPayload = requireRecord(payload.openclaw, "openclaw payload");
+    const openclawPayload = requireRecord(payload.openclaw, "omnisclaw payload");
     expectRecordFields(openclawPayload, {
       kind: "plugin.approval.resolved",
       approvalId: "plugin:approval-123",
@@ -884,7 +884,7 @@ describe("push APNs send semantics", () => {
     });
 
     const payload = requirePayload(requireSendRequest(send));
-    expectRecordFields(requireRecord(payload.openclaw, "openclaw payload"), {
+    expectRecordFields(requireRecord(payload.openclaw, "omnisclaw payload"), {
       kind: "node.wake",
       reason: "node.invoke",
       nodeId: "ios-node-wake-default-reason",
@@ -973,7 +973,7 @@ describe("push APNs send semantics", () => {
     });
     const payload = requirePayload(sent);
     expect(payload.aps).toEqual({ "content-available": 1 });
-    const openclawPayload = requireRecord(payload.openclaw, "openclaw payload");
+    const openclawPayload = requireRecord(payload.openclaw, "omnisclaw payload");
     expectRecordFields(openclawPayload, {
       kind: "node.wake",
       reason: "queue.retry",
@@ -1021,7 +1021,7 @@ describe("push APNs send semantics", () => {
       category: "openclaw.exec-approval",
       "content-available": 1,
     });
-    const openclawPayload = requireRecord(payload.openclaw, "openclaw payload");
+    const openclawPayload = requireRecord(payload.openclaw, "omnisclaw payload");
     expectRecordFields(openclawPayload, {
       kind: "exec.approval.requested",
       approvalId: "approval-relay-1",

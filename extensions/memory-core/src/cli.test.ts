@@ -443,7 +443,7 @@ describe("memory cli", () => {
     mockCommandManagerForConfiguredAgents();
 
     await expect(runMemoryCli(args)).rejects.toThrow(
-      'Unknown agent id "nope-zzz". Run openclaw agents list to see configured agents.',
+      'Unknown agent id "nope-zzz". Run omnisclaw agents list to see configured agents.',
     );
     expect(getMemorySearchManager).not.toHaveBeenCalled();
   });
@@ -810,7 +810,7 @@ describe("memory cli", () => {
     expectLogged(log, "Dirty: yes");
     expectLogged(log, "Index identity: index was built for provider openai, expected ollama");
     expectLogged(log, "Vector search: paused until memory is rebuilt");
-    expectLogged(log, "Fix: Run: openclaw memory status --index --agent main");
+    expectLogged(log, "Fix: Run: omnisclaw memory status --index --agent main");
     expect(close).toHaveBeenCalled();
   });
 
@@ -1040,19 +1040,19 @@ describe("memory cli", () => {
   it("documents memory help examples", () => {
     const helpText = getMemoryHelpText();
 
-    expect(helpText).toContain("openclaw memory status --fix");
+    expect(helpText).toContain("omnisclaw memory status --fix");
     expect(helpText).toContain("Repair stale recall locks and normalize promotion metadata.");
-    expect(helpText).toContain("openclaw memory status --deep");
+    expect(helpText).toContain("omnisclaw memory status --deep");
     expect(helpText).toContain("Probe embedding provider readiness.");
-    expect(helpText).toContain('openclaw memory search "meeting notes"');
+    expect(helpText).toContain('omnisclaw memory search "meeting notes"');
     expect(helpText).toContain("Quick search using positional query.");
-    expect(helpText).toContain('openclaw memory search --query "deployment" --max-results 20');
+    expect(helpText).toContain('omnisclaw memory search --query "deployment" --max-results 20');
     expect(helpText).toContain("Limit results for focused troubleshooting.");
-    expect(helpText).toContain("openclaw memory promote --apply");
+    expect(helpText).toContain("omnisclaw memory promote --apply");
     expect(helpText).toContain("Append top-ranked short-term candidates into MEMORY.md.");
-    expect(helpText).toContain('openclaw memory promote-explain "router vlan"');
+    expect(helpText).toContain('omnisclaw memory promote-explain "router vlan"');
     expect(helpText).toContain("Explain why a specific candidate would or would not promote.");
-    expect(helpText).toContain("openclaw memory rem-harness --json");
+    expect(helpText).toContain("omnisclaw memory rem-harness --json");
     expect(helpText).toContain(
       "Preview REM reflections, candidate truths, and deep promotion output.",
     );
@@ -1487,7 +1487,7 @@ describe("memory cli", () => {
 
       const log = spyRuntimeLogs(defaultRuntime);
       await runMemoryCli(["status"]);
-      expectLogged(log, "Fix: openclaw memory status --fix --agent main");
+      expectLogged(log, "Fix: omnisclaw memory status --fix --agent main");
 
       log.mockClear();
       mockManager({
@@ -1496,7 +1496,7 @@ describe("memory cli", () => {
         close,
       });
       await runMemoryCli(["status", "--fix"]);
-      expectNotLogged(log, "Fix: openclaw memory status --fix --agent main");
+      expectNotLogged(log, "Fix: omnisclaw memory status --fix --agent main");
     });
   });
 
@@ -2072,7 +2072,7 @@ describe("memory cli", () => {
       results: [],
       stale: true,
       warning: `Memory index is stale: ${reason}. Search results may be incomplete.`,
-      action: "Run: openclaw memory status --index --agent main",
+      action: "Run: omnisclaw memory status --index --agent main",
     });
   });
 

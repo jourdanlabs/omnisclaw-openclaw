@@ -54,7 +54,7 @@ describe("slack doctor", () => {
           },
         },
       } as never,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
       env: {},
     });
 
@@ -84,7 +84,7 @@ describe("slack doctor", () => {
           },
         },
       } as never,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
       env: {},
     });
 
@@ -112,7 +112,7 @@ describe("slack doctor", () => {
 
     const warnings = await slackDoctor.collectPreviewWarnings?.({
       cfg: { channels: { slack } } as never,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
       env: {},
     });
 
@@ -129,7 +129,7 @@ describe("slack doctor", () => {
           },
         },
       } as never,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
       env: {},
     });
 

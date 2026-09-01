@@ -45,28 +45,28 @@ function hasZeroDuration(raw: unknown, key: "pruneAfter" | "resetArchiveRetentio
 const LEGACY_SESSION_MAINTENANCE_ROTATE_BYTES_RULE: LegacyConfigRule = {
   path: ["session", "maintenance"],
   message:
-    'session.maintenance.rotateBytes is deprecated and ignored; run "openclaw doctor --fix" to remove it.',
+    'session.maintenance.rotateBytes is deprecated and ignored; run "omnisclaw doctor --fix" to remove it.',
   match: hasLegacyRotateBytes,
 };
 
 const LEGACY_SESSION_PARENT_FORK_MAX_TOKENS_RULE: LegacyConfigRule = {
   path: ["session"],
   message:
-    'session.parentForkMaxTokens was removed; parent fork sizing is automatic. Run "openclaw doctor --fix" to remove it.',
+    'session.parentForkMaxTokens was removed; parent fork sizing is automatic. Run "omnisclaw doctor --fix" to remove it.',
   match: hasLegacyParentForkMaxTokens,
 };
 
 const SESSION_MAINTENANCE_PRUNE_AFTER_ZERO_RULE: LegacyConfigRule = {
   path: ["session", "maintenance"],
   message:
-    'session.maintenance.pruneAfter is a zero duration — this causes immediate deletion of eligible stale/non-preserved session entries. Run "openclaw doctor --fix" to remove it so the documented 30d default applies.',
+    'session.maintenance.pruneAfter is a zero duration — this causes immediate deletion of eligible stale/non-preserved session entries. Run "omnisclaw doctor --fix" to remove it so the documented 30d default applies.',
   match: (raw) => hasZeroDuration(raw, "pruneAfter"),
 };
 
 const SESSION_MAINTENANCE_RESET_ARCHIVE_RETENTION_ZERO_RULE: LegacyConfigRule = {
   path: ["session", "maintenance"],
   message:
-    'session.maintenance.resetArchiveRetention is a zero duration — this causes immediate deletion of all reset transcript archives. Run "openclaw doctor --fix" to remove it so the keep-by-default archive retention applies.',
+    'session.maintenance.resetArchiveRetention is a zero duration — this causes immediate deletion of all reset transcript archives. Run "omnisclaw doctor --fix" to remove it so the keep-by-default archive retention applies.',
   match: (raw) => hasZeroDuration(raw, "resetArchiveRetention"),
 };
 
@@ -74,11 +74,11 @@ const SESSION_ALIAS_RULES: LegacyConfigRule[] = [
   {
     path: ["session", "maintenance", "pruneDays"],
     message:
-      'session.maintenance.pruneDays was renamed to pruneAfter. Run "openclaw doctor --fix".',
+      'session.maintenance.pruneDays was renamed to pruneAfter. Run "omnisclaw doctor --fix".',
   },
   {
     path: ["session", "resetByType", "dm"],
-    message: 'session.resetByType.dm was renamed to direct. Run "openclaw doctor --fix".',
+    message: 'session.resetByType.dm was renamed to direct. Run "omnisclaw doctor --fix".',
   },
 ];
 

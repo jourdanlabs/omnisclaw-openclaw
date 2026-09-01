@@ -95,7 +95,7 @@ describe("gatewayAuthTokenCommand", () => {
     });
 
     await expect(gatewayAuthTokenCommand(runtime, { env: {}, interactive: true })).rejects.toThrow(
-      "openclaw doctor --generate-gateway-token",
+      "omnisclaw doctor --generate-gateway-token",
     );
 
     expect(runtime.writeStdout).not.toHaveBeenCalled();

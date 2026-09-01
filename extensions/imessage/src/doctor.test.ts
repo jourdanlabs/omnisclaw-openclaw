@@ -15,7 +15,7 @@ describe("imessageDoctor.collectPreviewWarnings", () => {
           },
         },
       } as never,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings).toHaveLength(1);
@@ -42,7 +42,7 @@ describe("imessageDoctor.collectPreviewWarnings", () => {
           },
         },
       } as never,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings).toHaveLength(1);
@@ -61,7 +61,7 @@ describe("imessageDoctor.collectPreviewWarnings", () => {
           },
         },
       } as never,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings).toEqual([]);

@@ -47,10 +47,10 @@ describe("authenticated request dispatcher load failures", () => {
       error: {
         code: "UNAVAILABLE",
         retryable: false,
-        message: expect.stringContaining("openclaw --profile r13 gateway restart"),
+        message: expect.stringContaining("omnisclaw --profile r13 gateway restart"),
         details: {
           code: "STALE_INSTALL",
-          restartCommand: "openclaw --profile r13 gateway restart",
+          restartCommand: "omnisclaw --profile r13 gateway restart",
         },
       },
     });

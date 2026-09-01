@@ -119,7 +119,7 @@ describe("configureCommandFromSectionsArg", () => {
 
     expect(runtime.exit).toHaveBeenCalledWith(1);
     expect(runtime.error.mock.calls[0]?.[0]).toBe(
-      "Invalid --section: bogus. Expected one of: workspace, model, web, gateway, daemon, channels, plugins, skills, health. Run openclaw configure without --section to use the full wizard.",
+      "Invalid --section: bogus. Expected one of: workspace, model, web, gateway, daemon, channels, plugins, skills, health. Run omnisclaw configure without --section to use the full wizard.",
     );
     expect(runConfigureWizardMock).not.toHaveBeenCalled();
   });

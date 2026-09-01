@@ -860,7 +860,7 @@ describe("doctor canonical session-key repair", () => {
           { agentId: "main", env, sessionKey: "agent:main:main", storePath },
           { sessionId: "recreated-alias", updatedAt: 20 },
         ),
-      ).toThrow("openclaw doctor --fix");
+      ).toThrow("omnisclaw doctor --fix");
     });
   });
 
@@ -938,7 +938,7 @@ describe("doctor canonical session-key repair", () => {
           { agentId: "main", env, sessionKey: "agent:main:main", storePath: mainStore },
           { sessionId: "new-destination-alias", updatedAt: 20 },
         ),
-      ).toThrow("openclaw doctor --fix");
+      ).toThrow("omnisclaw doctor --fix");
       await expect(
         loadTranscriptEvents({
           agentId: "main",

@@ -21,7 +21,7 @@ import { applyLegacyCompatibilityStep, applyUnknownConfigKeyStep } from "./confi
 function createLegacyStepResult(
   snapshot: Pick<DoctorConfigPreflightResult["snapshot"], "parsed" | "legacyIssues"> &
     Partial<DoctorConfigPreflightResult["snapshot"]>,
-  doctorFixCommand = "openclaw doctor --fix",
+  doctorFixCommand = "omnisclaw doctor --fix",
 ) {
   return applyLegacyCompatibilityStep({
     snapshot: {
@@ -72,7 +72,7 @@ describe("doctor config flow steps", () => {
     expect(result.issueLines).toEqual(["- heartbeat: use agents.defaults.heartbeat"]);
     expect(result.changeLines).not.toStrictEqual([]);
     expect(result.state.fixHints).toStrictEqual([
-      'Run "openclaw doctor --fix" to migrate legacy config keys.',
+      'Run "omnisclaw doctor --fix" to migrate legacy config keys.',
     ]);
     expect(result.state.pendingChanges).toBe(true);
   });
@@ -159,7 +159,7 @@ describe("doctor config flow steps", () => {
     expect(result.changeLines).toStrictEqual([]);
     expect(result.state.pendingChanges).toBe(true);
     expect(result.state.fixHints).toStrictEqual([
-      'Run "openclaw doctor --fix" to migrate legacy config keys.',
+      'Run "omnisclaw doctor --fix" to migrate legacy config keys.',
     ]);
   });
 
@@ -241,13 +241,13 @@ describe("doctor config flow steps", () => {
         fixHints: [],
       },
       shouldRepair: false,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.removed).toEqual(["bogus"]);
     expect(result.state.candidate).toStrictEqual({});
     expect(result.state.fixHints).toStrictEqual([
-      'Run "openclaw doctor --fix" to remove these keys.',
+      'Run "omnisclaw doctor --fix" to remove these keys.',
     ]);
   });
 
@@ -303,7 +303,7 @@ describe("doctor config flow steps", () => {
         fixHints: [],
       },
       shouldRepair: true,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.repairs).toEqual([
@@ -369,7 +369,7 @@ describe("doctor config flow steps", () => {
         fixHints: [],
       },
       shouldRepair: true,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.repairs).toStrictEqual([]);
@@ -419,7 +419,7 @@ describe("doctor config flow steps", () => {
         fixHints: [],
       },
       shouldRepair: true,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.repairs).toEqual([
@@ -471,7 +471,7 @@ describe("doctor config flow steps", () => {
         fixHints: [],
       },
       shouldRepair: true,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.state.cfg.auth?.profiles?.["openai:default"]).toEqual({
@@ -520,7 +520,7 @@ describe("doctor config flow steps", () => {
         fixHints: [],
       },
       shouldRepair: true,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.warnings).toStrictEqual([]);
@@ -570,7 +570,7 @@ describe("doctor config flow steps", () => {
         fixHints: [],
       },
       shouldRepair: true,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(result.state.cfg.auth?.profiles?.["openai:default"]).toEqual({

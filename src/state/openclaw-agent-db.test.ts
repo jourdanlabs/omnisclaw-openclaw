@@ -841,7 +841,7 @@ afterEach(() => {
   closeOpenClawStateDatabaseForTest();
 });
 
-describe("openclaw agent database", () => {
+describe("omnisclaw agent database", () => {
   it("uses the canonical state schema for deletion journal reads and updates", () => {
     const stateDir = createTempStateDir();
     const env = { OPENCLAW_STATE_DIR: stateDir };
@@ -2754,7 +2754,7 @@ describe("openclaw agent database", () => {
     legacyDb.close();
 
     expect(() => listOpenClawRegisteredAgentDatabases({ env })).toThrow(
-      /run openclaw doctor --fix/,
+      /run omnisclaw doctor --fix/,
     );
 
     expect(() =>
@@ -2762,7 +2762,7 @@ describe("openclaw agent database", () => {
         agentId: "worker-1",
         env,
       }),
-    ).toThrow(/run openclaw doctor --fix/);
+    ).toThrow(/run omnisclaw doctor --fix/);
 
     fs.rmSync(stateDatabasePath);
     const reopened = openOpenClawAgentDatabase({
@@ -3153,7 +3153,7 @@ describe("openclaw agent database", () => {
 
     try {
       await expect(withAgentDatabaseMaintenanceLease({ env }, repair)).rejects.toThrow(
-        "stop that process and rerun openclaw doctor --fix",
+        "stop that process and rerun omnisclaw doctor --fix",
       );
       expect(repair).not.toHaveBeenCalled();
       expect(() => assertNoOpenClawAgentDatabaseLeases("worker-1", { env })).toThrow(
@@ -4783,7 +4783,7 @@ describe("openclaw agent database", () => {
       }
 
       expect(() => openOpenClawAgentDatabase({ agentId: "worker-1", env })).toThrow(
-        "run openclaw doctor --fix to migrate persisted media",
+        "run omnisclaw doctor --fix to migrate persisted media",
       );
     },
   );
@@ -4806,10 +4806,10 @@ describe("openclaw agent database", () => {
         env,
         path: databasePath,
       }),
-    ).toThrow("uses schema version 0; run openclaw doctor --fix");
+    ).toThrow("uses schema version 0; run omnisclaw doctor --fix");
     expect(() =>
       openOpenClawAgentDatabase({ agentId: "worker-1", env, path: databasePath }),
-    ).toThrow("uses schema version 0; run openclaw doctor --fix");
+    ).toThrow("uses schema version 0; run omnisclaw doctor --fix");
   });
 
   it("runs full integrity before a pending agent schema migration", () => {

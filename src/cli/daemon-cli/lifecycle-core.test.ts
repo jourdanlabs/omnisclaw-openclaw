@@ -26,10 +26,10 @@ const clearGatewayRestartIntentSync = vi.fn();
 const appendGatewayLifecycleAudit = vi.fn();
 const MISSING_SERVICE_PROGRAM = "/openclaw-test-missing-runtime/node";
 const SERVICE_REPAIR_COMMAND_CASES = [
-  ["Gateway", "", "", "openclaw gateway", "restart"],
-  ["Node", "", "", "openclaw node", "install --force"],
-  ["Node", "work", "", "openclaw --profile work node", "install --force"],
-  ["Node", "work", "demo", "openclaw --container demo node", "install --force"],
+  ["Gateway", "", "", "omnisclaw gateway", "restart"],
+  ["Node", "", "", "omnisclaw node", "install --force"],
+  ["Node", "work", "", "omnisclaw --profile work node", "install --force"],
+  ["Node", "work", "demo", "omnisclaw --container demo node", "install --force"],
 ] as const;
 const createGatewayLifecycleMutationAudit = vi.fn(
   (params: { action: string; source?: string }) => (mutation: { mode: string; pid?: number }) =>
@@ -178,7 +178,7 @@ describe("runServiceRestart token drift", () => {
         runServiceStart({
           serviceNoun: "Gateway",
           service: unsupportedService,
-          renderStartHints: () => ["openclaw gateway install"],
+          renderStartHints: () => ["omnisclaw gateway install"],
           opts: { json: true },
           onNotLoaded,
         }),
@@ -222,7 +222,7 @@ describe("runServiceRestart token drift", () => {
         runServiceRestart({
           serviceNoun: "Gateway",
           service: unsupportedService,
-          renderStartHints: () => ["openclaw gateway install"],
+          renderStartHints: () => ["omnisclaw gateway install"],
           opts: { json: true },
           onNotLoaded,
           postRestartCheck,
@@ -299,7 +299,7 @@ describe("runServiceRestart token drift", () => {
         service: { ...service, hasInstalledDefinition } as GatewayService,
         renderStartHints: () => [
           "Restart the container or the service that manages it for openclaw-demo-container.",
-          "openclaw gateway install",
+          "omnisclaw gateway install",
         ],
         opts: { json: true },
       }),
@@ -330,7 +330,7 @@ describe("runServiceRestart token drift", () => {
     service.isLoaded.mockResolvedValue(false);
     const hasInstalledDefinition = vi.fn(async () => true);
     const onNotLoaded = vi.fn(async () => null);
-    const renderStartHints = vi.fn(() => ["openclaw gateway install"]);
+    const renderStartHints = vi.fn(() => ["omnisclaw gateway install"]);
     service.restart.mockImplementationOnce(async (args?: GatewayServiceControlArgs) => {
       args?.onMutation?.({ mode: "systemctl-restart" });
       return { outcome: "completed" };
@@ -1014,7 +1014,7 @@ describe("runServiceRestart token drift", () => {
       runServiceStart({
         serviceNoun: "Gateway",
         service,
-        renderStartHints: () => ["openclaw gateway install"],
+        renderStartHints: () => ["omnisclaw gateway install"],
         opts: { json: true },
       }),
     ).rejects.toThrow("__exit__:1");
@@ -1027,10 +1027,10 @@ describe("runServiceRestart token drift", () => {
     }>();
     expect(payload.ok).toBe(false);
     expect(payload.error).toBe("Gateway service not loaded.");
-    expect(payload.hints?.includes("openclaw gateway install")).toBe(true);
+    expect(payload.hints?.includes("omnisclaw gateway install")).toBe(true);
     expect(
       payload.hintItems?.some(
-        (item) => item.kind === "install" && item.text === "openclaw gateway install",
+        (item) => item.kind === "install" && item.text === "omnisclaw gateway install",
       ),
     ).toBe(true);
     expect(service.start).not.toHaveBeenCalled();

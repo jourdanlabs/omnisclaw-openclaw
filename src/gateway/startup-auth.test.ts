@@ -465,7 +465,7 @@ describe("ensureGatewayStartupAuth", () => {
     expect(result.auth.mode).toBe("token");
     expect(result.auth.token).toBe("shared-gateway-token-1234567890");
     expect(warn).toHaveBeenCalledWith(expect.stringContaining("Security warning"));
-    expect(warn).toHaveBeenCalledWith(expect.stringContaining("openclaw security audit"));
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining("omnisclaw security audit"));
   });
 
   it("keeps startup non-breaking when hooks token reuses gateway password auth", async () => {

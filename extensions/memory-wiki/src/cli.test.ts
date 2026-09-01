@@ -919,7 +919,7 @@ cli note
     expect(failedRunId).toBeDefined();
     expect(failedRunId).not.toBe(firstRunId);
     expect(message).toContain("changed source pages, but vault compilation failed");
-    expect(message).toContain(`openclaw wiki chatgpt rollback ${failedRunId}`);
+    expect(message).toContain(`omnisclaw wiki chatgpt rollback ${failedRunId}`);
     await expect(fs.readFile(pagePath, "utf8")).resolves.not.toBe(firstContent);
 
     await fs.writeFile(reportPath, validReport, "utf8");

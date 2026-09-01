@@ -439,7 +439,7 @@ describe("gateway config methods", () => {
       expect(res.error?.code).toBe("INVALID_REQUEST");
       expect(res.error?.message ?? "").toContain("worker");
       expect(res.error?.message ?? "").toContain("agents.delete RPC");
-      expect(res.error?.message ?? "").toContain("openclaw agents delete");
+      expect(res.error?.message ?? "").toContain("omnisclaw agents delete");
       await expect(fs.readFile(original.path, "utf-8")).resolves.toBe(before);
     } finally {
       await restoreConfigFileForTest(original);

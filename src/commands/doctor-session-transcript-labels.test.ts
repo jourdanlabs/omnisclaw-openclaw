@@ -240,7 +240,7 @@ describe("doctor SQLite session transcript label migration", () => {
 
     expect(readTranscriptSnapshot(database, SESSION_ID).rows).toEqual(before.rows);
     expect(note).toHaveBeenCalledWith(
-      '- Found 1 session with legacy inbound-context labels.\n- Run "openclaw doctor --fix" to rewrite them.',
+      '- Found 1 session with legacy inbound-context labels.\n- Run "omnisclaw doctor --fix" to rewrite them.',
       "Session transcript labels",
     );
 
@@ -434,7 +434,7 @@ describe("doctor SQLite session transcript label migration", () => {
       await runTranscriptLabelHealth(state, false, cfg);
 
       expect(note).toHaveBeenCalledWith(
-        '- Found 1 session with legacy inbound-context labels.\n- Run "openclaw doctor --fix" to rewrite them.',
+        '- Found 1 session with legacy inbound-context labels.\n- Run "omnisclaw doctor --fix" to rewrite them.',
         "Session transcript labels",
       );
 

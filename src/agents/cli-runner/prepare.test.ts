@@ -1119,7 +1119,7 @@ describe("prepareCliRunContext", () => {
       provider: "anthropic",
       agentDir,
     });
-    await expect(preparation).rejects.toThrow("openclaw models auth login --provider anthropic");
+    await expect(preparation).rejects.toThrow("omnisclaw models auth login --provider anthropic");
     expect(prepareExecution).not.toHaveBeenCalled();
   });
 
@@ -4166,7 +4166,7 @@ describe("prepareCliRunContext", () => {
     }
   });
 
-  it("serves only the openclaw MCP server for ring-zero runs", async () => {
+  it("serves only the omnisclaw MCP server for ring-zero runs", async () => {
     const { dir, sessionFile, sessionTarget } = fixture.session;
     const getActiveMcpLoopbackRuntime = vi.fn(() => undefined);
     const resolveExecutionArgs = vi.fn(

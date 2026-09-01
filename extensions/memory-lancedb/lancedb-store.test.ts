@@ -102,10 +102,10 @@ describe("MemoryDB agent isolation", () => {
 
     const db = new MemoryDB(getDbPath(), 2);
     await expect(db.count("main")).rejects.toThrow(
-      'Run "openclaw doctor --fix" to assign legacy rows to the default agent',
+      'Run "omnisclaw doctor --fix" to assign legacy rows to the default agent',
     );
     await expect(db.count("main")).rejects.toThrow(
-      'Run "openclaw doctor --fix" to assign legacy rows to the default agent',
+      'Run "omnisclaw doctor --fix" to assign legacy rows to the default agent',
     );
     db.close();
   });

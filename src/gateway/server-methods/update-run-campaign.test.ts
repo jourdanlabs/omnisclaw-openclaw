@@ -46,7 +46,7 @@ const startManagedServiceUpdateHandoffMock = vi.fn<
 >(async () => ({
   status: "started" as const,
   pid: 12345,
-  command: "openclaw update --yes --timeout 1800",
+  command: "omnisclaw update --yes --timeout 1800",
   logPath: "/tmp/openclaw-update-run-handoff/handoff.log",
   handoffId: "handoff-1",
   installRoot: "/tmp/openclaw",
@@ -115,7 +115,7 @@ vi.mock("../../infra/update-channels.js", async () => {
 
 vi.mock("../../infra/update-managed-service-handoff.js", () => ({
   buildManagedServiceHandoffUnavailableMessage: () => "handoff unavailable",
-  formatManagedServiceUpdateCommand: () => "openclaw update --yes",
+  formatManagedServiceUpdateCommand: () => "omnisclaw update --yes",
   startManagedServiceUpdateHandoff: startManagedServiceUpdateHandoffMock,
 }));
 

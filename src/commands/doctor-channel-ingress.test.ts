@@ -31,7 +31,7 @@ describe("noteChannelIngressDeadLetters", () => {
         "Channel ingress",
       );
       expect(noteFn.mock.calls[0]?.[0]).toContain(
-        "openclaw channels dead-letters list --channel telegram --account ops",
+        "omnisclaw channels dead-letters list --channel telegram --account ops",
       );
     } finally {
       closeOpenClawStateDatabaseForTest();

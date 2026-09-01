@@ -17,7 +17,7 @@ import { ensureOpenClawAgentDatabaseSchema } from "../state/openclaw-agent-db.js
 const STARTUP_REFUSAL =
   "OpenClaw startup migrations did not complete cleanly; refusing to report the gateway ready.";
 const STARTUP_RECOVERY =
-  'Run "openclaw doctor --fix" against the same state/config, then restart the gateway.';
+  'Run "omnisclaw doctor --fix" against the same state/config, then restart the gateway.';
 const tempDirs = useAutoCleanupTempDirTracker(afterAll);
 const execFileAsync = promisify(execFile);
 

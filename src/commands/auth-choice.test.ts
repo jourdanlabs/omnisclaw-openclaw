@@ -795,7 +795,7 @@ describe("applyAuthChoice", () => {
           setDefaultModel: true,
         }),
       ).rejects.toThrow(
-        'Auth choice "openai-chatgpt-import" is no longer supported. Use "openai" instead, or run openclaw onboard to choose interactively.',
+        'Auth choice "openai-chatgpt-import" is no longer supported. Use "openai" instead, or run omnisclaw onboard to choose interactively.',
       );
     } finally {
       spy.mockRestore();
@@ -818,7 +818,7 @@ describe("applyAuthChoice", () => {
           setDefaultModel: true,
         }),
       ).rejects.toThrow(
-        'Auth choice "legacy\\u001b[31mchoice" is no longer supported. Use "modern\\nchoice" instead, or run openclaw onboard to choose interactively.',
+        'Auth choice "legacy\\u001b[31mchoice" is no longer supported. Use "modern\\nchoice" instead, or run omnisclaw onboard to choose interactively.',
       );
     } finally {
       spy.mockRestore();
@@ -842,7 +842,7 @@ describe("applyAuthChoice", () => {
           setDefaultModel: true,
         }),
       ).rejects.toThrow(
-        'Auth choice "modelstudio-api-key" is no longer supported. Use "qwen-api-key" instead, or run openclaw onboard to choose interactively.',
+        'Auth choice "modelstudio-api-key" is no longer supported. Use "qwen-api-key" instead, or run omnisclaw onboard to choose interactively.',
       );
     } finally {
       deprecatedChoiceSpy.mockRestore();

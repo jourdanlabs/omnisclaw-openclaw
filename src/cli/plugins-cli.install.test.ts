@@ -1204,7 +1204,7 @@ describe("plugins cli install", () => {
     ).rejects.toThrow("__exit__:1");
 
     expect(runtimeErrors.at(-1)).toContain("--link is not supported with --marketplace.");
-    expect(runtimeErrors.at(-1)).toContain("openclaw plugins install --link <path> --force");
+    expect(runtimeErrors.at(-1)).toContain("omnisclaw plugins install --link <path> --force");
     expect(installPluginFromMarketplaceMock).not.toHaveBeenCalled();
   });
 
@@ -1267,7 +1267,7 @@ describe("plugins cli install", () => {
     ).rejects.toThrow("__exit__:1");
 
     expect(runtimeErrors.at(-1)).toContain(
-      "Config invalid; run `openclaw doctor --fix` before installing plugins.",
+      "Config invalid; run `omnisclaw doctor --fix` before installing plugins.",
     );
     expect(installPluginFromMarketplaceMock).not.toHaveBeenCalled();
     expect(installPluginFromNpmSpecMock).not.toHaveBeenCalled();
@@ -2513,7 +2513,7 @@ describe("plugins cli install", () => {
     ).rejects.toThrow("__exit__:1");
 
     expect(installPluginFromGitSpecMock).not.toHaveBeenCalled();
-    expect(runtimeErrors.at(-1)).toContain("openclaw plugins install git:<repo>@<ref> --force");
+    expect(runtimeErrors.at(-1)).toContain("omnisclaw plugins install git:<repo>@<ref> --force");
   });
 
   it("passes dangerous force unsafe install to marketplace installs", async () => {
@@ -2709,7 +2709,7 @@ describe("plugins cli install", () => {
     ).rejects.toThrow("__exit__:1");
 
     expect(runtimeErrors.at(-1)).toContain(
-      "Use `openclaw plugins update <id-or-npm-spec>` to upgrade the tracked plugin, or rerun install with `--force` to replace it.",
+      "Use `omnisclaw plugins update <id-or-npm-spec>` to upgrade the tracked plugin, or rerun install with `--force` to replace it.",
     );
     expect(runtimeErrors.at(-1)).not.toContain("Also not a valid hook pack");
   });
@@ -2942,7 +2942,7 @@ describe("plugins cli install", () => {
     parseClawHubPluginSpecMock.mockReturnValue({ name: "demo" });
     installPluginFromClawHubMock.mockResolvedValue({
       ok: false,
-      error: 'Use "openclaw skills install demo" instead.',
+      error: 'Use "omnisclaw skills install demo" instead.',
       code: "skill_package",
     });
 
@@ -2951,7 +2951,7 @@ describe("plugins cli install", () => {
     );
 
     expect(installPluginFromNpmSpecMock).not.toHaveBeenCalled();
-    expect(runtimeErrors.at(-1)).toContain('Use "openclaw skills install demo" instead.');
+    expect(runtimeErrors.at(-1)).toContain('Use "omnisclaw skills install demo" instead.');
   });
 
   it("falls back to installing hook packs from npm specs", async () => {

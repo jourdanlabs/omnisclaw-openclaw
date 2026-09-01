@@ -41,19 +41,19 @@ export const legacyConfigRules: LegacyConfigRule[] = [
   {
     path: ["plugins", "entries", "codex", "config"],
     message:
-      'plugins.entries.codex.config.codexDynamicToolsProfile is retired; Codex app-server always keeps Codex-native workspace tools native. Run "openclaw doctor --fix".',
+      'plugins.entries.codex.config.codexDynamicToolsProfile is retired; Codex app-server always keeps Codex-native workspace tools native. Run "omnisclaw doctor --fix".',
     match: hasRetiredDynamicToolsProfile,
   },
   {
     path: ["plugins", "entries", "codex", "config", "codexPlugins"],
     message:
-      'plugins.entries.codex.config.codexPlugins.allow_destructive_actions="on-request" was renamed to "auto". Run "openclaw doctor --fix".',
+      'plugins.entries.codex.config.codexPlugins.allow_destructive_actions="on-request" was renamed to "auto". Run "omnisclaw doctor --fix".',
     match: hasLegacyPluginDestructivePolicy,
   },
   {
     path: ["plugins", "entries", "codex", "config", "appServer"],
     message:
-      'plugins.entries.codex.config.appServer.approvalPolicy values "on-failure" and "untrusted" are retired; use "on-request". Run "openclaw doctor --fix".',
+      'plugins.entries.codex.config.appServer.approvalPolicy values "on-failure" and "untrusted" are retired; use "on-request". Run "omnisclaw doctor --fix".',
     match: hasRetiredApprovalPolicy,
   },
 ];

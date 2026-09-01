@@ -228,7 +228,7 @@ describe("qa suite runtime agent process helpers", () => {
       const error = await errorPromise;
       expect(error).toMatchObject({ code: "qa_cli_timeout" });
       const message = error instanceof Error ? error.message : String(error);
-      expect(message).toContain("qa cli timed out: openclaw qa suite");
+      expect(message).toContain("qa cli timed out: omnisclaw qa suite");
       expect(message).toContain("stdout:\n[qa cli stdout truncated to last");
       expect(message).toContain("stdout-tail-marker");
       expect(message).not.toContain("stdout-head-marker");
@@ -295,7 +295,7 @@ describe("qa suite runtime agent process helpers", () => {
           options: { timeoutMs: 1 },
         });
         const timeoutAssertion = expect(pending).rejects.toThrow(
-          "qa cli timed out: openclaw qa suite",
+          "qa cli timed out: omnisclaw qa suite",
         );
 
         await waitForSpawnCount(1);

@@ -114,7 +114,7 @@ async function readRequestLog(baseUrl: string): Promise<string[]> {
   return body.requests;
 }
 
-describe("openclaw plugins search ClawHub E2E", () => {
+describe("omnisclaw plugins search ClawHub E2E", () => {
   it("keeps plugin discovery separate from skills and surfaces empty and failed lookups", async () => {
     const { baseUrl, root } = await startFixtureServer();
     process.env.OPENCLAW_CLAWHUB_URL = baseUrl;
@@ -130,7 +130,7 @@ describe("openclaw plugins search ClawHub E2E", () => {
       terminalOutput.split("\n").filter((line) => line.startsWith("@acme/calendar  ")),
     ).toHaveLength(1);
     expect(terminalOutput).toContain("bundle-plugin | official | v3.0.0");
-    expect(terminalOutput).toContain("Install: openclaw plugins install clawhub:@acme/calendar");
+    expect(terminalOutput).toContain("Install: omnisclaw plugins install clawhub:@acme/calendar");
     expect(terminalOutput).not.toContain("calendar-skill");
 
     const json = createRuntime();

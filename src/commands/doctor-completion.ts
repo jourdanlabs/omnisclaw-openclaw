@@ -3,6 +3,7 @@ import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { note } from "../../packages/terminal-core/src/note.js";
 import { resolveCliName } from "../cli/cli-name.js";
+import { formatCliCommand } from "../cli/command-format.js";
 import {
   completionCacheExists,
   COMPLETION_SKIP_PLUGIN_COMMANDS_ENV,
@@ -98,7 +99,7 @@ export type ShellCompletionStatus = {
   profileInstalled: boolean;
   cacheExists: boolean;
   cachePath: string;
-  /** True if profile uses slow dynamic pattern like `source <(openclaw completion ...)` */
+  /** True if profile uses slow dynamic pattern like `source <(omnisclaw completion ...)` */
   usesSlowPattern: boolean;
 };
 
@@ -135,7 +136,7 @@ export function shellCompletionStatusToHealthFindings(
         severity: "info",
         message: `Your ${status.shell} profile uses slow dynamic completion (source <(...)).`,
         path: pathLocal,
-        fixHint: "Run `openclaw doctor --fix` to upgrade to cached completion.",
+        fixHint: `Run \`${formatCliCommand("openclaw doctor --fix")}\` to upgrade to cached completion.`,
       },
     ];
   }
@@ -146,7 +147,7 @@ export function shellCompletionStatusToHealthFindings(
         severity: "info",
         message: `Shell completion is configured in your ${status.shell} profile but the cache is missing.`,
         path: pathLocal,
-        fixHint: `Run \`openclaw completion --write-state\` or \`openclaw doctor --fix\` to regenerate ${status.cachePath}.`,
+        fixHint: `Run \`${formatCliCommand("openclaw completion --write-state")}\` or \`${formatCliCommand("openclaw doctor --fix")}\` to regenerate ${status.cachePath}.`,
       },
     ];
   }

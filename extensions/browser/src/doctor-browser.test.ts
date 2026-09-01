@@ -167,7 +167,7 @@ describe("browser doctor readiness", () => {
     expect(note).toContain("Legacy managed browser profile residue");
     expect(note).toContain("/tmp/openclaw-home/browser/clawd");
     expect(note).toContain("/tmp/openclaw-home/browser/openclaw/user-data");
-    expect(note).toContain("openclaw doctor --fix");
+    expect(note).toContain("omnisclaw doctor --fix");
   });
 
   it("does not warn when clawd is still configured as a browser profile", async () => {

@@ -1,6 +1,7 @@
 // Formats update-restart sentinel state for status reports.
 // The sentinel is written by update flows; status only turns it into operator-facing hints.
 
+import { formatCliCommand } from "../cli/command-format.js";
 import type { RestartSentinelPayload } from "../infra/restart-sentinel.js";
 import {
   CONTROL_PLANE_UPDATE_HANDOFF_STARTED_REASON,
@@ -45,18 +46,22 @@ export function formatUpdateRestartStatusValue(
 
   if (payload.status === "error") {
     return warn(
-      `failed · ${reason ?? "restart failed"} · run openclaw gateway status --deep${age}`,
+      `failed · ${reason ?? "restart failed"} · run ${formatCliCommand("openclaw gateway status --deep")}${age}`,
     );
   }
 
   if (payload.status === "skipped") {
     if (reason === CONTROL_PLANE_UPDATE_HANDOFF_STARTED_REASON) {
       // Handoff already started in the control plane; gateway restart should not be duplicated.
-      return warn(`handoff running · gateway restart pending · run openclaw update status${age}`);
+      return warn(
+        `handoff running · gateway restart pending · run ${formatCliCommand("openclaw update status")}${age}`,
+      );
     }
     if (reason === CONTROL_PLANE_UPDATE_RESTART_HEALTH_PENDING_REASON) {
       // Restart completed enough to defer, but health proof still needs a deep gateway check.
-      return warn(`restart pending health verification · run openclaw gateway status --deep${age}`);
+      return warn(
+        `restart pending health verification · run ${formatCliCommand("openclaw gateway status --deep")}${age}`,
+      );
     }
     return muted(`skipped · ${reason ?? "restart skipped"}${age}`);
   }
@@ -74,8 +79,8 @@ export function formatUpdateRestartActionLines(
   }
   if (payload.status === "error") {
     return [
-      "Update restart failed; run openclaw gateway status --deep.",
-      "If the service is down, run openclaw gateway restart or openclaw gateway install --force.",
+      `Update restart failed; run ${formatCliCommand("openclaw gateway status --deep")}.`,
+      `If the service is down, run ${formatCliCommand("openclaw gateway restart")} or ${formatCliCommand("openclaw gateway install --force")}.`,
     ];
   }
   const reason = readReason(payload);
@@ -85,8 +90,8 @@ export function formatUpdateRestartActionLines(
       reason === CONTROL_PLANE_UPDATE_RESTART_HEALTH_PENDING_REASON)
   ) {
     return [
-      "Update restart is still pending; run openclaw update status --json for handoff state.",
-      "If it stays pending, run openclaw gateway status --deep.",
+      `Update restart is still pending; run ${formatCliCommand("openclaw update status --json")} for handoff state.`,
+      `If it stays pending, run ${formatCliCommand("openclaw gateway status --deep")}.`,
     ];
   }
   return [];

@@ -720,7 +720,7 @@ describe("runBeforeToolCallHook — embedded mode approvals", () => {
       kind: "veto",
       deniedReason: "plugin-approval",
       reason:
-        "The Skill Workshop approval request expired without a decision. This lifecycle call left the proposal unchanged and pending; check its current status in case another operator acted on it. Decide in the Skill Workshop UI or run `openclaw skills workshop apply|reject|quarantine <id>`. Do not retry this tool call in a loop.",
+        "The Skill Workshop approval request expired without a decision. This lifecycle call left the proposal unchanged and pending; check its current status in case another operator acted on it. Decide in the Skill Workshop UI or run `omnisclaw skills workshop apply|reject|quarantine <id>`. Do not retry this tool call in a loop.",
     });
   });
 

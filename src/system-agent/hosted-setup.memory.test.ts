@@ -41,7 +41,7 @@ describe("SystemAgentChatEngine memory", () => {
     const reply = await engine.handle("memory import");
 
     expect(reply.text).toContain("default agent workspace does not exist");
-    expect(reply.text).toContain("Finish onboarding first with `openclaw onboard`");
+    expect(reply.text).toContain("Finish onboarding first with `omnisclaw onboard`");
     expect(mocks.runSetupMemoryImportStep).not.toHaveBeenCalled();
     expect(mocks.writeWizardConfigFile).not.toHaveBeenCalled();
   });

@@ -914,7 +914,7 @@ describe("gatherDaemonStatus", () => {
     expect(status.service.loaded).toBeNull();
     expect(status.service.runtime).toEqual({
       status: "unknown",
-      detail: "service runtime inspection failed; retry with openclaw gateway status --deep",
+      detail: "service runtime inspection failed; retry with omnisclaw gateway status --deep",
       inspectionFailure: {
         code: "service-runtime-inspection-failed",
         detail: "錯誤: 系統找不到指定的檔案。",
@@ -938,7 +938,7 @@ describe("gatherDaemonStatus", () => {
           },
           runtime: {
             status: "unknown",
-            detail: "service runtime inspection failed; retry with openclaw gateway status --deep",
+            detail: "service runtime inspection failed; retry with omnisclaw gateway status --deep",
             inspectionFailure: {
               code: "service-runtime-inspection-failed",
               detail: "錯誤: 系統找不到指定的檔案。",
@@ -958,7 +958,7 @@ describe("gatherDaemonStatus", () => {
       expect(output).toContain("Service: LaunchAgent (unknown)");
       expect(output).not.toContain("Service: LaunchAgent (not loaded)");
       expect(output).toContain(
-        "Runtime: unknown (service runtime inspection failed; retry with openclaw gateway status --deep)",
+        "Runtime: unknown (service runtime inspection failed; retry with omnisclaw gateway status --deep)",
       );
       expect(output).not.toContain("系統找不到指定的檔案");
     } finally {
@@ -1570,7 +1570,7 @@ describe("gatherDaemonStatus", () => {
           {
             port: 19001,
             status: "busy",
-            listeners: [{ pid: 8000, ppid: 1, commandLine: "openclaw gateway" }],
+            listeners: [{ pid: 8000, ppid: 1, commandLine: "omnisclaw gateway" }],
             hints: [],
           },
         ],

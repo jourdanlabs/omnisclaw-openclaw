@@ -12,7 +12,7 @@ export function buildPairingReply(params: {
   const { channel, idLine, code } = params;
   const approveCommand = formatCliCommand(`openclaw pairing approve ${channel} ${code}`);
   return [
-    "OpenClaw: access not configured.",
+    "OMNIS CLAW: access not configured.",
     "",
     idLine,
     "Pairing code:",

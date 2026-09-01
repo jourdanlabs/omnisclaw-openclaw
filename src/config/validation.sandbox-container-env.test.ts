@@ -72,7 +72,7 @@ describe("sandbox container environment config validation", () => {
       expect(issue.message).toContain("single-line");
       expect(issue.message).toContain("NUL");
       expect(issue.message).toContain("line-delimited");
-      expect(issue.message).toContain("openclaw doctor");
+      expect(issue.message).toContain("omnisclaw doctor");
       expect(issue.message).toContain("manual remediation");
       expect(issue.message).toContain("SSH/OpenShell");
       expect(issue.message).not.toContain("doctor --fix");

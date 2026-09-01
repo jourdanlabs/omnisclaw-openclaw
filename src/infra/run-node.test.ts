@@ -1309,7 +1309,7 @@ describe("run-node script", () => {
     expect(fsSync.existsSync(path.join(tmp, ".artifacts", "run-node-build.lock"))).toBe(false);
   });
 
-  it("forwards wrapper SIGTERM to the active openclaw child and returns 143", async ({ tmp }) => {
+  it("forwards wrapper SIGTERM to the active omnisclaw child and returns 143", async ({ tmp }) => {
     await setupStampedProject(tmp, { oldPaths: [ROOT_SRC, ROOT_TSCONFIG, ROOT_PACKAGE] });
 
     const fakeProcess = Object.assign(createFakeProcess(), {
@@ -1367,7 +1367,7 @@ describe("run-node script", () => {
   });
 
   it.runIf(process.platform !== "win32")(
-    "force-cleans the active openclaw child process group after forwarded SIGTERM",
+    "force-cleans the active omnisclaw child process group after forwarded SIGTERM",
     async ({ tmp }) => {
       await setupStampedProject(tmp, { oldPaths: [ROOT_SRC, ROOT_TSCONFIG, ROOT_PACKAGE] });
 

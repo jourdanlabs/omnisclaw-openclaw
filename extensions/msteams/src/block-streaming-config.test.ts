@@ -42,7 +42,7 @@ describe("MSTeamsConfigSchema block streaming", () => {
     expect(result.success).toBe(false);
   });
 
-  // Legacy flat keys are doctor-migrated (`openclaw doctor --fix`), not
+  // Legacy flat keys are doctor-migrated (`omnisclaw doctor --fix`), not
   // schema-accepted; runtime consumes only the nested streaming shape.
   it.each(["blockStreaming", "chunkMode", "blockStreamingCoalesce"])(
     "rejects legacy flat %s",

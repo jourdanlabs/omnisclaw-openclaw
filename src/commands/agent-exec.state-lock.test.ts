@@ -88,7 +88,7 @@ describe("agent exec retained-state ownership", () => {
       expect(result.exitCode).toBe(1);
       expect(runAgent).not.toHaveBeenCalled();
       expect(error).toHaveBeenCalledWith(
-        `A Gateway is running for this state directory (pid ${process.pid}, port 28789). Omit --state-dir to use isolated temporary state, or stop the Gateway first (openclaw gateway stop).`,
+        `A Gateway is running for this state directory (pid ${process.pid}, port 28789). Omit --state-dir to use isolated temporary state, or stop the Gateway first (omnisclaw gateway stop).`,
       );
     } finally {
       await gatewayLock.release();

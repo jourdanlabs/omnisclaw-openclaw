@@ -326,7 +326,7 @@ describe("buildAuthHealthSummary", () => {
         "zai:default": {
           type: "api_key" as const,
           provider: "zai",
-          key: "openclaw onboard --auth-choice zai-coding-global",
+          key: "omnisclaw onboard --auth-choice zai-coding-global",
         },
       },
     };

@@ -368,7 +368,7 @@ describe("bridgeCodexAppServerStartOptions", () => {
         ).rejects.toMatchObject({
           name: "AgentHarnessPreflightError",
           message: expect.stringContaining(
-            "openclaw migrate apply codex --from <codex-home> --agent research --include-secrets --item auth:openai --yes",
+            "omnisclaw migrate apply codex --from <codex-home> --agent research --include-secrets --item auth:openai --yes",
           ),
         });
       });
@@ -2671,7 +2671,7 @@ describe("bridgeCodexAppServerStartOptions", () => {
           authProfileId: "anthropic:work",
         }),
       ).rejects.toThrow(
-        'Codex app-server auth profile "anthropic:work" must use the canonical OpenAI auth provider; run "openclaw doctor --fix" to migrate legacy provider IDs.',
+        'Codex app-server auth profile "anthropic:work" must use the canonical OpenAI auth provider; run "omnisclaw doctor --fix" to migrate legacy provider IDs.',
       );
       expect(oauthMocks.refreshOpenAICodexToken).not.toHaveBeenCalled();
       expect(request).not.toHaveBeenCalled();
@@ -3166,7 +3166,7 @@ describe("bridgeCodexAppServerStartOptions", () => {
             authProfileId: "openai:work",
           }),
         ).rejects.toThrow(
-          'Codex app-server auth profile "openai:work" must use the canonical OpenAI auth provider; run "openclaw doctor --fix" to migrate legacy provider IDs.',
+          'Codex app-server auth profile "openai:work" must use the canonical OpenAI auth provider; run "omnisclaw doctor --fix" to migrate legacy provider IDs.',
         );
         await expect(
           resolveCodexAppServerAuthAccountCacheKey({
@@ -3474,7 +3474,7 @@ describe("bridgeCodexAppServerStartOptions", () => {
             authProfileId: "openai:work",
           }),
         ).rejects.toThrow(
-          'Codex app-server auth profile "openai:work" must use the canonical OpenAI auth provider; run "openclaw doctor --fix" to migrate legacy provider IDs.',
+          'Codex app-server auth profile "openai:work" must use the canonical OpenAI auth provider; run "omnisclaw doctor --fix" to migrate legacy provider IDs.',
         );
         expect(oauthMocks.refreshOpenAICodexToken).not.toHaveBeenCalled();
         expect(

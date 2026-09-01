@@ -59,7 +59,7 @@ const startManagedServiceUpdateHandoffMock = vi.fn<
 >(async (params) => ({
   status: "started",
   pid: 12345,
-  command: "openclaw update --yes --timeout 1800",
+  command: "omnisclaw update --yes --timeout 1800",
   logPath: "/tmp/openclaw-update-run-handoff/handoff.log",
   handoffId: params?.handoffId ?? "handoff-default",
   installRoot: params?.root ?? "/tmp/openclaw",
@@ -286,7 +286,7 @@ beforeEach(() => {
     async (params?: { handoffId?: string; root?: string }) => ({
       status: "started" as const,
       pid: 12345,
-      command: "openclaw update --yes --timeout 1800",
+      command: "omnisclaw update --yes --timeout 1800",
       logPath: "/tmp/openclaw-update-run-handoff/handoff.log",
       handoffId: params?.handoffId ?? "handoff-default",
       installRoot: params?.root ?? "/tmp/openclaw",
@@ -568,7 +568,7 @@ describe("update.run restart scheduling", () => {
     ).toEqual({
       status: "started",
       pid: 12345,
-      command: "openclaw update --yes --timeout 1800",
+      command: "omnisclaw update --yes --timeout 1800",
     });
     expect(payload?.sentinel?.persisted).toBe(true);
     const sentinel = readCapturedPayload();
@@ -597,7 +597,7 @@ describe("update.run restart scheduling", () => {
     startManagedServiceUpdateHandoffMock.mockResolvedValueOnce({
       status: "joined",
       pid: 12345,
-      command: "openclaw update --yes --timeout 1800",
+      command: "omnisclaw update --yes --timeout 1800",
       logPath: "/tmp/openclaw-update-run-handoff/handoff.log",
       handoffId: "handoff-existing",
     });
@@ -627,7 +627,7 @@ describe("update.run restart scheduling", () => {
     });
     expect(payload?.handoff).toEqual({
       status: "already-running",
-      command: "openclaw update --yes --timeout 1800",
+      command: "omnisclaw update --yes --timeout 1800",
       message: "Another managed update is already running; retry after it completes.",
     });
     expect(payload?.sentinel?.persisted).toBe(false);
@@ -769,7 +769,7 @@ describe("update.run restart scheduling", () => {
     expect(payload?.handoff).toEqual({
       status: "started",
       pid: 12345,
-      command: "openclaw update --yes --timeout 1800",
+      command: "omnisclaw update --yes --timeout 1800",
     });
     expect(readCapturedPayload().status).toBe("skipped");
   });
@@ -785,7 +785,7 @@ describe("update.run restart scheduling", () => {
       steps: [
         {
           name: "preflight config validate (target)",
-          command: "openclaw config validate --json",
+          command: "omnisclaw config validate --json",
           cwd: "/tmp/openclaw-candidate",
           durationMs: 1,
           exitCode: 1,
@@ -970,10 +970,10 @@ describe("update.run restart scheduling", () => {
     expect(payload?.result?.reason).toBe("managed-service-handoff-unavailable");
     expect(payload?.handoff).toEqual({
       status: "unavailable",
-      command: "openclaw update --yes --timeout 1800",
+      command: "omnisclaw update --yes --timeout 1800",
       message:
         "OpenClaw updates cannot safely run inside the live gateway process without a managed-service handoff.\n" +
-        "Run `openclaw update --yes --timeout 1800` from a shell outside the gateway service, or restart/update from the host UI.",
+        "Run `omnisclaw update --yes --timeout 1800` from a shell outside the gateway service, or restart/update from the host UI.",
     });
   });
 

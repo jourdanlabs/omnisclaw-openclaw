@@ -793,7 +793,7 @@ describe("secrets audit", () => {
     expect(report.filesScanned).not.toContain(resolveAuthProfileDatabasePath(ambientAgentDir));
   });
 
-  it("exempts direct routing headers but audits request headers in openclaw config", async () => {
+  it("exempts direct routing headers but audits request headers in omnisclaw config", async () => {
     await writeJsonFile(fixture.configPath, {
       models: {
         providers: {

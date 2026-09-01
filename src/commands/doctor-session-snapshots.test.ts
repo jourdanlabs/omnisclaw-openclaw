@@ -224,7 +224,7 @@ describe("doctor session snapshot stale runtime metadata", () => {
       path: storePath,
       target: stalePath,
       requirement: expect.stringContaining(bundledSkillsDir),
-      fixHint: expect.stringContaining("openclaw doctor --fix"),
+      fixHint: expect.stringContaining("omnisclaw doctor --fix"),
     });
     expect(sessionSnapshotIssueToRepairEffect(issue)).toEqual({
       kind: "file",

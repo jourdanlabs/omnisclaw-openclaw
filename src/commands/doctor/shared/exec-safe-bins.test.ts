@@ -59,14 +59,14 @@ describe("doctor exec safe bin helpers", () => {
           isInterpreter: false,
         },
       ],
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings).toEqual([
       "- tools.exec.safeBins includes interpreter/runtime 'node' without profile.",
       "- tools.exec.safeBins entry 'myfilter' is missing safeBinProfiles.myfilter.",
       "- agents.list.runner.tools.exec.safeBins includes 'jq': jq can read environment data and load jq code from modules or startup files, so prefer explicit allowlist entries or approval-gated runs instead of safeBins.",
-      '- Run "openclaw doctor --fix" to scaffold missing custom safeBinProfiles entries.',
+      '- Run "omnisclaw doctor --fix" to scaffold missing custom safeBinProfiles entries.',
     ]);
   });
 
@@ -81,7 +81,7 @@ describe("doctor exec safe bin helpers", () => {
             "jq can read environment data and load jq code from modules or startup files, so prefer explicit allowlist entries or approval-gated runs instead of safeBins.",
         },
       ],
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     });
 
     expect(warnings).toEqual([

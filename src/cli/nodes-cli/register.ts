@@ -25,14 +25,14 @@ export async function registerNodesCli(program: Command, argv: readonly string[]
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw nodes status", "List known nodes with live status."],
-          ["openclaw nodes pending", "Show pending node pairing requests."],
-          ["openclaw nodes remove --node <id|name|ip>", "Remove a stale paired node entry."],
+          ["omnisclaw nodes status", "List known nodes with live status."],
+          ["omnisclaw nodes pending", "Show pending node pairing requests."],
+          ["omnisclaw nodes remove --node <id|name|ip>", "Remove a stale paired node entry."],
           [
-            'openclaw nodes invoke --node <id> --command system.which --params \'{"bins":["uname"]}\'',
+            'omnisclaw nodes invoke --node <id> --command system.which --params \'{"bins":["uname"]}\'',
             "Invoke a node command directly.",
           ],
-          ["openclaw nodes camera snap --node <id>", "Capture a photo from a node camera."],
+          ["omnisclaw nodes camera snap --node <id>", "Capture a photo from a node camera."],
         ])}\n\n${theme.muted("Docs:")} ${formatDocsLink("/cli/nodes", "docs.openclaw.ai/cli/nodes")}\n`,
     );
 
@@ -73,7 +73,7 @@ function shouldRegisterNodesPluginCommands(nodes: Command, argv: readonly string
   }
   const requestedSubcommand = commandPath[1];
   if (!requestedSubcommand) {
-    // Bare `openclaw nodes` listing should still surface plugin-provided subcommands.
+    // Bare `omnisclaw nodes` listing should still surface plugin-provided subcommands.
     return true;
   }
   const builtInSubcommands = new Set(nodes.commands.map((command) => command.name()));

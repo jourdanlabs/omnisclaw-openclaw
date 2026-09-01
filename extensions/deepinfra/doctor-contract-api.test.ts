@@ -22,7 +22,7 @@ describe("DeepInfra doctor contract", () => {
   it("flags legacy nativeBaseUrl and /v1/inference baseUrl values", () => {
     const nativeRule = legacyConfigRules.find((rule) => rule.path.at(-1) === "nativeBaseUrl");
     const baseUrlRule = legacyConfigRules.find((rule) => rule.path.at(-1) === "baseUrl");
-    expect(nativeRule?.message).toContain("openclaw doctor --fix");
+    expect(nativeRule?.message).toContain("omnisclaw doctor --fix");
     expect(baseUrlRule?.match?.("https://api.deepinfra.com/v1/inference")).toBe(true);
     expect(baseUrlRule?.match?.("https://api.deepinfra.com/v1/openai")).toBe(false);
   });

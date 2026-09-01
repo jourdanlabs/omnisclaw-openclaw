@@ -113,7 +113,7 @@ describe("restart log conventions", () => {
     );
 
     const line = fs.readFileSync(path.join(stateDir, "logs", "gateway-restart.log"), "utf8");
-    expect(line).toMatch(/^\[[^\]]+\] openclaw gateway lifecycle /);
+    expect(line).toMatch(/^\[[^\]]+\] omnisclaw gateway lifecycle /);
     expect(line).toContain("source=safe-rpc");
     expect(line).toContain("action=restart");
     expect(line).toContain("mode=deferred");

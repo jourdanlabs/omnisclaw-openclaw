@@ -27,7 +27,7 @@ export const legacyConfigRules = [
   {
     path: RETIRED_QMD_CONFIG_PATH,
     message:
-      'plugins.entries.active-memory.config.qmd is retired because the QMD memory backend was removed. Run "openclaw doctor --fix".',
+      'plugins.entries.active-memory.config.qmd is retired because the QMD memory backend was removed. Run "omnisclaw doctor --fix".',
   },
 ];
 

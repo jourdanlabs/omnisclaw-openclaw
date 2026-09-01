@@ -1,4 +1,4 @@
-// `openclaw update status`: combines install metadata, configured channel, and remote update checks.
+// `omnisclaw update status`: combines install metadata, configured channel, and remote update checks.
 import { getTerminalTableWidth, renderTable } from "../../../packages/terminal-core/src/table.js";
 import { theme } from "../../../packages/terminal-core/src/theme.js";
 import {

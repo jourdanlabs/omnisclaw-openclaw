@@ -123,7 +123,7 @@ describe("scheduled backups", () => {
     [
       "unknown",
       "nope-agent",
-      'Unknown agent id "nope-agent". Run openclaw agents list to see configured agents.',
+      'Unknown agent id "nope-agent". Run omnisclaw agents list to see configured agents.',
     ],
     ["empty", "", "--agent must not be blank"],
     ["whitespace-only", "   ", "--agent must not be blank"],
@@ -245,7 +245,7 @@ describe("scheduled backups", () => {
     gatewayRpc.isImplicitLocalTarget.mockResolvedValue(false);
     const runtime = createTestRuntime();
     const expected =
-      "backup enable manages backups on the Gateway host and currently requires a local Gateway. Create the cron job manually with openclaw cron add for remote Gateways.";
+      "backup enable manages backups on the Gateway host and currently requires a local Gateway. Create the cron job manually with omnisclaw cron add for remote Gateways.";
 
     await expect(
       backupEnableCommand(runtime, {

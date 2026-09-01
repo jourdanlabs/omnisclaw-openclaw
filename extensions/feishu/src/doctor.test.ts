@@ -277,7 +277,7 @@ describe("Feishu doctor state repair", () => {
     expect(result.changeNotes).toEqual([]);
     expect(result.warningNotes.join("\n")).toContain("Feishu local channel state may need repair");
     expect(result.warningNotes.join("\n")).toContain("preserving Feishu App ID/secret config");
-    expect(result.warningNotes.join("\n")).toContain("openclaw doctor --fix");
+    expect(result.warningNotes.join("\n")).toContain("omnisclaw doctor --fix");
   });
 
   it("rebuilds corrupt Feishu state without deleting healthy Feishu sessions", async () => {

@@ -9,7 +9,7 @@ import { buildProviderAuthDoctorHintWithPlugin } from "../../plugins/provider-ru
 import type { AuthProfileStore } from "./types.js";
 
 const QWEN_PORTAL_OAUTH_MIGRATION_HINT =
-  "Legacy Qwen Portal OAuth profiles are not refreshable. Re-authenticate with a current Qwen API key: openclaw onboard --auth-choice qwen-api-key.";
+  "Legacy Qwen Portal OAuth profiles are not refreshable. Re-authenticate with a current Qwen API key: omnisclaw onboard --auth-choice qwen-api-key.";
 
 // Qwen Portal OAuth changed credential behavior; old profiles need an explicit
 // local hint before falling back to provider plugin doctor hints.

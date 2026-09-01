@@ -81,7 +81,7 @@ describe("doctor database schema preflight", () => {
     expect((failure as Error).message).toMatch(/file is not a database/iu);
     expect((failure as Error).message).toContain("left unchanged");
     expect((failure as Error).message).toContain("restore this file from a verified backup");
-    expect((failure as Error).message).toContain("openclaw doctor --fix");
+    expect((failure as Error).message).toContain("omnisclaw doctor --fix");
     expect((failure as Error).message).toContain(
       "https://docs.openclaw.ai/reference/database-schemas",
     );

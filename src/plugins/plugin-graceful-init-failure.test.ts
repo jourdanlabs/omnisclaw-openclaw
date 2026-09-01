@@ -266,7 +266,7 @@ describe("graceful plugin initialization failure", () => {
     const summary = requireWarning(warnings, "failed to initialize");
     expect(summary).toContain("register: warn-register");
     expect(summary).toContain("validation: warn-validation");
-    expect(summary).toContain("openclaw plugins inspect <id> --runtime --json");
-    expect(summary).toContain("openclaw plugins list");
+    expect(summary).toContain("omnisclaw plugins inspect <id> --runtime --json");
+    expect(summary).toContain("omnisclaw plugins list");
   });
 });

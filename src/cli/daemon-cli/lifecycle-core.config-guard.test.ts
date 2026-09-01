@@ -12,12 +12,12 @@ import {
 const readConfigFileSnapshotMock = vi.fn();
 const loadConfig = vi.fn(() => ({}));
 const newerConfigHints = [
-  "Run the newer openclaw binary on PATH, or reinstall the intended gateway service from the newer install.",
+  "Run the newer omnisclaw binary on PATH, or reinstall the intended gateway service from the newer install.",
   "Set OPENCLAW_ALLOW_OLDER_BINARY_DESTRUCTIVE_ACTIONS=1 only for an intentional downgrade or recovery action.",
 ];
 const newerConfigHintItems = newerConfigHints.map((text) => ({ kind: "generic", text }));
 const invalidConfigRecoveryHint = [
-  'Run "openclaw doctor --fix" to repair, then retry.',
+  'Run "omnisclaw doctor --fix" to repair, then retry.',
   "If startup is still blocked, inspect the adjacent .bak backup before restoring it manually.",
 ].join("\n");
 const pluginPackagingRecoveryHints = [

@@ -433,7 +433,7 @@ describe("buildGatewayInstallPlan", () => {
     );
   });
 
-  it("adds the active openclaw command bin directory to the managed service PATH", async () => {
+  it("adds the active omnisclaw command bin directory to the managed service PATH", async () => {
     mockNodeGatewayPlanFixture();
     const originalArgv = process.argv;
     const openclawBinPath = path.join(isolatedHome, ".npm-global", "bin", "openclaw");
@@ -2441,7 +2441,7 @@ describe("gatewayInstallErrorHint", () => {
     expect(gatewayInstallErrorHint("win32")).toContain("Startup-folder login item");
     expect(gatewayInstallErrorHint("win32")).toContain("elevated PowerShell");
     expect(gatewayInstallErrorHint("linux")).toMatch(
-      /(?:openclaw|openclaw)( --profile isolated)? gateway install/,
+      /(?:omnisclaw|openclaw)( --profile isolated)? gateway install/,
     );
   });
 });

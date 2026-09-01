@@ -61,13 +61,13 @@ describe("skills-cli", () => {
         name: "named profile",
         profile: "work",
         container: "",
-        prefix: "openclaw --profile work",
+        prefix: "omnisclaw --profile work",
       },
       {
         name: "managed container",
         profile: "",
         container: "demo",
-        prefix: "openclaw --container demo",
+        prefix: "omnisclaw --container demo",
       },
       {
         name: "default profile",
@@ -105,8 +105,8 @@ describe("skills-cli", () => {
       for (const output of outputs) {
         expect(() => JSON.parse(output)).not.toThrow();
         expect(output).not.toContain("Tip:");
-        expect(output).not.toContain("openclaw --profile");
-        expect(output).not.toContain("openclaw --container");
+        expect(output).not.toContain("omnisclaw --profile");
+        expect(output).not.toContain("omnisclaw --container");
       }
     });
   });
@@ -116,7 +116,7 @@ describe("skills-cli", () => {
       const report = createMockReport([]);
       const output = formatSkillsList(report, {});
       expect(output).toContain("No skills found");
-      expect(output).toContain("openclaw skills search");
+      expect(output).toContain("omnisclaw skills search");
     });
 
     it("formats skills list with eligible skill", () => {
@@ -213,7 +213,7 @@ describe("skills-cli", () => {
       const report = createMockReport([]);
       const output = formatSkillInfo(report, "unknown-skill", {});
       expect(output).toContain("not found");
-      expect(output).toContain("openclaw skills install");
+      expect(output).toContain("omnisclaw skills install");
     });
 
     it("shows detailed info for a skill", () => {
@@ -346,7 +346,7 @@ describe("skills-cli", () => {
       expect(output).toContain("ready-2");
       expect(output).toContain("not-ready");
       expect(output).toContain("go"); // missing binary
-      expect(output).toContain("openclaw skills update");
+      expect(output).toContain("omnisclaw skills update");
     });
 
     it("normalizes text-presentation emoji selectors in check output", () => {

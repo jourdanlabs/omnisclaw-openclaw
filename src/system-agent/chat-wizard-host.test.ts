@@ -159,7 +159,7 @@ describe("SystemAgentChatEngine wizard", () => {
     const reply = await engine.handle("connect telegram");
 
     expect(reply.text).toContain("Sensitive input is not accepted");
-    expect(reply.text).toContain("openclaw channels add --channel telegram");
+    expect(reply.text).toContain("omnisclaw channels add --channel telegram");
     expect(reply.sensitive).toBeUndefined();
 
     const handoff = await engine.handle("open channel wizard");
@@ -216,7 +216,7 @@ describe("SystemAgentChatEngine wizard", () => {
       const cliReply = await cli.handle(command);
       expect(cliReply.action).toBe("none");
       expect(cliReply.handoff).toBeUndefined();
-      expect(cliReply.text).toContain("run `openclaw onboard`");
+      expect(cliReply.text).toContain("run `omnisclaw onboard`");
     }
 
     const gateway = new SystemAgentChatEngine({ ...common, surface: "gateway" });

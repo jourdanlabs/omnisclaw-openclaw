@@ -125,12 +125,12 @@ describe("exec approval reply helpers", () => {
     }).text;
 
     expect(text).toContain(
-      "Print the Control UI URL with `openclaw dashboard --no-open`, open it in a browser, then use the approval inbox.",
+      "Print the Control UI URL with `omnisclaw dashboard --no-open`, open it in a browser, then use the approval inbox.",
     );
     expect(text).toContain(
-      "Inspect the node's effective exec policy with `openclaw approvals get --node mac-1`.",
+      "Inspect the node's effective exec policy with `omnisclaw approvals get --node mac-1`.",
     );
-    expect(text).not.toContain("`openclaw dashboard --no-open` or `openclaw approvals get");
+    expect(text).not.toContain("`omnisclaw dashboard --no-open` or `omnisclaw approvals get");
     expect(text).not.toContain("Open the approval inbox with");
     expect(text).not.toContain("exec-approvals list");
   });

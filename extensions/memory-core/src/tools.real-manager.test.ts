@@ -247,11 +247,11 @@ describe("memory_search real manager", () => {
     });
     const expected = {
       unavailable: true,
-      error: expect.stringContaining("openclaw doctor --fix"),
+      error: expect.stringContaining("omnisclaw doctor --fix"),
       warning:
         "Memory search is unavailable because the session catalog requires canonical-key migration.",
       action:
-        "Stop the Gateway and run openclaw doctor --fix, then restart the Gateway and retry memory_search.",
+        "Stop the Gateway and run omnisclaw doctor --fix, then restart the Gateway and retry memory_search.",
     };
 
     expect(first.details).toMatchObject(expected);

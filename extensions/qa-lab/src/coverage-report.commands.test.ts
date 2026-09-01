@@ -29,7 +29,7 @@ function captureReportedArgv(command: string): string[] {
 function selectReportedCommands(scenarios: QaSeedScenarioWithSource[]) {
   const matches = scenarios.flatMap((scenario) => findQaScenarioMatches([scenario], scenario.id));
   const report = renderQaScenarioMatchesMarkdownReport({ query: "selected scenarios", matches });
-  const commands = [...report.matchAll(/`(pnpm openclaw qa suite[^`]+)`/gu)];
+  const commands = [...report.matchAll(/`(pnpm omnisclaw qa suite[^`]+)`/gu)];
   expect(commands.length).toBeGreaterThan(0);
   return commands.map(([, command]) => {
     const argv = captureReportedArgv(command!);
@@ -126,7 +126,10 @@ describe("QA coverage command selection", () => {
       query: scenario.id,
       matches: findQaScenarioMatches([scenario], scenario.id),
     });
-    const command = expectDefined(report.match(/`(pnpm openclaw qa suite[^`]+)`/u)?.[1], "command");
+    const command = expectDefined(
+      report.match(/`(pnpm omnisclaw qa suite[^`]+)`/u)?.[1],
+      "command",
+    );
 
     expect(captureReportedArgv(command)).toEqual([
       "pnpm",

@@ -122,7 +122,7 @@ describe.skipIf(process.platform === "win32")("Gateway agent CLI shim", () => {
         notifyOnExit: false,
       });
       const result = await tool.execute("gateway-cli-version-probe", {
-        command: "openclaw probe",
+        command: "omnisclaw probe",
         yieldMs: 120_000,
       });
       expect(JSON.parse(readExecText(result))).toMatchObject({

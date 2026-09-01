@@ -98,7 +98,7 @@ const ROOT_RESPONSE_CASES: RootResponseCase[] = [
   {
     path: "/root-failed",
     root: { kind: "failed" },
-    body: "Control UI assets could not be prepared. Check the Gateway logs or run `openclaw doctor --fix`.",
+    body: "Control UI assets could not be prepared. Check the Gateway logs or run `omnisclaw doctor --fix`.",
     missingHeaders: ["retry-after"],
   },
   {

@@ -215,7 +215,7 @@ function findBareSessionUrlIndex(argv: readonly string[]): number {
 
 function bareSessionOptionError(flag: string): Error {
   return new Error(
-    `Unsupported bare session URL option: ${sanitizeTerminalText(flag)}. Use \`openclaw tui <url> --help\` for the full option list.`,
+    `Unsupported bare session URL option: ${sanitizeTerminalText(flag)}. Use \`omnisclaw tui <url> --help\` for the full option list.`,
   );
 }
 
@@ -258,7 +258,7 @@ export function parseBareSessionInvocation(argv: readonly string[]): BareSession
           return null;
         }
         throw new Error(
-          "Unexpected extra argument for bare session URL. Use `openclaw tui <url> --help` for the full option list.",
+          "Unexpected extra argument for bare session URL. Use `omnisclaw tui <url> --help` for the full option list.",
         );
       }
       throw bareSessionOptionError(flag);

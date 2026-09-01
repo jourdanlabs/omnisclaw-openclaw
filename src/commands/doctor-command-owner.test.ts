@@ -46,7 +46,7 @@ describe("command owner health", () => {
         "No command owner is configured.",
         "A command owner is the human operator account allowed to run owner-only commands and approve dangerous actions, including /diagnostics, /export-session, /export-trajectory, /config, and exec approvals.",
         "DM pairing only lets someone talk to the bot; it does not make that sender the owner for privileged commands.",
-        "Fix: set commands.ownerAllowFrom to your channel user id, for example openclaw config set commands.ownerAllowFrom '[\"telegram:123456789\"]'",
+        "Fix: set commands.ownerAllowFrom to your channel user id, for example omnisclaw config set commands.ownerAllowFrom '[\"telegram:123456789\"]'",
         "Restart the gateway after changing this if it is already running.",
       ].join("\n"),
       "Command owner",

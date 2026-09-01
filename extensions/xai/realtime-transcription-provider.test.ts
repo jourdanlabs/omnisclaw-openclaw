@@ -73,7 +73,7 @@ async function createRealtimeSttServer(params?: {
             },
             {
               type: "transcript.partial",
-              text: "hello openclaw final",
+              text: "hello omnisclaw final",
               is_final: true,
               speech_final: true,
             },
@@ -85,7 +85,7 @@ async function createRealtimeSttServer(params?: {
         }
         const event = JSON.parse(buffer.toString()) as { type?: string };
         if (event.type === "audio.done") {
-          ws.send(JSON.stringify({ type: "transcript.done", text: "hello openclaw final" }));
+          ws.send(JSON.stringify({ type: "transcript.done", text: "hello omnisclaw final" }));
           done();
           resolveDone?.();
         }
@@ -170,7 +170,7 @@ describe("xai realtime transcription provider", () => {
       resolveFinalTranscript = resolve;
     });
     const onTranscript = vi.fn((text: string) => {
-      if (text === "hello openclaw final") {
+      if (text === "hello omnisclaw final") {
         resolveFinalTranscript?.();
       }
     });

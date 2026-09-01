@@ -100,7 +100,7 @@ export async function runGatewaySuspend(
         `${colorize(rich, theme.muted, "Expires:")} ${new Date(latest.expiresAtMs).toISOString()} (${latest.expiresAtMs} ms)`,
       );
       const port = options.rpcOpts.localPortOverride;
-      const command = `openclaw gateway resume ${latest.suspensionId}`;
+      const command = `omnisclaw gateway resume ${latest.suspensionId}`;
       deps.runtime.log(
         `Resume with: ${formatCliCommand(port === undefined ? command : `${command} --port ${port}`)}`,
       );

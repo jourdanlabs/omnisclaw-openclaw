@@ -19,7 +19,7 @@ describe("entry run-main boundary", () => {
   it("keeps expected conditions at exit 1 without crash framing", async () => {
     const previousExitCode = process.exitCode;
     const message =
-      'The `openclaw workboard` command is provided by the "workboard" plugin, but that bundled plugin is disabled by default. Run `openclaw plugins enable workboard` to enable that CLI surface.';
+      'The `omnisclaw workboard` command is provided by the "workboard" plugin, but that bundled plugin is disabled by default. Run `omnisclaw plugins enable workboard` to enable that CLI surface.';
     const error = new ExpectedCliError({
       message,
       humanOutput: message,
@@ -40,7 +40,7 @@ describe("entry run-main boundary", () => {
       expect(process.exitCode).toBe(1);
       expect(errorSpy.mock.calls).toEqual([[message]]);
       expect(errorSpy).not.toHaveBeenCalledWith(expect.stringContaining("OPENCLAW_DEBUG"));
-      expect(errorSpy).not.toHaveBeenCalledWith(expect.stringContaining("openclaw doctor"));
+      expect(errorSpy).not.toHaveBeenCalledWith(expect.stringContaining("omnisclaw doctor"));
       expect(errorSpy).not.toHaveBeenCalledWith(expect.stringContaining("Could not start the CLI"));
     } finally {
       errorSpy.mockRestore();

@@ -283,7 +283,7 @@ function buildFallbackStateMismatchError(
     pendingRequestIds.length > 0
       ? [
           "That request was superseded by a newer pending request.",
-          `Approve the current request instead: openclaw devices approve ${pendingRequestIds[0]}`,
+          `Approve the current request instead: omnisclaw devices approve ${pendingRequestIds[0]}`,
         ]
       : [
           "The running gateway may be using a different OPENCLAW_PROFILE or OPENCLAW_STATE_DIR than this CLI.",
@@ -914,7 +914,7 @@ export async function runDevicesJoinCodeCommand(opts: DevicesRpcOpts): Promise<v
   if (!joinUrl) {
     throw new Error("Gateway did not return a device join URL.");
   }
-  const command = `npx openclaw connect ${quoteCliArg(joinUrl)}`;
+  const command = `npx omnisclaw connect ${quoteCliArg(joinUrl)}`;
   if (opts.json) {
     defaultRuntime.writeJson({ joinUrl, command });
     return;

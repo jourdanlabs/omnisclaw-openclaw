@@ -116,11 +116,11 @@ describe("loadSystemAgentOverview", () => {
 
     const startup = formatSystemAgentStartupMessage(overview);
     expect(formatSystemAgentOverview(overview)).toContain(
-      'Next: run "openclaw onboard" to establish inference',
+      'Next: run "omnisclaw onboard" to establish inference',
     );
     expect(startup).toContain("Inference is unavailable");
-    expect(startup).toContain("Run `openclaw onboard`");
-    expect(startup.match(/`[^`]+`/g)).toEqual(["`openclaw onboard`"]);
+    expect(startup).toContain("Run `omnisclaw onboard`");
+    expect(startup.match(/`[^`]+`/g)).toEqual(["`omnisclaw onboard`"]);
     expect(startup).not.toContain("local Claude Code/Codex/Gemini login");
     expect(startup).not.toContain("typed commands as last resort");
   });

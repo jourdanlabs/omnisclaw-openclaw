@@ -465,7 +465,7 @@ describe("agents add command", () => {
       });
 
       const message =
-        "Agent creation needs an interactive TTY. Use `openclaw agents add <id> --non-interactive --workspace <dir>` for automation.";
+        "Agent creation needs an interactive TTY. Use `omnisclaw agents add <id> --non-interactive --workspace <dir>` for automation.";
       await expect(agentsAddCommand({ json }, runtime)).rejects.toMatchObject({
         name: "ExpectedCliError",
         message,
@@ -586,13 +586,13 @@ describe("agents add command", () => {
       status: "error",
       reason: "legacy-session-migration-required",
       agentId: "main",
-      message: "Run openclaw doctor --fix, then retry.",
+      message: "Run omnisclaw doctor --fix, then retry.",
     });
 
     await agentsAddCommand({ name: "main" }, runtime);
 
     expect(checkAgentCreationGateMock).toHaveBeenCalledWith("main");
-    expect(prompter.outro).toHaveBeenCalledWith("Run openclaw doctor --fix, then retry.");
+    expect(prompter.outro).toHaveBeenCalledWith("Run omnisclaw doctor --fix, then retry.");
     expect(prompter.text).not.toHaveBeenCalled();
     expect(authChoiceMocks.prepareAuthChoice).not.toHaveBeenCalled();
     expect(createAgentMock).not.toHaveBeenCalled();

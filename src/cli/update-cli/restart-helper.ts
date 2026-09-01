@@ -150,26 +150,26 @@ sleep 1
 exec 3>&2
 ${logSetup}
 ${userBusRepair}
-printf '[%s] openclaw restart attempt source=update target=%s\\n' "$(date -u +%FT%TZ)" '${escaped}' >&2
+printf '[%s] omnisclaw restart attempt source=update target=%s\\n' "$(date -u +%FT%TZ)" '${escaped}' >&2
 if systemctl --user is-active --quiet '${escaped}' || systemctl --user is-enabled --quiet '${escaped}'; then
   if systemctl --user restart '${escaped}'; then
     status=0
-    printf '[%s] openclaw restart done source=update\\n' "$(date -u +%FT%TZ)" >&2
+    printf '[%s] omnisclaw restart done source=update\\n' "$(date -u +%FT%TZ)" >&2
   else
     status=$?
-    printf '[%s] openclaw restart failed source=update status=%s\\n' "$(date -u +%FT%TZ)" "$status" >&2
+    printf '[%s] omnisclaw restart failed source=update status=%s\\n' "$(date -u +%FT%TZ)" "$status" >&2
   fi
 elif systemctl is-active --quiet '${escaped}' || systemctl is-enabled --quiet '${escaped}'; then
   status=78
-  printf '[%s] system-scoped openclaw gateway unit detected; update cannot restart it without sudo. Run: sudo systemctl restart %s\\n' "$(date -u +%FT%TZ)" '${escaped}' >&2
-  printf '[%s] system-scoped openclaw gateway unit detected; update cannot restart it without sudo. Run: sudo systemctl restart %s\\n' "$(date -u +%FT%TZ)" '${escaped}' >&3 2>/dev/null || true
+  printf '[%s] system-scoped omnisclaw gateway unit detected; update cannot restart it without sudo. Run: sudo systemctl restart %s\\n' "$(date -u +%FT%TZ)" '${escaped}' >&2
+  printf '[%s] system-scoped omnisclaw gateway unit detected; update cannot restart it without sudo. Run: sudo systemctl restart %s\\n' "$(date -u +%FT%TZ)" '${escaped}' >&3 2>/dev/null || true
 else
   if systemctl --user restart '${escaped}'; then
     status=0
-    printf '[%s] openclaw restart done source=update\\n' "$(date -u +%FT%TZ)" >&2
+    printf '[%s] omnisclaw restart done source=update\\n' "$(date -u +%FT%TZ)" >&2
   else
     status=$?
-    printf '[%s] openclaw restart failed source=update status=%s\\n' "$(date -u +%FT%TZ)" "$status" >&2
+    printf '[%s] omnisclaw restart failed source=update status=%s\\n' "$(date -u +%FT%TZ)" "$status" >&2
   fi
 fi
 # Self-cleanup
@@ -200,7 +200,7 @@ sleep 1
 # audit trail. Log setup is best-effort: restart must still run if the log path
 # is temporarily unavailable.
 ${logSetup}
-printf '[%s] openclaw restart attempt source=update target=%s\\n' "$(date -u +%FT%TZ)" '${shellEscapeRestartLogValue(label)}' >&2
+printf '[%s] omnisclaw restart attempt source=update target=%s\\n' "$(date -u +%FT%TZ)" '${shellEscapeRestartLogValue(label)}' >&2
 ${systemOwnershipProbe}
 # Try kickstart first (works when the service is still registered).
 # If it fails (e.g. after bootout), clear any persisted disabled state,
@@ -211,7 +211,7 @@ ${systemOwnershipProbe}
 status=0
 if [ -n "$openclaw_system_launchd_conflict" ]; then
   status=78
-  printf '[%s] openclaw restart blocked source=update reason=%s\n' "$(date -u +%FT%TZ)" "$openclaw_system_launchd_detail" >&2
+  printf '[%s] omnisclaw restart blocked source=update reason=%s\n' "$(date -u +%FT%TZ)" "$openclaw_system_launchd_detail" >&2
 elif ! launchctl kickstart -k 'gui/${uid}/${escaped}'; then
   launchctl enable 'gui/${uid}/${escaped}'
   if launchctl bootstrap 'gui/${uid}' '${escapedPlistPath}'; then
@@ -222,9 +222,9 @@ elif ! launchctl kickstart -k 'gui/${uid}/${escaped}'; then
   fi
 fi
 if [ "$status" -eq 0 ]; then
-  printf '[%s] openclaw restart done source=update\\n' "$(date -u +%FT%TZ)" >&2
+  printf '[%s] omnisclaw restart done source=update\\n' "$(date -u +%FT%TZ)" >&2
 else
-  printf '[%s] openclaw restart failed source=update status=%s\\n' "$(date -u +%FT%TZ)" "$status" >&2
+  printf '[%s] omnisclaw restart failed source=update status=%s\\n' "$(date -u +%FT%TZ)" "$status" >&2
 fi
 # Self-cleanup (log is retained under the OpenClaw state logs directory).
 script_dir=$(dirname "$0")
@@ -267,7 +267,7 @@ $logPath = ${quotedLogPath}
 try {
   $logDir = Split-Path -Parent $logPath
   New-Item -ItemType Directory -Path $logDir -Force | Out-Null
-  Add-Content -LiteralPath $logPath -Value "[$(Get-Date -Format o)] openclaw restart log initialized"
+  Add-Content -LiteralPath $logPath -Value "[$(Get-Date -Format o)] omnisclaw restart log initialized"
 } catch {
   # Restart should still run if log setup is unavailable.
 }
@@ -310,7 +310,7 @@ function Invoke-OpenClawSchtasksWithTimeout {
         $process.Kill()
       } catch {
       }
-      Write-RestartLog "openclaw restart schtasks timeout source=update args=$($Arguments -join ' ')"
+      Write-RestartLog "omnisclaw restart schtasks timeout source=update args=$($Arguments -join ' ')"
       return 124
     }
     $stdout = $process.StandardOutput.ReadToEnd()
@@ -323,7 +323,7 @@ function Invoke-OpenClawSchtasksWithTimeout {
     }
     return $process.ExitCode
   } catch {
-    Write-RestartLog "openclaw restart schtasks failed source=update args=$($Arguments -join ' ') error=$($_.Exception.Message)"
+    Write-RestartLog "omnisclaw restart schtasks failed source=update args=$($Arguments -join ' ') error=$($_.Exception.Message)"
     return 1
   }
 }
@@ -465,7 +465,7 @@ namespace OpenClaw.Restart {
 try {
   Add-Type -TypeDefinition $nativeSource -Language CSharp -ErrorAction Stop
 } catch {
-  Write-RestartLog "openclaw restart native ownership helper unavailable source=update error=$($_.Exception.Message)"
+  Write-RestartLog "omnisclaw restart native ownership helper unavailable source=update error=$($_.Exception.Message)"
 }
 
 # OPENCLAW_RESTART_KILL_POLICY_BEGIN
@@ -483,7 +483,7 @@ function Get-OpenClawListenerSnapshot {
       return [pscustomobject]@{ Known = $true; Pids = $listenerPids }
     }
   } catch {
-    Write-RestartLog "openclaw restart Get-NetTCPConnection query failed source=update error=$($_.Exception.Message)"
+    Write-RestartLog "omnisclaw restart Get-NetTCPConnection query failed source=update error=$($_.Exception.Message)"
   }
 
   try {
@@ -514,7 +514,7 @@ function Get-OpenClawListenerSnapshot {
       Pids = @($listenerPids | Sort-Object -Unique)
     }
   } catch {
-    Write-RestartLog "openclaw restart netstat query failed source=update error=$($_.Exception.Message)"
+    Write-RestartLog "omnisclaw restart netstat query failed source=update error=$($_.Exception.Message)"
     return [pscustomobject]@{ Known = $false; Pids = @() }
   }
 }
@@ -540,7 +540,7 @@ function Get-OpenClawProcessFacts {
       Argv = @([OpenClaw.Restart.NativeMethods]::ParseCommandLine([string]$process.CommandLine))
     }
   } catch {
-    Write-RestartLog "openclaw restart process query failed source=update pid=$ProcessId error=$($_.Exception.Message)"
+    Write-RestartLog "omnisclaw restart process query failed source=update pid=$ProcessId error=$($_.Exception.Message)"
     return $null
   }
 }
@@ -626,15 +626,15 @@ function Invoke-OpenClawVerifiedListenerKill {
 
   $observedProcess = & $ProcessQuery $ProcessId
   if ($null -eq $observedProcess) {
-    Write-RestartLog "openclaw restart skipped listener source=update pid=$ProcessId decision=process-unavailable"
+    Write-RestartLog "omnisclaw restart skipped listener source=update pid=$ProcessId decision=process-unavailable"
     return
   }
   if ($ExpectedArgv.Count -eq 0) {
-    Write-RestartLog "openclaw restart skipped listener source=update pid=$ProcessId decision=expected-command-unavailable"
+    Write-RestartLog "omnisclaw restart skipped listener source=update pid=$ProcessId decision=expected-command-unavailable"
     return
   }
   if (-not (Test-OpenClawArgvEqual -Actual $observedProcess.Argv -Expected $ExpectedArgv)) {
-    Write-RestartLog "openclaw restart skipped listener source=update pid=$ProcessId decision=command-mismatch"
+    Write-RestartLog "omnisclaw restart skipped listener source=update pid=$ProcessId decision=command-mismatch"
     return
   }
 
@@ -642,7 +642,7 @@ function Invoke-OpenClawVerifiedListenerKill {
   try {
     $lease = & $ProcessOpen $ProcessId
     if ($null -eq $lease) {
-      Write-RestartLog "openclaw restart skipped listener source=update pid=$ProcessId decision=process-handle-unavailable"
+      Write-RestartLog "omnisclaw restart skipped listener source=update pid=$ProcessId decision=process-handle-unavailable"
       return
     }
 
@@ -658,17 +658,17 @@ function Invoke-OpenClawVerifiedListenerKill {
     }
     $decision = Get-OpenClawListenerKillDecision @decisionParams
     if ($decision -ne "kill") {
-      Write-RestartLog "openclaw restart skipped listener source=update pid=$ProcessId decision=$decision"
+      Write-RestartLog "omnisclaw restart skipped listener source=update pid=$ProcessId decision=$decision"
       return
     }
 
     if ($lease.Terminate()) {
-      Write-RestartLog "openclaw restart killed stale listener source=update pid=$ProcessId"
+      Write-RestartLog "omnisclaw restart killed stale listener source=update pid=$ProcessId"
     } else {
-      Write-RestartLog "openclaw restart failed to kill stale listener source=update pid=$ProcessId"
+      Write-RestartLog "omnisclaw restart failed to kill stale listener source=update pid=$ProcessId"
     }
   } catch {
-    Write-RestartLog "openclaw restart ownership verification failed source=update pid=$ProcessId error=$($_.Exception.Message)"
+    Write-RestartLog "omnisclaw restart ownership verification failed source=update pid=$ProcessId error=$($_.Exception.Message)"
   } finally {
     if ($null -ne $lease) {
       $lease.Dispose()
@@ -681,16 +681,16 @@ function Invoke-OpenClawStartupLauncher {
   param([string]$LauncherPath)
   $launcherPath = $LauncherPath
   if (-not (Test-Path -LiteralPath $launcherPath)) {
-    Write-RestartLog "openclaw restart startup launcher missing source=update path=$launcherPath"
+    Write-RestartLog "omnisclaw restart startup launcher missing source=update path=$launcherPath"
     return 1
   }
 
   try {
     Start-Process -FilePath $launcherPath -WindowStyle Hidden | Out-Null
-    Write-RestartLog "openclaw restart launched startup fallback source=update path=$launcherPath"
+    Write-RestartLog "omnisclaw restart launched startup fallback source=update path=$launcherPath"
     return 0
   } catch {
-    Write-RestartLog "openclaw restart startup fallback failed source=update error=$($_.Exception.Message)"
+    Write-RestartLog "omnisclaw restart startup fallback failed source=update error=$($_.Exception.Message)"
     return 1
   }
 }
@@ -699,23 +699,23 @@ $taskName = ${quotedTaskName}
 $port = ${port}
 $gatewayScriptPath = ${quotedGatewayScriptPath}
 $expectedGatewayArgv = @(${expectedGatewayArgv})
-Write-RestartLog "openclaw restart attempt source=update target=$taskName"
+Write-RestartLog "omnisclaw restart attempt source=update target=$taskName"
 
 $taskState = Get-OpenClawScheduledTaskState -TaskName $taskName
 if ($taskState -eq "Running") {
   $endStatus = Invoke-OpenClawSchtasksWithTimeout -Arguments @("/End", "/TN", $taskName) -TimeoutSeconds 10
   if ($endStatus -ne 0) {
-    Write-RestartLog "openclaw restart schtasks end did not complete cleanly source=update status=$endStatus"
+    Write-RestartLog "omnisclaw restart schtasks end did not complete cleanly source=update status=$endStatus"
   }
 } else {
-  Write-RestartLog "openclaw restart skipped schtasks end source=update state=$taskState"
+  Write-RestartLog "omnisclaw restart skipped schtasks end source=update state=$taskState"
 }
 
 for ($attempt = 1; $attempt -le 10; $attempt++) {
   $listenerSnapshot = Get-OpenClawListenerSnapshot -Port $port
   if (-not $listenerSnapshot.Known) {
     if ($attempt -eq 10) {
-      Write-RestartLog "openclaw restart listener ownership unavailable source=update; refusing force-kill"
+      Write-RestartLog "omnisclaw restart listener ownership unavailable source=update; refusing force-kill"
       break
     }
     Start-Sleep -Seconds 1
@@ -742,9 +742,9 @@ if ($status -ne 0) {
   $status = Invoke-OpenClawStartupLauncher -LauncherPath $gatewayScriptPath
 }
 if ($status -eq 0) {
-  Write-RestartLog "openclaw restart done source=update"
+  Write-RestartLog "omnisclaw restart done source=update"
 } else {
-  Write-RestartLog "openclaw restart failed source=update status=$status"
+  Write-RestartLog "omnisclaw restart failed source=update status=$status"
 }
 
 exit $status

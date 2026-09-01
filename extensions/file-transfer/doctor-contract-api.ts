@@ -23,7 +23,7 @@ export const legacyConfigRules = [
   {
     path: ["plugins", "entries", "file-transfer", "config"],
     message:
-      'File-transfer permissions need review and remain inactive. Run "openclaw file-transfer approvals migrate".',
+      'File-transfer permissions need review and remain inactive. Run "omnisclaw file-transfer approvals migrate".',
     match: hasLegacyPositivePolicy,
   },
 ];

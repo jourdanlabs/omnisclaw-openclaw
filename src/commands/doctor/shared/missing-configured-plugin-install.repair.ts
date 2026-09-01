@@ -224,7 +224,7 @@ async function repairMissingPluginInstallsWithLease(
       if (!record || !isInstalledRecordMissingOnDisk(record, env)) {
         continue;
       }
-      const detail = `Skipped package-manager repair for configured plugin "${pluginId}" during package update; rerun "openclaw doctor --fix" after the update completes.`;
+      const detail = `Skipped package-manager repair for configured plugin "${pluginId}" during package update; rerun "omnisclaw doctor --fix" after the update completes.`;
       changes.push(detail);
       deferredRepairDetails.push(detail);
     }

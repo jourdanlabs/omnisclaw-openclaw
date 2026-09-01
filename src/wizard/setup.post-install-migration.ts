@@ -153,7 +153,7 @@ function applyMigrationConfigPatches(
  * that was just installed during onboarding. In non-interactive mode this is
  * a no-op apart from a hint line so scripted setups never mutate state
  * unexpectedly. The actual migration UI (skill/plugin checkboxes, confirm
- * prompt) is owned by `openclaw migrate <provider>`; this helper only owns
+ * prompt) is owned by `omnisclaw migrate <provider>`; this helper only owns
  * the gate prompt.
  */
 export async function offerPostInstallMigrations(

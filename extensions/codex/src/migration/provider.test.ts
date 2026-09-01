@@ -2329,10 +2329,10 @@ describe("buildCodexMigrationProvider", () => {
       reason: "marketplace_missing",
     });
     expect(result.warnings).toContain(
-      "Some Codex plugins could not be migrated. Run `openclaw migrate codex` after onboarding.",
+      "Some Codex plugins could not be migrated. Run `omnisclaw migrate codex` after onboarding.",
     );
     expect(result.nextSteps).toContain(
-      "Some Codex plugins could not be migrated. Run `openclaw migrate codex` after onboarding.",
+      "Some Codex plugins could not be migrated. Run `omnisclaw migrate codex` after onboarding.",
     );
     expect(configState.plugins?.entries?.codex?.config?.codexPlugins).toBeUndefined();
   });
@@ -2392,10 +2392,10 @@ describe("buildCodexMigrationProvider", () => {
       message: 'Codex plugin "google-calendar" could not be migrated automatically',
     });
     expect(result.warnings).toContain(
-      "Some Codex plugins could not be migrated. Run `openclaw migrate codex` after onboarding.",
+      "Some Codex plugins could not be migrated. Run `omnisclaw migrate codex` after onboarding.",
     );
     expect(result.nextSteps).toContain(
-      "Some Codex plugins could not be migrated. Run `openclaw migrate codex` after onboarding.",
+      "Some Codex plugins could not be migrated. Run `omnisclaw migrate codex` after onboarding.",
     );
     expect(result.summary.errors).toBe(0);
     expect(configState.plugins?.entries?.codex?.config?.codexPlugins).toBeUndefined();

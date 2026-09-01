@@ -279,13 +279,13 @@ describe("memory_search unavailable payloads", () => {
 
   it("does not infer migration recovery from non-quota error text", async () => {
     setMemorySearchImpl(async () => {
-      throw new Error("embedding provider timeout; run openclaw doctor --fix");
+      throw new Error("embedding provider timeout; run omnisclaw doctor --fix");
     });
 
     const tool = createMemorySearchToolOrThrow();
     const result = await tool.execute("generic", { query: "hello" });
     expectUnavailableMemorySearchDetails(result.details, {
-      error: "embedding provider timeout; run openclaw doctor --fix",
+      error: "embedding provider timeout; run omnisclaw doctor --fix",
       warning: "Memory search is unavailable due to an embedding/provider error.",
       action: "Check embedding provider configuration and retry memory_search.",
     });
@@ -301,7 +301,7 @@ describe("memory_search unavailable payloads", () => {
     ).toMatchObject({
       warning: "Memory search did not finish within its time limit.",
       action:
-        "Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: openclaw memory status --deep --agent recall, and rebuild with openclaw memory index --force --agent recall only if it reports the index dirty or incomplete",
+        "Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: omnisclaw memory status --deep --agent recall, and rebuild with omnisclaw memory index --force --agent recall only if it reports the index dirty or incomplete",
     });
     expect(buildMemorySearchUnavailableResult("memory_search timed out after 15s")).toMatchObject({
       warning: "Memory search is unavailable due to an embedding/provider error.",
@@ -359,7 +359,7 @@ describe("memory_search unavailable payloads", () => {
         error: "memory_search timed out after 15s",
         warning: "Memory search did not finish within its time limit.",
         action:
-          "Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: openclaw memory status --deep --agent main, and rebuild with openclaw memory index --force --agent main only if it reports the index dirty or incomplete",
+          "Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: omnisclaw memory status --deep --agent main, and rebuild with omnisclaw memory index --force --agent main only if it reports the index dirty or incomplete",
       });
       // The deadline must abort the orphaned search, not just race past it.
       expect(searchSignal?.aborted).toBe(true);
@@ -368,7 +368,7 @@ describe("memory_search unavailable payloads", () => {
         error: "memory_search timed out after 15s",
         warning: "Memory search did not finish within its time limit.",
         action:
-          "Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: openclaw memory status --deep --agent main, and rebuild with openclaw memory index --force --agent main only if it reports the index dirty or incomplete",
+          "Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: omnisclaw memory status --deep --agent main, and rebuild with omnisclaw memory index --force --agent main only if it reports the index dirty or incomplete",
       });
       expect(searchCalls).toBe(1);
     } finally {
@@ -399,7 +399,7 @@ describe("memory_search unavailable payloads", () => {
         error: "memory_search timed out after 15s",
         warning: "Memory search did not finish within its time limit.",
         action:
-          "Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: openclaw memory status --deep --agent main, and rebuild with openclaw memory index --force --agent main only if it reports the index dirty or incomplete",
+          "Retry memory_search after a short wait: a memory-corpus timeout pauses retries for up to a minute. If memory-corpus timeouts persist, run: omnisclaw memory status --deep --agent main, and rebuild with omnisclaw memory index --force --agent main only if it reports the index dirty or incomplete",
       });
     } finally {
       vi.useRealTimers();
@@ -622,7 +622,7 @@ describe("memory_search unavailable payloads", () => {
       stale: true,
       warning:
         "Memory index is stale: embedding request timed out. Search results may be incomplete.",
-      action: "Run: openclaw memory status --index --agent main",
+      action: "Run: omnisclaw memory status --index --agent main",
     });
   });
 
@@ -694,7 +694,7 @@ describe("memory_search unavailable payloads", () => {
       warning:
         "Tell the user: memory search is paused because the memory index was built with a different embedding provider/model/settings.",
       action:
-        "Tell the user to run: openclaw memory status --index or openclaw memory index --force.",
+        "Tell the user to run: omnisclaw memory status --index or omnisclaw memory index --force.",
     });
     expect(searchCalls).toBe(1);
     expect(getMemorySyncMockCalls()).toBe(0);

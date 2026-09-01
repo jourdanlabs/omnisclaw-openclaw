@@ -283,7 +283,7 @@ export async function recoverSetupMigrationPromotion(params: {
   }
   if (journal.status === "indeterminate") {
     throw new Error(
-      `An onboarding migration promotion is indeterminate. Review ${found.path} and run openclaw doctor before retrying.`,
+      `An onboarding migration promotion is indeterminate. Review ${found.path} and run omnisclaw doctor before retrying.`,
     );
   }
   const currentConfigHash = hashSetupMigrationConfig(await params.readConfigFile());
@@ -300,7 +300,7 @@ export async function recoverSetupMigrationPromotion(params: {
     journal.status = "indeterminate";
     await writePromotionJournal(found.path, journal);
     throw new Error(
-      `A committed onboarding migration no longer matches its promoted target. Review ${found.path} and run openclaw doctor before retrying.`,
+      `A committed onboarding migration no longer matches its promoted target. Review ${found.path} and run omnisclaw doctor before retrying.`,
     );
   }
   if (currentConfigHash === journal.configHashTarget && allFinal) {
@@ -313,7 +313,7 @@ export async function recoverSetupMigrationPromotion(params: {
       journal.status = "indeterminate";
       await writePromotionJournal(found.path, journal);
       throw new Error(
-        `An interrupted onboarding migration published local data before config commit. Review ${found.path} and run openclaw doctor before retrying.`,
+        `An interrupted onboarding migration published local data before config commit. Review ${found.path} and run omnisclaw doctor before retrying.`,
       );
     }
     if (await rollbackComponents(journal.components)) {
@@ -328,7 +328,7 @@ export async function recoverSetupMigrationPromotion(params: {
   journal.status = "indeterminate";
   await writePromotionJournal(found.path, journal);
   throw new Error(
-    `Could not reconcile an interrupted onboarding migration. Review ${found.path} and run openclaw doctor before retrying.`,
+    `Could not reconcile an interrupted onboarding migration. Review ${found.path} and run omnisclaw doctor before retrying.`,
   );
 }
 

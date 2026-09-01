@@ -1,4 +1,4 @@
-// Formatting layer for `openclaw skills` commands; keeps discovery data separate from terminal UI.
+// Formatting layer for `omnisclaw skills` commands; keeps discovery data separate from terminal UI.
 import { sanitizeForLog, stripAnsi } from "../../packages/terminal-core/src/ansi.js";
 import {
   decorativeEmoji,

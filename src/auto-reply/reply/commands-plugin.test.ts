@@ -186,7 +186,7 @@ describe("handlePluginCommand", () => {
       expect(result?.shouldContinue).toBe(false);
       expect(result?.reply?.text).toContain('Plugin "recovery-controls" failed to load');
       expect(result?.reply?.text).toContain("fixture registration failed");
-      expect(result?.reply?.text).toContain("openclaw doctor");
+      expect(result?.reply?.text).toContain("omnisclaw doctor");
       expect(result?.reply?.text).not.toContain("private loader frame");
     });
   });

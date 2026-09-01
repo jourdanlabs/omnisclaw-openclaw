@@ -433,7 +433,7 @@ describe("normalizeAssistantReplayContent", () => {
     expect(JSON.stringify(out)).not.toContain("assistant copied inbound metadata omitted");
   });
 
-  it("filters openclaw delivery-mirror and gateway-injected assistant messages from replay", () => {
+  it("filters omnisclaw delivery-mirror and gateway-injected assistant messages from replay", () => {
     // Gateway mirror entries are transcript artifacts, not model-authored
     // assistant turns, so they must not be sent back to providers.
     const messages = [

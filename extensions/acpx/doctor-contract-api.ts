@@ -26,10 +26,10 @@ import {
 const ACPX_CONFIG_PATH = ["plugins", "entries", "acpx", "config"] as const;
 const RETIRED_ACPX_CONFIG_KEYS = ["strictWindowsCmdWrapper", "queueOwnerTtlSeconds"] as const;
 
-/** Retired ACPX config that `openclaw doctor --fix` removes before strict validation. */
+/** Retired ACPX config that `omnisclaw doctor --fix` removes before strict validation. */
 export const legacyConfigRules = RETIRED_ACPX_CONFIG_KEYS.map((key) => ({
   path: [...ACPX_CONFIG_PATH, key],
-  message: `${[...ACPX_CONFIG_PATH, key].join(".")} is retired and ignored by the embedded ACPX runtime. Run "openclaw doctor --fix".`,
+  message: `${[...ACPX_CONFIG_PATH, key].join(".")} is retired and ignored by the embedded ACPX runtime. Run "omnisclaw doctor --fix".`,
 }));
 
 /** Removes retired plugin-owned config without keeping runtime compatibility keys. */

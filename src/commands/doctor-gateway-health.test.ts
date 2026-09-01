@@ -139,7 +139,7 @@ describe("checkGatewayHealth", () => {
     expect(note).toHaveBeenCalledWith(
       [
         "Channel status probe failed: channel probe timed out",
-        "Retry: openclaw channels status --probe",
+        "Retry: omnisclaw channels status --probe",
       ].join("\n"),
       "Channel warnings",
     );
@@ -182,7 +182,7 @@ describe("checkGatewayHealth", () => {
     const [message, title] = note.mock.calls.at(-1) ?? [];
     expect(title).toBe("Telemetry exporters");
     expect(message).toContain("Exporter diagnostics failed: exporter probe failed");
-    expect(message).toContain("Retry: openclaw gateway stability --type telemetry.exporter");
+    expect(message).toContain("Retry: omnisclaw gateway stability --type telemetry.exporter");
     expect(message).not.toContain(token);
     expect(message).not.toContain("\u001B");
     expect(message.split("\n")).toHaveLength(2);
@@ -207,7 +207,7 @@ describe("checkGatewayHealth", () => {
     const mismatchOutput = mismatchNotes.join("\n");
     expect(mismatchOutput).toContain("the running Gateway is OpenClaw 2026.4.23");
     expect(mismatchOutput).not.toContain("That usually means");
-    expect(mismatchOutput).toContain("Check `openclaw --version`, `which openclaw`");
+    expect(mismatchOutput).toContain("Check `omnisclaw --version`, `which openclaw`");
     expect(mismatchOutput).toContain(
       "If this mismatch is unexpected, update PATH so `openclaw` points to the version you want",
     );
@@ -249,11 +249,11 @@ describe("checkGatewayHealth", () => {
     expect(note).toHaveBeenCalledWith(
       [
         "- cold account:discord:ops (channels.discord.accounts.ops.token): secret resolution failed",
-        "  Retry: openclaw secrets reload",
+        "  Retry: omnisclaw secrets reload",
         "- stale capability:tts (tts.providers.elevenlabs.apiKey): secret provider policy denied resolution",
-        "  Retry: openclaw secrets reload",
+        "  Retry: omnisclaw secrets reload",
         "- cold capability:web-fetch:firecrawl (plugins.entries.firecrawl.config.webFetch.apiKey): resolved secret value was invalid",
-        "  Retry: openclaw secrets reload",
+        "  Retry: omnisclaw secrets reload",
       ].join("\n"),
       "Secret runtime degradation",
     );
@@ -523,7 +523,7 @@ describe("probeGatewayMemoryStatus", () => {
         ok: false,
         checked: false,
         error:
-          "memory embedding readiness not checked; run `openclaw memory status --deep` to probe",
+          "memory embedding readiness not checked; run `omnisclaw memory status --deep` to probe",
       },
     });
 

@@ -54,9 +54,9 @@ vi.mock("../../plugins/official-external-plugin-repair-hints.js", () => ({
           channelId,
           label: channelId === "whatsapp" ? "WhatsApp" : "Feishu",
           installSpec: `@openclaw/${channelId}`,
-          installCommand: `openclaw plugins install @openclaw/${channelId}`,
-          doctorFixCommand: "openclaw doctor --fix",
-          repairHint: `Install the official external plugin with: openclaw plugins install @openclaw/${channelId}, or run: openclaw doctor --fix.`,
+          installCommand: `omnisclaw plugins install @openclaw/${channelId}`,
+          doctorFixCommand: "omnisclaw doctor --fix",
+          repairHint: `Install the official external plugin with: omnisclaw plugins install @openclaw/${channelId}, or run: omnisclaw doctor --fix.`,
         }
       : null,
   resolveMissingOfficialExternalChannelPluginRepairHints: ({
@@ -72,9 +72,9 @@ vi.mock("../../plugins/official-external-plugin-repair-hints.js", () => ({
               channelId,
               label: channelId === "whatsapp" ? "WhatsApp" : "Feishu",
               installSpec: `@openclaw/${channelId}`,
-              installCommand: `openclaw plugins install @openclaw/${channelId}`,
-              doctorFixCommand: "openclaw doctor --fix",
-              repairHint: `Install the official external plugin with: openclaw plugins install @openclaw/${channelId}, or run: openclaw doctor --fix.`,
+              installCommand: `omnisclaw plugins install @openclaw/${channelId}`,
+              doctorFixCommand: "omnisclaw doctor --fix",
+              repairHint: `Install the official external plugin with: omnisclaw plugins install @openclaw/${channelId}, or run: omnisclaw doctor --fix.`,
             },
           ]
         : [],
@@ -500,7 +500,7 @@ describe("resolveMessageChannelSelection", () => {
     {
       params: { cfg: {} as never, channel: "channel:C123", fallbackChannel: "not-a-channel" },
       expectedMessage:
-        'Unknown channel "channel:c123". Run `openclaw channels list --all` to see configured and installable channels.',
+        'Unknown channel "channel:c123". Run `omnisclaw channels list --all` to see configured and installable channels.',
     },
     {
       setup: () => {
@@ -519,12 +519,12 @@ describe("resolveMessageChannelSelection", () => {
         channel: "feishu",
       },
       expectedMessage:
-        "Channel is unavailable: feishu. Install the official external plugin with: openclaw plugins install @openclaw/feishu, or run: openclaw doctor --fix.",
+        "Channel is unavailable: feishu. Install the official external plugin with: omnisclaw plugins install @openclaw/feishu, or run: omnisclaw doctor --fix.",
     },
     {
       params: { cfg: {} as never },
       expectedMessage:
-        "Channel is required (no configured channels detected). Run openclaw channels add to configure one",
+        "Channel is required (no configured channels detected). Run omnisclaw channels add to configure one",
     },
     {
       setup: () => {
@@ -533,7 +533,7 @@ describe("resolveMessageChannelSelection", () => {
       },
       params: { cfg: { channels: { whatsapp: { enabled: true } } } as never },
       expectedMessage:
-        "Channel is required (no available channels detected). Configured official external channel WhatsApp is missing its plugin. Install the official external plugin with: openclaw plugins install @openclaw/whatsapp, or run: openclaw doctor --fix.",
+        "Channel is required (no available channels detected). Configured official external channel WhatsApp is missing its plugin. Install the official external plugin with: omnisclaw plugins install @openclaw/whatsapp, or run: omnisclaw doctor --fix.",
     },
     {
       setup: () => {
@@ -546,7 +546,7 @@ describe("resolveMessageChannelSelection", () => {
       },
       params: { cfg: { channels: { whatsapp: { enabled: true } } } as never },
       expectedMessage:
-        "Channel is required (no configured channels detected). Run openclaw channels add to configure one",
+        "Channel is required (no configured channels detected). Run omnisclaw channels add to configure one",
     },
     {
       setup: () => {

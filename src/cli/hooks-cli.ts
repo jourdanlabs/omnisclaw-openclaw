@@ -269,7 +269,7 @@ export function registerHooksCli(program: Command): void {
       !new Set(["list", "info", "check", "enable", "disable"]).has(actionCommand.name())
     ) {
       throw new Error(
-        `openclaw hooks ${actionCommand.name()} does not support --agent; the option only selects an owner for read-only hook reports.`,
+        `omnisclaw hooks ${actionCommand.name()} does not support --agent; the option only selects an owner for read-only hook reports.`,
       );
     }
   });
@@ -356,7 +356,7 @@ export function registerHooksCli(program: Command): void {
 
   hooks
     .command("install")
-    .description("Deprecated: install a hook pack via `openclaw plugins install`")
+    .description("Deprecated: install a hook pack via `omnisclaw plugins install`")
     .argument("<path-or-spec>", "Path to a hook pack or npm package spec")
     .option("-l, --link", "Link a local path instead of copying", false)
     .option("--pin", "Record npm installs as exact resolved <name>@<version>", false)
@@ -368,7 +368,7 @@ export function registerHooksCli(program: Command): void {
     )
     .action(async (raw: string, opts: HooksInstallOptions) => {
       defaultRuntime.log(
-        theme.warn("`openclaw hooks install` is deprecated; use `openclaw plugins install`."),
+        theme.warn("`omnisclaw hooks install` is deprecated; use `omnisclaw plugins install`."),
       );
       await runPluginInstallCommand({
         raw,
@@ -380,7 +380,7 @@ export function registerHooksCli(program: Command): void {
 
   hooks
     .command("update")
-    .description("Deprecated: update hook packs via `openclaw plugins update`")
+    .description("Deprecated: update hook packs via `omnisclaw plugins update`")
     .argument("[id]", "Hook pack id (omit with --all)")
     .option("--all", "Update all tracked hooks", false)
     .option("--dry-run", "Show what would change without writing", false)
@@ -391,7 +391,7 @@ export function registerHooksCli(program: Command): void {
     )
     .action(async (id: string | undefined, opts: HooksUpdateOptions) => {
       defaultRuntime.log(
-        theme.warn("`openclaw hooks update` is deprecated; use `openclaw plugins update`."),
+        theme.warn("`omnisclaw hooks update` is deprecated; use `omnisclaw plugins update`."),
       );
       await runPluginUpdateCommand({ id, opts });
     });

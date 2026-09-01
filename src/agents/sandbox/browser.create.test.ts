@@ -521,7 +521,7 @@ describe("ensureSandboxBrowser create args", () => {
     expect(findDockerArgsCall(dockerMocks.execDocker.mock.calls, "create")).toBeUndefined();
     expect(runtimeMocks.log).toHaveBeenCalledWith(
       expect.stringContaining(
-        "Recreate to apply: openclaw sandbox recreate --browser --session session:test",
+        "Recreate to apply: omnisclaw sandbox recreate --browser --session session:test",
       ),
     );
     expect(registryMocks.updateBrowserRegistry.mock.calls.at(-1)?.[0]?.configHash).toBe(oldHash);

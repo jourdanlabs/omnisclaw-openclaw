@@ -21,7 +21,7 @@ function makeTempDir() {
 }
 
 describe("plugin peer links", () => {
-  it("relinks openclaw peers in the managed npm root", async () => {
+  it("relinks omnisclaw peers in the managed npm root", async () => {
     const npmRoot = makeTempDir();
     const packageDir = path.join(npmRoot, "node_modules", "peer-plugin");
     fs.mkdirSync(packageDir, { recursive: true });
@@ -53,7 +53,7 @@ describe("plugin peer links", () => {
     expect(messages.join("\n")).toContain('Linked peerDependency "openclaw"');
   });
 
-  it("relinks openclaw runtime dependencies in the managed npm root", async () => {
+  it("relinks omnisclaw runtime dependencies in the managed npm root", async () => {
     const npmRoot = makeTempDir();
     const packageDir = path.join(npmRoot, "node_modules", "runtime-plugin");
     fs.mkdirSync(packageDir, { recursive: true });
@@ -141,7 +141,7 @@ describe("plugin peer links", () => {
     expect(failures[0]?.packageDir).toBe(unreadableDir);
   });
 
-  it("audits missing managed npm openclaw peer links without relinking", async () => {
+  it("audits missing managed npm omnisclaw peer links without relinking", async () => {
     const npmRoot = makeTempDir();
     const packageDir = path.join(npmRoot, "node_modules", "peer-plugin");
     fs.mkdirSync(packageDir, { recursive: true });
@@ -168,7 +168,7 @@ describe("plugin peer links", () => {
   });
 
   it.runIf(process.platform !== "win32")(
-    "does not follow a package-local node_modules symlink while linking openclaw peers",
+    "does not follow a package-local node_modules symlink while linking omnisclaw peers",
     async () => {
       const root = makeTempDir();
       const packageDir = path.join(root, "peer-plugin");
@@ -194,7 +194,7 @@ describe("plugin peer links", () => {
     },
   );
 
-  it("replaces an existing real openclaw package directory", async () => {
+  it("replaces an existing real omnisclaw package directory", async () => {
     const root = makeTempDir();
     const packageDir = path.join(root, "peer-plugin");
     const existingOpenClawDir = path.join(packageDir, "node_modules", "openclaw");

@@ -369,25 +369,25 @@ const THREAD_BINDING_RULES: LegacyConfigRule[] = [
   {
     path: ["session", "threadBindings"],
     message:
-      'session.threadBindings.ttlHours was renamed to session.threadBindings.idleHours. Run "openclaw doctor --fix".',
+      'session.threadBindings.ttlHours was renamed to session.threadBindings.idleHours. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyThreadBindingTtl(value),
   },
   {
     path: ["channels"],
     message:
-      'channels.<id>.threadBindings.ttlHours was renamed to channels.<id>.threadBindings.idleHours. Run "openclaw doctor --fix".',
+      'channels.<id>.threadBindings.ttlHours was renamed to channels.<id>.threadBindings.idleHours. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyThreadBindingInAnyChannel(value, hasLegacyThreadBindingTtl),
   },
   {
     path: ["session", "threadBindings"],
     message:
-      'session.threadBindings.spawnSubagentSessions/spawnAcpSessions were replaced by session.threadBindings.spawnSessions. Run "openclaw doctor --fix".',
+      'session.threadBindings.spawnSubagentSessions/spawnAcpSessions were replaced by session.threadBindings.spawnSessions. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyThreadBindingSpawnSplit(value),
   },
   {
     path: ["channels"],
     message:
-      'channels.<id>.threadBindings.spawnSubagentSessions/spawnAcpSessions were replaced by channels.<id>.threadBindings.spawnSessions. Run "openclaw doctor --fix".',
+      'channels.<id>.threadBindings.spawnSubagentSessions/spawnAcpSessions were replaced by channels.<id>.threadBindings.spawnSessions. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyThreadBindingInAnyChannel(value, hasLegacyThreadBindingSpawnSplit),
   },
 ];
@@ -396,27 +396,27 @@ const GROUP_ROUTING_RULES: LegacyConfigRule[] = [
   {
     path: ["routing", "allowFrom"],
     message:
-      'routing.allowFrom was removed; use channels.whatsapp.allowFrom instead. Run "openclaw doctor --fix".',
+      'routing.allowFrom was removed; use channels.whatsapp.allowFrom instead. Run "omnisclaw doctor --fix".',
   },
   {
     path: ["routing", "groupChat", "requireMention"],
     message:
-      'routing.groupChat.requireMention was removed; use channels.<channel>.groups."*".requireMention instead. Run "openclaw doctor --fix".',
+      'routing.groupChat.requireMention was removed; use channels.<channel>.groups."*".requireMention instead. Run "omnisclaw doctor --fix".',
   },
   {
     path: ["routing", "groupChat", "historyLimit"],
     message:
-      'routing.groupChat.historyLimit was moved; use messages.groupChat.historyLimit instead. Run "openclaw doctor --fix".',
+      'routing.groupChat.historyLimit was moved; use messages.groupChat.historyLimit instead. Run "omnisclaw doctor --fix".',
   },
   {
     path: ["routing", "groupChat", "mentionPatterns"],
     message:
-      'routing.groupChat.mentionPatterns was moved; use messages.groupChat.mentionPatterns instead. Run "openclaw doctor --fix".',
+      'routing.groupChat.mentionPatterns was moved; use messages.groupChat.mentionPatterns instead. Run "omnisclaw doctor --fix".',
   },
   {
     path: ["channels", "telegram", "requireMention"],
     message:
-      'channels.telegram.requireMention was removed; use channels.telegram.groups."*".requireMention instead. Run "openclaw doctor --fix".',
+      'channels.telegram.requireMention was removed; use channels.telegram.groups."*".requireMention instead. Run "omnisclaw doctor --fix".',
   },
 ];
 
@@ -424,7 +424,7 @@ const FEISHU_ACCOUNT_RULES: LegacyConfigRule[] = [
   {
     path: ["channels", "feishu", "accounts"],
     message:
-      'channels.feishu.accounts.<id>.botName was renamed to channels.feishu.accounts.<id>.name. Run "openclaw doctor --fix".',
+      'channels.feishu.accounts.<id>.botName was renamed to channels.feishu.accounts.<id>.name. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyFeishuAccountBotName(value),
   },
 ];
@@ -432,7 +432,7 @@ const FEISHU_ACCOUNT_RULES: LegacyConfigRule[] = [
 const WEBCHAT_CHANNEL_RULES: LegacyConfigRule[] = [
   {
     path: ["channels", "webchat"],
-    message: 'channels.webchat is retired. Run "openclaw doctor --fix".',
+    message: 'channels.webchat is retired. Run "omnisclaw doctor --fix".',
   },
 ];
 

@@ -308,7 +308,7 @@ describe("memory.search gateway method", () => {
         stale: true,
         warning:
           "Memory index is stale: embedding request timed out. Search results may be incomplete.",
-        action: "Run: openclaw memory status --index --agent main",
+        action: "Run: omnisclaw memory status --index --agent main",
       },
       undefined,
     );

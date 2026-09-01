@@ -217,10 +217,10 @@ describe("handleBashChatCommand stop", () => {
       sessionKey: "agent:target:telegram:direct:target-session",
     });
     expect(result.text).toContain(
-      "openclaw sandbox explain --session agent:target:telegram:direct:target-session",
+      "omnisclaw sandbox explain --session agent:target:telegram:direct:target-session",
     );
     expect(result.text).not.toContain(
-      "openclaw sandbox explain --session agent:main:telegram:slash-session",
+      "omnisclaw sandbox explain --session agent:main:telegram:slash-session",
     );
   });
 });

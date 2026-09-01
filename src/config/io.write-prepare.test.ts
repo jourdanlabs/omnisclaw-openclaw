@@ -1151,8 +1151,8 @@ describe("config io write prepare", () => {
           'channels.telegram.dmPolicy = "open" requires channels.telegram.allowFrom to include "*"',
       },
     ]).message;
-    expect(message).toContain("openclaw config set channels.telegram.allowFrom '[\"*\"]'");
-    expect(message).toContain('openclaw config set channels.telegram.dmPolicy "pairing"');
+    expect(message).toContain("omnisclaw config set channels.telegram.allowFrom '[\"*\"]'");
+    expect(message).toContain('omnisclaw config set channels.telegram.dmPolicy "pairing"');
   });
 
   it("preserves env refs on unchanged paths while keeping changed paths resolved", () => {

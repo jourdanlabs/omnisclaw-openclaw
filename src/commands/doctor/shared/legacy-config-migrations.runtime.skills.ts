@@ -12,7 +12,7 @@ export const LEGACY_CONFIG_MIGRATIONS_RUNTIME_SKILLS: LegacyConfigMigrationSpec[
       {
         path: ["skills", "workshop", "autonomous", "enabled"],
         message:
-          'skills.workshop.autonomous.enabled is retired; use skills.workshop.autonomous.mode. Run "openclaw doctor --fix".',
+          'skills.workshop.autonomous.enabled is retired; use skills.workshop.autonomous.mode. Run "omnisclaw doctor --fix".',
       },
     ],
     apply: (raw, changes) => {

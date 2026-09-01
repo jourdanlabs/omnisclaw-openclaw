@@ -203,7 +203,7 @@ describe("setup migration import provider selection", () => {
     // The bundled ids come from the same listing the picker renders, so assert the shape and one
     // known bundled id rather than pinning the full set, which grows with every bundled provider.
     await expect(runImportWith("bogus")).rejects.toThrow(
-      /^Unknown migration provider "bogus"\. Available providers: .*codex.*\. Run .*openclaw migrate list.* to see the current list\.$/,
+      /^Unknown migration provider "bogus"\. Available providers: .*codex.*\. Run .*omnisclaw migrate list.* to see the current list\.$/,
     );
   });
 });

@@ -4674,7 +4674,7 @@ describe("compactEmbeddedAgentSession hooks (ownsCompaction engine)", () => {
     );
   });
 
-  it("keeps unbound api-key queued compaction on openclaw without native harness compaction", async () => {
+  it("keeps unbound api-key queued compaction on omnisclaw without native harness compaction", async () => {
     resolveAgentHarnessPolicyMock.mockReturnValue({
       runtime: "openclaw",
       runtimeSource: "implicit",

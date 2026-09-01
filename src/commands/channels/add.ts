@@ -1,5 +1,5 @@
 import { parseStrictNonNegativeInteger } from "@openclaw/normalization-core/number-coercion";
-// Implements guided and non-interactive `openclaw channels add` account setup.
+// Implements guided and non-interactive `omnisclaw channels add` account setup.
 import { normalizeOptionalLowercaseString } from "@openclaw/normalization-core/string-coerce";
 import { resolveAgentOperationAgentId } from "../../agents/agent-scope-config.js";
 import { resolveAgentWorkspaceDir } from "../../agents/agent-scope.js";
@@ -166,7 +166,7 @@ async function channelsAddCommandImpl(
     }
     if (!isTerminalInteractive()) {
       runtime.error(
-        "Interactive channel setup requires a TTY. Use `openclaw channels add --channel <id> --use-env` or pass the channel's credential flags for non-interactive setup.",
+        `Interactive channel setup requires a TTY. Use \`${formatCliCommand("openclaw channels add --channel <id> --use-env")}\` or pass the channel's credential flags for non-interactive setup.`,
       );
       runtime.exit(1);
       return;
@@ -258,7 +258,7 @@ async function channelsAddCommandImpl(
 
   if (!channel) {
     const hint = catalogEntry
-      ? `Plugin ${catalogEntry.meta.label} could not be loaded after install. Run openclaw doctor --fix, then retry openclaw channels add.`
+      ? `Plugin ${catalogEntry.meta.label} could not be loaded after install. Run ${formatCliCommand("openclaw doctor --fix")}, then retry ${formatCliCommand("openclaw channels add")}.`
       : formatUnknownChannelMessage({ channel: rawChannel });
     runtime.error(hint);
     runtime.exit(1);

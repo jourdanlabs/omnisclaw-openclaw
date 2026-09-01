@@ -299,7 +299,7 @@ describe("persisted pairing storage", () => {
       set,
       remove,
     }).read();
-    expect(afterWorkerRestart.pairingStatusHint).toContain("openclaw browser extension pair");
+    expect(afterWorkerRestart.pairingStatusHint).toContain("omnisclaw browser extension pair");
   });
 
   it.each([

@@ -6,7 +6,7 @@ describe("file-transfer Doctor handoff", () => {
 
   it("reports legacy positive permissions with the exact migration command", () => {
     expect(rule?.match({ nodes: { node: { allowReadPaths: ["/tmp/report-*.txt"] } } })).toBe(true);
-    expect(rule?.message).toContain("openclaw file-transfer approvals migrate");
+    expect(rule?.message).toContain("omnisclaw file-transfer approvals migrate");
   });
 
   it("does not report reviewed or deny-only policy", () => {

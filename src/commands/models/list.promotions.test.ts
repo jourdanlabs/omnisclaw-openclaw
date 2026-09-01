@@ -127,7 +127,7 @@ describe("models list promotion decorations", () => {
     expect(text).toContain("Available via promotion:");
     expect(text).toContain("Free Example models");
     expect(text).toContain("example-provider/example/model-alpha");
-    expect(text).toContain("openclaw promos claim example-models-launch");
+    expect(text).toContain("omnisclaw promos claim example-models-launch");
     expect(text).toContain("New promotional model offers");
   });
 
@@ -163,7 +163,7 @@ describe("models list promotion decorations", () => {
     });
     const text = lines.join("\n");
     expect(text).toContain("Available via promotion:");
-    expect(text).toContain("openclaw promos claim example-models-launch");
+    expect(text).toContain("omnisclaw promos claim example-models-launch");
   });
 
   it("stays silent when the cached window has passed", async () => {

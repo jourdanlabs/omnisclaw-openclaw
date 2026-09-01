@@ -159,7 +159,7 @@ vi.mock("../config/config.js", () => ({
       throw new Error(
         [
           "Config is managed by Nix (`OPENCLAW_NIX_MODE=1`), so OpenClaw treats openclaw.json as immutable.",
-          "Do not run setup, onboarding, openclaw update, plugin install/update/uninstall/enable, doctor repair/token-generation, or config set against this file.",
+          "Do not run setup, onboarding, omnisclaw update, plugin install/update/uninstall/enable, doctor repair/token-generation, or config set against this file.",
           "Agent-first Nix setup: https://github.com/openclaw/nix-openclaw#quick-start",
           "OpenClaw Nix overview: https://docs.openclaw.ai/install/nix",
         ].join("\n"),
@@ -1996,7 +1996,7 @@ describe("update-cli", () => {
 
     const logOutput = getLogOutput();
     expect(logOutput).toContain("timed out after 30s");
-    expect(logOutput).toContain("openclaw completion --write-state");
+    expect(logOutput).toContain("omnisclaw completion --write-state");
     expect(logOutput).not.toContain("Error: spawnSync");
   });
 
@@ -2442,7 +2442,7 @@ describe("update-cli", () => {
                 reason: "missing-extension-entry: ./dist/index.js",
                 message:
                   'Plugin "demo" failed post-core payload smoke check (missing-extension-entry): ./dist/index.js',
-                guidance: ["Run openclaw update repair to retry post-update plugin repair."],
+                guidance: ["Run omnisclaw update repair to retry post-update plugin repair."],
               },
             ],
             sync: {
@@ -3497,16 +3497,16 @@ describe("update-cli", () => {
     expect(jsonOutput?.postUpdate?.plugins?.status).toBe("warning");
     expect(pluginWarning(jsonOutput)?.pluginId).toBe("demo");
     expect(pluginWarning(jsonOutput)?.guidance).toEqual([
-      "Run openclaw update repair to retry post-update plugin repair.",
-      "Run openclaw plugins inspect demo --runtime --json for details.",
+      "Run omnisclaw update repair to retry post-update plugin repair.",
+      "Run omnisclaw plugins inspect demo --runtime --json for details.",
     ]);
     expect(pluginWarning(jsonOutput)?.reason).toContain("npm package integrity drift");
     expect(jsonOutput?.postUpdate?.plugins?.npm.outcomes[0]?.status).toBe("error");
     expect(jsonOutput?.postUpdate?.plugins?.npm.outcomes[0]?.message).toContain(
-      "Run openclaw update repair to retry post-update plugin repair.",
+      "Run omnisclaw update repair to retry post-update plugin repair.",
     );
     expect(jsonOutput?.postUpdate?.plugins?.npm.outcomes[0]?.message).toContain(
-      "Run openclaw plugins inspect demo --runtime --json for details.",
+      "Run omnisclaw plugins inspect demo --runtime --json for details.",
     );
   });
 
@@ -3650,8 +3650,8 @@ describe("update-cli", () => {
     const trustWarningOccurrences = output.split(trustWarning).length - 1;
     expect(trustWarningOccurrences).toBe(1);
     expect(output).toContain("Skipped demo ClawHub update");
-    expect(output).toContain("Run openclaw update repair to retry post-update plugin repair.");
-    expect(output).toContain("Run openclaw plugins inspect demo --runtime --json for details.");
+    expect(output).toContain("Run omnisclaw update repair to retry post-update plugin repair.");
+    expect(output).toContain("Run omnisclaw plugins inspect demo --runtime --json for details.");
   });
 
   it("detects missing plugin payloads from persisted records before npm updates", async () => {
@@ -3705,8 +3705,8 @@ describe("update-cli", () => {
     expect(getErrorOutput()).not.toContain("Update failed during plugin post-update sync.");
     const logs = getLogOutput();
     expect(logs).toContain("Failed to update demo: registry timeout");
-    expect(logs).toContain("Run openclaw update repair to retry post-update plugin repair.");
-    expect(logs).toContain("Run openclaw plugins inspect demo --runtime --json for details.");
+    expect(logs).toContain("Run omnisclaw update repair to retry post-update plugin repair.");
+    expect(logs).toContain("Run omnisclaw plugins inspect demo --runtime --json for details.");
   });
 
   it("marks disabled-after-failure plugin skips as post-update warnings", async () => {
@@ -3732,8 +3732,8 @@ describe("update-cli", () => {
     expect(jsonOutput?.postUpdate?.plugins?.status).toBe("warning");
     expect(pluginWarning(jsonOutput)?.pluginId).toBe("demo");
     expect(pluginWarning(jsonOutput)?.guidance).toEqual([
-      "Run openclaw update repair to retry post-update plugin repair.",
-      "Run openclaw plugins inspect demo --runtime --json for details.",
+      "Run omnisclaw update repair to retry post-update plugin repair.",
+      "Run omnisclaw plugins inspect demo --runtime --json for details.",
     ]);
     expect(pluginOutcome(jsonOutput)?.pluginId).toBe("demo");
     expect(pluginOutcome(jsonOutput)?.status).toBe("skipped");
@@ -3765,7 +3765,7 @@ describe("update-cli", () => {
     expect(pluginWarning(jsonOutput)?.reason).toContain("ClawHub blocked this release");
     expect(pluginOutcome(jsonOutput)?.pluginId).toBe("demo");
     expect(pluginOutcome(jsonOutput)?.status).toBe("skipped");
-    expect(pluginOutcome(jsonOutput)?.message).toContain("Run openclaw update repair");
+    expect(pluginOutcome(jsonOutput)?.message).toContain("Run omnisclaw update repair");
   });
 
   it("fails unexpected post-core plugin sync exceptions", async () => {
@@ -3805,10 +3805,10 @@ describe("update-cli", () => {
                     pluginId: "demo",
                     reason: "Failed to update demo: registry timeout",
                     message:
-                      'Plugin "demo" could not be processed after the core update: Failed to update demo: registry timeout Run openclaw update repair to retry post-update plugin repair. Run openclaw plugins inspect demo --runtime --json for details.',
+                      'Plugin "demo" could not be processed after the core update: Failed to update demo: registry timeout Run omnisclaw update repair to retry post-update plugin repair. Run omnisclaw plugins inspect demo --runtime --json for details.',
                     guidance: [
-                      "Run openclaw update repair to retry post-update plugin repair.",
-                      "Run openclaw plugins inspect demo --runtime --json for details.",
+                      "Run omnisclaw update repair to retry post-update plugin repair.",
+                      "Run omnisclaw plugins inspect demo --runtime --json for details.",
                     ],
                   },
                 ],
@@ -3848,7 +3848,7 @@ describe("update-cli", () => {
     expect(jsonOutput?.status).toBe("ok");
     expect(jsonOutput?.reason).toBeUndefined();
     expect(jsonOutput?.postUpdate?.plugins?.warnings?.[0]?.guidance).toContain(
-      "Run openclaw update repair to retry post-update plugin repair.",
+      "Run omnisclaw update repair to retry post-update plugin repair.",
     );
     expect(jsonOutput?.postUpdate?.plugins?.npm.outcomes[0]?.message).toContain("registry timeout");
   });
@@ -4497,7 +4497,7 @@ describe("update-cli", () => {
             pluginId: "demo",
             reason: "plugin smoke failed",
             message: "plugin smoke failed",
-            guidance: ["Run openclaw update repair."],
+            guidance: ["Run omnisclaw update repair."],
           },
         ],
         errored: true,
@@ -4604,7 +4604,7 @@ describe("update-cli", () => {
       [
         "Package updates cannot run from inside the gateway service process.",
         "That path replaces the active OpenClaw dist tree while the live gateway may still lazy-load old chunks.",
-        "Run `openclaw update` from a shell outside the gateway service, or stop the gateway service first and then update.",
+        "Run `omnisclaw update` from a shell outside the gateway service, or stop the gateway service first and then update.",
       ].join("\n"),
     );
     expectPackageInstallSpec("openclaw@9999.0.0");
@@ -4624,7 +4624,7 @@ describe("update-cli", () => {
       [
         "Package updates cannot run from inside the gateway service process.",
         "That path replaces the active OpenClaw dist tree while the live gateway may still lazy-load old chunks.",
-        "Run `openclaw update` from a shell outside the gateway service, or stop the gateway service first and then update.",
+        "Run `omnisclaw update` from a shell outside the gateway service, or stop the gateway service first and then update.",
       ].join("\n"),
     );
     expect(defaultRuntime.exit).toHaveBeenCalledWith(1);
@@ -4658,7 +4658,7 @@ describe("update-cli", () => {
         [
           "Package updates cannot run from inside the gateway service process.",
           "That path replaces the active OpenClaw dist tree while the live gateway may still lazy-load old chunks.",
-          "Run `openclaw update` from a shell outside the gateway service, or stop the gateway service first and then update.",
+          "Run `omnisclaw update` from a shell outside the gateway service, or stop the gateway service first and then update.",
         ].join("\n"),
       );
       expect(defaultRuntime.exit).toHaveBeenCalledWith(1);
@@ -4682,7 +4682,7 @@ describe("update-cli", () => {
       [
         "Package updates cannot run from inside the gateway service process.",
         "That path replaces the active OpenClaw dist tree while the live gateway may still lazy-load old chunks.",
-        "Run `openclaw update` from a shell outside the gateway service, or stop the gateway service first and then update.",
+        "Run `omnisclaw update` from a shell outside the gateway service, or stop the gateway service first and then update.",
       ].join("\n"),
     );
     expect(defaultRuntime.exit).toHaveBeenCalledWith(1);
@@ -4701,7 +4701,7 @@ describe("update-cli", () => {
 
     const errors = getErrorOutput();
     expect(errors).toContain(
-      "openclaw update detected it is running inside the gateway process tree.",
+      "omnisclaw update detected it is running inside the gateway process tree.",
     );
     expect(errors).toContain(`Gateway PID ${gatewayFixturePid} is an ancestor`);
     expect(defaultRuntime.exit).toHaveBeenCalledWith(1);
@@ -4726,7 +4726,7 @@ describe("update-cli", () => {
 
     const errors = getErrorOutput();
     expect(errors).toContain(
-      "openclaw update detected it is running inside the gateway process tree.",
+      "omnisclaw update detected it is running inside the gateway process tree.",
     );
     expect(errors).toContain(`Gateway PID ${gatewayFixturePid} is an ancestor`);
     expect(defaultRuntime.exit).toHaveBeenCalledWith(1);
@@ -4853,7 +4853,7 @@ describe("update-cli", () => {
       expect(cleanupStaleManagedServiceUpdateHandoffs).not.toHaveBeenCalled();
     }
     expect(defaultRuntime.exit).toHaveBeenCalledWith(1);
-    expect(getErrorOutput()).toContain("openclaw update --channel dev");
+    expect(getErrorOutput()).toContain("omnisclaw update --channel dev");
   });
 
   it("fails package updates when the installed correction version does not match the requested target", async () => {
@@ -5015,7 +5015,7 @@ describe("update-cli", () => {
     expect(updateNpmInstalledPlugins).not.toHaveBeenCalled();
     expect(defaultRuntime.exit).not.toHaveBeenCalledWith(1);
     const jsonOutput = lastWriteJsonCall() as UpdateRunResult | undefined;
-    const doctorStep = jsonOutput?.steps.find((step) => step.name === "openclaw doctor");
+    const doctorStep = jsonOutput?.steps.find((step) => step.name === "omnisclaw doctor");
     expect(jsonOutput?.status).toBe("ok");
     expect(doctorStep?.exitCode).toBe(UPDATE_POST_INSTALL_DOCTOR_ADVISORY_EXIT_CODE);
     expect(doctorStep?.advisory).toEqual({
@@ -5051,7 +5051,7 @@ describe("update-cli", () => {
     expect(spawn).not.toHaveBeenCalled();
     expect(defaultRuntime.exit).toHaveBeenCalledWith(1);
     const jsonOutput = lastWriteJsonCall() as UpdateRunResult | undefined;
-    const doctorStep = jsonOutput?.steps.find((step) => step.name === "openclaw doctor");
+    const doctorStep = jsonOutput?.steps.find((step) => step.name === "omnisclaw doctor");
     expect(doctorStep?.exitCode).toBe(124);
     expect(doctorStep?.advisory).toBeUndefined();
     expect(doctorStep?.termination).toBe("timeout");
@@ -5662,7 +5662,7 @@ describe("update-cli", () => {
     expect(serviceReadCommand).toHaveBeenCalledWith({ requireEffective: true });
   });
 
-  it("uses an explicit service wrapper when openclaw is absent from PATH", async () => {
+  it("uses an explicit service wrapper when omnisclaw is absent from PATH", async () => {
     const wrapperDir = createCaseDir("openclaw-update-wrapper-service");
     const wrapperPath = path.join(wrapperDir, "gateway-wrapper");
     await fs.mkdir(wrapperDir, { recursive: true });
@@ -7205,7 +7205,7 @@ describe("update-cli", () => {
       "Git-based updates need a clean working tree before they can switch commits, fetch, or rebase.",
     );
     expect(logs).toContain(
-      "Commit, stash, or discard the local changes, then rerun `openclaw update`.",
+      "Commit, stash, or discard the local changes, then rerun `omnisclaw update`.",
     );
     expect(serviceStop).not.toHaveBeenCalled();
     expect(defaultRuntime.exit).toHaveBeenCalledWith(1);
@@ -8220,7 +8220,7 @@ describe("update-cli", () => {
       run: async () => await updateWizardCommand({}),
       requireTty: false,
       expectedError:
-        "Update wizard requires a TTY. Use `openclaw update --channel <stable|extended-stable|beta|dev>` instead.",
+        "Update wizard requires a TTY. Use `omnisclaw update --channel <stable|extended-stable|beta|dev>` instead.",
     },
   ] as const)(
     "validates update command invocation errors: $name",

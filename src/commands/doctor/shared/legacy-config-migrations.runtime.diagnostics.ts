@@ -11,7 +11,7 @@ import {
 const UNSUPPORTED_OTEL_GRPC_PROTOCOL_RULE: LegacyConfigRule = {
   path: ["diagnostics", "otel", "protocol"],
   message:
-    'diagnostics.otel.protocol = "grpc" is no longer accepted because gRPC export is not implemented. Run "openclaw doctor --fix", then configure an OTLP/HTTP collector before re-enabling telemetry.',
+    'diagnostics.otel.protocol = "grpc" is no longer accepted because gRPC export is not implemented. Run "omnisclaw doctor --fix", then configure an OTLP/HTTP collector before re-enabling telemetry.',
   match: (value) => value === "grpc",
 };
 

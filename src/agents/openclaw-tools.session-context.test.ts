@@ -68,7 +68,7 @@ afterEach(() => {
   createEmbeddedCallGatewayMock.mockClear();
 });
 
-describe("openclaw session lookup context", () => {
+describe("omnisclaw session lookup context", () => {
   it("binds nested session lookups to the durable caller", async () => {
     const runSessionKey = "agent:research:main";
     setEmbeddedMode(true);

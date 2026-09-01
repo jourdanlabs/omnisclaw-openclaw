@@ -410,7 +410,7 @@ async function runGatewayHealthChecks(ctx: DoctorHealthFlowContext): Promise<voi
   const { note } = await loadNoteModule();
   if ((await hasActiveGatewayExecCredential(ctx)) && ctx.options.allowExec !== true) {
     note(
-      "Gateway health probes skipped because gateway credentials use an exec SecretRef. Run `openclaw doctor --allow-exec` to verify Gateway health with exec SecretRefs.",
+      "Gateway health probes skipped because gateway credentials use an exec SecretRef. Run `omnisclaw doctor --allow-exec` to verify Gateway health with exec SecretRefs.",
       "Gateway",
     );
     ctx.gatewayHealthSkipped = true;

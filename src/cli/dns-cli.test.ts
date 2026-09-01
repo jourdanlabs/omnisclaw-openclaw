@@ -1,5 +1,5 @@
 // Regression: the dns setup brew-prefix probe must be bounded by a SIGKILL-backed
-// timeout so a hung binary cannot block `openclaw dns setup`, while long-running
+// timeout so a hung binary cannot block `omnisclaw dns setup`, while long-running
 // setup steps (install/restart/sudo writes) stay unbounded.
 import fs from "node:fs";
 import os from "node:os";

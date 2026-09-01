@@ -50,7 +50,7 @@ describe("qa runtime parity prompt-cache reporting", () => {
     });
     expect(report.scenarios[0]?.openclawCacheDiagnostics).toBeUndefined();
     expect(renderQaRuntimeParityMarkdownReport(report)).toContain(
-      "post-warm cache misses: openclaw N/A; codex turn 2 (24448 uncached input)",
+      "post-warm cache misses: omnisclaw N/A; codex turn 2 (24448 uncached input)",
     );
   });
 
@@ -73,7 +73,7 @@ describe("qa runtime parity prompt-cache reporting", () => {
       unmeasuredPostWarmTurns: [3],
     });
     expect(renderQaRuntimeParityMarkdownReport(report)).toContain(
-      "post-warm cache misses: openclaw N/A; codex turn 2 (1050 uncached input); unmeasured turns 3",
+      "post-warm cache misses: omnisclaw N/A; codex turn 2 (1050 uncached input); unmeasured turns 3",
     );
   });
 
@@ -95,7 +95,7 @@ describe("qa runtime parity prompt-cache reporting", () => {
       unmeasuredPostWarmTurns: [2],
     });
     expect(renderQaRuntimeParityMarkdownReport(report)).toContain(
-      "post-warm cache misses: openclaw N/A; codex N/A (unmeasured turns 2)",
+      "post-warm cache misses: omnisclaw N/A; codex N/A (unmeasured turns 2)",
     );
   });
 

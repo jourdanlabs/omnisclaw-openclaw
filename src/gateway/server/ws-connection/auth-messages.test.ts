@@ -32,7 +32,7 @@ describe("formatGatewayAuthFailureMessage", () => {
     });
 
     expect(message).toBe(
-      "unauthorized: gateway token missing (paste in Control UI settings or openclaw doctor --generate-gateway-token; restart)",
+      "unauthorized: gateway token missing (paste in Control UI settings or omnisclaw doctor --generate-gateway-token; restart)",
     );
     expect(truncateCloseReason(message)).toBe(message);
   });
@@ -91,7 +91,7 @@ describe("formatGatewayAuthFailureMessage", () => {
         },
       }),
     ).toBe(
-      "gateway rejected this node: trusted-proxy identity-header authentication is required and no usable machine credential was accepted; run `openclaw doctor` on the Gateway",
+      "gateway rejected this node: trusted-proxy identity-header authentication is required and no usable machine credential was accepted; run `omnisclaw doctor` on the Gateway",
     );
   });
 

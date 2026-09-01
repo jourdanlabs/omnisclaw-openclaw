@@ -49,7 +49,7 @@ function toolText(result: unknown): string {
     .join("\n");
 }
 
-describe("openclaw tool", () => {
+describe("omnisclaw tool", () => {
   it("stays directly callable instead of entering tool catalogs", () => {
     const tool = createSystemAgentTool({ surface: "cli" });
     expect(tool.catalogMode).toBe("direct-only");
@@ -417,7 +417,7 @@ describe("openclaw tool", () => {
     expect(toolText(configureModel)).toContain(
       "active inference route cannot be changed inside OpenClaw",
     );
-    expect(toolText(configureModel)).toContain("openclaw onboard");
+    expect(toolText(configureModel)).toContain("omnisclaw onboard");
     expect(directiveRef.current).toEqual({ kind: "model-setup", workspace: "/tmp/work" });
 
     const open = await tool.execute("t7", { action: "open_agent", agentId: "work" });
@@ -441,7 +441,7 @@ describe("openclaw tool", () => {
       target: "guided",
     });
     expect(toolText(guidedSetup)).toContain("cannot run inside OpenClaw");
-    expect(toolText(guidedSetup)).toContain("openclaw onboard");
+    expect(toolText(guidedSetup)).toContain("omnisclaw onboard");
     expect(directiveRef.current).toEqual({ kind: "open-setup", target: "guided" });
 
     const gatewaySetup = await tool.execute("t9", {
@@ -535,13 +535,13 @@ describe("openclaw tool", () => {
       resolveSystemAgentDirectiveTransition({
         args: { action: "configure_model_provider", workspace: "/tmp/work" },
         resultText:
-          "directive: the active inference route cannot be changed inside OpenClaw; run openclaw onboard.",
+          "directive: the active inference route cannot be changed inside OpenClaw; run omnisclaw onboard.",
       }),
     ).toEqual({ kind: "model-setup", workspace: "/tmp/work" });
     expect(
       resolveSystemAgentDirectiveTransition({
         args: { action: "open_setup", target: "classic" },
-        resultText: "directive: classic setup cannot run inside OpenClaw; run openclaw onboard.",
+        resultText: "directive: classic setup cannot run inside OpenClaw; run omnisclaw onboard.",
       }),
     ).toEqual({ kind: "open-setup", target: "classic" });
     expect(

@@ -108,7 +108,7 @@ describe("runtime parity forced runtime observer", () => {
     const cell = await captureForcedCodexCell({
       tempRoot,
       logs: () =>
-        "agent harness selected requested=codex selected=openclaw reason=plugin_declared_fallback_openclaw",
+        "agent harness selected requested=codex selected=omnisclaw reason=plugin_declared_fallback_openclaw",
     });
 
     expect(cell.runtimeErrorClass).toBe("forced-codex-embedded-runtime");

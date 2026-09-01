@@ -48,7 +48,7 @@ describe("system-agent TUI operations", () => {
       expect(isPersistentSystemAgentOperation({ kind: "doctor-fix" })).toBe(false);
       expect(runDoctor).not.toHaveBeenCalled();
       expect(lines.join("\n")).toContain("with OpenClaw stopped");
-      expect(lines.join("\n")).toContain("openclaw doctor --fix");
+      expect(lines.join("\n")).toContain("omnisclaw doctor --fix");
       expect(lines.join("\n")).not.toContain("[openclaw] running: doctor.fix");
       await expect(
         fs.access(path.join(home, ".openclaw", "audit", "system-agent.jsonl")),

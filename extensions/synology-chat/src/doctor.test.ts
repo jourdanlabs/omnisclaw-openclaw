@@ -6,7 +6,7 @@ async function collectWarnings(cfg: OpenClawConfig): Promise<string[]> {
   return (
     (await synologyChatDoctor.collectPreviewWarnings?.({
       cfg,
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "omnisclaw doctor --fix",
     })) ?? []
   );
 }

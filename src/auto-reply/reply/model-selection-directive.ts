@@ -11,6 +11,7 @@ import {
   createModelVisibilityPolicy,
   type ModelVisibilityPolicy,
 } from "../../agents/model-visibility-policy.js";
+import { formatCliCommand } from "../../cli/command-format.js";
 import type { OpenClawConfig } from "../../config/types.openclaw.js";
 export { modelKey };
 export type { ModelAliasIndex };
@@ -38,7 +39,9 @@ function formatNotAllowedError(params: {
     `Then retry: ${retryCommand}`,
   ];
   if (rawRuntime && normalizeProviderId(rawRuntime) === "codex") {
-    lines.push("If the Codex runtime is missing, run: openclaw plugins enable codex");
+    lines.push(
+      `If the Codex runtime is missing, run: ${formatCliCommand("openclaw plugins enable codex")}`,
+    );
   }
   return lines.join("\n");
 }

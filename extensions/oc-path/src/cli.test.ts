@@ -1,5 +1,5 @@
 /**
- * Smoke tests for the `openclaw path` CLI handlers.
+ * Smoke tests for the `omnisclaw path` CLI handlers.
  *
  * Tests invoke each subcommand through the retained Commander registration.
  * Assertions inspect captured process output and the resulting exit code.
@@ -207,7 +207,7 @@ async function pathEmitCommand(
   );
 }
 
-describe("openclaw path CLI", () => {
+describe("omnisclaw path CLI", () => {
   it("reports its TTY-aware machine-output mode to the CLI", () => {
     const argv = ["node", "openclaw", "path", "validate", "oc://AGENTS.md"];
     expect(isPathMachineOutput({ argv, stdoutIsTTY: false })).toBe(true);

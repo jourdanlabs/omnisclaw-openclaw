@@ -17,7 +17,7 @@ function requireString(value: string | undefined, label: string): string {
 
 function requireOpenClawMetadata(metadata: OpenClawHookMetadata | undefined): OpenClawHookMetadata {
   if (!metadata) {
-    throw new Error("expected openclaw metadata");
+    throw new Error("expected omnisclaw metadata");
   }
   return metadata;
 }
@@ -164,7 +164,7 @@ description: 'single-quoted'
 });
 
 describe("resolveHookManifestMetadata", () => {
-  it("extracts openclaw metadata from parsed frontmatter", () => {
+  it("extracts omnisclaw metadata from parsed frontmatter", () => {
     const frontmatter = {
       name: "test-hook",
       metadata: JSON.stringify({
@@ -193,7 +193,7 @@ describe("resolveHookManifestMetadata", () => {
     expect(result).toBeUndefined();
   });
 
-  it("returns undefined when openclaw key is missing", () => {
+  it("returns undefined when omnisclaw key is missing", () => {
     const frontmatter = {
       metadata: JSON.stringify({ other: "data" }),
     };

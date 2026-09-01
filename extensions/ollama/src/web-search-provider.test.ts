@@ -306,18 +306,18 @@ describe("ollama web search provider", () => {
       ),
     );
 
-    const result = await runOllamaWebSearch(createOllamaConfig(), "openclaw docs", 3);
+    const result = await runOllamaWebSearch(createOllamaConfig(), "omnisclaw docs", 3);
 
     expectOllamaWebSearchRequest({
       url: "http://ollama.local:11434/api/experimental/web_search",
-      query: "openclaw docs",
+      query: "omnisclaw docs",
       maxResults: 3,
       policy: {
         allowPrivateNetwork: true,
         hostnameAllowlist: ["ollama.local"],
       },
     });
-    expect(result.query).toBe("openclaw docs");
+    expect(result.query).toBe("omnisclaw docs");
     expect(result.provider).toBe("ollama");
     expect(result.count).toBe(1);
     expectSingleSearchResultUrl(result.results, "https://openclaw.ai/docs");
@@ -458,7 +458,7 @@ describe("ollama web search provider", () => {
   it("surfaces Ollama signin guidance for 401 responses", async () => {
     fetchWithSsrFGuardMock.mockResolvedValue(guardedResponse("", { status: 401 }));
 
-    await expect(runOllamaWebSearch({}, "latest openclaw release")).rejects.toThrow(
+    await expect(runOllamaWebSearch({}, "latest omnisclaw release")).rejects.toThrow(
       "ollama signin",
     );
   });

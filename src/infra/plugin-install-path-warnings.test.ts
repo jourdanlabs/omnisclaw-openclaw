@@ -28,7 +28,7 @@ async function detectMatrixCustomPathIssue(sourcePath: string | ((pluginPath: st
   });
 }
 
-const MATRIX_REPO_INSTALL_COMMAND = `openclaw plugins install ${repoInstallSpec("matrix")}`;
+const MATRIX_REPO_INSTALL_COMMAND = `omnisclaw plugins install ${repoInstallSpec("matrix")}`;
 
 describe("plugin install path warnings", () => {
   it("ignores non-path installs and blank path candidates", async () => {
@@ -69,12 +69,12 @@ describe("plugin install path warnings", () => {
       formatPluginInstallPathIssue({
         issue: issue!,
         pluginLabel: "Matrix",
-        defaultInstallCommand: "openclaw plugins install @openclaw/matrix",
+        defaultInstallCommand: "omnisclaw plugins install @openclaw/matrix",
         repoInstallCommand: MATRIX_REPO_INSTALL_COMMAND,
       }),
     ).toEqual([
       "Matrix is installed from a custom path that no longer exists: /tmp/openclaw-matrix-missing",
-      'Reinstall with "openclaw plugins install @openclaw/matrix".',
+      'Reinstall with "omnisclaw plugins install @openclaw/matrix".',
       `If you are running from a repo checkout, you can also use "${MATRIX_REPO_INSTALL_COMMAND}".`,
     ]);
   });
@@ -108,14 +108,14 @@ describe("plugin install path warnings", () => {
           path: "/tmp/matrix-plugin",
         },
         pluginLabel: "Matrix",
-        defaultInstallCommand: "openclaw plugins install @openclaw/matrix",
+        defaultInstallCommand: "omnisclaw plugins install @openclaw/matrix",
         repoInstallCommand: MATRIX_REPO_INSTALL_COMMAND,
         formatCommand: (command) => `<${command}>`,
       }),
     ).toEqual([
       "Matrix is installed from a custom path: /tmp/matrix-plugin",
       "Main updates will not automatically replace that plugin with the repo's default Matrix package.",
-      'Reinstall with "<openclaw plugins install @openclaw/matrix>" when you want to return to the standard Matrix plugin.',
+      'Reinstall with "<omnisclaw plugins install @openclaw/matrix>" when you want to return to the standard Matrix plugin.',
       `If you are intentionally running from a repo checkout, reinstall that checkout explicitly with "<${MATRIX_REPO_INSTALL_COMMAND}>" after updates.`,
     ]);
   });
@@ -129,12 +129,12 @@ describe("plugin install path warnings", () => {
           path: "/tmp/openclaw-matrix-missing",
         },
         pluginLabel: "Matrix",
-        defaultInstallCommand: "openclaw plugins install @openclaw/matrix",
+        defaultInstallCommand: "omnisclaw plugins install @openclaw/matrix",
         repoInstallCommand: null,
       }),
     ).toEqual([
       "Matrix is installed from a custom path that no longer exists: /tmp/openclaw-matrix-missing",
-      'Reinstall with "openclaw plugins install @openclaw/matrix".',
+      'Reinstall with "omnisclaw plugins install @openclaw/matrix".',
     ]);
   });
 });

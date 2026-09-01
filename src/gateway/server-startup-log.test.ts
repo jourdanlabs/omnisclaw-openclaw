@@ -64,7 +64,7 @@ describe("gateway startup log", () => {
 
     expect(warn.mock.calls).toEqual([
       [
-        "security warning: dangerous config flags enabled: hooks.gmail.allowUnsafeExternalContent=true. Run `openclaw security audit`.",
+        "security warning: dangerous config flags enabled: hooks.gmail.allowUnsafeExternalContent=true. Run `omnisclaw security audit`.",
       ],
     ]);
   });
@@ -147,7 +147,7 @@ describe("gateway startup log", () => {
 
     expect(warn.mock.calls).toEqual([
       [
-        "configured channel warning: channels.missing-chat is configured but no channel plugin is installed or loadable (no-channel-owner). Run `openclaw doctor --fix` or install the channel plugin before relying on this channel.",
+        "configured channel warning: channels.missing-chat is configured but no channel plugin is installed or loadable (no-channel-owner). Run `omnisclaw doctor --fix` or install the channel plugin before relying on this channel.",
       ],
     ]);
   });
@@ -185,7 +185,7 @@ describe("gateway startup log", () => {
 
     expect(warn.mock.calls).toEqual([
       [
-        "gateway suppressed ambient channel auto-configuration for 1 channel: discord. Configure channels.<id> (openclaw channels add <id>) to enable the channel, or pass --ambient-channels to allow ambient env credentials.",
+        "gateway suppressed ambient channel auto-configuration for 1 channel: discord. Configure channels.<id> (omnisclaw channels add <id>) to enable the channel, or pass --ambient-channels to allow ambient env credentials.",
       ],
     ]);
     expect(warn.mock.calls.flat().join("\n")).not.toContain("channels.discord is configured");

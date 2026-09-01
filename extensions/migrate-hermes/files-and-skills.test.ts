@@ -273,7 +273,7 @@ describe("Hermes migration file and skill items", () => {
     expect(reauthItems.map((item) => item.reason)).toEqual([
       "Authenticate anthropic in OpenClaw after migration.",
       "Authenticate nous in OpenClaw after migration.",
-      "Authenticate qwen with an API key after migration: openclaw onboard --auth-choice qwen-api-key.",
+      "Authenticate qwen with an API key after migration: omnisclaw onboard --auth-choice qwen-api-key.",
       "Authenticate minimax-portal in OpenClaw after migration.",
       "Authenticate xai in OpenClaw after migration.",
     ]);

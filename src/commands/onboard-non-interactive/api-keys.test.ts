@@ -99,7 +99,7 @@ describe("resolveNonInteractiveApiKey", () => {
   ])("rejects command-shaped $source keys before returning them", async (testCase) => {
     const runtime = createRuntime();
     const malformedKey =
-      "openclaw onboard --non-interactive --auth-choice=zai-coding-global --zai-api-key $ZAI_API_KEY";
+      "omnisclaw onboard --non-interactive --auth-choice=zai-coding-global --zai-api-key $ZAI_API_KEY";
     if (testCase.resolvedEnv) {
       resolveEnvApiKey.mockReturnValue({
         apiKey: malformedKey,
@@ -134,7 +134,7 @@ describe("resolveNonInteractiveApiKey", () => {
   it("rejects a command-shaped explicit env key before a secret-ref flag", async () => {
     const runtime = createRuntime();
     const previousZaiApiKey = process.env.ZAI_API_KEY;
-    process.env.ZAI_API_KEY = "openclaw onboard --non-interactive --auth-choice zai-api-key"; // pragma: allowlist secret
+    process.env.ZAI_API_KEY = "omnisclaw onboard --non-interactive --auth-choice zai-api-key"; // pragma: allowlist secret
     resolveEnvApiKey.mockImplementation(() => {
       throw new Error("broad env lookup should not run for an explicit ref-mode flag");
     });
@@ -349,7 +349,7 @@ describe("resolveNonInteractiveApiKey", () => {
     },
     {
       rejection: "a command-shaped key",
-      flagValue: "openclaw onboard --non-interactive --auth-choice fixture-api-key",
+      flagValue: "omnisclaw onboard --non-interactive --auth-choice fixture-api-key",
       expectedMessage: "Paste the API key value",
     },
     {

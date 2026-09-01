@@ -10,7 +10,7 @@ import {
   type HealthFindingSeverity,
 } from "./health-checks.js";
 
-// Non-mutating health-check runner used by `openclaw doctor --lint`.
+// Non-mutating health-check runner used by `omnisclaw doctor --lint`.
 export interface DoctorLintRunOptions {
   readonly checks?: readonly HealthCheck[];
   readonly skipIds?: ReadonlySet<string> | readonly string[];

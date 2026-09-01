@@ -87,7 +87,7 @@ describe("runtime-guard", () => {
     expect(runtime.error).toHaveBeenCalledOnce();
     expect(runtime.error).toHaveBeenCalledWith(
       [
-        "openclaw requires Node >=22.22.3 <23, >=24.15.0 <25, or >=25.9.0.",
+        "omnisclaw requires Node >=22.22.3 <23, >=24.15.0 <25, or >=25.9.0.",
         "Detected: node 20.0.0 (exec: /usr/bin/node).",
         "PATH searched: /usr/bin",
         "Install Node: https://nodejs.org/en/download",
@@ -154,7 +154,7 @@ describe("runtime-guard", () => {
     expect(() => assertSupportedRuntime(runtime, details)).toThrow("exit");
     expect(runtime.error).toHaveBeenCalledWith(
       [
-        "openclaw requires Bun 1.4 or newer with WAL-reset-safe node:sqlite (SQLite 3.51.3+ or a patched 3.50.x/3.44.x release).",
+        "omnisclaw requires Bun 1.4 or newer with WAL-reset-safe node:sqlite (SQLite 3.51.3+ or a patched 3.50.x/3.44.x release).",
         "Detected: bun 1.3.14 (exec: /usr/bin/bun).",
         "Detected SQLite: unavailable.",
         "PATH searched: /usr/bin",
@@ -228,7 +228,7 @@ describe("runtime-guard", () => {
     expect(runtime.error).toHaveBeenCalledOnce();
     expect(runtime.error).toHaveBeenCalledWith(
       [
-        "openclaw requires Node >=22.22.3 <23, >=24.15.0 <25, or >=25.9.0.",
+        "omnisclaw requires Node >=22.22.3 <23, >=24.15.0 <25, or >=25.9.0.",
         "Detected: unknown runtime (exec: unknown).",
         "PATH searched: (not set)",
         "Install Node: https://nodejs.org/en/download",

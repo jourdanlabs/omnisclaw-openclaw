@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { formatCliCommand } from "../cli/command-format.js";
 import type { SessionEntry } from "../config/sessions.js";
 import { buildAgentMainSessionKey } from "../routing/session-key.js";
 import { readExistingAgentSchemaMeta } from "../state/openclaw-agent-db-schema-helpers.js";
@@ -177,7 +178,7 @@ export async function migrateLegacySessions(
   }
   if (detected.sessions.targetStoreAliases.hasFinalSymlink) {
     warnings.push(
-      `Deferred legacy session migration in final-component symlink store ${detected.sessions.targetStorePath}; configure one canonical session.store path, then rerun openclaw doctor --fix`,
+      `Deferred legacy session migration in final-component symlink store ${detected.sessions.targetStorePath}; configure one canonical session.store path, then rerun ${formatCliCommand("openclaw doctor --fix")}`,
     );
     return { changes, warnings };
   }
@@ -308,7 +309,7 @@ export async function migrateLegacySessions(
     const normalized = normalizeMergedSessionStore(merged, targetKeys);
     if (normalized.rejectedProtectedKeyCount > 0) {
       warnings.push(
-        `Refused legacy session migration because normalization rejected ${normalized.rejectedProtectedKeyCount} existing target session ${normalized.rejectedProtectedKeyCount === 1 ? "key" : "keys"}; left ${detected.sessions.targetStorePath} and ${detected.sessions.legacyStorePath} in place. Repair the conflicting rows, then rerun openclaw doctor --fix.`,
+        `Refused legacy session migration because normalization rejected ${normalized.rejectedProtectedKeyCount} existing target session ${normalized.rejectedProtectedKeyCount === 1 ? "key" : "keys"}; left ${detected.sessions.targetStorePath} and ${detected.sessions.legacyStorePath} in place. Repair the conflicting rows, then rerun ${formatCliCommand("openclaw doctor --fix")}.`,
       );
       return { changes, warnings };
     }

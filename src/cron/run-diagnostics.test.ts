@@ -11,7 +11,7 @@ import {
 } from "./run-diagnostics.js";
 
 const MISSING_WEB_SEARCH_PROVIDER_DIAGNOSTIC_MESSAGE =
-  "web_search tool requested in toolsAllow but no web search provider is selected. Configure one with: openclaw configure --section web, or set tools.web.search.provider.";
+  "web_search tool requested in toolsAllow but no web search provider is selected. Configure one with: omnisclaw configure --section web, or set tools.web.search.provider.";
 
 describe("cron run diagnostics", () => {
   it("normalizes and bounds diagnostic entries", () => {

@@ -142,7 +142,7 @@ export function staleManagedNpmInstallGenerationToHealthFinding(
     path: issue.packageDir,
     target: issue.pluginId,
     fixHint:
-      "Run `openclaw doctor --fix` to retire the stale generation for pruning after the gateway restarts.",
+      "Run `omnisclaw doctor --fix` to retire the stale generation for pruning after the gateway restarts.",
   };
 }
 

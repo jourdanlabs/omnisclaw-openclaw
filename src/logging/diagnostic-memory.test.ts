@@ -512,7 +512,7 @@ describe("diagnostic memory", () => {
     expect(records.at(-1)?.message).toContain("rssBytes=2012905472");
     expect(records.at(-1)?.message).toContain("heapUsedBytes=1307038712");
     expect(records.at(-1)?.message).toContain(
-      "nextStep=run openclaw gateway status --deep and openclaw gateway diagnostics export; restart gateway if pressure persists",
+      "nextStep=run omnisclaw gateway status --deep and omnisclaw gateway diagnostics export; restart gateway if pressure persists",
     );
   });
 });

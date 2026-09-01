@@ -566,7 +566,7 @@ describe("channelsAddCommand", () => {
       await channelsAddCommand({ channel }, runtime, { hasFlags: false });
 
       expect(runtime.error).toHaveBeenCalledWith(
-        `Unknown channel "${expectedChannel}". Run \`openclaw channels list --all\` to see configured and installable channels.`,
+        `Unknown channel "${expectedChannel}". Run \`omnisclaw channels list --all\` to see configured and installable channels.`,
       );
       expect(runtime.exit).toHaveBeenCalledWith(1);
       expect(runtime.log).not.toHaveBeenCalled();
@@ -592,7 +592,7 @@ describe("channelsAddCommand", () => {
       await expect(
         runChannelsSetupWizard({ channel }, runtime, channelWizardMocks.prompter),
       ).rejects.toThrow(
-        `Unknown channel "${expectedChannel}". Run \`openclaw channels list --all\` to see configured and installable channels.`,
+        `Unknown channel "${expectedChannel}". Run \`omnisclaw channels list --all\` to see configured and installable channels.`,
       );
 
       expect(runtime.exit).not.toHaveBeenCalled();

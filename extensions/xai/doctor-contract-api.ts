@@ -97,18 +97,18 @@ function hasLegacyXaiSttEntries(value: unknown): boolean {
 export const legacyConfigRules: LegacyConfigRule[] = [
   ...PLUGIN_MODEL_MIGRATIONS.map((migration) => ({
     path: migration.path,
-    message: `${migration.path.join(".")}.model uses a retired xAI model; run "openclaw doctor --fix" to use ${migration.targetModel}.`,
+    message: `${migration.path.join(".")}.model uses a retired xAI model; run "omnisclaw doctor --fix" to use ${migration.targetModel}.`,
     match: (value: unknown) => isRetiredToolModel(value, migration.retiredModels),
   })),
   ...XAI_STT_MODEL_LIST_PATHS.map((path) => ({
     path: [...path],
-    message: `${path.join(".")} contains the obsolete xAI grok-stt model selector; run "openclaw doctor --fix" to remove it.`,
+    message: `${path.join(".")} contains the obsolete xAI grok-stt model selector; run "omnisclaw doctor --fix" to remove it.`,
     match: hasLegacyXaiSttEntries,
   })),
   {
     path: ["models", "providers", "xai", "models"],
     message:
-      'models.providers.xai.models contains stale generated xAI catalog rows; run "openclaw doctor --fix" to remove them.',
+      'models.providers.xai.models contains stale generated xAI catalog rows; run "omnisclaw doctor --fix" to remove them.',
     match: hasLegacyBuiltinCatalogRows,
   },
 ];

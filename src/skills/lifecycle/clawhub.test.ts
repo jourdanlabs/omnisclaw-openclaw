@@ -485,7 +485,7 @@ describe("skills-clawhub", () => {
       path: "/api/v1/skills/missing-skill/install",
       body: "remote not-found detail",
       expected:
-        'Skill "missing-skill" not found on ClawHub. Run `openclaw skills search missing-skill` to find the right skill reference.',
+        'Skill "missing-skill" not found on ClawHub. Run `omnisclaw skills search missing-skill` to find the right skill reference.',
     },
     {
       name: "maps missing versioned skills to the skills-info recovery message",
@@ -494,7 +494,7 @@ describe("skills-clawhub", () => {
       path: "/custom-clawhub/api/v1/skills/missing-skill",
       body: "remote versioned not-found detail",
       expected:
-        'Skill "missing-skill" not found on ClawHub. Run `openclaw skills search missing-skill` to find the right skill reference.',
+        'Skill "missing-skill" not found on ClawHub. Run `omnisclaw skills search missing-skill` to find the right skill reference.',
     },
     {
       name: "keeps server failures distinct from missing skills",
@@ -1325,7 +1325,7 @@ describe("skills-clawhub", () => {
       throw new Error("expected ambiguous slug failure");
     }
     expect(result.error).toContain('Skill "weather" is ambiguous on ClawHub.');
-    expect(result.error).toContain("openclaw skills install @owner/weather");
+    expect(result.error).toContain("omnisclaw skills install @owner/weather");
     expect(result.error).toContain("Multiple ClawHub publishers provide weather.");
   });
 
@@ -1858,7 +1858,7 @@ describe("skills-clawhub", () => {
       {
         ok: false,
         error:
-          'Skill "missing-skill" not found on ClawHub. Run `openclaw skills search missing-skill` to find the right skill reference.',
+          'Skill "missing-skill" not found on ClawHub. Run `omnisclaw skills search missing-skill` to find the right skill reference.',
       },
     ]);
     expect(results[0]?.ok ? "" : results[0]?.error).not.toContain(body);

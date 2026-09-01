@@ -504,7 +504,7 @@ function noteRememberAcrossConversationsHealth(params: {
 
 /**
  * Check whether memory search has a usable embedding provider.
- * Runs as part of `openclaw doctor` using config-only checks where possible.
+ * Runs as part of `omnisclaw doctor` using config-only checks where possible.
  */
 type MemorySearchHealthOptions = {
   gatewayMemoryProbe?: {
@@ -753,7 +753,7 @@ async function noteMemorySearchHealthForAgent(
     }
     // When the probe was intentionally skipped (skipped: true / checked: false
     // due to probe:false path), we have no embedding status information — do
-    // not warn. A skipped probe means the user ran `openclaw doctor` without
+    // not warn. A skipped probe means the user ran `omnisclaw doctor` without
     // --deep; it does not mean embeddings are unavailable.
     // NOTE: a transport timeout also sets checked: false, but skipped stays
     // false/absent — a timeout is a real diagnostic signal and should fall

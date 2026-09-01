@@ -225,7 +225,7 @@ describe("onboarding authored config persistence", () => {
       }
 
       expect(result.sessionMigrationWarnings).toEqual([
-        expect.stringMatching(/incomplete.*openclaw doctor --fix/),
+        expect.stringMatching(/incomplete.*omnisclaw doctor --fix/),
       ]);
       const readLedgerStatus = () =>
         withExistingOpenClawStateDatabaseReadOnly(

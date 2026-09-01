@@ -1059,7 +1059,7 @@ describe("printDaemonStatus", () => {
     );
 
     expectMockLineContains(runtime.log, "Plugin version drift: 1 active official plugin");
-    expectMockLineContains(runtime.log, "openclaw gateway status --deep");
+    expectMockLineContains(runtime.log, "omnisclaw gateway status --deep");
     expect(runtime.log.mock.calls.map(([line]) => line).join("\n")).not.toContain("whatsapp:");
   });
 
@@ -1090,8 +1090,8 @@ describe("printDaemonStatus", () => {
     );
 
     expectMockLineContains(runtime.log, "- whatsapp: 2026.5.3 (clawhub)");
-    expectMockLineContains(runtime.log, "openclaw plugins update whatsapp");
-    expectMockLineContains(runtime.log, "openclaw gateway restart");
+    expectMockLineContains(runtime.log, "omnisclaw plugins update whatsapp");
+    expectMockLineContains(runtime.log, "omnisclaw gateway restart");
   });
 
   it("prints exact package update commands for pinned npm plugin drift in deep mode", () => {
@@ -1125,9 +1125,9 @@ describe("printDaemonStatus", () => {
     expectMockLineContains(runtime.log, "- brave: 2026.6.9 (npm)");
     expectMockLineContains(
       runtime.log,
-      "openclaw plugins update @openclaw/brave-plugin@2026.6.10-beta.1",
+      "omnisclaw plugins update @openclaw/brave-plugin@2026.6.10-beta.1",
     );
-    expectMockLineContains(runtime.log, "openclaw gateway restart");
+    expectMockLineContains(runtime.log, "omnisclaw gateway restart");
   });
 
   it("does not print systemd user-service hints when a gateway responds", () => {

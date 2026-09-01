@@ -598,7 +598,7 @@ function renderStandingGrants(grants: StandingGrantCliEntry[]): void {
       })),
     }),
   );
-  defaultRuntime.log(theme.muted("Revoke with: openclaw approvals grants revoke <grant-id>"));
+  defaultRuntime.log(theme.muted("Revoke with: omnisclaw approvals grants revoke <grant-id>"));
 }
 
 function renderPendingApprovals(entries: PendingApprovalCliEntry[]): void {
@@ -1394,16 +1394,16 @@ export function registerExecApprovalsCli(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatExample(
-          'openclaw approvals allowlist add "~/Projects/**/bin/rg"',
+          'omnisclaw approvals allowlist add "~/Projects/**/bin/rg"',
           "Allowlist a local binary pattern for the main agent.",
         )}\n${formatExample(
-          'openclaw approvals allowlist add --agent main --node <id|name|ip> "/usr/bin/uptime"',
+          'omnisclaw approvals allowlist add --agent main --node <id|name|ip> "/usr/bin/uptime"',
           "Allowlist on a specific node/agent.",
         )}\n${formatExample(
-          'openclaw approvals allowlist add --agent "*" "/usr/bin/uname"',
+          'omnisclaw approvals allowlist add --agent "*" "/usr/bin/uname"',
           "Allowlist for all agents (wildcard).",
         )}\n${formatExample(
-          'openclaw approvals allowlist remove "~/Projects/**/bin/rg"',
+          'omnisclaw approvals allowlist remove "~/Projects/**/bin/rg"',
           "Remove an allowlist pattern.",
         )}\n\n${theme.muted("Docs:")} ${formatDocsLink("/cli/approvals", "docs.openclaw.ai/cli/approvals")}\n`,
     );

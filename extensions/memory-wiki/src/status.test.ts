@@ -480,7 +480,7 @@ describe("memory wiki doctor", () => {
     expect(report.warningCount).toBe(2);
     expect(report.fixes.map((fix) => fix.code)).toEqual(["vault-missing", "obsidian-cli-missing"]);
     expect(rendered).toContain("Suggested fixes:");
-    expect(rendered).toContain("openclaw wiki init");
+    expect(rendered).toContain("omnisclaw wiki init");
   });
 
   it("suggests bridge fixes when no public artifacts are exported", async () => {

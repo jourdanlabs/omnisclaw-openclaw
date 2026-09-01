@@ -1,4 +1,5 @@
 import { resolveConfiguredAgentId } from "../agents/agent-scope-config.js";
+import { formatCliCommand } from "../cli/command-format.js";
 import {
   callGatewayFromCli,
   isImplicitLocalGatewayTargetFromCli,
@@ -15,8 +16,7 @@ import { GIT_BACKUP_PUSH_CREDENTIAL_WARNING } from "./backup-git.js";
 import { resolveRequiredBackupPath } from "./backup-shared.js";
 
 const BACKUP_CRON_JOB_NAME = "openclaw-backup-scheduled";
-const LOCAL_GATEWAY_REQUIRED_ERROR =
-  "backup enable manages backups on the Gateway host and currently requires a local Gateway. Create the cron job manually with openclaw cron add for remote Gateways.";
+const LOCAL_GATEWAY_REQUIRED_ERROR = `backup enable manages backups on the Gateway host and currently requires a local Gateway. Create the cron job manually with ${formatCliCommand("openclaw cron add")} for remote Gateways.`;
 
 type BackupScheduleOptions = GatewayRpcOpts & {
   repository?: string;

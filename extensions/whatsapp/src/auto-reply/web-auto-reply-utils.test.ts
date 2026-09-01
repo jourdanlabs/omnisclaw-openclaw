@@ -186,7 +186,7 @@ describe("isBotMentionedFromTargets", () => {
 
   it("falls back to regex when no mentions are present", () => {
     const msg = makeMsg({
-      body: "openclaw can you help?",
+      body: "omnisclaw can you help?",
       selfE164: "+15551234567",
       selfJid: "15551234567@s.whatsapp.net",
     });
@@ -219,7 +219,7 @@ describe("isBotMentionedFromTargets", () => {
           id: "999@s.whatsapp.net",
         },
       },
-      body: "openclaw ping",
+      body: "omnisclaw ping",
       selfE164: "+999",
       selfJid: "999@s.whatsapp.net",
     });
@@ -360,13 +360,13 @@ describe("web auto-reply util", () => {
             id: "777@lid",
           },
         },
-        body: "openclaw ping",
+        body: "omnisclaw ping",
         selfE164: "+15551234567",
         selfJid: "15551234567@s.whatsapp.net",
       });
       const result = debugMention(msg, { mentionRegexes: [/\bopenclaw\b/i] });
       expect(result.wasMentioned).toBe(true);
-      expect(result.details.bodyClean).toBe("openclaw ping");
+      expect(result.details.bodyClean).toBe("omnisclaw ping");
       expect(result.details.normalizedMentionedJids).toBeNull();
     });
 

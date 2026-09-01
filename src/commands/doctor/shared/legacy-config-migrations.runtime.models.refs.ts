@@ -732,4 +732,4 @@ export function rewriteKnownModelRefs(
 }
 
 export const MODEL_REF_CANONICALIZATION_MESSAGE =
-  'Configured retired or noncanonical model refs are no longer in the bundled catalogs; run "openclaw doctor --fix" to upgrade them.';
+  'Configured retired or noncanonical model refs are no longer in the bundled catalogs; run "omnisclaw doctor --fix" to upgrade them.';

@@ -648,13 +648,13 @@ describe("gateway-backed CLI process exit", () => {
       }
       expect(result.stderr).toContain(`Gateway not reachable at ws://127.0.0.1:${port}`);
       expect(result.stderr).toContain(
-        "Start it with `openclaw gateway run` or check `openclaw gateway status`.",
+        "Start it with `omnisclaw gateway run` or check `omnisclaw gateway status`.",
       );
       expect(result.stderr).not.toContain("The CLI command failed");
       expect(result.stderr).not.toContain("Could not start the CLI");
       expect(result.stderr).not.toContain("OPENCLAW_DEBUG");
       expect(result.stderr).not.toContain("Stack:");
-      expect(result.stderr).not.toContain("openclaw doctor");
+      expect(result.stderr).not.toContain("omnisclaw doctor");
     },
   );
 
@@ -901,7 +901,7 @@ describe("gateway-backed CLI process exit", () => {
         expect(result.stderr).not.toContain("Could not start the CLI");
         expect(result.stderr).not.toContain("OPENCLAW_DEBUG");
         expect(result.stderr).not.toContain("Stack:");
-        expect(result.stderr).not.toContain("openclaw doctor");
+        expect(result.stderr).not.toContain("omnisclaw doctor");
       } finally {
         if (gatewayOwnsLock) {
           closeOpenClawStateDatabaseForTest();

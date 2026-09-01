@@ -202,7 +202,7 @@ describe("ensureAgentWorkspace", () => {
   it("does not overwrite a foreign root workspace-state.json file", async () => {
     const tempDir = await makeTempWorkspace("openclaw-workspace-");
     const foreignStatePath = path.join(tempDir, "workspace-state.json");
-    const foreignState = "not openclaw state\n";
+    const foreignState = "not omnisclaw state\n";
     await fs.writeFile(foreignStatePath, foreignState);
 
     await ensureAgentWorkspace({ dir: tempDir, ensureBootstrapFiles: true });
@@ -220,7 +220,7 @@ describe("ensureAgentWorkspace", () => {
 
     await expect(
       ensureAgentWorkspace({ dir: tempDir, ensureBootstrapFiles: true }),
-    ).rejects.toThrow(/run openclaw doctor --fix/u);
+    ).rejects.toThrow(/run omnisclaw doctor --fix/u);
     await expect(
       fs.access(path.join(tempDir, ...LEGACY_WORKSPACE_STATE_PATH_SEGMENTS)),
     ).resolves.toBeUndefined();
@@ -238,7 +238,7 @@ describe("ensureAgentWorkspace", () => {
 
     await expect(
       ensureAgentWorkspace({ dir: tempDir, ensureBootstrapFiles: true }),
-    ).rejects.toThrow(/run openclaw doctor --fix/u);
+    ).rejects.toThrow(/run omnisclaw doctor --fix/u);
     await expect(
       fs.access(path.join(tempDir, ...LEGACY_WORKSPACE_STATE_PATH_SEGMENTS)),
     ).resolves.toBeUndefined();
@@ -552,7 +552,7 @@ describe("ensureAgentWorkspace", () => {
 
     await expect(
       ensureAgentWorkspace({ dir: tempDir, ensureBootstrapFiles: true }),
-    ).rejects.toThrow(/run openclaw doctor --fix/u);
+    ).rejects.toThrow(/run omnisclaw doctor --fix/u);
 
     expect(await fs.readFile(attestationPath, "utf-8")).toBe(marker);
     expect(readWorkspaceStateSnapshot(tempDir).setupExists).toBe(false);
@@ -569,7 +569,7 @@ describe("ensureAgentWorkspace", () => {
 
     await expect(
       ensureAgentWorkspace({ dir: tempDir, ensureBootstrapFiles: true }),
-    ).rejects.toThrow(/run openclaw doctor --fix/u);
+    ).rejects.toThrow(/run omnisclaw doctor --fix/u);
 
     expect(await fs.readFile(attestationPath, "utf-8")).toBe(marker);
     expect(readWorkspaceStateSnapshot(tempDir).setupExists).toBe(true);

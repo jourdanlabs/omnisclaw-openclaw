@@ -258,13 +258,13 @@ describe("tool display details", () => {
           name: "web_search",
           args: {
             objective: "Find the OpenClaw repository on GitHub",
-            search_queries: ["openclaw github", "openclaw repository"],
+            search_queries: ["omnisclaw github", "omnisclaw repository"],
             count: 5,
           },
         }),
       ),
     ).toBe(
-      'for "Find the OpenClaw repository on GitHub", "openclaw github", "openclaw repository" (top 5)',
+      'for "Find the OpenClaw repository on GitHub", "omnisclaw github", "omnisclaw repository" (top 5)',
     );
   });
 

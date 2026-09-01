@@ -43,7 +43,7 @@ describe("web_fetch proxy doctor diagnostic", () => {
     expect(diagnostic).toContain("web_fetch still uses direct connections");
     expect(diagnostic).toContain("tools.web.fetch.useTrustedEnvProxy is not enabled");
     expect(diagnostic).toContain("Direct TLS connectivity to docs.openclaw.ai:443 failed");
-    expect(diagnostic).toContain("openclaw config set tools.web.fetch.useTrustedEnvProxy true");
+    expect(diagnostic).toContain("omnisclaw config set tools.web.fetch.useTrustedEnvProxy true");
     expect(diagnostic).not.toContain(proxyUrl);
     expect(diagnostic).not.toContain("proxy-value-marker");
   });

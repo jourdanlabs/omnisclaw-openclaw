@@ -487,7 +487,7 @@ describe("shared auth store relocation", () => {
       expect.objectContaining({
         name: "SharedAuthStoreSourceInspectionError",
         code: "SHARED_AUTH_STORE_SOURCE_UNREADABLE",
-        action: "openclaw doctor --fix",
+        action: "omnisclaw doctor --fix",
         sourcePath,
       }),
     );

@@ -918,7 +918,7 @@ describe("system-scope gateway unit detection (openclaw#87577)", () => {
     expect(warning).toContain("/.config/systemd/user/openclaw-gateway.service");
     expect(warning).toContain("/etc/systemd/system/openclaw-gateway.service");
     expect(warning).toContain("18789");
-    expect(warning).toContain("openclaw doctor --fix");
+    expect(warning).toContain("omnisclaw doctor --fix");
     // The unguarded startup path must not hand out a destructive command.
     expect(warning).not.toContain("rm ");
     expect(warning).not.toContain("disable --now");
@@ -1372,7 +1372,7 @@ describe("readSystemdServiceRuntime", () => {
   });
 
   // Regression for #84698: status probes must bound the systemctl subprocess so a
-  // wedged systemd socket cannot hang `openclaw status` (which advertises --timeout).
+  // wedged systemd socket cannot hang `omnisclaw status` (which advertises --timeout).
   it("passes a kill-backed timeout to systemctl when a read deadline is set", async () => {
     execFileMock.mockReset();
     execFileMock.mockImplementation(execFileResult(null, "", ""));
@@ -1485,7 +1485,7 @@ describe("splitArgsPreservingQuotes", () => {
 
   it("supports systemd-style backslash escaping", () => {
     expect(
-      splitArgsPreservingQuotes('openclaw --name "My \\"Bot\\"" --foo bar', {
+      splitArgsPreservingQuotes('omnisclaw --name "My \\"Bot\\"" --foo bar', {
         escapeMode: "backslash",
       }),
     ).toEqual(["openclaw", "--name", 'My "Bot"', "--foo", "bar"]);
@@ -1493,13 +1493,13 @@ describe("splitArgsPreservingQuotes", () => {
 
   it("supports schtasks-style escaped quotes while preserving other backslashes", () => {
     expect(
-      splitArgsPreservingQuotes('openclaw --path "C:\\\\Program Files\\\\OpenClaw"', {
+      splitArgsPreservingQuotes('omnisclaw --path "C:\\\\Program Files\\\\OpenClaw"', {
         escapeMode: "backslash-quote-only",
       }),
     ).toEqual(["openclaw", "--path", "C:\\\\Program Files\\\\OpenClaw"]);
 
     expect(
-      splitArgsPreservingQuotes('openclaw --label "My \\"Quoted\\" Name"', {
+      splitArgsPreservingQuotes('omnisclaw --label "My \\"Quoted\\" Name"', {
         escapeMode: "backslash-quote-only",
       }),
     ).toEqual(["openclaw", "--label", 'My "Quoted" Name']);
@@ -3109,7 +3109,7 @@ describe("systemd service install and uninstall", () => {
       const unit = await fs.readFile(unitPath, "utf8");
       expect(unitPath).toMatch(/openclaw-node\.service$/);
       expect(unit).toContain("Description=OpenClaw Node Host");
-      expect(unit).toContain("openclaw node run");
+      expect(unit).toContain("omnisclaw node run");
       expect(unit).not.toContain("OPENCLAW_SERVICE_VERSION");
       expect(execFileMock).toHaveBeenCalledTimes(4);
     });

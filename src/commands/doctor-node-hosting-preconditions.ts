@@ -87,7 +87,7 @@ export function collectNodeHostingPreconditionFindings(
       checkId: CHECK_ID,
       severity: "warning",
       message:
-        "The device-pair plugin is not enabled; node onboarding join codes and openclaw connect are unavailable.",
+        "The device-pair plugin is not enabled; node onboarding join codes and omnisclaw connect are unavailable.",
       path: "plugins.entries.device-pair.enabled",
       requirement: "node-onboarding-plugin",
       fixHint:
@@ -115,7 +115,7 @@ export function collectNodeHostingPreconditionFindings(
       path: "gateway.auth",
       requirement: "machine-client-auth",
       fixHint:
-        "Switch gateway.auth.mode to token and configure gateway.auth.token as a SecretRef so machine clients can authenticate as devices. Keep trusted-proxy only if machine clients use a clean loopback/direct gateway.auth.password path. For Access-fronted gateways, configure the node gateway.cloudflareAccess.clientId / clientSecret SecretInputs or set CF_ACCESS_CLIENT_ID / CF_ACCESS_CLIENT_SECRET before openclaw connect.",
+        "Switch gateway.auth.mode to token and configure gateway.auth.token as a SecretRef so machine clients can authenticate as devices. Keep trusted-proxy only if machine clients use a clean loopback/direct gateway.auth.password path. For Access-fronted gateways, configure the node gateway.cloudflareAccess.clientId / clientSecret SecretInputs or set CF_ACCESS_CLIENT_ID / CF_ACCESS_CLIENT_SECRET before omnisclaw connect.",
     });
   }
   if (lacksNodeOnboardingUrl(cfg)) {

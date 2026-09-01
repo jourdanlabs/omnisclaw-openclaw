@@ -578,7 +578,7 @@ describe("buildAgentSystemPrompt", () => {
 
     expect(prompt).toContain("## OpenClaw Control");
     expect(prompt).toContain("Config read: `gateway`");
-    expect(prompt).not.toContain("openclaw gateway status|restart|start|stop");
+    expect(prompt).not.toContain("omnisclaw gateway status|restart|start|stop");
     expect(prompt).toContain("Do not invent commands");
   });
 
@@ -1216,7 +1216,7 @@ describe("buildAgentSystemPrompt", () => {
     expect(prompt).not.toContain("config.schema, config.apply");
   });
 
-  it("delegates system changes when openclaw tool is present", () => {
+  it("delegates system changes when omnisclaw tool is present", () => {
     const prompt = buildAgentSystemPrompt({
       workspaceDir: "/tmp/openclaw",
       toolNames: ["openclaw", "sessions_spawn"],
@@ -1231,7 +1231,7 @@ describe("buildAgentSystemPrompt", () => {
     expect(prompt).toContain("`visible:true` for work the user follows or asked for; else hidden.");
   });
 
-  it("omits openclaw delegation guidance without the tool", () => {
+  it("omits omnisclaw delegation guidance without the tool", () => {
     const prompt = buildAgentSystemPrompt({
       workspaceDir: "/tmp/openclaw",
       toolNames: ["gateway"],
@@ -1387,7 +1387,7 @@ describe("buildAgentSystemPrompt", () => {
     const heartbeatPrompts = [
       "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.",
       "Follow the heartbeat monitor scratch context when provided. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.",
-      "Follow the heartbeat monitor scratch context when provided. Recurring tasks are cron jobs; create or change their schedules with cron tools or the openclaw cron CLI, not heartbeat scratch. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.",
+      "Follow the heartbeat monitor scratch context when provided. Recurring tasks are cron jobs; create or change their schedules with cron tools or the omnisclaw cron CLI, not heartbeat scratch. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.",
       "Follow the heartbeat monitor scratch context when provided. Recurring tasks are automations; create or change their schedules with the automations tool, not heartbeat scratch. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.",
     ];
 

@@ -659,7 +659,7 @@ describe("native host registration", () => {
         state: "owned",
         extensionIds: registration.extensionIds,
       });
-      expect(brokenRegistration.issue).toContain("openclaw browser extension install");
+      expect(brokenRegistration.issue).toContain("omnisclaw browser extension install");
       expect(brokenRegistration.issue.length).toBeLessThan(200);
       expect(broken.issues).toEqual([`Chromium: ${brokenRegistration.issue}`]);
       expect(JSON.stringify(broken)).not.toMatch(/pairingString|token|Bearer|runtime's version/u);
@@ -759,7 +759,7 @@ describe("native host registration", () => {
       throw new Error("missing Chrome fixture registration");
     }
     expect(unused.state).toBe("owned");
-    expect(unused.issue).toContain("openclaw browser extension install");
+    expect(unused.issue).toContain("omnisclaw browser extension install");
     expect(repaired.issues).toEqual([`Google Chrome: ${unused.issue}`]);
   });
 });

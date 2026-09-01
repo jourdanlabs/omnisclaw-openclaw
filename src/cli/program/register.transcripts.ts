@@ -1,4 +1,4 @@
-// `openclaw transcripts`: SQLite-backed transcript inspector and artifact exporter.
+// `omnisclaw transcripts`: SQLite-backed transcript inspector and artifact exporter.
 import path from "node:path";
 import type { Command } from "commander";
 import { sanitizeTerminalText } from "../../../packages/terminal-core/src/safe-text.js";

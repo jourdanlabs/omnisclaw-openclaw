@@ -439,24 +439,24 @@ describe("backup commands", () => {
     {
       code: "ENOENT",
       detail: "Backup output directory could not be created",
-      recovery: "Check the path and run `openclaw backup create --output <archive>` again.",
+      recovery: "Check the path and run `omnisclaw backup create --output <archive>` again.",
     },
     {
       code: "EACCES",
       detail: "Backup output directory is not writable",
       recovery:
-        "Check the path and directory permissions, then run `openclaw backup create --output <archive>` again.",
+        "Check the path and directory permissions, then run `omnisclaw backup create --output <archive>` again.",
     },
     {
       code: "ENOSPC",
       detail: "The destination does not have enough free space",
-      recovery: "Free up disk space and run `openclaw backup create --output <archive>` again.",
+      recovery: "Free up disk space and run `omnisclaw backup create --output <archive>` again.",
     },
     {
       code: "EIO",
       detail: "The output path could not be prepared",
       recovery:
-        "Check the path and filesystem, then run `openclaw backup create --output <archive>` again.",
+        "Check the path and filesystem, then run `omnisclaw backup create --output <archive>` again.",
     },
   ])("reports an actionable $code output-parent failure", async ({ code, detail, recovery }) => {
     const stateDir = path.join(tempHome.home, ".openclaw");
@@ -496,7 +496,7 @@ describe("backup commands", () => {
     }).catch((caught: unknown) => caught);
 
     expect(error).toBeInstanceOf(Error);
-    const operatorMessage = `Backup archive creation failed: ${outputPath}. Backup output parent is not a directory: ${outputParent}. Choose a directory path and run \`openclaw backup create --output <archive>\` again.`;
+    const operatorMessage = `Backup archive creation failed: ${outputPath}. Backup output parent is not a directory: ${outputParent}. Choose a directory path and run \`omnisclaw backup create --output <archive>\` again.`;
     expect(formatCliOperatorError(error, { argv: [], env: {} })).toBe(operatorMessage);
     expect(formatCliOperatorError(error, { argv: [], env: { OPENCLAW_DEBUG: "1" } })).toMatch(
       /\| EEXIST: .*mkdir.*\| EEXIST/u,

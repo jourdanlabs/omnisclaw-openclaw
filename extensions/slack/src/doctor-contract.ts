@@ -119,61 +119,61 @@ export const legacyConfigRules: ChannelDoctorLegacyConfigRule[] = [
   {
     path: ["channels", "slack", "enterpriseOrgInstall"],
     message:
-      'channels.slack.enterpriseOrgInstall is retired; Slack now detects org-wide installations automatically. Run "openclaw doctor --fix".',
+      'channels.slack.enterpriseOrgInstall is retired; Slack now detects org-wide installations automatically. Run "omnisclaw doctor --fix".',
   },
   {
     path: ["channels", "slack", "accounts"],
     message:
-      'channels.slack.accounts.<id>.enterpriseOrgInstall is retired; Slack now detects org-wide installations automatically. Run "openclaw doctor --fix".',
+      'channels.slack.accounts.<id>.enterpriseOrgInstall is retired; Slack now detects org-wide installations automatically. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyAccountStreamingAliases(value, hasEnterpriseOrgInstall),
   },
   {
     path: ["channels", "slack"],
     message:
-      'channels.slack.capabilities.interactiveReplies is retired; use typed presentation actions instead. Run "openclaw doctor --fix".',
+      'channels.slack.capabilities.interactiveReplies is retired; use typed presentation actions instead. Run "omnisclaw doctor --fix".',
     match: hasInteractiveRepliesCapability,
   },
   {
     path: ["channels", "slack", "accounts"],
     message:
-      'channels.slack.accounts.<id>.capabilities.interactiveReplies is retired; use typed presentation actions instead. Run "openclaw doctor --fix".',
+      'channels.slack.accounts.<id>.capabilities.interactiveReplies is retired; use typed presentation actions instead. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyAccountStreamingAliases(value, hasInteractiveRepliesCapability),
   },
   {
     path: ["channels", "slack"],
     message:
-      'channels.slack.dm.replyToMode moved to replyToModeByChatType.direct. Run "openclaw doctor --fix".',
+      'channels.slack.dm.replyToMode moved to replyToModeByChatType.direct. Run "omnisclaw doctor --fix".',
     match: dmReplyModeMigration.hasLegacy,
   },
   {
     path: ["channels", "slack", "accounts"],
     message:
-      'channels.slack.accounts.<id>.dm.replyToMode moved to replyToModeByChatType.direct. Run "openclaw doctor --fix".',
+      'channels.slack.accounts.<id>.dm.replyToMode moved to replyToModeByChatType.direct. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyAccountStreamingAliases(value, dmReplyModeMigration.hasLegacy),
   },
   {
     path: ["channels", "slack"],
     message:
-      'channels.slack.thread.requireExplicitMention is legacy; use channels.slack.implicitMentions.threadParticipation instead. Run "openclaw doctor --fix".',
+      'channels.slack.thread.requireExplicitMention is legacy; use channels.slack.implicitMentions.threadParticipation instead. Run "omnisclaw doctor --fix".',
     match: threadMentionPolicyMigration.hasLegacy,
   },
   {
     path: ["channels", "slack", "accounts"],
     message:
-      'channels.slack.accounts.<id>.thread.requireExplicitMention is legacy; use channels.slack.accounts.<id>.implicitMentions.threadParticipation instead. Run "openclaw doctor --fix".',
+      'channels.slack.accounts.<id>.thread.requireExplicitMention is legacy; use channels.slack.accounts.<id>.implicitMentions.threadParticipation instead. Run "omnisclaw doctor --fix".',
     match: (value) =>
       hasLegacyAccountStreamingAliases(value, threadMentionPolicyMigration.hasLegacy),
   },
   {
     path: ["channels", "slack"],
     message:
-      'channels.slack.channels.<id>.allow is legacy; use channels.slack.channels.<id>.enabled instead. Run "openclaw doctor --fix".',
+      'channels.slack.channels.<id>.allow is legacy; use channels.slack.channels.<id>.enabled instead. Run "omnisclaw doctor --fix".',
     match: channelAllowMigration.hasLegacy,
   },
   {
     path: ["channels", "slack", "accounts"],
     message:
-      'channels.slack.accounts.<id>.channels.<id>.allow is legacy; use channels.slack.accounts.<id>.channels.<id>.enabled instead. Run "openclaw doctor --fix".',
+      'channels.slack.accounts.<id>.channels.<id>.allow is legacy; use channels.slack.accounts.<id>.channels.<id>.enabled instead. Run "omnisclaw doctor --fix".',
     match: (value) => hasLegacyAccountStreamingAliases(value, channelAllowMigration.hasLegacy),
   },
 ];

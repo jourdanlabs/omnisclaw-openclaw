@@ -92,7 +92,7 @@ export async function completeStartupMigrationPreflight(params: {
       throwStartupMigrationRefusal(
         formatStartupMigrationFailure({
           warnings: [],
-          blockers: ['OpenClaw config is invalid; run "openclaw doctor --fix" before startup.'],
+          blockers: ['OpenClaw config is invalid; run "omnisclaw doctor --fix" before startup.'],
         }),
       );
     }

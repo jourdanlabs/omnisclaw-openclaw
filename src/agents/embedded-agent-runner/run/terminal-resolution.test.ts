@@ -288,7 +288,7 @@ describe("terminal resolution", () => {
       maxEmptyResponseRetryAttempts: 0,
     });
     expect(text).toContain(testCase.expected);
-    expect(text).toContain("openclaw configure");
+    expect(text).toContain("omnisclaw configure");
   });
 
   it("keeps non-auth incomplete turns on the generic warning", async () => {

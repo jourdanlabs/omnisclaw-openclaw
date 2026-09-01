@@ -60,7 +60,7 @@ export const legacyConfigRules = [
   {
     path: MODELS_PATH,
     message:
-      'models.providers.longcat.models contains the historical stock LongCat-2.0 cache-write price; run "openclaw doctor --fix" to update it without changing customized rows.',
+      'models.providers.longcat.models contains the historical stock LongCat-2.0 cache-write price; run "omnisclaw doctor --fix" to update it without changing customized rows.',
     match: hasLegacyStockLongCatModel,
   },
 ];

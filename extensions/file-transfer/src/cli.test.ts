@@ -98,7 +98,7 @@ describe("file-transfer approvals migration CLI", () => {
     expect(JSON.parse(writes.join(""))).toMatchObject({
       status: "needs-input",
       changed: false,
-      command: "openclaw file-transfer approvals migrate",
+      command: "omnisclaw file-transfer approvals migrate",
     });
     expect(process.exitCode).toBe(2);
     expect(mutateConfigMock).not.toHaveBeenCalled();

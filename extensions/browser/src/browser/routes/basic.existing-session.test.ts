@@ -684,7 +684,7 @@ describe("basic browser routes", () => {
 
     expect(response.statusCode).toBe(400);
     expect(responseBodyRecord(response).error).toBe(
-      'Headless start override is only supported for locally launched openclaw profiles. Profile "chrome-live" is attach-only, remote, or existing-session.',
+      'Headless start override is only supported for locally launched omnisclaw profiles. Profile "chrome-live" is attach-only, remote, or existing-session.',
     );
     expect(ensureBrowserAvailable).not.toHaveBeenCalled();
   });

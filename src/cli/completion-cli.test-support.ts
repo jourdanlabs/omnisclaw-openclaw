@@ -129,7 +129,7 @@ while (($encodedRequest = [Console]::In.ReadLine()) -ne $null) {
     $request = $requestJson | ConvertFrom-Json
     $completionScript = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String([string]$request.script))
     $commandLine = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String([string]$request.commandLine))
-    Register-ArgumentCompleter -Native -CommandName openclaw -ScriptBlock $null
+    Register-ArgumentCompleter -Native -CommandName omnisclaw -ScriptBlock $null
     Invoke-Expression $completionScript | Out-Null
     $completions = @(
       [System.Management.Automation.CommandCompletion]::CompleteInput(
@@ -147,7 +147,7 @@ while (($encodedRequest = [Console]::In.ReadLine()) -ne $null) {
     }
     $response = @{ version = 1; id = $responseId; ok = $false; error = ($_ | Out-String).Trim() }
   } finally {
-    Register-ArgumentCompleter -Native -CommandName openclaw -ScriptBlock $null
+    Register-ArgumentCompleter -Native -CommandName omnisclaw -ScriptBlock $null
   }
   $responseJson = $response | ConvertTo-Json -Compress -Depth 5
   $encodedResponse = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($responseJson))

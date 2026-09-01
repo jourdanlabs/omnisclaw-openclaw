@@ -210,7 +210,7 @@ describe("SQLite backup commands", () => {
     const snapshotPath = path.join(repositoryPath, "missing-snapshot");
     const restorePath = path.join(tempDir, "restored.sqlite");
     const runtime = createRuntimeCapture();
-    const missingRepositoryMessage = `SQLite snapshot repository does not exist: ${repositoryPath}. Check the snapshot path or create a snapshot with \`openclaw backup sqlite create\`.`;
+    const missingRepositoryMessage = `SQLite snapshot repository does not exist: ${repositoryPath}. Check the snapshot path or create a snapshot with \`omnisclaw backup sqlite create\`.`;
 
     await expect(backupSqliteVerifyCommand(runtime, snapshotPath, {})).rejects.toThrow(
       missingRepositoryMessage,
@@ -220,7 +220,7 @@ describe("SQLite backup commands", () => {
     ).rejects.toThrow(missingRepositoryMessage);
 
     await fs.mkdir(repositoryPath, { mode: 0o700 });
-    const missingSnapshotMessage = `SQLite snapshot does not exist: ${snapshotPath}. Run \`openclaw backup sqlite list --repository ${repositoryPath}\` to inspect available snapshots.`;
+    const missingSnapshotMessage = `SQLite snapshot does not exist: ${snapshotPath}. Run \`omnisclaw backup sqlite list --repository ${repositoryPath}\` to inspect available snapshots.`;
     await expect(backupSqliteVerifyCommand(runtime, snapshotPath, {})).rejects.toThrow(
       missingSnapshotMessage,
     );
@@ -285,7 +285,7 @@ describe("SQLite backup commands", () => {
     [
       "unknown",
       "nope-agent",
-      'Unknown agent id "nope-agent". Run openclaw agents list to see configured agents.',
+      'Unknown agent id "nope-agent". Run omnisclaw agents list to see configured agents.',
     ],
     ["empty", "", "--agent must not be blank"],
     ["whitespace-only", "   ", "--agent must not be blank"],

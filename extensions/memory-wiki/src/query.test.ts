@@ -379,7 +379,7 @@ describe("searchMemoryWiki", () => {
             pageType: "entity",
             id: "entity.evidence",
             title: "Evidence Page",
-            description: "openclaw release evidence",
+            description: "omnisclaw release evidence",
             claims: [
               {
                 id: "claim.evidence",
@@ -413,7 +413,7 @@ describe("searchMemoryWiki", () => {
             "# Marker Heavy",
             "",
             "<!-- openclaw:wiki:generated:start -->",
-            "openclaw body reference",
+            "omnisclaw body reference",
             "<!-- openclaw:wiki:generated:end -->",
             "<!-- openclaw:human:start -->",
             "<!-- openclaw:human:end -->",
@@ -431,7 +431,7 @@ describe("searchMemoryWiki", () => {
             id: "entity.clean",
             title: "Clean",
           },
-          body: "# Clean\n\nopenclaw openclaw body reference\n",
+          body: "# Clean\n\nopenclaw omnisclaw body reference\n",
         }),
         "utf8",
       ),
@@ -439,7 +439,7 @@ describe("searchMemoryWiki", () => {
 
     const evidenceResults = await searchMemoryWiki({
       config,
-      query: "openclaw release",
+      query: "omnisclaw release",
       maxResults: 10,
     });
     expect(evidenceResults.map((result) => result.path)).toEqual(["entities/evidence.md"]);

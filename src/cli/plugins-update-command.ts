@@ -1,4 +1,4 @@
-// `openclaw plugins update` command implementation for tracked npm plugins and hook packs.
+// `omnisclaw plugins update` command implementation for tracked npm plugins and hook packs.
 import { isDeepStrictEqual } from "node:util";
 import { theme } from "../../packages/terminal-core/src/theme.js";
 import {
@@ -301,7 +301,7 @@ async function runPluginUpdateCommandUnlocked(params: RunPluginUpdateCommandPara
     }
     defaultRuntime.error(
       params.id
-        ? `No tracked plugin or hook pack found for "${params.id}". Run "openclaw plugins list" or "openclaw hooks list" to inspect installed packages.`
+        ? `No tracked plugin or hook pack found for "${params.id}". Run "omnisclaw plugins list" or "omnisclaw hooks list" to inspect installed packages.`
         : "Provide a plugin or hook-pack id, or use --all.",
     );
     return defaultRuntime.exit(1);

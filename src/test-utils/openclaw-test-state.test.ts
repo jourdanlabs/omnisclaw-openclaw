@@ -42,7 +42,7 @@ async function expectPathMissing(targetPath: string): Promise<void> {
   throw new Error(`expected missing path: ${targetPath}`);
 }
 
-describe("openclaw test state", () => {
+describe("omnisclaw test state", () => {
   it.each([
     { stage: "realpath", layout: "home" },
     { stage: ".openclaw", layout: "home" },

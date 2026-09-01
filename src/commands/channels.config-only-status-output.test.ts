@@ -209,7 +209,7 @@ describe("config-only channels status output", () => {
     const output = await formatLocalStatusSummary({ channels: {} });
 
     expect(output).toContain(
-      "- no configured chat channels (run `openclaw channels list --all` to see installable channels)",
+      "- no configured chat channels (run `omnisclaw channels list --all` to see installable channels)",
     );
   });
 

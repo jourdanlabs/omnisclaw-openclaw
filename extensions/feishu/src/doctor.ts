@@ -872,7 +872,7 @@ function formatPreviewWarning(inspection: FeishuDoctorInspection): string {
     ...previewFindings,
     ...(remaining > 0 ? [`- ...and ${remaining} more Feishu state finding(s).`] : []),
     `- Repair will ${repairSummary}, while preserving Feishu App ID/secret config and healthy session entries.`,
-    '- Run "openclaw doctor --fix" to rebuild Feishu local state.',
+    '- Run "omnisclaw doctor --fix" to rebuild Feishu local state.',
   ].join("\n");
 }
 

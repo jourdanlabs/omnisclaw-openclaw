@@ -1006,8 +1006,8 @@ describe("loadOpenClawPlugins", () => {
     expect(openAllowWarning).toBeDefined();
     expect(openAllowWarning).toContain('"warn-open-allow-remediation"');
     expect(openAllowWarning).toContain('"plugins": { "allow": [');
-    expect(openAllowWarning).toContain("openclaw plugins list --enabled --verbose");
-    expect(openAllowWarning).toContain("openclaw plugins inspect warn-open-allow-remediation");
+    expect(openAllowWarning).toContain("omnisclaw plugins list --enabled --verbose");
+    expect(openAllowWarning).toContain("omnisclaw plugins inspect warn-open-allow-remediation");
   });
 
   it("distinguishes load permission from capability trust in the untracked-provenance warning", () => {
@@ -1041,7 +1041,7 @@ describe("loadOpenClawPlugins", () => {
       );
       expect(untrackedWarning).toBeDefined();
       expect(untrackedWarning).toContain("OpenClaw can't verify where this plugin came from");
-      expect(untrackedWarning).toContain("openclaw plugins inspect warn-untracked-remediation");
+      expect(untrackedWarning).toContain("omnisclaw plugins inspect warn-untracked-remediation");
       expect(untrackedWarning).toContain(
         "plugins.allow lets it load, but does not make it trusted",
       );
@@ -1055,7 +1055,7 @@ describe("loadOpenClawPlugins", () => {
           entry.message.includes("OpenClaw can't verify where this plugin came from"),
       );
       expect(diagnostic?.message).toContain("OpenClaw can't verify where this plugin came from");
-      expect(diagnostic?.message).toContain("openclaw plugins inspect warn-untracked-remediation");
+      expect(diagnostic?.message).toContain("omnisclaw plugins inspect warn-untracked-remediation");
       expect(diagnostic?.message).toContain(
         "plugins.allow lets it load, but does not make it trusted",
       );
@@ -1092,8 +1092,8 @@ describe("loadOpenClawPlugins", () => {
     expect(message).toContain("plugins.allow is empty");
     expect(message).toContain("(+2 more)");
     expect(message).not.toContain('"plugins": { "allow": [');
-    expect(message).toContain("openclaw plugins list --enabled --verbose");
-    expect(message).toContain("openclaw plugins inspect <id>");
+    expect(message).toContain("omnisclaw plugins list --enabled --verbose");
+    expect(message).toContain("omnisclaw plugins inspect <id>");
   });
 
   it("handles workspace-discovered plugins according to trust and precedence", () => {

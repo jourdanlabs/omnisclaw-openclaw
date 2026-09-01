@@ -467,7 +467,8 @@ export function pluginRegistryIssueToHealthFinding(
         severity: "warning",
         message: "Persisted plugin registry is missing or stale.",
         path: issue.path,
-        fixHint: "Run `openclaw doctor --fix` to rebuild the plugin registry from enabled plugins.",
+        fixHint:
+          "Run `omnisclaw doctor --fix` to rebuild the plugin registry from enabled plugins.",
       };
     case "stale-managed-npm-bundled-plugin":
       return {
@@ -479,7 +480,7 @@ export function pluginRegistryIssueToHealthFinding(
         path: issue.packageDir,
         target: issue.pluginId,
         fixHint:
-          "Run `openclaw doctor --fix` to remove stale managed npm packages and rebuild the plugin registry.",
+          "Run `omnisclaw doctor --fix` to remove stale managed npm packages and rebuild the plugin registry.",
       };
     case "stale-local-bundled-plugin-install-record":
       return {
@@ -489,7 +490,7 @@ export function pluginRegistryIssueToHealthFinding(
         path: issue.stalePath,
         target: issue.pluginId,
         fixHint:
-          "Run `openclaw doctor --fix` to remove stale local install records and rebuild the plugin registry.",
+          "Run `omnisclaw doctor --fix` to remove stale local install records and rebuild the plugin registry.",
       };
     case "managed-npm-openclaw-peer-link":
       return {
@@ -498,7 +499,7 @@ export function pluginRegistryIssueToHealthFinding(
         message: `Managed npm package ${issue.packageName} has a broken OpenClaw peer link: ${issue.reason}.`,
         path: issue.packageDir,
         target: issue.packageName,
-        fixHint: "Run `openclaw doctor --fix` to relink managed npm plugin packages.",
+        fixHint: "Run `omnisclaw doctor --fix` to relink managed npm plugin packages.",
       };
     case "registered-npm-openclaw-host-link":
       return {
@@ -507,7 +508,7 @@ export function pluginRegistryIssueToHealthFinding(
         message: `Registered npm plugin ${issue.packageName} has a broken OpenClaw host link: ${issue.reason}.`,
         path: issue.packageDir,
         target: issue.packageName,
-        fixHint: "Run `openclaw doctor --fix` to relink the installed npm plugin package.",
+        fixHint: "Run `omnisclaw doctor --fix` to relink the installed npm plugin package.",
       };
     case "managed-npm-package-unreadable":
       return {
@@ -515,7 +516,7 @@ export function pluginRegistryIssueToHealthFinding(
         severity: "warning",
         message: `Managed npm package could not be inspected: ${issue.reason}.`,
         path: issue.packageDir,
-        fixHint: "Restore access to the package files, then run `openclaw doctor` again.",
+        fixHint: "Restore access to the package files, then run `omnisclaw doctor` again.",
       };
     case "registered-npm-package-unreadable":
       return {
@@ -523,7 +524,7 @@ export function pluginRegistryIssueToHealthFinding(
         severity: "warning",
         message: `Registered npm plugin package could not be inspected: ${issue.reason}.`,
         path: issue.packageDir,
-        fixHint: "Restore access to the package files, then run `openclaw doctor` again.",
+        fixHint: "Restore access to the package files, then run `omnisclaw doctor` again.",
       };
     case "stale-managed-npm-install-generation":
       return staleManagedNpmInstallGenerationToHealthFinding(issue);

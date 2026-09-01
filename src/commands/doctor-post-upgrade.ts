@@ -166,7 +166,7 @@ export async function runPostUpgradeProbes(params: {
       level: "error",
       code: "plugin.index_unavailable",
       message:
-        "Installed plugin index is missing, unreadable, or malformed. Run `openclaw plugins registry --refresh` to rebuild it before post-upgrade validation.",
+        "Installed plugin index is missing, unreadable, or malformed. Run `omnisclaw plugins registry --refresh` to rebuild it before post-upgrade validation.",
     });
     return buildReport(findings);
   }
@@ -189,7 +189,7 @@ export async function runPostUpgradeProbes(params: {
         findings.push({
           level: "error",
           code: "plugin.entry_unresolved",
-          message: `Plugin ${record.pluginId}: could not read package.json (${pkgRelPath}): ${reason}. Reinstall the plugin or run \`openclaw plugins registry --refresh\`.`,
+          message: `Plugin ${record.pluginId}: could not read package.json (${pkgRelPath}): ${reason}. Reinstall the plugin or run \`omnisclaw plugins registry --refresh\`.`,
           plugin: record.pluginId,
           entry: pkgRelPath,
         });
@@ -200,7 +200,7 @@ export async function runPostUpgradeProbes(params: {
         findings.push({
           level: "error",
           code: "plugin.entry_unresolved",
-          message: `Plugin ${record.pluginId}: ${resolvedEntries.error}. Reinstall the plugin or run \`openclaw plugins registry --refresh\`.`,
+          message: `Plugin ${record.pluginId}: ${resolvedEntries.error}. Reinstall the plugin or run \`omnisclaw plugins registry --refresh\`.`,
           plugin: record.pluginId,
           entry: pkgRelPath,
         });
@@ -234,7 +234,7 @@ export async function runPostUpgradeProbes(params: {
         findings.push({
           level: "warn",
           code: "plugin.manifest_drift",
-          message: `Plugin ${record.pluginId} manifest hash drifted from installs.json snapshot. Run \`openclaw plugins registry --refresh\` to re-sync.`,
+          message: `Plugin ${record.pluginId} manifest hash drifted from installs.json snapshot. Run \`omnisclaw plugins registry --refresh\` to re-sync.`,
           plugin: record.pluginId,
         });
       }

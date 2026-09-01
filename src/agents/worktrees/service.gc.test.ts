@@ -77,7 +77,7 @@ describe("ManagedWorktreeService garbage collection", () => {
   it("exempts manual worktrees and garbage collects idle run-owned worktrees", async () => {
     const manual = await materializeDownstreamFixture("manual-idle");
     const created = await materializeRunOwnedFixture("idle-dead", "workboard");
-    await git(repo, "worktree", "lock", "--reason", "openclaw pid=999999", created.path);
+    await git(repo, "worktree", "lock", "--reason", "omnisclaw pid=999999", created.path);
     now += IDLE_GC_MS + 1;
 
     const result = await service.gc();
@@ -432,7 +432,7 @@ describe("ManagedWorktreeService garbage collection", () => {
     const manual = await materializeDownstreamFixture("archived-manual", {
       ownerId: "agent:main:archived",
     });
-    await git(repo, "worktree", "lock", "--reason", `openclaw pid=${process.pid}`, busy.path);
+    await git(repo, "worktree", "lock", "--reason", `omnisclaw pid=${process.pid}`, busy.path);
     await fs.writeFile(path.join(retired.path, "uncommitted.txt"), "archived work\n");
     const result = await service.gc({ shouldRemoveOwner: () => true });
     expect(result.removed).toEqual([retired.id]);

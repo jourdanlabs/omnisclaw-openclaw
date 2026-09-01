@@ -12,7 +12,7 @@ describe("llama.cpp embedding setup policy", () => {
       reason: expect.stringContaining("Local embeddings need the managed llama.cpp server config"),
       requirement: "managed-llama-cpp-setup",
       fixHint:
-        "Run `openclaw models --agent main auth login --provider llama-cpp --method local` in an interactive terminal, then rerun this check.",
+        "Run `omnisclaw models --agent main auth login --provider llama-cpp --method local` in an interactive terminal, then rerun this check.",
     });
   });
 

@@ -211,7 +211,7 @@ export async function maybeOfferUpdateBeforeDoctor(params: {
         });
         if (!activated) {
           throw new Error(
-            "Gateway restart was not verified; run `openclaw gateway status --deep` before restarting manually.",
+            "Gateway restart was not verified; run `omnisclaw gateway status --deep` before restarting manually.",
           );
         }
         note("Restarted the running gateway service after updating OpenClaw.", "Update");

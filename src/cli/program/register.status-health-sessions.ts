@@ -118,24 +118,24 @@ function registerSessionsLifecycleCommand(
   const destructive = operation === "delete";
   const examples: Array<[string, string]> = destructive
     ? [
-        ['openclaw sessions delete "agent:main:scratch-1"', "Delete with confirmation."],
+        ['omnisclaw sessions delete "agent:main:scratch-1"', "Delete with confirmation."],
         [
-          'openclaw sessions delete "agent:main:scratch-1" "agent:main:scratch-2" --yes',
+          'omnisclaw sessions delete "agent:main:scratch-1" "agent:main:scratch-2" --yes',
           "Delete several sessions non-interactively.",
         ],
         [
-          'openclaw sessions delete "agent:work:scratch-1" --agent work --dry-run',
+          'omnisclaw sessions delete "agent:work:scratch-1" --agent work --dry-run',
           "Preview an agent-scoped delete.",
         ],
       ]
     : [
-        ['openclaw sessions archive "agent:main:scratch-1"', "Archive one session."],
+        ['omnisclaw sessions archive "agent:main:scratch-1"', "Archive one session."],
         [
-          'openclaw sessions archive "agent:main:scratch-1" "agent:main:scratch-2"',
+          'omnisclaw sessions archive "agent:main:scratch-1" "agent:main:scratch-2"',
           "Archive several sessions.",
         ],
         [
-          'openclaw sessions archive "agent:work:scratch-1" --agent work --dry-run',
+          'omnisclaw sessions archive "agent:work:scratch-1" --agent work --dry-run',
           "Preview an agent-scoped archive.",
         ],
       ];
@@ -229,15 +229,15 @@ export function registerStatusHealthSessionsCommands(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw status", "Show channel health + session summary."],
-          ["openclaw status --all", "Full diagnosis (read-only)."],
-          ["openclaw status --json", "Machine-readable output."],
-          ["openclaw status --usage", "Show model provider usage/quota snapshots."],
+          ["omnisclaw status", "Show channel health + session summary."],
+          ["omnisclaw status --all", "Full diagnosis (read-only)."],
+          ["omnisclaw status --json", "Machine-readable output."],
+          ["omnisclaw status --usage", "Show model provider usage/quota snapshots."],
           [
-            "openclaw status --deep",
+            "omnisclaw status --deep",
             "Run channel probes (WA + Telegram + Discord + Slack + Signal).",
           ],
-          ["openclaw status --deep --timeout 5000", "Tighten probe timeout."],
+          ["omnisclaw status --deep --timeout 5000", "Tighten probe timeout."],
         ])}`,
     )
     .addHelpText(
@@ -296,13 +296,13 @@ export function registerStatusHealthSessionsCommands(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw sessions", "List all sessions."],
-          ["openclaw sessions --agent work", "List sessions for one agent."],
-          ["openclaw sessions --all-agents", "Aggregate sessions across agents."],
-          ["openclaw sessions --active 120", "Only last 2 hours."],
-          ["openclaw sessions --limit 25", "Show the newest 25 sessions."],
-          ["openclaw sessions --json", "Machine-readable output."],
-          ["openclaw sessions --store ./tmp/sessions.sqlite", "Use a specific session store."],
+          ["omnisclaw sessions", "List all sessions."],
+          ["omnisclaw sessions --agent work", "List sessions for one agent."],
+          ["omnisclaw sessions --all-agents", "Aggregate sessions across agents."],
+          ["omnisclaw sessions --active 120", "Only last 2 hours."],
+          ["omnisclaw sessions --limit 25", "Show the newest 25 sessions."],
+          ["omnisclaw sessions --json", "Machine-readable output."],
+          ["omnisclaw sessions --store ./tmp/sessions.sqlite", "Use a specific session store."],
         ])}\n\n${theme.muted(
           "Shows token usage per session when the agent reports it; set the model entry's contextTokens to cap the window and show %.",
         )}`,
@@ -348,20 +348,20 @@ export function registerStatusHealthSessionsCommands(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw sessions cleanup --dry-run", "Preview stale/cap cleanup."],
+          ["omnisclaw sessions cleanup --dry-run", "Preview stale/cap cleanup."],
           [
-            "openclaw sessions cleanup --dry-run --fix-missing",
+            "omnisclaw sessions cleanup --dry-run --fix-missing",
             "Also preview pruning entries with missing transcript files.",
           ],
           [
-            "openclaw sessions cleanup --dry-run --fix-dm-scope",
+            "omnisclaw sessions cleanup --dry-run --fix-dm-scope",
             "Preview stale direct-DM rows after returning dmScope to main.",
           ],
-          ["openclaw sessions cleanup --enforce", "Apply maintenance now."],
-          ["openclaw sessions cleanup --agent work --dry-run", "Preview one agent store."],
-          ["openclaw sessions cleanup --all-agents --dry-run", "Preview all agent stores."],
+          ["omnisclaw sessions cleanup --enforce", "Apply maintenance now."],
+          ["omnisclaw sessions cleanup --agent work --dry-run", "Preview one agent store."],
+          ["omnisclaw sessions cleanup --all-agents --dry-run", "Preview all agent stores."],
           [
-            "openclaw sessions cleanup --enforce --store ./tmp/sessions.sqlite",
+            "omnisclaw sessions cleanup --enforce --store ./tmp/sessions.sqlite",
             "Use a specific store.",
           ],
         ])}`,
@@ -475,15 +475,15 @@ export function registerStatusHealthSessionsCommands(program: Command) {
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
           [
-            'openclaw sessions compact "agent:main:main"',
+            'omnisclaw sessions compact "agent:main:main"',
             "LLM-summarize a session to reclaim context budget.",
           ],
           [
-            'openclaw sessions compact "agent:main:main" --max-lines 200',
+            'omnisclaw sessions compact "agent:main:main" --max-lines 200',
             "Truncate to the last 200 transcript lines instead.",
           ],
           [
-            'openclaw sessions compact "agent:work:main" --agent work --json',
+            'omnisclaw sessions compact "agent:work:main" --agent work --json',
             "Target one agent's session and emit JSON.",
           ],
         ])}\n\n${theme.muted(
@@ -493,7 +493,7 @@ export function registerStatusHealthSessionsCommands(program: Command) {
     .action(async (key: string, opts, command) => {
       // Sibling `sessions` subcommands inherit parent options (see list/cleanup
       // above): `--agent`/`--json` may be supplied on the parent `sessions`
-      // command, e.g. `openclaw sessions --agent work compact <key>`. Merge those
+      // command, e.g. `omnisclaw sessions --agent work compact <key>`. Merge those
       // so a parent `--agent` is not silently dropped and the wrong agent's
       // session compacted.
       //

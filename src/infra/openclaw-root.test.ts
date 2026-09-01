@@ -138,7 +138,7 @@ describe("resolveOpenClawPackageRoot", () => {
       },
     },
     {
-      name: "prefers a symlink target nested under another openclaw package",
+      name: "prefers a symlink target nested under another omnisclaw package",
       setup: () => {
         const sourceRoot = fx("nested-symlink-scenario");
         const bin = path.join(sourceRoot, ".artifacts", "prefix", "bin", "openclaw");
@@ -247,7 +247,7 @@ describe("resolveOpenClawPackageRoot", () => {
       },
     },
     {
-      name: "still resolves the openclaw package below a node_modules boundary",
+      name: "still resolves the omnisclaw package below a node_modules boundary",
       setup: () => {
         const project = fx("installed-below-boundary");
         setPackageRoot(project);

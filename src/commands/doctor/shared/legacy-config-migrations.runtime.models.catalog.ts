@@ -210,13 +210,13 @@ export const MODEL_COMPAT_CATALOG_RULES: LegacyConfigRule[] = [
   {
     path: ["models", "providers"],
     message:
-      'nativeWebSearchTool and requiresMistralToolIds are unused and retired; run "openclaw doctor --fix" to remove them.',
+      'nativeWebSearchTool and requiresMistralToolIds are unused and retired; run "omnisclaw doctor --fix" to remove them.',
     match: (value) => inspectModelCompatOverrides(value).dead > 0,
   },
   {
     path: ["models", "providers"],
     message:
-      'Catalog-known model compat values are provider-owned; run "openclaw doctor --fix" to remove matching config overrides.',
+      'Catalog-known model compat values are provider-owned; run "omnisclaw doctor --fix" to remove matching config overrides.',
     match: (value) => inspectModelCompatOverrides(value).matching > 0,
   },
   {

@@ -90,7 +90,7 @@ describe("applyGroupGating audio preflight mention text", () => {
 
     const result = await applyGroupGating({
       ...makeParams(msg, groupHistories),
-      mentionText: "openclaw please summarize the thread",
+      mentionText: "omnisclaw please summarize the thread",
     });
 
     expect(result).toEqual({ shouldProcess: true });
