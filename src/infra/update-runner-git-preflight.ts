@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { normalizeStringEntries } from "@openclaw/normalization-core/string-normalization";
 import { stripAnsi } from "../../packages/terminal-core/src/ansi.js";
+import { resolveCliName } from "../cli/cli-name.js";
 import { hasErrnoCode } from "./errno.js";
 import { trimLogTail } from "./restart-sentinel.js";
 import { DEV_BRANCH, resolveDevUpstreamRefs } from "./update-channels.js";
@@ -400,7 +401,7 @@ async function testPreflightCandidate(params: {
       manager.env ?? params.defaultCommandEnv,
       path.join(params.gitRoot, ".artifacts", "build-all-cache"),
     );
-    const configArgs = managerScriptArgs(manager.manager, "openclaw", [
+    const configArgs = managerScriptArgs(manager.manager, resolveCliName(), [
       "config",
       "validate",
       "--json",

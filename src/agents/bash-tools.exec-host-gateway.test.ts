@@ -2245,7 +2245,7 @@ describe("processGatewayAllowlist", () => {
       analysisOk: true,
       allowlistSatisfied: true,
       segments: [
-        { resolution: null, argv: ["openclaw", "config", "get", "security.audit.suppressions"] },
+        { resolution: null, argv: ["omnisclaw", "config", "get", "security.audit.suppressions"] },
       ],
       segmentAllowlistEntries: [],
       segmentSatisfiedBy: [null],
@@ -2274,7 +2274,14 @@ describe("processGatewayAllowlist", () => {
       segments: [
         {
           resolution: null,
-          argv: ["openclaw", "--profile", "rescue", "config", "get", "security.audit.suppressions"],
+          argv: [
+            "omnisclaw",
+            "--profile",
+            "rescue",
+            "config",
+            "get",
+            "security.audit.suppressions",
+          ],
         },
       ],
       segmentAllowlistEntries: [],

@@ -3246,7 +3246,7 @@ describe("runGatewayUpdate", () => {
     expect(result.mode).toBe("pnpm");
     expect(result.after?.version).toBe("2.0.0");
     const npmPrefixedGlobalInstallCalls = calls.filter((call) =>
-      call.startsWith("npm i -g --allow-scripts=omnisclaw --prefix "),
+      call.startsWith("npm i -g --allow-scripts=openclaw --prefix "),
     );
     const pnpmAddGlobalCalls = calls.filter((call) => call.startsWith("pnpm add -g"));
     expect(npmPrefixedGlobalInstallCalls.length).toBeGreaterThan(0);

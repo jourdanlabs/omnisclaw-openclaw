@@ -40,6 +40,10 @@ vi.mock("@mariozechner/clipboard", () => ({
 
 // Ensure Vitest environment is properly set.
 process.env.VITEST = "true";
+// Spawned children do not inherit Vitest's worker env object. Export the
+// explicit test-mode off switch so .process tests and eval children keep
+// TERMINUS off without weakening actionGateEnabled() in production.
+process.env.OMNISCLAW_TERMINUS_ACTION ??= "0";
 // Tests frequently point bundled plugin discovery at temp fixture roots. Production still rejects
 // arbitrary OPENCLAW_BUNDLED_PLUGINS_DIR overrides unless this Vitest-only opt-in is present.
 process.env.OPENCLAW_TEST_TRUST_BUNDLED_PLUGINS_DIR ??= "1";

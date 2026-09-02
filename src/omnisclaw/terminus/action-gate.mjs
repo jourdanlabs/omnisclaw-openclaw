@@ -37,7 +37,11 @@ export function actionGateEnabled(env = process.env) {
     .toLowerCase();
   if (flag === "0" || flag === "off" || flag === "false") return false;
   if (flag === "1" || flag === "on" || flag === "true") return true;
+  // Test-mode off switch: OMNISCLAW_TERMINUS_ACTION=0 (or TERMINUS_ACTION_GATE=0).
   // Vitest carve-out: OpenClaw CI has no CADUCEUS. Production default is ON.
+  // The VITEST sniff is a test-time bypass only — it does not propagate into
+  // spawned children that replace env. Those children must inherit
+  // OMNISCLAW_TERMINUS_ACTION=0 from test/setup.shared.ts.
   // Missing CLI is fail-closed in assertTerminusAllow / authorizeActionCli,
   // not a reason to skip the wrap.
   if (env.VITEST && !env.TERMINUS_AUTHORIZE && !env.CADUCEUS_ROOT) return false;

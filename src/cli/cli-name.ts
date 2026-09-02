@@ -6,6 +6,11 @@ const DEFAULT_CLI_NAME = "omnisclaw";
 const KNOWN_CLI_NAMES = new Set(["omnisclaw", "openclaw"]);
 const CLI_PREFIX_RE = /^(?:((?:pnpm|npm|bunx|npx)\s+))?(openclaw|omnisclaw)\b/;
 
+/** True for the product bin or the compat alias. */
+export function isKnownCliName(name: string | undefined): boolean {
+  return Boolean(name && KNOWN_CLI_NAMES.has(name.trim().toLowerCase()));
+}
+
 /** Resolve the displayed CLI binary name from argv, falling back to `omnisclaw`. */
 export function resolveCliName(argv: string[] = process.argv): string {
   const argv1 = argv[1];

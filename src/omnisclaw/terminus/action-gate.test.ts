@@ -18,6 +18,15 @@ describe("OMNISCLAW TERMINUS action gate", () => {
     expect(actionGateEnabled({ VITEST: "true" })).toBe(false);
   });
 
+  it("is off when OMNISCLAW_TERMINUS_ACTION=0 even outside vitest", () => {
+    expect(
+      actionGateEnabled({
+        OMNISCLAW_TERMINUS_ACTION: "0",
+        TERMINUS_AUTHORIZE: "/no/such/terminus-authorize.mjs",
+      }),
+    ).toBe(false);
+  });
+
   it("is on when TERMINUS_ACTION_GATE=1 even if CLI is missing (fail-closed later)", () => {
     expect(
       actionGateEnabled({

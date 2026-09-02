@@ -6351,7 +6351,7 @@ describe("update-cli", () => {
     expect(logs).toContain(
       `Shell OpenClaw root differs from the managed gateway service root: ${shellRoot}`,
     );
-    expect(logs).toContain("make sure `openclaw` on PATH resolves to the managed service root");
+    expect(logs).toContain("make sure `omnisclaw` on PATH resolves to the managed service root");
     expect(logs).toContain(`Managed gateway service Node: ${serviceNode}`);
   });
 

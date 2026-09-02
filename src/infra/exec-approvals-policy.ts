@@ -1,3 +1,4 @@
+import { isKnownCliName } from "../cli/cli-name.js";
 import type { AllowAlwaysPersistenceDecision } from "./exec-approvals-contracts.js";
 // Resolves exec approval requirements and approval-decision availability.
 import {
@@ -44,8 +45,8 @@ function textMentionsSecurityAuditSuppressions(value: string): boolean {
 
 function isReadOnlySecurityAuditSuppressionInspection(argv: string[]): boolean {
   const command = normalizeCommandName(argv[0]);
-  let offset = command === "pnpm" && argv[1] === "openclaw" ? 1 : 0;
-  if (normalizeCommandName(argv[offset]) !== "openclaw") {
+  let offset = command === "pnpm" && isKnownCliName(argv[1]) ? 1 : 0;
+  if (!isKnownCliName(normalizeCommandName(argv[offset]))) {
     return false;
   }
   offset += 1;

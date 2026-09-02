@@ -243,6 +243,8 @@ export async function expectNativeBashSpill(
         OPENCLAW_OFFLINE: "1",
         NODE_DISABLE_COMPILE_CACHE: "1",
         TSX_DISABLE_CACHE: "1",
+        // Isolated eval children do not inherit VITEST; keep the test-mode gate off.
+        OMNISCLAW_TERMINUS_ACTION: "0",
       },
     });
     childResult = result;

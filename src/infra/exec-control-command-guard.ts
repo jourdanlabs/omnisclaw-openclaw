@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { expectDefined } from "@openclaw/normalization-core";
 import { normalizeLowercaseStringOrEmpty } from "@openclaw/normalization-core/string-coerce";
 import { normalizeStringEntries } from "@openclaw/normalization-core/string-normalization";
+import { isKnownCliName } from "../cli/cli-name.js";
 import { splitShellArgs } from "../utils/shell-argv.js";
 import { resolvePathViaExistingAncestorSync } from "./boundary-path.js";
 import {
@@ -83,19 +84,19 @@ function normalizeCommandBaseName(token: string | undefined): string {
 
 function stripOpenClawPackageRunner(argv: string[]): string[] {
   const commandName = normalizeCommandBaseName(argv[0]);
-  if (commandName === "openclaw") {
+  if (isKnownCliName(commandName)) {
     return argv;
   }
   if (
     (commandName === "pnpm" || commandName === "npm" || commandName === "yarn") &&
-    normalizeCommandBaseName(argv[1]) === "openclaw"
+    isKnownCliName(normalizeCommandBaseName(argv[1]))
   ) {
     return argv.slice(1);
   }
   if (
     (commandName === "pnpm" || commandName === "npm" || commandName === "yarn") &&
     (argv[1] === "exec" || argv[1] === "dlx" || argv[1] === "run") &&
-    normalizeCommandBaseName(argv[2]) === "openclaw"
+    isKnownCliName(normalizeCommandBaseName(argv[2]))
   ) {
     return argv.slice(2);
   }
@@ -115,7 +116,7 @@ function stripOpenClawPackageRunner(argv: string[]): string[] {
         idx += 1;
       }
     }
-    if (normalizeCommandBaseName(argv[idx]) === "openclaw") {
+    if (isKnownCliName(normalizeCommandBaseName(argv[idx]))) {
       return argv.slice(idx);
     }
   }
@@ -129,7 +130,7 @@ function parseOpenClawChannelsLoginShellCommand(raw: string): boolean {
   }
   const openclawArgv = stripOpenClawPackageRunner(argv);
   return (
-    normalizeCommandBaseName(openclawArgv[0]) === "openclaw" &&
+    isKnownCliName(normalizeCommandBaseName(openclawArgv[0])) &&
     (openclawArgv[1] === "channels" || openclawArgv[1] === "channel") &&
     openclawArgv[2] === "login"
   );

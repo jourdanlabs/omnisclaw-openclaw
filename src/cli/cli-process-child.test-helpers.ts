@@ -55,7 +55,12 @@ export async function runCliProcessChild(params: {
   const timeoutMs = params.timeoutMs ?? CLI_PROCESS_DEADLOCK_GUARD_MS;
   const child = spawn(process.execPath, params.nodeArgs, {
     cwd: params.cwd ?? path.resolve("."),
-    env: params.env,
+    env: {
+      ...params.env,
+      // Process children replace env and do not inherit VITEST. Keep TERMINUS
+      // off unless the case explicitly sets OMNISCLAW_TERMINUS_ACTION.
+      OMNISCLAW_TERMINUS_ACTION: params.env.OMNISCLAW_TERMINUS_ACTION ?? "0",
+    },
     stdio: ["ignore", "pipe", "pipe"],
   });
   child.stdout.setEncoding("utf8");
