@@ -84,10 +84,56 @@ export function buildProviderGateReceipt(input) {
   return receipt;
 }
 
+export function recomputeReceiptSha256(receipt) {
+  const { receiptSha256: _claimed, ...body } = receipt;
+  return createHash("sha256").update(canonicalJson(body), "utf8").digest("hex");
+}
+
+export function verifyReceiptHash(receipt) {
+  if (!receipt || typeof receipt.receiptSha256 !== "string") {
+    return { ok: false, reason: "receipt_hash_missing" };
+  }
+  if (recomputeReceiptSha256(receipt) !== receipt.receiptSha256) {
+    return { ok: false, reason: "receipt_hash_mismatch" };
+  }
+  return { ok: true, reason: "receipt_hash_valid" };
+}
+
+function terminalHonestyReason(terminal) {
+  if (terminal.decision === "REFUSE" && (terminal.ok || terminal.pass)) {
+    return "terminal_fake_pass";
+  }
+  if (terminal.decision === "ALLOW" && (!terminal.ok || !terminal.pass)) {
+    return "terminal_allow_not_ok";
+  }
+  if (terminal.decision === "ALLOW" && terminal.status !== "GOVERNED") {
+    return "terminal_allow_not_governed";
+  }
+  if (terminal.status === "GOVERNED" && terminal.decision !== "ALLOW") {
+    return "terminal_governed_not_allow";
+  }
+  if (
+    (terminal.status === "UNKNOWN" ||
+      terminal.status === "UNENFORCED" ||
+      terminal.status === "DISABLED") &&
+    (terminal.ok || terminal.pass)
+  ) {
+    return "terminal_unenforced_marked_ok";
+  }
+  if (terminal.pass !== terminal.ok) return "terminal_pass_ok_mismatch";
+  return null;
+}
+
 export function verifyProviderGateReceiptPair(started, terminal) {
   if (!started || !terminal) return { ok: false, reason: "missing_receipt" };
   if (started.phase !== "STARTED" || terminal.phase !== "TERMINAL") {
     return { ok: false, reason: "phase_invalid" };
+  }
+  if (verifyReceiptHash(started).ok !== true) {
+    return { ok: false, reason: "started_hash_mismatch" };
+  }
+  if (verifyReceiptHash(terminal).ok !== true) {
+    return { ok: false, reason: "terminal_hash_mismatch" };
   }
   if (started.request_id !== terminal.request_id)
     return { ok: false, reason: "request_id_mismatch" };
@@ -97,11 +143,15 @@ export function verifyProviderGateReceiptPair(started, terminal) {
     return { ok: false, reason: "target_digest_mismatch" };
   if (started.body_digest !== terminal.body_digest)
     return { ok: false, reason: "body_digest_mismatch" };
-  if (terminal.prev_receipt_sha256 !== started.receiptSha256) {
+  if (terminal.prev_receipt_sha256 !== recomputeReceiptSha256(started)) {
     return { ok: false, reason: "receipt_chain_break" };
   }
   if (!started.ok || !started.pass) {
     return { ok: false, reason: "started_not_pass" };
+  }
+  const dishonest = terminalHonestyReason(terminal);
+  if (dishonest) {
+    return { ok: false, reason: dishonest };
   }
   return { ok: true, reason: "provider_gate_pair_valid" };
 }

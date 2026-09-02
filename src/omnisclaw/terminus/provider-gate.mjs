@@ -74,6 +74,18 @@ const PROVIDER_RESIDENCY = {
   ollama: "LOCAL",
 };
 
+// Semantically unknown providers are never governable. A target that resolves
+// to residency GLOBAL must refuse, never allow (Pan gate 2026-09-02).
+const KNOWN_PROVIDER_TRANSPORTS = new Set(Object.keys(PROVIDER_RESIDENCY));
+
+export function isKnownProviderTransport(provider) {
+  return KNOWN_PROVIDER_TRANSPORTS.has(
+    String(provider ?? "")
+      .trim()
+      .toLowerCase(),
+  );
+}
+
 export function resolveProviderResidency(provider) {
   const normalized = String(provider ?? "")
     .trim()
@@ -106,6 +118,9 @@ export function resolveProviderTransportTarget(model, url) {
   const modelId = String(model?.id ?? "").trim();
   const api = String(model?.api ?? "").trim();
   if (!provider || !modelId || !api) {
+    return null;
+  }
+  if (!isKnownProviderTransport(provider)) {
     return null;
   }
   const port = parsed.port
@@ -276,6 +291,9 @@ export async function governedProviderCall(input = {}) {
   const target = input.target ?? DEFAULT_PROVIDER_TARGET;
   const prompt = input.prompt ?? "Reply with exactly: ACK";
 
+  if (!isKnownProviderTransport(target?.provider)) {
+    return refuseProviderGate("unknown_provider", "UNKNOWN");
+  }
   const egress = decideTerminusEgress({ routeId: OPENCLAW_PROVIDER_CHAT, target });
   if (!egress.allow) {
     return refuseProviderGate(egress.receipt.reason, egress.receipt.status);

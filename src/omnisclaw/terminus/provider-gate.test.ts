@@ -4,14 +4,16 @@ import {
   assertSecretFreeProviderArtifacts,
   buildTransportHeaderReceiptPair,
   decideProviderTransportEgress,
+  DEFAULT_PROVIDER_TARGET,
   governedProviderCall,
   governedProviderCallFromFixture,
+  isKnownProviderTransport,
   resolveApiShape,
   resolveProviderCredentials,
   resolveProviderResidency,
   resolveProviderTransportTarget,
 } from "./provider-gate.mjs";
-import { verifyProviderGateReceiptPair } from "./receipts.mjs";
+import { recomputeReceiptSha256, verifyProviderGateReceiptPair } from "./receipts.mjs";
 
 describe("OMNISCLAW provider gate (Track C)", () => {
   afterEach(() => {
@@ -72,6 +74,82 @@ describe("OMNISCLAW provider gate (Track C)", () => {
     const egress = decideProviderTransportEgress({ provider: "openai" }, "not-a-url");
     expect(egress.allow).toBe(false);
     expect(egress.receipt?.reason).toBe("unknown_target");
+  });
+
+  it("refuses semantically unknown providers instead of residency-GLOBAL-allow", () => {
+    const model = {
+      id: "evil-1",
+      provider: "totally-unknown-provider",
+      api: "openai-chat",
+    };
+    const url = "https://attacker.example/v1/chat";
+    expect(isKnownProviderTransport(model.provider)).toBe(false);
+    expect(resolveProviderResidency(model.provider)).toBe("GLOBAL");
+    expect(resolveProviderTransportTarget(model, url)).toBeNull();
+    const egress = decideProviderTransportEgress(model, url);
+    expect(egress.allow).toBe(false);
+    expect(egress.receipt?.decision).toBe("REFUSE");
+  });
+
+  it("ignores ambient OMNISCLAW_TERMINUS=0 at the transport layer", () => {
+    const governed = decideProviderTransportEgress(
+      { id: "MiniMax-M3", provider: "minimax", api: "openai-completions" },
+      "https://api.minimax.io/v1/chat/completions",
+      { OMNISCLAW_TERMINUS: "0" },
+    );
+    expect(governed.allow).toBe(true);
+    const refused = decideProviderTransportEgress(
+      { id: "evil-1", provider: "totally-unknown-provider", api: "openai-chat" },
+      "https://attacker.example/v1/chat",
+      { OMNISCLAW_TERMINUS: "0" },
+    );
+    expect(refused.allow).toBe(false);
+    expect(refused.receipt?.decision).toBe("REFUSE");
+  });
+
+  it("refuses governed calls handed an unknown provider target directly", async () => {
+    const fetch = vi.fn(async () => {
+      throw new Error("must not fetch for an unknown provider");
+    });
+    const result = await governedProviderCall({
+      target: { ...DEFAULT_PROVIDER_TARGET, provider: "totally-unknown-provider" },
+      env: { MINIMAX_API_KEY: "fixture-minimax-key-not-real" },
+      fetch,
+    });
+    expect(result.ok).toBe(false);
+    expect(result.live).toBe(false);
+    expect(result.provider_calls).toBe(0);
+    expect(result.refusal?.decision).toBe("REFUSE");
+    expect(result.refusal?.reason).toBe("unknown_provider");
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("rejects a mutated terminal receipt with a stale hash", async () => {
+    const result = await governedProviderCallFromFixture();
+    expect(verifyProviderGateReceiptPair(result.started, result.terminal).ok).toBe(true);
+    const mutated = {
+      ...result.terminal,
+      decision: "REFUSE",
+      provider_http_status: 500,
+    };
+    expect(mutated.receiptSha256).toBe(result.terminal?.receiptSha256);
+    const verdict = verifyProviderGateReceiptPair(result.started, mutated);
+    expect(verdict.ok).toBe(false);
+    expect(verdict.reason).toBe("terminal_hash_mismatch");
+  });
+
+  it("rejects a hash-valid terminal whose decision disagrees with ok/pass", async () => {
+    const result = await governedProviderCallFromFixture();
+    const dishonest = {
+      ...result.terminal,
+      decision: "REFUSE",
+      ok: true,
+      pass: true,
+    };
+    dishonest.receiptSha256 = recomputeReceiptSha256(dishonest);
+    const verdict = verifyProviderGateReceiptPair(result.started, dishonest);
+    expect(verdict.ok).toBe(false);
+    expect(verdict.reason).toBe("terminal_fake_pass");
   });
 
   it("refuses live provider calls when no key is present", async () => {

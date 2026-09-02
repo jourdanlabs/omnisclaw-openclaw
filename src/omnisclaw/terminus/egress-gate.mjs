@@ -13,9 +13,13 @@ const AUTHORIZED_TARGET_FIELDS = [
   "api_shape",
 ];
 
-export function terminusEnabled(env = process.env) {
-  const raw = (env.OMNISCLAW_TERMINUS ?? env.CADUCEUS_TERMINUS ?? "").trim().toLowerCase();
-  return !(raw === "0" || raw === "off" || raw === "false");
+// No kill-switch: the egress gate is always on. An OMNISCLAW_TERMINUS=0
+// ambient bypass was removed (Pan gate 2026-09-02, C1 precedent) — a
+// production env sniff must never silently disable the gate. Tests exercise
+// the gate directly or inject explicit doubles at call sites; nothing ambient
+// turns this off.
+export function terminusEnabled() {
+  return true;
 }
 
 export function decideTerminusEgress(input = {}) {

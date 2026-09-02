@@ -5,6 +5,7 @@ import {
   applyOmnisclawTerminusToReplyPayload,
   decideTerminusEgress,
   refuseDirectProvider,
+  terminusEnabled,
   terminusRefusalText,
 } from "./egress-gate.mjs";
 import {
@@ -37,6 +38,16 @@ describe("OMNISCLAW TERMINUS egress", () => {
     expect(coverage.caduceus_pin).toBe(TERMINUS_CONTRACT_PIN);
     expect(coverage.product).toBe("omnis-claw");
     expect(SLICE_STATUS).toBe("BUILT_NOT_SHIPPED");
+  });
+
+  it("has no ambient kill-switch: OMNISCLAW_TERMINUS=0 cannot disable the gate", () => {
+    expect(terminusEnabled()).toBe(true);
+    expect(terminusEnabled({ OMNISCLAW_TERMINUS: "0" })).toBe(true);
+    const refused = applyOmnisclawTerminusToReplyPayload(
+      { text: "hello from an unknown pipe" },
+      { routeId: "not.a.route", env: { OMNISCLAW_TERMINUS: "0" } },
+    );
+    expect(refused.text).toBe(terminusRefusalText("unknown_route"));
   });
 
   it("refuses unknown routes and never marks a pass", () => {
