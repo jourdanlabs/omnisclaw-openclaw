@@ -32,6 +32,12 @@ import {
 } from "../infra/net/ssrf.js";
 import type { Model } from "../llm/types.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
+import { terminusRefusalText } from "../omnisclaw/terminus/egress-gate.mjs";
+import {
+  buildTransportHeaderReceiptPair,
+  decideProviderTransportEgress,
+  resolveProviderTransportTarget,
+} from "../omnisclaw/terminus/provider-gate.mjs";
 import { resolveDebugProxySettings } from "../proxy-capture/env.js";
 import {
   containsSecretSentinel,
@@ -857,6 +863,23 @@ export function buildGuardedModelFetch(
       headers: rawHeaders,
     });
     const url = swappedEgress.url;
+    const egress = decideProviderTransportEgress(model, url);
+    if (!egress.allow) {
+      const reason = egress.receipt?.reason ?? "terminus_refused";
+      return new Response(
+        JSON.stringify({
+          error: {
+            message: terminusRefusalText(reason),
+            type: "terminus_refusal",
+            code: "terminus_refused",
+          },
+        }),
+        {
+          status: 403,
+          headers: { "content-type": "application/json" },
+        },
+      );
+    }
     const policy = resolveProviderTransportSsrFPolicy({
       baseUrl: model.baseUrl,
       url,
@@ -969,6 +992,10 @@ export function buildGuardedModelFetch(
       result.refreshTimeout,
       localServiceLease,
     );
+    const target = resolveProviderTransportTarget(model, url);
+    if (target) {
+      buildTransportHeaderReceiptPair({ target, url, status: response.status });
+    }
     return options?.sanitizeSse === false || !shouldSanitizeOpenAISdkSseResponse(model)
       ? response
       : sanitizeOpenAISdkSseResponse(response, { synthesizeJsonAsSse });

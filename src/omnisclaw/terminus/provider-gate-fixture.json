@@ -1,0 +1,19 @@
+{
+  "schema": "OmnisclawProviderGateFixtureV1",
+  "target": {
+    "provider": "minimax",
+    "scheme": "https",
+    "hostname": "api.minimax.io",
+    "port": 443,
+    "path": "/v1/chat/completions",
+    "model": "MiniMax-M3",
+    "residency": "CN",
+    "api_shape": "openai_chat"
+  },
+  "request_id": "00000000-0000-4000-8000-000000000001",
+  "envelope_id": "fixture-envelope-0001",
+  "prompt_digest": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456",
+  "provider_http_status": 200,
+  "response_body": "{\"id\":\"fixture-chat\",\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"ACK\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":8,\"completion_tokens\":2,\"total_tokens\":10}}",
+  "response_digest": "36ad1e4b3ca4ea7e1633340de4d65933d07389b1c4246f375a7fda15dfaf62bd"
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "TerminusCoverageManifestV1",
+  "contract_version": "TERMINUS-CONTRACT-V1",
+  "product": "omnis-claw",
+  "product_pin": "dc80a813f782c12b096f5ceea1444771101941d4",
+  "caduceus_pin": "80874fd1d326facc6ae6af0416de35f9bdef0a33",
+  "routes": [
+    {
+      "route_id": "channel.auto_reply.final",
+      "status": "GOVERNED",
+      "modality": "chat",
+      "join": "createOmnisclawBifrostBeforeDeliver -> BIFROST/CLARION -> COSMIC-lite -> decideTerminusEgress -> channel deliver",
+      "notes": "Local TERMINUS egress on final auto-reply. Live model HTTPS now joins at buildGuardedModelFetch. Dual receipts still prove-path only. Not CADUCEUS-joined. Built, not shipped."
+    },
+    {
+      "route_id": "agent.command.final",
+      "status": "GOVERNED",
+      "modality": "chat",
+      "join": "applyAgentCommandBifrost -> BIFROST/CLARION -> decideTerminusEgress",
+      "notes": "Local TERMINUS egress on direct agent-command finals. Live model HTTPS joins at buildGuardedModelFetch. Dual receipts still prove-path only. Not CADUCEUS-joined. Built, not shipped."
+    },
+    {
+      "route_id": "openclaw.provider.chat",
+      "status": "GOVERNED",
+      "modality": "chat",
+      "join": "buildGuardedModelFetch -> decideProviderTransportEgress -> decideTerminusEgress -> fetchWithSsrFGuard; governedProviderCall proves dual receipts",
+      "notes": "Track C provider gate on live agent transport. Live fetch writes stream-safe header receipts (no body digest). Fixture path still proves full dual receipts. Live keyed MiniMax turn DONE (HTTP 200). Not CADUCEUS-joined. Built, not shipped."
+    },
+    {
+      "route_id": "direct.provider.any",
+      "status": "DISABLED",
+      "modality": "chat",
+      "join": "must never transmit as a TERMINUS pass",
+      "notes": "Unknown/direct provider egress fails closed."
+    },
+    {
+      "route_id": "caduceus.chat",
+      "status": "DISABLED",
+      "modality": "chat",
+      "join": "not in this slice",
+      "notes": "CLAW has not joined CADUCEUS. Do not fake a pass."
+    }
+  ],
+  "outside_boundary": [
+    "BIFROST/CLARION fluid claim filter",
+    "COSMIC-lite advisory/enforce seal",
+    "CADUCEUS process itself"
+  ]
+}

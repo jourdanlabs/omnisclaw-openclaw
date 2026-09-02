@@ -2054,6 +2054,9 @@
     "verify": "node --import ./scripts/tsx.mjs scripts/verify.mts",
     "omnisclaw:install": "node scripts/omnisclaw-stack.mjs install --with-gateway",
     "omnisclaw:probe": "node scripts/omnisclaw-stack.mjs probe",
+    "omnisclaw:terminus-prove": "node scripts/omnisclaw-terminus-prove.mjs",
+    "omnisclaw:provider-gate-prove": "node scripts/omnisclaw-provider-gate-prove.mjs",
+    "omnisclaw:chat": "node scripts/omnis-claw-chat.mjs",
     "omnisclaw:status": "node scripts/omnisclaw-stack.mjs status",
     "check:spawn-exemptions": "node scripts/check-spawn-exemptions.mjs"
   },

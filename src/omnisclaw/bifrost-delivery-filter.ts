@@ -9,6 +9,8 @@ import {
   verifyFluidAgentResponse,
 } from "./clarion/bifrost/fluid.js";
 import { applyCosmicLiteSeal } from "./cosmic-lite.js";
+import { applyOmnisclawTerminusToReplyPayload } from "./terminus/egress-gate.mjs";
+import { CHANNEL_AUTO_REPLY_FINAL } from "./terminus/pins.mjs";
 
 type BeforeDeliverInfo = {
   kind: ReplyDispatchKind;
@@ -34,8 +36,13 @@ export function createOmnisclawBifrostBeforeDeliver(params: {
     if (info?.kind !== "final") {
       return fluidFiltered;
     }
-    return applyCosmicLiteSeal(fluidFiltered, {
+    const sealed = await applyCosmicLiteSeal(fluidFiltered, {
       userMessage: userMessageFromContext(params.ctx),
+    });
+    // TERMINUS sits on top: fail-closed egress. Unknown refuses. Never fake a pass.
+    return applyOmnisclawTerminusToReplyPayload(sealed, {
+      ctx: params.ctx,
+      routeId: CHANNEL_AUTO_REPLY_FINAL,
     });
   };
 }

@@ -53,6 +53,8 @@ import {
 import type { OutboundSessionContext } from "../../infra/outbound/session-context.js";
 import { hasReplyPayloadContent } from "../../interactive/payload.js";
 import { applyOmnisclawBifrostToReplyPayload } from "../../omnisclaw/bifrost-delivery-filter.js";
+import { applyOmnisclawTerminusToReplyPayload } from "../../omnisclaw/terminus/egress-gate.mjs";
+import { AGENT_COMMAND_FINAL } from "../../omnisclaw/terminus/pins.mjs";
 import { type RuntimeEnv, writeRuntimeJson } from "../../runtime.js";
 import { isInternalMessageChannel } from "../../utils/message-channel.js";
 import type { MessagingToolSend } from "../embedded-agent-messaging.types.js";
@@ -585,11 +587,14 @@ function applyAgentCommandBifrost(params: {
   const filtered: ReplyPayload[] = [];
   for (const payload of payloads) {
     filtered.push(
-      applyOmnisclawBifrostToReplyPayload(payload as ReplyPayload, {
-        cfg: params.cfg,
-        ctx: { Body: params.opts.transcriptMessage ?? params.opts.message },
-        info: { kind: "final" },
-      }),
+      applyOmnisclawTerminusToReplyPayload(
+        applyOmnisclawBifrostToReplyPayload(payload as ReplyPayload, {
+          cfg: params.cfg,
+          ctx: { Body: params.opts.transcriptMessage ?? params.opts.message },
+          info: { kind: "final" },
+        }),
+        { routeId: AGENT_COMMAND_FINAL },
+      ),
     );
   }
   return filtered;

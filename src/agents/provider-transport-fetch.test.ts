@@ -18,6 +18,7 @@ type ProviderRequestPolicyConfigMockResult = {
 
 const {
   buildProviderRequestDispatcherPolicyMock,
+  decideProviderTransportEgressMock,
   fetchWithSsrFGuardMock,
   ensureModelProviderLocalServiceMock,
   mergeModelProviderRequestOverridesMock,
@@ -61,6 +62,7 @@ const {
       (_request?: unknown) => { mode: "direct" } | undefined
     >(() => undefined),
     fetchWithSsrFGuardMock: vi.fn(),
+    decideProviderTransportEgressMock: vi.fn(() => ({ allow: true })),
     ensureModelProviderLocalServiceMock: vi.fn(),
     mergeModelProviderRequestOverridesMock: vi.fn((current, overrides) => ({
       ...current,
@@ -79,6 +81,12 @@ const {
     managedStreamCleanupRegistrations: managedStreamCleanupRegistrationsLocal,
   };
 });
+
+vi.mock("../omnisclaw/terminus/provider-gate.mjs", () => ({
+  decideProviderTransportEgress: decideProviderTransportEgressMock,
+  resolveProviderTransportTarget: vi.fn(() => null),
+  buildTransportHeaderReceiptPair: vi.fn(),
+}));
 
 vi.mock("../infra/net/fetch-guard.js", () => ({
   fetchWithSsrFGuard: fetchWithSsrFGuardMock,
@@ -159,6 +167,7 @@ function openResponseStreamText(text: string): {
 describe("buildGuardedModelFetch", () => {
   beforeEach(() => {
     managedStreamCleanupRegistrations.length = 0;
+    decideProviderTransportEgressMock.mockReset().mockReturnValue({ allow: true });
     fetchWithSsrFGuardMock.mockReset().mockResolvedValue({
       response: new Response("ok", { status: 200 }),
       finalUrl: "https://api.openai.com/v1/responses",
@@ -189,6 +198,33 @@ describe("buildGuardedModelFetch", () => {
       baseUrl: "https://api.openai.com/v1",
     });
   }
+
+  it("refuses provider transport when TERMINUS blocks egress before HTTPS fetch", async () => {
+    decideProviderTransportEgressMock.mockReturnValueOnce({
+      allow: false,
+      receipt: { reason: "provider_key_missing", decision: "REFUSE" },
+    });
+    const model = sentinelModel();
+    const response = await buildGuardedModelFetch(model)("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: '{"input":"hello"}',
+    });
+    expect(decideProviderTransportEgressMock).toHaveBeenCalledWith(
+      model,
+      "https://api.openai.com/v1/responses",
+    );
+    expect(fetchWithSsrFGuardMock).not.toHaveBeenCalled();
+    expect(response.status).toBe(403);
+    await expect(response.json()).resolves.toEqual({
+      error: {
+        message:
+          "Held back — TERMINUS refused this egress (provider_key_missing). There is no send-anyway.",
+        type: "terminus_refusal",
+        code: "terminus_refused",
+      },
+    });
+  });
 
   it("swaps sentinels in Request-form headers", async () => {
     const sentinel = mintSecretSentinel("request-form-secret", { label: "request-form" });

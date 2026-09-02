@@ -1,0 +1,1 @@
+TERMINUS-CONTRACT-V1 pin vendored from caduceus-code-wave4 80874fd1d326facc6ae6af0416de35f9bdef0a33. Read-only consume. Do not invent HMAC or envelope logic. CLAW uses this pin for the local fail-closed egress gate and the Track C provider gate (dual TERMINUS receipts, fixture-proven; live turn OWED). Not a CADUCEUS join. Not shipped.
