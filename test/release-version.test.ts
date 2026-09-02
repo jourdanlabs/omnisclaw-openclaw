@@ -4,6 +4,7 @@ import {
   collectReleaseVersionFloorErrors,
   compareReleaseVersions,
   parseReleaseVersion,
+  releaseWorkspaceVersionMatches,
 } from "../scripts/lib/release-version.mjs";
 
 describe("release version policy", () => {
@@ -41,5 +42,24 @@ describe("release version policy", () => {
     expect(compareReleaseVersions("2026.3.29-alpha.2", "2026.3.29-beta.1")).toBe(-1);
     expect(compareReleaseVersions("2026.3.29-beta.1", "2026.3.29")).toBe(-1);
     expect(compareReleaseVersions("2026.3.29-2", "2026.3.29")).toBe(1);
+  });
+
+  it("parses the JL fork stamp as a stable release", () => {
+    expect(parseReleaseVersion("2026.8.1-omnisclaw.0")).toMatchObject({
+      version: "2026.8.1-omnisclaw.0",
+      baseVersion: "2026.8.1",
+      channel: "stable",
+    });
+  });
+
+  it("aligns fork-stamped root versions with workspace packages at the upstream base", () => {
+    expect(releaseWorkspaceVersionMatches("2026.8.1-omnisclaw.0", "2026.8.1")).toBe(true);
+    expect(releaseWorkspaceVersionMatches("2026.8.1-omnisclaw.0", "2026.8.1-omnisclaw.0")).toBe(
+      true,
+    );
+    expect(releaseWorkspaceVersionMatches("2026.8.1-omnisclaw.0", "2026.8.1-omnisclaw.1")).toBe(
+      false,
+    );
+    expect(releaseWorkspaceVersionMatches("2026.8.1-omnisclaw.0", "2026.7.1")).toBe(false);
   });
 });

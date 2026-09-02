@@ -181,7 +181,9 @@ export function extractChangelogSection(changelog: unknown, version: unknown) {
 export function releaseNotesVersionForTag(tag: unknown) {
   assertString(tag, "tag");
   validateTag(tag);
-  return tag.replace(/^v/u, "").replace(/-(?:(?:alpha|beta)\.[1-9][0-9]*|[1-9][0-9]*)$/u, "");
+  return tag
+    .replace(/^v/u, "")
+    .replace(/-(?:(?:alpha|beta)\.[1-9][0-9]*|[1-9][0-9]*|omnisclaw\.[0-9]+)$/u, "");
 }
 
 function validateShippedBaselineRef(ref: string) {

@@ -7,6 +7,7 @@ const CORRECTION_VERSION_REGEX =
   /^(?<year>\d{4})\.(?<month>[1-9]\d?)\.(?<patch>[1-9]\d*)-(?<correction>[1-9]\d*)$/;
 const OMNISCLAW_VERSION_REGEX =
   /^(?<year>\d{4})\.(?<month>[1-9]\d?)\.(?<patch>[1-9]\d*)-omnisclaw\.(?<fork>\d+)$/;
+const OMNISCLAW_FORK_SUFFIX_RE = /-omnisclaw\.\d+$/i;
 const JUNE_2026_PATCH_FLOOR = 5;
 const EXTENDED_STABLE_PATCH_FLOOR = 33;
 
@@ -127,6 +128,25 @@ export function parseReleaseVersion(version) {
   }
 
   return null;
+}
+
+/** Strip the JL fork suffix so 2026.8.1-omnisclaw.0 compares as upstream 2026.8.1. */
+export function stripOmnisclawForkSuffix(version) {
+  return version.replace(OMNISCLAW_FORK_SUFFIX_RE, "");
+}
+
+/**
+ * Root `2026.8.1-omnisclaw.0` may ship with workspace packages still at the
+ * upstream base `2026.8.1`. Exact matches always pass. A fork-stamped workspace
+ * package must match the root stamp exactly — 2026.8.1-omnisclaw.1 vs
+ * 2026.8.1-omnisclaw.0 is drift.
+ */
+export function releaseWorkspaceVersionMatches(rootVersion, packageVersion) {
+  if (rootVersion === packageVersion) {
+    return true;
+  }
+  const rootBase = stripOmnisclawForkSuffix(rootVersion);
+  return rootVersion !== rootBase && packageVersion === rootBase;
 }
 
 /**

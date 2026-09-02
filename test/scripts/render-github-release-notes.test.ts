@@ -361,6 +361,21 @@ describe("GitHub release-note rendering", () => {
     ).toThrow("invalid release tag");
   });
 
+  it("accepts the JL fork tag stamp", () => {
+    const changelog = changelogFor("- **PR #123** fix: example.").replaceAll(
+      "## 2026.7.1",
+      "## 2026.8.1",
+    );
+    expect(() =>
+      renderGithubReleaseNotes({
+        changelog,
+        version: "2026.8.1",
+        tag: "v2026.8.1-omnisclaw.0",
+        repository,
+      }),
+    ).not.toThrow();
+  });
+
   it("ignores fenced pseudo-headings and handles a release heading at EOF", () => {
     const fenced = [
       `## ${version}`,

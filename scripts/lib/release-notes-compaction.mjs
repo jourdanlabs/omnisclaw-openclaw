@@ -1,6 +1,6 @@
 // Shared plain-JavaScript rendering also runs in package preflight before dependency setup.
 export const OPENCLAW_RELEASE_TAG_PATTERN =
-  /^v[0-9]{4}\.[1-9][0-9]*\.[1-9][0-9]*(?:-(?:(?:alpha|beta)\.[1-9][0-9]*|[1-9][0-9]*))?$/u;
+  /^v[0-9]{4}\.[1-9][0-9]*\.[1-9][0-9]*(?:-(?:(?:alpha|beta)\.[1-9][0-9]*|[1-9][0-9]*|omnisclaw\.[0-9]+))?$/u;
 
 const CONTRIBUTION_RECORD_HEADING = "### Complete contribution record";
 

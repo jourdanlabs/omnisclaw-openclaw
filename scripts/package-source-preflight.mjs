@@ -4,6 +4,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { releaseWorkspaceVersionMatches } from "./lib/release-version.mjs";
 import { extractCurrentPackageChangelog } from "./package-changelog.mjs";
 import { validateBundledPackageDependencyAlignment } from "./package-source-dependencies.mjs";
 
@@ -85,7 +86,10 @@ export function validatePackageSource({
       `${ROOT_MANIFEST_PATH} must depend on @openclaw/ai via workspace:*; found ${JSON.stringify(aiDependency)}.`,
     );
   }
-  if (aiManifest.version !== rootManifest.version) {
+  if (
+    typeof aiManifest.version !== "string" ||
+    !releaseWorkspaceVersionMatches(rootManifest.version, aiManifest.version)
+  ) {
     throw new Error(
       `${AI_MANIFEST_PATH} version must match ${ROOT_MANIFEST_PATH}: expected ${rootManifest.version}, found ${String(aiManifest.version ?? "<missing>")}.`,
     );

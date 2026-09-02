@@ -8,7 +8,7 @@ import {
   type PluginPackageJson,
 } from "./lib/plugin-publication-collector.ts";
 import { pnpmLockfileDocuments } from "./lib/pnpm-lockfile-documents.mjs";
-import { parseReleaseVersion } from "./lib/release-version.mjs";
+import { parseReleaseVersion, releaseWorkspaceVersionMatches } from "./lib/release-version.mjs";
 import {
   canonicalReleasePlanJson,
   canonicalReleasePlanLockJson,
@@ -426,7 +426,7 @@ function collectPackageInventory(
     if (!policy.dependency && manifest.openclaw?.release?.publishToNpm !== true) {
       continue;
     }
-    if (manifest.version !== version) {
+    if (!releaseWorkspaceVersionMatches(version, manifest.version)) {
       throw new Error(`${policy.path} version must match openclaw ${version}`);
     }
     addPackage(manifest, ["npm"], `${policy.path}/package.json`);
