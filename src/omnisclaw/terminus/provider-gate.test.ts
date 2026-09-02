@@ -7,7 +7,6 @@ import {
   DEFAULT_PROVIDER_TARGET,
   governedProviderCall,
   governedProviderCallFromFixture,
-  isKnownProviderTransport,
   resolveApiShape,
   resolveProviderCredentials,
   resolveProviderResidency,
@@ -22,7 +21,12 @@ describe("OMNISCLAW provider gate (Track C)", () => {
 
   it("resolves transport targets from model and request URL", () => {
     const target = resolveProviderTransportTarget(
-      { id: "gpt-5.4", provider: "openai", api: "openai-responses" },
+      {
+        id: "gpt-5.4",
+        provider: "openai",
+        api: "openai-responses",
+        baseUrl: "https://api.openai.com",
+      },
       "https://api.openai.com/v1/responses",
     );
     expect(target).toEqual({
@@ -34,6 +38,7 @@ describe("OMNISCLAW provider gate (Track C)", () => {
       model: "gpt-5.4",
       residency: "US",
       api_shape: "openai_responses",
+      bound: true,
     });
     expect(resolveProviderResidency("minimax")).toBe("CN");
     expect(resolveApiShape("openai-completions")).toBe("openai_chat");
@@ -41,11 +46,21 @@ describe("OMNISCLAW provider gate (Track C)", () => {
 
   it("allows governed provider transport for resolved targets", () => {
     const target = resolveProviderTransportTarget(
-      { id: "MiniMax-M3", provider: "minimax", api: "openai-completions" },
+      {
+        id: "MiniMax-M3",
+        provider: "minimax",
+        api: "openai-completions",
+        baseUrl: "https://api.minimax.io",
+      },
       "https://api.minimax.io/v1/chat/completions",
     );
     const egress = decideProviderTransportEgress(
-      { id: "MiniMax-M3", provider: "minimax", api: "openai-completions" },
+      {
+        id: "MiniMax-M3",
+        provider: "minimax",
+        api: "openai-completions",
+        baseUrl: "https://api.minimax.io",
+      },
       "https://api.minimax.io/v1/chat/completions",
     );
     expect(target).not.toBeNull();
@@ -55,7 +70,12 @@ describe("OMNISCLAW provider gate (Track C)", () => {
 
   it("builds stream-safe header receipts without a response body", () => {
     const target = resolveProviderTransportTarget(
-      { id: "MiniMax-M3", provider: "minimax", api: "openai-completions" },
+      {
+        id: "MiniMax-M3",
+        provider: "minimax",
+        api: "openai-completions",
+        baseUrl: "https://api.minimax.io",
+      },
       "https://api.minimax.io/v1/chat/completions",
     );
     const recorded = buildTransportHeaderReceiptPair({
@@ -83,7 +103,6 @@ describe("OMNISCLAW provider gate (Track C)", () => {
       api: "openai-chat",
     };
     const url = "https://attacker.example/v1/chat";
-    expect(isKnownProviderTransport(model.provider)).toBe(false);
     expect(resolveProviderResidency(model.provider)).toBe("GLOBAL");
     expect(resolveProviderTransportTarget(model, url)).toBeNull();
     const egress = decideProviderTransportEgress(model, url);
@@ -93,7 +112,12 @@ describe("OMNISCLAW provider gate (Track C)", () => {
 
   it("ignores ambient OMNISCLAW_TERMINUS=0 at the transport layer", () => {
     const governed = decideProviderTransportEgress(
-      { id: "MiniMax-M3", provider: "minimax", api: "openai-completions" },
+      {
+        id: "MiniMax-M3",
+        provider: "minimax",
+        api: "openai-completions",
+        baseUrl: "https://api.minimax.io",
+      },
       "https://api.minimax.io/v1/chat/completions",
       { OMNISCLAW_TERMINUS: "0" },
     );
@@ -107,9 +131,9 @@ describe("OMNISCLAW provider gate (Track C)", () => {
     expect(refused.receipt?.decision).toBe("REFUSE");
   });
 
-  it("refuses governed calls handed an unknown provider target directly", async () => {
+  it("refuses governed calls handed an unbound target directly", async () => {
     const fetch = vi.fn(async () => {
-      throw new Error("must not fetch for an unknown provider");
+      throw new Error("must not fetch for an unbound target");
     });
     const result = await governedProviderCall({
       target: { ...DEFAULT_PROVIDER_TARGET, provider: "totally-unknown-provider" },
@@ -120,8 +144,80 @@ describe("OMNISCLAW provider gate (Track C)", () => {
     expect(result.live).toBe(false);
     expect(result.provider_calls).toBe(0);
     expect(result.refusal?.decision).toBe("REFUSE");
-    expect(result.refusal?.reason).toBe("unknown_provider");
+    expect(result.refusal?.reason).toBe("target_unbound");
     expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("refuses governed calls whose target origin does not match the model", async () => {
+    const fetch = vi.fn(async () => {
+      throw new Error("must not fetch across origins");
+    });
+    const result = await governedProviderCall({
+      model: {
+        id: "gpt-5.4",
+        provider: "openai",
+        api: "openai-responses",
+        baseUrl: "https://api.openai.com",
+      },
+      target: { ...DEFAULT_PROVIDER_TARGET },
+      env: { MINIMAX_API_KEY: "fixture-minimax-key-not-real" },
+      fetch,
+    });
+    expect(result.ok).toBe(false);
+    expect(result.provider_calls).toBe(0);
+    expect(result.refusal?.decision).toBe("REFUSE");
+    expect(result.refusal?.reason).toBe("target_origin_mismatch");
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("binds legitimacy to the model's own endpoint, not a name list", () => {
+    const openrouter = {
+      id: "moonshotai/kimi-k2",
+      provider: "openrouter",
+      api: "openai-chat",
+      baseUrl: "https://openrouter.ai",
+    };
+    const xai = {
+      id: "grok-4",
+      provider: "xai",
+      api: "openai-chat",
+      baseUrl: "https://api.x.ai",
+    };
+    // Supported providers the old hardcoded list broke: bound traffic allows.
+    expect(
+      decideProviderTransportEgress(openrouter, "https://openrouter.ai/api/v1/chat/completions")
+        .allow,
+    ).toBe(true);
+    expect(decideProviderTransportEgress(xai, "https://api.x.ai/v1/chat/completions").allow).toBe(
+      true,
+    );
+    // Known name, hostile host: exfiltration-shaped, refuses.
+    const openai = {
+      id: "gpt-5.4",
+      provider: "openai",
+      api: "openai-responses",
+      baseUrl: "https://api.openai.com",
+    };
+    expect(
+      decideProviderTransportEgress(openai, "https://attacker.example/v1/responses").allow,
+    ).toBe(false);
+    // Bound model, wrong provider road: refuses.
+    const minimax = {
+      id: "MiniMax-M3",
+      provider: "minimax",
+      api: "openai-completions",
+      baseUrl: "https://api.minimax.io",
+    };
+    expect(
+      decideProviderTransportEgress(minimax, "https://openrouter.ai/api/v1/chat/completions").allow,
+    ).toBe(false);
+    // No baseUrl: not a legitimate egress principal, refuses.
+    expect(
+      decideProviderTransportEgress(
+        { id: "gpt-5.4", provider: "openai", api: "openai-responses" },
+        "https://api.openai.com/v1/responses",
+      ).allow,
+    ).toBe(false);
   });
 
   it("rejects a mutated terminal receipt with a stale hash", async () => {
@@ -156,6 +252,12 @@ describe("OMNISCLAW provider gate (Track C)", () => {
     vi.stubEnv("MINIMAX_API_KEY", "");
     vi.stubEnv("OPENAI_API_KEY", "");
     const result = await governedProviderCall({
+      model: {
+        id: "MiniMax-M3",
+        provider: "minimax",
+        api: "openai-completions",
+        baseUrl: "https://api.minimax.io",
+      },
       env: { MINIMAX_API_KEY: "", OPENAI_API_KEY: "" },
       fetch: vi.fn(),
     });

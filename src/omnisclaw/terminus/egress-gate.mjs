@@ -11,6 +11,10 @@ const AUTHORIZED_TARGET_FIELDS = [
   "model",
   "residency",
   "api_shape",
+  // Set by resolveProviderTransportTarget when the target's origin matches the
+  // model's own baseUrl origin. Part of the shape, not a bypass: unknown
+  // fields still refuse.
+  "bound",
 ];
 
 // No kill-switch: the egress gate is always on. An OMNISCLAW_TERMINUS=0

@@ -72,19 +72,55 @@ const PROVIDER_RESIDENCY = {
   anthropic: "US",
   google: "US",
   ollama: "LOCAL",
+  openrouter: "US",
+  xai: "US",
 };
 
-// Semantically unknown providers are never governable. A target that resolves
-// to residency GLOBAL must refuse, never allow (Pan gate 2026-09-02).
-const KNOWN_PROVIDER_TRANSPORTS = new Set(Object.keys(PROVIDER_RESIDENCY));
-
-export function isKnownProviderTransport(provider) {
-  return KNOWN_PROVIDER_TRANSPORTS.has(
-    String(provider ?? "")
-      .trim()
-      .toLowerCase(),
-  );
+// Legitimacy is BINDING, never a name list (Pan gate round 2, 2026-09-02: a
+// hardcoded 5-provider allowlist broke real openrouter/xai traffic, and no
+// list can cover 40+ provider plugins + operator customs). A target is
+// legitimate iff the request URL's origin matches the MODEL'S OWN baseUrl
+// origin — the endpoint the registry issued that model. No baseUrl, or a
+// mismatch, resolves to null and every downstream refuses. Residency below is
+// a receipt label only; it never decides.
+function resolveModelBaseOrigin(model) {
+  let parsed;
+  try {
+    parsed = new URL(String(model?.baseUrl ?? "").trim());
+  } catch {
+    return null;
+  }
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    return null;
+  }
+  const port = parsed.port
+    ? Number.parseInt(parsed.port, 10)
+    : parsed.protocol === "https:"
+      ? 443
+      : 80;
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    return null;
+  }
+  return {
+    scheme: parsed.protocol.replace(":", ""),
+    hostname: parsed.hostname.toLowerCase(),
+    port,
+  };
 }
+
+// Closed by KEY_ENV_CANDIDATES: governed LIVE calls can only spend the two
+// key types this gate resolves (minimax, openai). No third entry can arrive
+// without touching the credential list directly above — keep them adjacent.
+// This maps a resolved credential to the model the live call binds; it is
+// not a provider allowlist.
+export const KEYED_PROVIDER_ENDPOINTS = {
+  minimax: {
+    baseUrl: "https://api.minimax.io",
+    chatPath: "/v1/chat/completions",
+    model: "MiniMax-M3",
+  },
+  openai: { baseUrl: "https://api.openai.com", chatPath: "/v1/responses", model: "gpt-5.4" },
+};
 
 export function resolveProviderResidency(provider) {
   const normalized = String(provider ?? "")
@@ -120,7 +156,11 @@ export function resolveProviderTransportTarget(model, url) {
   if (!provider || !modelId || !api) {
     return null;
   }
-  if (!isKnownProviderTransport(provider)) {
+  // Binding: the request must go where THIS model was issued to go. A model
+  // without a baseUrl is not a legitimate egress principal; a URL anywhere
+  // else (even for a well-known provider name) is exfiltration-shaped.
+  const base = resolveModelBaseOrigin(model);
+  if (!base) {
     return null;
   }
   const port = parsed.port
@@ -135,15 +175,21 @@ export function resolveProviderTransportTarget(model, url) {
   if (!path.startsWith("/")) {
     return null;
   }
+  const scheme = parsed.protocol.replace(":", "");
+  const hostname = parsed.hostname.toLowerCase();
+  if (scheme !== base.scheme || hostname !== base.hostname || port !== base.port) {
+    return null;
+  }
   return {
     provider,
-    scheme: parsed.protocol.replace(":", ""),
-    hostname: parsed.hostname.toLowerCase(),
+    scheme,
+    hostname,
     port,
     path,
     model: modelId,
     residency: resolveProviderResidency(provider),
     api_shape: resolveApiShape(api),
+    bound: true,
   };
 }
 
@@ -288,11 +334,20 @@ function terminalReceiptFields(input) {
 export async function governedProviderCall(input = {}) {
   const env = input.env ?? process.env;
   const fetchImpl = input.fetch ?? globalThis.fetch;
-  const target = input.target ?? DEFAULT_PROVIDER_TARGET;
+  const requested = input.target ?? DEFAULT_PROVIDER_TARGET;
   const prompt = input.prompt ?? "Reply with exactly: ACK";
 
-  if (!isKnownProviderTransport(target?.provider)) {
-    return refuseProviderGate("unknown_provider", "UNKNOWN");
+  // Governed calls spend credentials, so the target must be bound to a model
+  // (re-resolved here — a raw hostname is never trusted on arrival).
+  let target = requested;
+  if (input.model) {
+    const bound = resolveProviderTransportTarget(input.model, providerRequestUrl(requested));
+    if (!bound) {
+      return refuseProviderGate("target_origin_mismatch", "UNBOUND");
+    }
+    target = bound;
+  } else if (requested?.bound !== true) {
+    return refuseProviderGate("target_unbound", "UNBOUND");
   }
   const egress = decideTerminusEgress({ routeId: OPENCLAW_PROVIDER_CHAT, target });
   if (!egress.allow) {
@@ -367,6 +422,15 @@ export async function governedProviderCall(input = {}) {
 export async function governedProviderCallFromFixture(input = {}) {
   const fixture = input.fixture ?? loadProviderGateFixture(input.fixturePath);
   const target = input.target ?? fixture.target;
+  // The fixture endpoint is the bound truth for fixture calls: synthesize the
+  // model it implies so the call proves through the same binding as live.
+  const fixtureTarget = target ?? DEFAULT_PROVIDER_TARGET;
+  const model = input.model ?? {
+    provider: fixtureTarget.provider,
+    id: fixtureTarget.model,
+    api: String(fixtureTarget.api_shape ?? "").replaceAll("_", "-") || "fixture",
+    baseUrl: `${fixtureTarget.scheme}://${fixtureTarget.hostname}:${fixtureTarget.port}`,
+  };
   const responseText = fixture.response_body;
   const fetchImpl = async () => ({
     ok: fixture.provider_http_status >= 200 && fixture.provider_http_status < 300,
@@ -375,6 +439,7 @@ export async function governedProviderCallFromFixture(input = {}) {
   });
   return governedProviderCall({
     ...input,
+    model,
     target,
     requestId: fixture.request_id,
     envelopeId: fixture.envelope_id,

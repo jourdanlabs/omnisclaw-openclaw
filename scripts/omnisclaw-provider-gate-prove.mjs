@@ -25,9 +25,18 @@ const {
   decideProviderTransportEgress,
   buildTransportHeaderReceiptPair,
   resolveProviderTransportTarget,
+  KEYED_PROVIDER_ENDPOINTS,
 } = await import(gateUrl);
 
+const minimaxModel = {
+  id: "MiniMax-M3",
+  provider: "minimax",
+  api: "openai-completions",
+  baseUrl: "https://api.minimax.io",
+};
+
 const missing = await governedProviderCall({
+  model: minimaxModel,
   env: { MINIMAX_API_KEY: "", OPENAI_API_KEY: "" },
   fetch: async () => {
     throw new Error("fetch_must_not_run_without_key");
@@ -42,7 +51,7 @@ if (missing.provider_calls !== 0 || missing.owed !== true) {
 assertSecretFreeProviderArtifacts({ refusal: missing.refusal });
 
 const transportAllow = decideProviderTransportEgress(
-  { id: "MiniMax-M3", provider: "minimax", api: "openai-completions" },
+  minimaxModel,
   "https://api.minimax.io/v1/chat/completions",
 );
 if (!transportAllow.allow) {
@@ -65,7 +74,7 @@ if (!transportSource.includes("buildTransportHeaderReceiptPair")) {
   fail("transport_header_receipts_missing");
 }
 const headerTarget = resolveProviderTransportTarget(
-  { id: "MiniMax-M3", provider: "minimax", api: "openai-completions" },
+  minimaxModel,
   "https://api.minimax.io/v1/chat/completions",
 );
 const headerPair = buildTransportHeaderReceiptPair({
@@ -92,7 +101,23 @@ if (fixture.terminal.prev_receipt_sha256 !== fixture.started.receiptSha256) {
 let live = null;
 let liveHappened = false;
 if (creds.ok) {
-  live = await governedProviderCall({ env: process.env });
+  // Live spends a real key: bind the call to the credential's own endpoint.
+  // Previously this posted whichever key existed to the minimax default URL.
+  const ep = KEYED_PROVIDER_ENDPOINTS[creds.provider];
+  if (!ep) {
+    fail(`live_credential_without_endpoint:${creds.provider}`);
+  }
+  const liveModel = {
+    id: ep.model,
+    provider: creds.provider,
+    api: "openai-chat",
+    baseUrl: ep.baseUrl,
+  };
+  const liveTarget = resolveProviderTransportTarget(liveModel, ep.baseUrl + ep.chatPath);
+  if (!liveTarget) {
+    fail("live_target_unbound");
+  }
+  live = await governedProviderCall({ model: liveModel, target: liveTarget, env: process.env });
   liveHappened = live.live === true && live.provider_calls === 1;
   mkdirSync(artifactsDir, { recursive: true });
   writeFileSync(
